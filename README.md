@@ -179,3 +179,15 @@ With all the default options explicitly declared, the command looks like:
 ```
 ./shp2mbtiles.py -i SCAD.shp -m '1-3' -c '255 255 0' -d '255 0 0' -r 0.1 -l 0.1 -z npart -o ./tmp/output.mbtiles
 ```
+
+###9. Rscripts
+Collection of R scripts so far. Most deal with importing GDELT information automatically.
+
+####Dependencies
+1. R
+
+###9. STATA
+Collection of STATA .do files and replication datasets for my work. Where available, I've included all needed data to run the .do file and replicate the results in any attached papers.
+
+####Dependencies
+1. STATA

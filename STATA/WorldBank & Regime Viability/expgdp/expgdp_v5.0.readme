@@ -1,0 +1,118 @@
+Readme for expgdp_v5.0
+
+Kristian Skrede Gleditsch 
+ksg@essex.ac.uk
+
+This version: 25 February 2008
+
+***** Description of version 5.0 of the Expanded
+	GDP data (see below for summary of changes 
+	over version 4.1)
+
+1) Variable definitions
+
+statenum - Numeric country identifier
+statid 	 - Three letter acronym country identifier
+
+For a list of the country id and numeric codes, see 
+http://privatewww.essex.ac.uk/~ksg/statelist.html.
+Further details are available in case description file
+and the paper describing the data
+
+Gleditsch, Kristian S. & Michael D. Ward. 1999. 
+	"Interstate System Membership: A Revised List of 
+	the Independent States since 1816." 
+	International Interactions 25: 393-413
+
+
+year 	- year of observation
+pop 	- population, see also item 3) below 
+rgdpch 	- real GDP per capita, 2000 prices
+gdppc 	- GDP per capita, current prices
+origin	- Origin code for observation
+
+
+2) Table of origin codes (GDP estimates only, see item 3 
+	for details on population figures and important 
+	expections
+
+0	- From PWT 6.2 (but see expections for population 
+	figures in item 3 below)
+-1	- From PWT 5.6
+1	- Imputations for lead/tails based on first/last
+	available value, deflated to current value for 
+	gdppc using the GDP deflator from the Bureau
+	of Economic Analysis (see ksgmdw/beagdpdef2000.asc)
+2	Interpolated value (within series)
+3	Estimates based on figures from the CIA world factbook,
+	using shares to reference countries. 
+	(See ksgmdw/scaling.asc for details)
+
+
+3) Population figures: origins and exceptions
+
+a) All missing population figures in the PWT data have 
+been replaced by population figures from the Expanded 
+Population Data v.1.1, compiled by Kristian Skrede Gleditsch.
+This file is is provided as ksgmdw/countrypopestimates.asc, see 
+the associated readme file for details on the origin codes. 
+No documention is available as of yet for these data. These estimates 
+are generally based on country specific censuses, and the 
+particular references for each are available on request. 
+
+
+b) The PWT populations estimates have been retained
+when available, with some exceptions
+
+The PWT project lists population figures
+for countries that experience large boundary changes based 
+on the current size of the existing state. This means that 
+the PWT population figures for the Federal Republic 
+of Germany *before* the end of the German Democratic Republic
+reflect the population size of the two Germanies combined. 
+Likewise, pre-1991 population figures for the Soviet Union 
+reflect the size of present day Russia, even though this is 
+only about half the size of former Soviet Union. I am
+grateful to Ye Wang from the PWT project for explicity 
+confirming this to me. 
+
+Since the present size of a state seems inappropriate for
+historical comparisons, the current version of the data 
+replaces the PWT figures with estimates from the 
+Expanded Population Data v.1.1 in the following instances:
+
+A. Population of states prior to merging with other states 
+i) Federal Republic of Germany through 1990 (prior to 
+	inclusion of former Democratic Republic of Germany)
+ii) Democratic Republic of Vietnam through 1975 (prior
+	to inclusion of former Republic of (South) Vietnam
+iii) Arab Republic of (North) Yemen through 1990 (prior to 
+	merger with former People's Republic of (South) Yemen
+
+B. Population of states prior to secession of new states
+i) Pakistan through 1970 (prior to secession of Bangladesh)
+ii) Soviet Union through 1990 (prior to the secession of 
+	multiple former Soviet Republics and the new
+	Russian Federation)
+iii) Yugoslavia through 1991 (prior to the independence of
+	Bosnia, Croatia, Slovenia, and Macedonia)
+
+
+**** Summary of changes from version 4.1
+
+1) Version 5.0 includes figures up to 2001,
+	version 4.1 ended in 2000
+
+2) Version 5.0 includes a new procedures for
+	population estimates for merging and 
+	splitting states. PWT reports estimates
+	based on the population size of existing 
+	units
+
+3) Version 5.0 reports population estimates for 
+	observations not included in PWT 6.2 based
+	on the Expanded Population Data version 1.1. 
+	Version 4.1 extrapolated population figures 
+	based on first/last available observation for
+	missing lead/tail observations
+  
