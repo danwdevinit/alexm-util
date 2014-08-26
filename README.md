@@ -186,7 +186,7 @@ Collection of R scripts so far. Most deal with importing GDELT information autom
 ####Dependencies
 1. R
 
-###9. STATA
+###10. STATA
 Collection of STATA .do files and replication datasets for my work. Where available, I've included all needed data to run the .do file and replicate the results in any attached papers.
 
 ####Dependencies
