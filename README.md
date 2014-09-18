@@ -206,7 +206,7 @@ An attempted Arrow-Debreu security price calculator that utilizes exported CSVs 
 2. Thinkorswim
 
 ####Use
-First, find the options and strikes for which you wish to calculate Arrow-Debreu security prices. Click on the printer icon in Thinkorswim and choose "Export" and then choose CSV.
+First, find the options and strikes for which you wish to calculate Arrow-Debreu security prices. Click on the printer icon in Thinkorswim and choose "Export" and then choose CSV. Included in this repo is an example export for AAPL.
 
 Help:
 ```
