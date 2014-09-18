@@ -191,3 +191,31 @@ Collection of STATA .do files and replication datasets for my work. Where availa
 
 ####Dependencies
 1. STATA
+
+###11. JLARC
+Collection of scripts and their resulting datasets used in the process of my PRS project for JLARC
+
+####Dependencies
+1. NodeJS
+
+###12. Arrow-Debreu
+An attempted Arrow-Debreu security price calculator that utilizes exported CSVs from TDAmeritrade's Thinkorswim.
+
+####Dependencies
+1. Python
+2. Thinkorswim
+
+####Use
+First, find the options and strikes for which you wish to calculate Arrow-Debreu security prices. Click on the printer icon in Thinkorswim and choose "Export" and then choose CSV.
+
+Help:
+```
+./arrow.py -h
+```
+
+To calculate Arrow-Debreu security prices for the regular options in the month of October:
+```
+./arrow.py -i 2014-09-17-StockAndOptionQuoteForAAPL.csv -m "OCT"
+```
+####Notes
+This application does not function as intended, for now. I need to figure out how to prevent my F matrix from turning out singular. Any suggestions? Please email me at akmiller01@email.wm.edu
