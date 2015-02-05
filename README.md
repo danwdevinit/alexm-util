@@ -198,24 +198,24 @@ Collection of scripts and their resulting datasets used in the process of my PRS
 ####Dependencies
 1. NodeJS
 
-###12. Arrow-Debreu
-An attempted Arrow-Debreu security price calculator that utilizes exported CSVs from TDAmeritrade's Thinkorswim.
+###12. Finance
+A series of financial tools made in the process of managing a portfolio for my "Applied Financial Derivatives Class." I do not claim responsibility for any financial advice you derive from these programs or the algorithms contained within.
 
 ####Dependencies
 1. Python
-2. Thinkorswim
+2. NodeJS
+3. Thinkorswim
+4. A series of node modules
+5. Jsonlite (included)
 
 ####Use
-First, find the options and strikes for which you wish to calculate Arrow-Debreu security prices. Click on the printer icon in Thinkorswim and choose "Export" and then choose CSV. Included in this repo is an example export for AAPL.
+I may get around to writing use instructions for these later, but for now, please look at the script.
 
-Help:
-```
-./arrow.py -h
-```
+###13. DevInit
+A folder for solutions made as part of my work at DevInit.
 
-To calculate Arrow-Debreu security prices for the regular options in the month of October:
-```
-./arrow.py -i 2014-09-17-StockAndOptionQuoteForAAPL.csv -m "OCT"
-```
-####Notes
-This application does not function as intended, for now. I need to figure out how to prevent my F matrix from turning out singular. Any suggestions? Please email me at akmiller01@email.wm.edu
+####Dependencies
+1. Python
+2. PyPdf
+
+

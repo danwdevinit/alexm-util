@@ -1,7 +1,7 @@
 var fs = require('fs'),
 csv = require('to-csv'),
 S = require('string'),
-data = JSON.parse(fs.readFileSync('./reportcarddata.js','utf8')),
+data = JSON.parse(fs.readFileSync('./reportcarddata2.js','utf8')),
 records = [];
 
 var keys = {};
@@ -22,5 +22,5 @@ for(var eid in data){
     records.push(data[eid]);
 };
 console.log("Writing "+records.length+" records")
-fs.writeFile('reportcard.csv',csv(records),function(err){if(err){throw err};});
+fs.writeFile('reportcard2.csv',csv(records),function(err){if(err){throw err};});
 console.log("Done.")
