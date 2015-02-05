@@ -1,3 +1,4 @@
+###Credit to Kyle Walker, http://rpubs.com/walkerke/wdi_leaflet
 library(rgdal)
 library(WDI)
 library(leaflet)
