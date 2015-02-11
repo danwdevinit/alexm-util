@@ -2,6 +2,7 @@
     <head>
     <title>Mock API Indicators</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="../source/csvjson.js"></script>
         
     <script type="text/javascript">
@@ -23,25 +24,67 @@
     if(keys.indexOf('query')>-1){
         var query = JSON.parse(params['query']);
         if(query.concept){
-            var concept = query.concept,
-            fetchUrl = gitBase+concept+".csv";
-            $.ajax(fetchUrl, {
-                success: function(data) {
-                    var results = csvjson.csv2json(data).rows,
-                    qLen = Object.keys(query).length;
-                    if(qLen>1){
-                        delete query.concept
+            if(query.group){
+                var concept = query.concept,
+                fetchUrl = gitBase+concept+".csv";
+                $.ajax(fetchUrl, {
+                    success: function(data) {
+                        var results = csvjson.csv2json(data).rows;
                         for(var filter in query){
-                            results = results.filter(function(d){return d[filter]==query[filter]});
+                            if(filter!="concept" && filter!="group"){
+                                results = results.filter(function(d){return d[filter]==query[filter]});
+                            };
                         };
-                    };
-                    print(results);
-                },
-                error: function() {
-                    var results = "Error: Indicator not found, or unable to be fetched at this moment.";
-                    print(results);
-                }
-            });
+                        var groupBy = query.group.by,
+                        sum = query.group.sum
+                        groupByLen = groupBy.length,
+                        groups = _.groupBy(results,function(value){
+                            var concat = ""
+                            for(var i = 0; i < groupByLen; i++){
+                                concat+= value[groupBy[i]]
+                                if(i+1<groupByLen){concat+="#"};
+                            };
+                            return concat
+                        }),
+                        groupData = _.map(groups,function(group){
+                            var groupObj = {};
+                            for(var i = 0; i< groupByLen; i++){
+                                groupObj[groupBy[i]] = group[0][groupBy[i]];
+                            };
+                            groupObj[sum] = _.pluck(group,sum);
+                            return groupObj;
+                        }),
+                        out = _.map(groupData,function(g){
+                            var outObj = g;
+                            outObj[sum] = _.reduce(g[sum],function(x,y){return x+y;},0);
+                            return outObj;
+                        });
+                        print(out);
+                    },
+                    error: function() {
+                        var results = "Error: Indicator not found, or unable to be fetched at this moment.";
+                        print(results);
+                    }
+                });
+            }else{
+                var concept = query.concept,
+                fetchUrl = gitBase+concept+".csv";
+                $.ajax(fetchUrl, {
+                    success: function(data) {
+                        var results = csvjson.csv2json(data).rows;
+                        for(var filter in query){
+                            if(filter!="concept" && filter!="group"){
+                                results = results.filter(function(d){return d[filter]==query[filter]});
+                            };
+                        };
+                        print(results);
+                    },
+                    error: function() {
+                        var results = "Error: Indicator not found, or unable to be fetched at this moment.";
+                        print(results);
+                    }
+                });
+            };
         }else{
             $.ajax(conceptUrl, {
                 success: function(data) {
