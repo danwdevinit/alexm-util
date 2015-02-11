@@ -18,7 +18,7 @@
     var params = getParams(),
     keys = Object.keys(params);
     //Interpret parameters
-    var gitUrl = "https://raw.githubusercontent.com/devinit/digital-platform/master/reference/entity.csv";
+    var gitUrl = "https://cdn.rawgit.com/devinit/digital-platform/master/reference/entity.csv";
     $.ajax(gitUrl, {
         success: function(data) {
             var results = csvjson.csv2json(data).rows;
