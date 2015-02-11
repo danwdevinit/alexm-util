@@ -1,4 +1,4 @@
-#! python
+#!/usr/bin/env python
 
 #Import system
 import glob
