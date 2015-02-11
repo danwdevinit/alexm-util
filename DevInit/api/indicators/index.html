@@ -18,18 +18,19 @@
     var params = getParams(),
     keys = Object.keys(params);
     //Interpret parameters
-    var gitBase = "https://cdn.rawgit.com/devinit/digital-platform/master/country-year/";
+    var gitBase = "https://cdn.rawgit.com/devinit/digital-platform/master/country-year/",
+    conceptUrl = "https://cdn.rawgit.com/devinit/digital-platform/master/concepts.csv";
     if(keys.indexOf('query')>-1){
         var query = JSON.parse(params['query']);
-        if(query){
-            var id = query.id,
-            fetchUrl = gitBase+id+".csv";
+        if(query.concept){
+            var concept = query.concept,
+            fetchUrl = gitBase+concept+".csv";
             $.ajax(fetchUrl, {
                 success: function(data) {
                     var results = csvjson.csv2json(data).rows,
                     qLen = Object.keys(query).length;
                     if(qLen>1){
-                        delete query.id
+                        delete query.concept
                         for(var filter in query){
                             results = results.filter(function(d){return d[filter]==query[filter]});
                         };
@@ -41,9 +42,32 @@
                     print(results);
                 }
             });
+        }else{
+            $.ajax(conceptUrl, {
+                success: function(data) {
+                    var results = csvjson.csv2json(data).rows;
+                    for(var filter in query){
+                        results = results.filter(function(d){return d[filter]==query[filter]});
+                    };
+                    print(results);
+                },
+                error: function() {
+                    var results = "Error: Meta data not found, or unable to be fetched at this moment.";
+                    print(results);
+                }
+            });    
         };
     }else{
-        results.push("Error: Indicator API requires a 'query' parameter.")
+        $.ajax(conceptUrl, {
+            success: function(data) {
+                var results = csvjson.csv2json(data).rows;
+                print(results);
+            },
+            error: function() {
+                var results = "Error: Meta data not found, or unable to be fetched at this moment.";
+                print(results);
+            }
+        });
     };
     //Print results
     function print(json){
