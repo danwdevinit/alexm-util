@@ -1,0 +1,51 @@
+<html lang="en">
+    <head>
+    <title>Mock API Entities</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../source/csvjson.js"></script>
+        
+    <script type="text/javascript">
+    //Retrieve parameters
+    function getParams(){
+        var paramArr = window.location.search.substr(1).split("&")[0] == "" ? [] : decodeURI(window.location.search.substr(1)).split("&");
+        var params = {};
+        for (var i = 0; i < paramArr.length; i++) {
+            var param = paramArr[i];
+            params[param.split("=")[0]] = param.split("=")[1]
+        };
+        return params
+    };
+    var params = getParams(),
+    keys = Object.keys(params);
+    //Interpret parameters
+    var gitUrl = "https://raw.githubusercontent.com/devinit/digital-platform/master/reference/entity.csv";
+    $.ajax(gitUrl, {
+        success: function(data) {
+            var results = csvjson.csv2json(data).rows;
+            if(keys.indexOf('query')>-1){
+                var query = JSON.parse(params['query']);
+                if(query){
+                    for(var filter in query){
+                        results = results.filter(function(d){return d[filter]==query[filter]});
+                    };
+                    print(results);
+                };
+            }else{
+                print(results);
+            };
+        },
+        error: function() {
+            var results = "Error: Entity not found, or unable to be fetched at this moment.";
+            print(results);
+        }
+    });
+    //Print results
+    function print(json){
+        var string = JSON.stringify(json);
+        $(document).ready(function(){$('body').append(string)});
+    };
+    </script>
+    </head>
+    <body>
+    </body>
+</html>

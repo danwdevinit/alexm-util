@@ -1,0 +1,57 @@
+<html lang="en">
+    <head>
+    <title>Mock API Indicators</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../source/csvjson.js"></script>
+        
+    <script type="text/javascript">
+    //Retrieve parameters
+    function getParams(){
+        var paramArr = window.location.search.substr(1).split("&")[0] == "" ? [] : decodeURI(window.location.search.substr(1)).split("&");
+        var params = {};
+        for (var i = 0; i < paramArr.length; i++) {
+            var param = paramArr[i];
+            params[param.split("=")[0]] = param.split("=")[1]
+        };
+        return params
+    };
+    var params = getParams(),
+    keys = Object.keys(params);
+    //Interpret parameters
+    var gitBase = "https://raw.githubusercontent.com/devinit/digital-platform/master/country-year/";
+    if(keys.indexOf('query')>-1){
+        var query = JSON.parse(params['query']);
+        if(query){
+            var id = query.id,
+            fetchUrl = gitBase+id+".csv";
+            $.ajax(fetchUrl, {
+                success: function(data) {
+                    var results = csvjson.csv2json(data).rows,
+                    qLen = Object.keys(query).length;
+                    if(qLen>1){
+                        delete query.id
+                        for(var filter in query){
+                            results = results.filter(function(d){return d[filter]==query[filter]});
+                        };
+                    };
+                    print(results);
+                },
+                error: function() {
+                    var results = "Error: Indicator not found, or unable to be fetched at this moment.";
+                    print(results);
+                }
+            });
+        };
+    }else{
+        results.push("Error: Indicator API requires a 'query' parameter.")
+    };
+    //Print results
+    function print(json){
+        var string = JSON.stringify(json);
+        $(document).ready(function(){$('body').append(string)});
+    };
+    </script>
+    </head>
+    <body>
+    </body>
+</html>
