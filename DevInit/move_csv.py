@@ -4,6 +4,7 @@
 import glob
 import csv
 import sys, os
+import re
 from optparse import OptionParser
 
 #Parse Options
@@ -20,7 +21,7 @@ paths = glob.glob(options.input+"/*.csv")
 
 #Import csv data
 for inPath in paths:
-    filename = os.path.basename(inPath)
+    filename = re.sub('[ _]', '-',os.path.basename(inPath))
     outPath = options.output+filename
     removed = 0
     
@@ -35,8 +36,9 @@ for inPath in paths:
                     w.writerow(['id','year','value'])
                     for row in r:
                         w.writerow(row)
-    if removed==1:
-        os.remove(inPath)
+    #if removed==1:
+        #os.remove(inPath)
+        
                 
 
 
