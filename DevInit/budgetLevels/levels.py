@@ -20,7 +20,7 @@ parser.add_option("-i", "--input", dest="input",
                 help="Input file", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="./results.csv",
                 help="Output CSV file", metavar="FILE")
-parser.add_option("-j", "--outputjson", dest="outputjson", default="./results.json",
+parser.add_option("-j", "--outputjson", dest="outputjson", default="./orgDict.json",
                 help="Output json file", metavar="FILE")
 (options, args) = parser.parse_args()
 
@@ -41,29 +41,14 @@ except:
 sheets = wb.get_sheet_names()
 
 #Define hierarchy
-orgDict = {}
-orgDict['l2reven'] = {'l1':'total revenue and grants','l2':'revenue','l3':''}
-orgDict['l3tax'] = {'l1':'total revenue and grants','l2':'revenue','l3':'tax'}
-orgDict['l3grant'] = {'l1':'total revenue and grants','l2':'revenue','l3':'grants'}
-orgDict['l3nonta'] = {'l1':'total revenue and grants','l2':'revenue','l3':'nontax'}
-orgDict['l2expen'] = {'l1':'expenditures and net lending','l2':'expenditure','l3':''}
-orgDict['l3recur'] = {'l1':'expenditures and net lending','l2':'expenditure','l3':'recurrent'}
-orgDict['l3devel'] = {'l1':'expenditures and net lending','l2':'expenditure','l3':'development'}
-orgDict['l3curre'] = {'l1':'expenditures and net lending','l2':'expenditure','l3':'current'}
-orgDict['l3lendi'] = {'l1':'expenditures and net lending','l2':'expenditure','l3':'lending'}
-orgDict['l3capit'] = {'l1':'expenditures and net lending','l2':'expenditure','l3':'capital'}
-orgDict['l3priva'] = {'l1':'expenditures and net lending','l2':'expenditure','l3':'privatisation'}
-orgDict['l3excep'] = {'l1':'expenditures and net lending','l2':'expenditure','l3':'exceptional'}
-orgDict['l2finan'] = {'l1':'total financing','l2':'financing','l3':''}
-orgDict['l3exter'] = {'l1':'total financing','l2':'financing','l3':'externalfinance'}
-orgDict['l3domes'] = {'l1':'total financing','l2':'financing','l3':'domesticfinance'}
-orgDict['l3forei'] = {'l1':'total financing','l2':'financing','l3':'foreignfinance'}
+try:
+    with open(options.outputjson, 'r') as f:
+         orgDict = json.load(f)
+except:
+    orgDict = {}
 flatData = []
 hierData = {}
-#Fix it at first 5 for now
-for i in range(0,6):
-    sheet = sheets[i]
-#for sheet in sheets:
+for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
     rowIndex = 0
     names = []
@@ -102,7 +87,7 @@ for i in range(0,6):
     for i in range(0,nameLen):
         name = names[i]
         level = str(levels[i])
-        levelSlug = level[0:7]
+        levelSlug = level
         if level.find('l1')>-1:
             for j in range(0,yearLen):
                 item = {}
@@ -127,10 +112,10 @@ for i in range(0,6):
                     levelDict = orgDict[levelSlug]
                 except:
                     print("Please define '"+level+"' in the sheet named '"+country+":'")
+                    orgDict[levelSlug] = {}
                     orgDict[levelSlug]['l1'] = str(raw_input('L1:'))
                     orgDict[levelSlug]['l2'] = str(raw_input('L2:'))
                     orgDict[levelSlug]['l3'] = str(raw_input('L3:'))
-                    orgDict[levelSlug]['l4'] = str(raw_input('L4:'))
                     levelDict = orgDict[levelSlug]
                 item['country'] = country
                 item['currency'] = currency
@@ -300,5 +285,5 @@ with open(options.output, 'wb') as output_file:
 #print('Done.')
 #print('Writing JSON...')
 with open(options.outputjson, 'w') as output_file:
-    json.dump(parentModel,output_file,ensure_ascii=False)
+    json.dump(orgDict,output_file,ensure_ascii=False,sort_keys=True,indent=2)
 #print('Done.')
