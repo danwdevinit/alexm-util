@@ -274,8 +274,9 @@ def displayChildren(parent,level):
     children = [i for i in parentModel if i['parent']==parent]
     tab = "\t"
     for row in children:
+        indentLen = 90-(len(str(row['node'].split("#")[-1:][0]))+level*8)
         try:
-            print(tab*level+str(row['node'].split("#")[-1:][0])+": "+str(row['value']))
+            print(tab*level+str(row['node'].split("#")[-1:][0])+"."*indentLen+str(row['value']))
         except:
             print(tab*level+str(row['node'].split("#")[-1:][0]))
         displayChildren(row['node'],level+1)
