@@ -101,7 +101,7 @@ for i in range(0,6):
     yearLen = len(years)
     for i in range(0,nameLen):
         name = names[i]
-        level = levels[i]
+        level = str(levels[i])
         levelSlug = level[0:7]
         if level.find('l1')>-1:
             for j in range(0,yearLen):
@@ -126,7 +126,12 @@ for i in range(0,6):
                 try:
                     levelDict = orgDict[levelSlug]
                 except:
-                    raise Exception("Please define '"+level+"' in the sheet named '"+country+"'")
+                    print("Please define '"+level+"' in the sheet named '"+country+":'")
+                    orgDict[levelSlug]['l1'] = str(raw_input('L1:'))
+                    orgDict[levelSlug]['l2'] = str(raw_input('L2:'))
+                    orgDict[levelSlug]['l3'] = str(raw_input('L3:'))
+                    orgDict[levelSlug]['l4'] = str(raw_input('L4:'))
+                    levelDict = orgDict[levelSlug]
                 item['country'] = country
                 item['currency'] = currency
                 item['year'] = year
