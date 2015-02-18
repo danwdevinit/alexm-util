@@ -49,7 +49,7 @@ try:
 except:
     orgDict = {}
 flatData = []
-hierData = []
+hierData = {}
 for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
     rowIndex = 0
@@ -59,7 +59,7 @@ for sheet in sheets:
     types = []
     values = []
     country = uni(sheet)
-    print('Reading sheet: '+country)
+    #print('Reading sheet: '+country)
     for row in ws.iter_rows():
         names.append(uni(row[0].value))
         levels.append(uni(row[1].value))
@@ -145,118 +145,100 @@ for item in flatData:
         item['l1'] = "total revenue and grants"
     if item['l4']!="":
         obj1 = {}
-        obj1['name'] = item['l4']
-        obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+        obj1['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
         obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
         obj1['value'] = item['value'] if item['value']!='none' else ""
         parentModel.append(obj1)
         obj2 = {}
-        obj2['name'] = item['l3']
-        obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+        obj2['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
         obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
         obj2['value'] = ""
         parentModel.append(obj2)
         obj3 = {}
-        obj3['name'] = item['l2']
-        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+        obj3['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
         obj3['value'] = ""
         parentModel.append(obj3)
         obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+        obj4['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
         obj4['parent'] = item['country']+"#"+str(int(item['year']))
         obj4['value'] = ""
         parentModel.append(obj4)
         obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
+        obj5['node'] = item['country']+"#"+str(int(item['year']))
         obj5['parent'] = item['country']
         obj5['value'] = ""
         parentModel.append(obj5)
         obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
+        obj6['node'] = item['country']
         obj6['parent'] = ""
         obj6['value'] = ""
         parentModel.append(obj6)
     elif item['l3']!="":
         obj2 = {}
-        obj2['name'] = item['l3']
-        obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+        obj2['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
         obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
         obj2['value'] = item['value'] if item['value']!='none' else ""
         parentModel.append(obj2)
         obj3 = {}
-        obj3['name'] = item['l2']
-        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+        obj3['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
         obj3['value'] = ""
         parentModel.append(obj3)
         obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+        obj4['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
         obj4['parent'] = item['country']+"#"+str(int(item['year']))
         obj4['value'] = ""
         parentModel.append(obj4)
         obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
+        obj5['node'] = item['country']+"#"+str(int(item['year']))
         obj5['parent'] = item['country']
         obj5['value'] = ""
         parentModel.append(obj5)
         obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
+        obj6['node'] = item['country']
         obj6['parent'] = ""
         obj6['value'] = ""
         parentModel.append(obj6)
     elif item['l2']!="":
         obj3 = {}
-        obj3['name'] = item['l2']
-        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+        obj3['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
         obj3['value'] = item['value'] if item['value']!='none' else ""
         parentModel.append(obj3)
         obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+        obj4['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
         obj4['parent'] = item['country']+"#"+str(int(item['year']))
         obj4['value'] = ""
         parentModel.append(obj4)
         obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
+        obj5['node'] = item['country']+"#"+str(int(item['year']))
         obj5['parent'] = item['country']
         obj5['value'] = ""
         parentModel.append(obj5)
         obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
+        obj6['node'] = item['country']
         obj6['parent'] = ""
         obj6['value'] = ""
         parentModel.append(obj6)
     elif item['l1']!="":
         obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+        obj4['node'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
         obj4['parent'] = item['country']+"#"+str(int(item['year']))
         obj4['value'] = item['value'] if item['value']!='none' else ""
         parentModel.append(obj4)
         obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
+        obj5['node'] = item['country']+"#"+str(int(item['year']))
         obj5['parent'] = item['country']
         obj5['value'] = ""
         parentModel.append(obj5)
         obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
+        obj6['node'] = item['country']
         obj6['parent'] = ""
         obj6['value'] = ""
         parentModel.append(obj6)
 #Remove exact duplicates
-getvals = operator.itemgetter('id','parent')
+getvals = operator.itemgetter('node','parent')
 parentModel.sort(key=getvals)
 results = []
 groups = []
@@ -282,57 +264,15 @@ parentModel[:]=results
 #seen = set()
 #result = []
 
-syms = ['\\', '|', '/', '-']
-bs = '\b'
-spinIndex = 0
-def spin():
-    global spinIndex
-    spinIndex = 0 if spinIndex>3 else spinIndex
-    sym = syms[spinIndex]
-    sys.stdout.write("\b%s" % sym)
-    sys.stdout.flush()
-    spinIndex+=1
-
-def buildTree(parent,arr):
-    spin()
+def displayChildren(parent,level):
     children = [i for i in parentModel if i['parent']==parent]
-    arr[:] = children
-    for child in arr:
-        child['children'] = []
-        buildTree(child['id'],child['children'])
-        if len(child['children'])==0:
-            del child['children']
-            if child['value']=="":
-                child['value']=1
-        else:
-            if child['value']=="":
-                del child['value']
-    
-sys.stdout.write("Building tree... This can take a while....")
-buildTree("",hierData)
-sys.stdout.write('\nDone.')
-
-#def buildTree(parent):
-#    children = [i for i in parentModel if i['parent']==parent]
-#    for row in children:
-#        print(tab*level+str(row['name'].split("#")[-1:][0])+"."*indentLen+str(row['value']))
-#        buildTree(row['name'],level+1)
-
-#Output results
-print('Writing CSV...')
-#Enforce order
-#keys = flatData[0].keys()
-keys = ['country','currency','year','type','l1','l2','l3','l4','value']
-with open(options.output, 'wb') as output_file:
-    dict_writer = csv.DictWriter(output_file, keys)
-    dict_writer.writeheader()
-    dict_writer.writerows(flatData)
-print('Done.')
-print('Writing orgDict...')
-with open(options.dict, 'w') as output_file:
-    json.dump(orgDict,output_file,ensure_ascii=False,sort_keys=True,indent=2)
-print('Done.')
-print('Writing JSON...')
-with open(options.outputjson, 'w') as output_file:
-    json.dump(hierData,output_file,ensure_ascii=False,indent=2)
-print('Done.')
+    tab = "\t"
+    for row in children:
+        indentLen = 90-(len(str(row['node'].split("#")[-1:][0]))+level*8)
+        try:
+            print(tab*level+str(row['node'].split("#")[-1:][0])+"."*indentLen+str(row['value']))
+        except:
+            print(tab*level+str(row['node'].split("#")[-1:][0]))
+        displayChildren(row['node'],level+1)
+sys.stdout = open('results.txt','w')
+displayChildren("",0)
