@@ -8,9 +8,6 @@ import re
 import pdb
 from optparse import OptionParser
 
-#What counts as a blank?
-blanks = [""]
-
 #Parse Options
 parser = OptionParser()
 parser.add_option("-i", "--input", dest="input", default="../../digital-platform/country-year",
@@ -19,7 +16,20 @@ parser.add_option("-o", "--output", dest="output", default="./tmp/",
                 help="Output folder", metavar="FOLDER")
 parser.add_option("-e", "--entity", dest="entity", default="../../digital-platform/reference/entity.csv",
                 help="Entity reference csv", metavar="FILE")
+parser.add_option("-b", "--blanks", dest="blanks", default="",
+                help="A list of what counts as blanks, separated by commas", metavar="TEXT")
+parser.add_option("-a", "--auto", dest="auto", default=True,
+                help="Should the program run automatically?", metavar="TEXT")
+parser.add_option("-d", "--donors", dest="donors", default="donor,multilateral",
+                help="A list of what should be coded as 'NR', separated by commas", metavar="TEXT")
+parser.add_option("-r", "--recipients", dest="recipients", default="recipient,region,crossover",
+                help="A list of what should be coded as 'NA', separated by commas", metavar="TEXT")
 (options, args) = parser.parse_args()
+
+#Split options
+blanks = options.blanks.split(",")
+donors = options.donors.split(",")
+recipients = options.recipients.split(",")
 
 def clean(text):
     return re.sub('[ _]', '-',text)
@@ -28,12 +38,12 @@ def recode(arr,donor,blanks):
     result = []
     for j in range(0,len(arr)):
         value = arr[j]
-        if value not in blanks:
+        if str(value) not in blanks and value not in blanks:
             result.append(arr[j])
         else:
-            if donor=="donor" or donor=="multilateral":
+            if donor in donors:
                 result.append("NR")
-            elif donor=="recipient" or donor=="region" or donor=="crossover":
+            elif donor in recipients:
                 result.append("NA")
             else:
                 result.append(arr[j])
@@ -42,7 +52,7 @@ def recodeNA(arr,blanks):
     result = []
     for j in range(0,len(arr)):
         value = arr[j]
-        if value not in blanks:
+        if str(value) not in blanks and value not in blanks:
             result.append(arr[j])
         else:
             result.append("NA")
@@ -73,8 +83,8 @@ for inPath in paths:
             map(clean,header)
             print filename
             NA="n"
-            #To make automatic, comment out the next line
-            NA = raw_input("Are donor data relevant to this indicator? (y/n) ")
+            if options.auto!=True and options.auto!="true" and options.auto!="True" and options.auto!="T" and options.auto!="t":
+                NA = raw_input("Are donor data relevant to this indicator? (y/n) ")
             if NA=="n":
                 if "id" in header:
                     idIndex = header.index("id")
