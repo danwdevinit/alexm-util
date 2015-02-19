@@ -8,6 +8,9 @@ import re
 import pdb
 from optparse import OptionParser
 
+#What counts as a blank?
+blanks = [""]
+
 #Parse Options
 parser = OptionParser()
 parser.add_option("-i", "--input", dest="input", default="../../digital-platform/country-year",
@@ -75,7 +78,6 @@ for inPath in paths:
             if NA=="n":
                 if "id" in header:
                     idIndex = header.index("id")
-                    blanks = [""]
                     with open(outPath,'wb') as outFile:
                         w = csv.writer(outFile)
                         w.writerow(header)
@@ -86,7 +88,6 @@ for inPath in paths:
                 else:
                     print("\tCannot determine 'id' field.")
             else:
-                blanks = [""]
                 with open(outPath,'wb') as outFile:
                     w = csv.writer(outFile)
                     w.writerow(header)
