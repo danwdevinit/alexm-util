@@ -19,22 +19,27 @@ parser.add_option("-o", "--output", dest="output", default="./tmp/excel_trunc.cs
 output = []
 paths = glob.glob(options.input+"/*.csv")
 
+def try_parse_int(s, base=10, val=None):
+    try:
+        return int(s, base)
+    except ValueError:
+        return val
+
 #Import csv data
-for inPath in paths:
-    filename = os.path.basename(inPath)
-    outPath = options.output
-    
-    with open(inPath,'rb') as inFile:
+outPath = options.output
+with open(outPath,'wb') as outFile:
+    w = csv.writer(outFile)
+    w.writerow(["file-name","row-index","row-values"])
+    for inPath in paths:
+        filename = os.path.basename(inPath)
+        with open(inPath,'rb') as inFile:
             r = csv.reader(inFile)
             header = next(r)
             print filename
-            with open(outPath,'wb') as outFile:
-                w = csv.writer(outFile)
-                w.writerow(["file-name","row-index","row-values"])
-                counter = 0
-                for row in r:
-                    for val in row:
-                        if val.find("E+")>-1:
-                            joinedRow = ', '.join(row)
-                            w.writerow([filename,counter,joinedRow])
-                    counter+=1
+            counter = 0
+            for row in r:
+                for val in row:
+                    if try_parse_int(val)>1000000000:
+                        joinedRow = ', '.join(row)
+                        w.writerow([filename,counter,joinedRow])
+                counter+=1
