@@ -49,7 +49,7 @@ try:
 except:
     orgDict = {}
 flatData = []
-hierData = []
+hierData = {"name":"budget","children":[]}
 for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
     rowIndex = 0
@@ -309,14 +309,8 @@ def buildTree(parent,arr):
                 del child['value']
     
 sys.stdout.write("Building tree... This can take a while....")
-buildTree("",hierData)
+buildTree("",hierData['children'])
 sys.stdout.write('\nDone.')
-
-#def buildTree(parent):
-#    children = [i for i in parentModel if i['parent']==parent]
-#    for row in children:
-#        print(tab*level+str(row['name'].split("#")[-1:][0])+"."*indentLen+str(row['value']))
-#        buildTree(row['name'],level+1)
 
 #Output results
 print('Writing CSV...')
