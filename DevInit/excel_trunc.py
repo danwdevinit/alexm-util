@@ -39,7 +39,7 @@ with open(outPath,'wb') as outFile:
             counter = 0
             for row in r:
                 for val in row:
-                    if try_parse_int(val)>1000000000:
+                    if try_parse_int(val)>100000000000:
                         joinedRow = ', '.join(row)
                         w.writerow([filename,counter,joinedRow])
                 counter+=1
