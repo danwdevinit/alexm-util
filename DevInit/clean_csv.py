@@ -15,7 +15,7 @@ parser.add_option("-i", "--input", dest="input", default="../../digital-platform
 parser.add_option("-o", "--output", dest="output", default="./tmp/",
                 help="Output folder", metavar="FOLDER")
 parser.add_option("-e", "--entity", dest="entity", default="../../digital-platform/reference/entity.csv",
-                help="Output folder", metavar="FOLDER")
+                help="Entity reference csv", metavar="FILE")
 (options, args) = parser.parse_args()
 
 def clean(text):
