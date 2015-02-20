@@ -50,9 +50,9 @@ except:
     orgDict = {}
 flatData = []
 hierData = {"name":"budget","children":[]}
-#for sheet in sheets:
-for i in range(0,1):
+for i in range(0,2):
     sheet = sheets[i]
+#for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
     rowIndex = 0
     names = []
@@ -92,7 +92,7 @@ for i in range(0,1):
         name = names[i]
         level = str(levels[i])
         levelSlug = level
-        if level.find('l1')>-1:
+        if level.find('l0')>-1:
             for j in range(0,yearLen):
                 item = {}
                 year = years[j]
@@ -105,6 +105,7 @@ for i in range(0,1):
                 item['l2'] = ""
                 item['l3'] = ""
                 item['l4'] = ""
+                item['l5'] = ""
                 item['value'] = values[i][j]
                 flatData.append(item)
         elif level!='none':
@@ -120,15 +121,17 @@ for i in range(0,1):
                     orgDict[levelSlug]['l1'] = str(raw_input('L1:'))
                     orgDict[levelSlug]['l2'] = str(raw_input('L2:'))
                     orgDict[levelSlug]['l3'] = str(raw_input('L3:'))
+                    orgDict[levelSlug]['l4'] = str(raw_input('L4:'))
                     levelDict = orgDict[levelSlug]
                 item['country'] = country
                 item['currency'] = currency
                 item['year'] = year
                 item['type'] = yearType
                 item['l1'] = levelDict['l1']
-                item['l2'] = levelDict['l2']
+                item['l2'] = name if level.find('l1')>-1 else levelDict['l2']
                 item['l3'] = name if level.find('l2')>-1 else levelDict['l3']
-                item['l4'] = name if levelDict['l3']!="" else ""
+                item['l4'] = name if level.find('l3')>-1 else levelDict['l4']
+                item['l5'] = name if level.find('l4')>-1 else ""
                 item['value'] = values[i][j]
                 flatData.append(item)
 
@@ -140,12 +143,55 @@ parentModel = []
 for item in flatData:
     #systematize results a little
     if item['l1'].find('expend')>-1:
-        item['l1'] = "expenditures and net lending"
+        item['l1'] = "expenditures"
     elif item['l1'].find('financ')>-1:
         item['l1'] = "total financing"
     elif item['l1'].find('venue')>-1:
         item['l1'] = "total revenue and grants"
-    if item['l4']!="":
+    if item['l5']!="":
+        obj0 = {}
+        obj0['name'] = item['l5']
+        obj0['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
+        obj0['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+        obj0['value'] = item['value'] if item['value']!='none' else ""
+        parentModel.append(obj0)
+        obj1 = {}
+        obj1['name'] = item['l4']
+        obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+        obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+        obj1['value'] = ""
+        parentModel.append(obj1)
+        obj2 = {}
+        obj2['name'] = item['l3']
+        obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+        obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+        obj2['value'] = ""
+        parentModel.append(obj2)
+        obj3 = {}
+        obj3['name'] = item['l2']
+        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+        obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+        obj3['value'] = ""
+        parentModel.append(obj3)
+        obj4 = {}
+        obj4['name'] = item['l1']
+        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+        obj4['parent'] = item['country']+"#"+str(int(item['year']))
+        obj4['value'] = ""
+        parentModel.append(obj4)
+        obj5 = {}
+        obj5['name'] = str(int(item['year']))
+        obj5['id'] = item['country']+"#"+str(int(item['year']))
+        obj5['parent'] = item['country']
+        obj5['value'] = ""
+        parentModel.append(obj5)
+        obj6 = {}
+        obj6['name'] = item['country']
+        obj6['id'] = item['country']
+        obj6['parent'] = ""
+        obj6['value'] = ""
+        parentModel.append(obj6)
+    elif item['l4']!="":
         obj1 = {}
         obj1['name'] = item['l4']
         obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
@@ -320,7 +366,7 @@ sys.stdout.write('\nDone.\n')
 print('Writing CSV...')
 #Enforce order
 #keys = flatData[0].keys()
-keys = ['country','currency','year','type','l1','l2','l3','l4','value']
+keys = ['country','currency','year','type','l1','l2','l3','l4','l5','value']
 with open(options.output, 'wb') as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()
