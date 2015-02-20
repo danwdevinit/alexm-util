@@ -109,12 +109,12 @@
     "l2": "financing", 
     "l3": "foreign loans"
   }, 
-  "l3grants": {
+  "l2grants": {
     "l1": "total revenue and grants", 
-    "l2": "revenue", 
-    "l3": "grants"
+    "l2": "grants", 
+    "l3": ""
   }, 
-  "l3grants ": {
+  "l2grants ": {
     "l1": "total revenue and grants", 
     "l2": "revenue", 
     "l3": "grants"
