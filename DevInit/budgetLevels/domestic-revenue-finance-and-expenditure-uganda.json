@@ -9,25 +9,6 @@
               "value": 2389000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 520000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2000#expenditures#capital development", 
-                      "id": "uganda#2000#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 263000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2000#expenditures#capital development", 
-                      "id": "uganda#2000#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2000#expenditures", 
-                  "id": "uganda#2000#expenditures#capital development"
-                }, 
-                {
                   "value": 977000000000.0, 
                   "children": [
                     {
@@ -55,6 +36,20 @@
                 }, 
                 {
                   "value": 783000000000.0, 
+                  "children": [
+                    {
+                      "value": 520000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2000#expenditures#development expenditures", 
+                      "id": "uganda#2000#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 263000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2000#expenditures#development expenditures", 
+                      "id": "uganda#2000#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2000#expenditures", 
                   "id": "uganda#2000#expenditures#development expenditures"
@@ -247,25 +242,6 @@
               "value": 2180000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 604000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2001#expenditures#capital development", 
-                      "id": "uganda#2001#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 335000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2001#expenditures#capital development", 
-                      "id": "uganda#2001#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2001#expenditures", 
-                  "id": "uganda#2001#expenditures#capital development"
-                }, 
-                {
                   "value": 1138000000000.0, 
                   "children": [
                     {
@@ -293,6 +269,20 @@
                 }, 
                 {
                   "value": 939000000000.0, 
+                  "children": [
+                    {
+                      "value": 604000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2001#expenditures#development expenditures", 
+                      "id": "uganda#2001#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 335000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2001#expenditures#development expenditures", 
+                      "id": "uganda#2001#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2001#expenditures", 
                   "id": "uganda#2001#expenditures#development expenditures"
@@ -485,25 +475,6 @@
               "value": 2514000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 547000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2002#expenditures#capital development", 
-                      "id": "uganda#2002#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 432000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2002#expenditures#capital development", 
-                      "id": "uganda#2002#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2002#expenditures", 
-                  "id": "uganda#2002#expenditures#capital development"
-                }, 
-                {
                   "value": 1420000000000.0, 
                   "children": [
                     {
@@ -531,6 +502,20 @@
                 }, 
                 {
                   "value": 979000000000.0, 
+                  "children": [
+                    {
+                      "value": 547000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2002#expenditures#development expenditures", 
+                      "id": "uganda#2002#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 432000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2002#expenditures#development expenditures", 
+                      "id": "uganda#2002#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2002#expenditures", 
                   "id": "uganda#2002#expenditures#development expenditures"
@@ -723,25 +708,6 @@
               "value": 2775000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 672000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2003#expenditures#capital development", 
-                      "id": "uganda#2003#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 496000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2003#expenditures#capital development", 
-                      "id": "uganda#2003#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2003#expenditures", 
-                  "id": "uganda#2003#expenditures#capital development"
-                }, 
-                {
                   "value": 1565000000000.0, 
                   "children": [
                     {
@@ -769,6 +735,20 @@
                 }, 
                 {
                   "value": 1168000000000.0, 
+                  "children": [
+                    {
+                      "value": 672000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2003#expenditures#development expenditures", 
+                      "id": "uganda#2003#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 496000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2003#expenditures#development expenditures", 
+                      "id": "uganda#2003#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2003#expenditures", 
                   "id": "uganda#2003#expenditures#development expenditures"
@@ -961,25 +941,6 @@
               "value": 3135600000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 716100000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2004#expenditures#capital development", 
-                      "id": "uganda#2004#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 439200000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2004#expenditures#capital development", 
-                      "id": "uganda#2004#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2004#expenditures", 
-                  "id": "uganda#2004#expenditures#capital development"
-                }, 
-                {
                   "value": 1865300000000.0, 
                   "children": [
                     {
@@ -1007,6 +968,20 @@
                 }, 
                 {
                   "value": 1155300000000.0, 
+                  "children": [
+                    {
+                      "value": 716100000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2004#expenditures#development expenditures", 
+                      "id": "uganda#2004#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 439200000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2004#expenditures#development expenditures", 
+                      "id": "uganda#2004#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2004#expenditures", 
                   "id": "uganda#2004#expenditures#development expenditures"
@@ -1199,25 +1174,6 @@
               "value": 3233000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 700000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2005#expenditures#capital development", 
-                      "id": "uganda#2005#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 487000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2005#expenditures#capital development", 
-                      "id": "uganda#2005#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2005#expenditures", 
-                  "id": "uganda#2005#expenditures#capital development"
-                }, 
-                {
                   "value": 1978000000000.0, 
                   "children": [
                     {
@@ -1245,6 +1201,20 @@
                 }, 
                 {
                   "value": 1187000000000.0, 
+                  "children": [
+                    {
+                      "value": 700000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2005#expenditures#development expenditures", 
+                      "id": "uganda#2005#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 487000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2005#expenditures#development expenditures", 
+                      "id": "uganda#2005#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2005#expenditures", 
                   "id": "uganda#2005#expenditures#development expenditures"
@@ -1437,25 +1407,6 @@
               "value": 3228000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 416000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2006#expenditures#capital development", 
-                      "id": "uganda#2006#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 519000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2006#expenditures#capital development", 
-                      "id": "uganda#2006#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2006#expenditures", 
-                  "id": "uganda#2006#expenditures#capital development"
-                }, 
-                {
                   "value": 2233000000000.0, 
                   "children": [
                     {
@@ -1483,6 +1434,20 @@
                 }, 
                 {
                   "value": 935000000000.0, 
+                  "children": [
+                    {
+                      "value": 416000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2006#expenditures#development expenditures", 
+                      "id": "uganda#2006#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 519000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2006#expenditures#development expenditures", 
+                      "id": "uganda#2006#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2006#expenditures", 
                   "id": "uganda#2006#expenditures#development expenditures"
@@ -1675,25 +1640,6 @@
               "value": 3844000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 491000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2007#expenditures#capital development", 
-                      "id": "uganda#2007#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 714000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2007#expenditures#capital development", 
-                      "id": "uganda#2007#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2007#expenditures", 
-                  "id": "uganda#2007#expenditures#capital development"
-                }, 
-                {
                   "value": 2442000000000.0, 
                   "children": [
                     {
@@ -1721,6 +1667,20 @@
                 }, 
                 {
                   "value": 1205000000000.0, 
+                  "children": [
+                    {
+                      "value": 491000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2007#expenditures#development expenditures", 
+                      "id": "uganda#2007#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 714000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2007#expenditures#development expenditures", 
+                      "id": "uganda#2007#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2007#expenditures", 
                   "id": "uganda#2007#expenditures#development expenditures"
@@ -1913,25 +1873,6 @@
               "value": 4384000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 644000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2008#expenditures#capital development", 
-                      "id": "uganda#2008#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 718000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2008#expenditures#capital development", 
-                      "id": "uganda#2008#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2008#expenditures", 
-                  "id": "uganda#2008#expenditures#capital development"
-                }, 
-                {
                   "value": 2881000000000.0, 
                   "children": [
                     {
@@ -1959,6 +1900,20 @@
                 }, 
                 {
                   "value": 1362000000000.0, 
+                  "children": [
+                    {
+                      "value": 644000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2008#expenditures#development expenditures", 
+                      "id": "uganda#2008#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 718000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2008#expenditures#development expenditures", 
+                      "id": "uganda#2008#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2008#expenditures", 
                   "id": "uganda#2008#expenditures#development expenditures"
@@ -2151,25 +2106,6 @@
               "value": 5205000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 481000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2009#expenditures#capital development", 
-                      "id": "uganda#2009#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 1207000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2009#expenditures#capital development", 
-                      "id": "uganda#2009#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2009#expenditures", 
-                  "id": "uganda#2009#expenditures#capital development"
-                }, 
-                {
                   "value": 3291000000000.0, 
                   "children": [
                     {
@@ -2197,6 +2133,20 @@
                 }, 
                 {
                   "value": 1688000000000.0, 
+                  "children": [
+                    {
+                      "value": 481000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2009#expenditures#development expenditures", 
+                      "id": "uganda#2009#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 1207000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2009#expenditures#development expenditures", 
+                      "id": "uganda#2009#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2009#expenditures", 
                   "id": "uganda#2009#expenditures#development expenditures"
@@ -2389,25 +2339,6 @@
               "value": 6836000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 889000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2010#expenditures#capital development", 
-                      "id": "uganda#2010#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 1423000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2010#expenditures#capital development", 
-                      "id": "uganda#2010#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2010#expenditures", 
-                  "id": "uganda#2010#expenditures#capital development"
-                }, 
-                {
                   "value": 4308000000000.0, 
                   "children": [
                     {
@@ -2435,6 +2366,20 @@
                 }, 
                 {
                   "value": 2312000000000.0, 
+                  "children": [
+                    {
+                      "value": 889000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2010#expenditures#development expenditures", 
+                      "id": "uganda#2010#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 1423000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2010#expenditures#development expenditures", 
+                      "id": "uganda#2010#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2010#expenditures", 
                   "id": "uganda#2010#expenditures#development expenditures"
@@ -2627,25 +2572,6 @@
               "value": 8900000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 1042000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2011#expenditures#capital development", 
-                      "id": "uganda#2011#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 1732000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2011#expenditures#capital development", 
-                      "id": "uganda#2011#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2011#expenditures", 
-                  "id": "uganda#2011#expenditures#capital development"
-                }, 
-                {
                   "value": 5963000000000.0, 
                   "children": [
                     {
@@ -2673,6 +2599,20 @@
                 }, 
                 {
                   "value": 2774000000000.0, 
+                  "children": [
+                    {
+                      "value": 1042000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2011#expenditures#development expenditures", 
+                      "id": "uganda#2011#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 1732000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2011#expenditures#development expenditures", 
+                      "id": "uganda#2011#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2011#expenditures", 
                   "id": "uganda#2011#expenditures#development expenditures"
@@ -2865,25 +2805,6 @@
               "value": 9281000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 1701000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2012#expenditures#capital development", 
-                      "id": "uganda#2012#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 1756000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2012#expenditures#capital development", 
-                      "id": "uganda#2012#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2012#expenditures", 
-                  "id": "uganda#2012#expenditures#capital development"
-                }, 
-                {
                   "value": 5585000000000.0, 
                   "children": [
                     {
@@ -2911,6 +2832,20 @@
                 }, 
                 {
                   "value": 3458000000000.0, 
+                  "children": [
+                    {
+                      "value": 1701000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2012#expenditures#development expenditures", 
+                      "id": "uganda#2012#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 1756000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2012#expenditures#development expenditures", 
+                      "id": "uganda#2012#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2012#expenditures", 
                   "id": "uganda#2012#expenditures#development expenditures"
@@ -3103,25 +3038,6 @@
               "value": 10523000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 2163000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2013#expenditures#capital development", 
-                      "id": "uganda#2013#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 2074000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2013#expenditures#capital development", 
-                      "id": "uganda#2013#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2013#expenditures", 
-                  "id": "uganda#2013#expenditures#capital development"
-                }, 
-                {
                   "value": 5813000000000.0, 
                   "children": [
                     {
@@ -3149,6 +3065,20 @@
                 }, 
                 {
                   "value": 4237000000000.0, 
+                  "children": [
+                    {
+                      "value": 2163000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2013#expenditures#development expenditures", 
+                      "id": "uganda#2013#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 2074000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2013#expenditures#development expenditures", 
+                      "id": "uganda#2013#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2013#expenditures", 
                   "id": "uganda#2013#expenditures#development expenditures"
@@ -3341,25 +3271,6 @@
               "value": 24470900000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 4104700000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2014#expenditures#capital development", 
-                      "id": "uganda#2014#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 7145400000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2014#expenditures#capital development", 
-                      "id": "uganda#2014#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2014#expenditures", 
-                  "id": "uganda#2014#expenditures#capital development"
-                }, 
-                {
                   "value": 13113000000000.0, 
                   "children": [
                     {
@@ -3387,6 +3298,20 @@
                 }, 
                 {
                   "value": 11250100000000.0, 
+                  "children": [
+                    {
+                      "value": 4104700000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2014#expenditures#development expenditures", 
+                      "id": "uganda#2014#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 7145400000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2014#expenditures#development expenditures", 
+                      "id": "uganda#2014#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2014#expenditures", 
                   "id": "uganda#2014#expenditures#development expenditures"
@@ -3579,25 +3504,6 @@
               "value": 16177000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 2664000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2015#expenditures#capital development", 
-                      "id": "uganda#2015#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 3230000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2015#expenditures#capital development", 
-                      "id": "uganda#2015#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2015#expenditures", 
-                  "id": "uganda#2015#expenditures#capital development"
-                }, 
-                {
                   "value": 7491000000000.0, 
                   "children": [
                     {
@@ -3625,6 +3531,20 @@
                 }, 
                 {
                   "value": 5894000000000.0, 
+                  "children": [
+                    {
+                      "value": 2664000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2015#expenditures#development expenditures", 
+                      "id": "uganda#2015#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 3230000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2015#expenditures#development expenditures", 
+                      "id": "uganda#2015#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2015#expenditures", 
                   "id": "uganda#2015#expenditures#development expenditures"
@@ -3817,25 +3737,6 @@
               "value": 16156000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 1764000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2016#expenditures#capital development", 
-                      "id": "uganda#2016#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 3713000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2016#expenditures#capital development", 
-                      "id": "uganda#2016#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2016#expenditures", 
-                  "id": "uganda#2016#expenditures#capital development"
-                }, 
-                {
                   "value": 8332000000000.0, 
                   "children": [
                     {
@@ -3863,6 +3764,20 @@
                 }, 
                 {
                   "value": 5477000000000.0, 
+                  "children": [
+                    {
+                      "value": 1764000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2016#expenditures#development expenditures", 
+                      "id": "uganda#2016#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 3713000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2016#expenditures#development expenditures", 
+                      "id": "uganda#2016#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2016#expenditures", 
                   "id": "uganda#2016#expenditures#development expenditures"
@@ -4055,25 +3970,6 @@
               "value": 18653000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 1843000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2017#expenditures#capital development", 
-                      "id": "uganda#2017#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 4297000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2017#expenditures#capital development", 
-                      "id": "uganda#2017#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2017#expenditures", 
-                  "id": "uganda#2017#expenditures#capital development"
-                }, 
-                {
                   "value": 9394000000000.0, 
                   "children": [
                     {
@@ -4101,6 +3997,20 @@
                 }, 
                 {
                   "value": 6140000000000.0, 
+                  "children": [
+                    {
+                      "value": 1843000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2017#expenditures#development expenditures", 
+                      "id": "uganda#2017#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 4297000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2017#expenditures#development expenditures", 
+                      "id": "uganda#2017#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2017#expenditures", 
                   "id": "uganda#2017#expenditures#development expenditures"
@@ -4293,25 +4203,6 @@
               "value": 20466000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 1836000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2018#expenditures#capital development", 
-                      "id": "uganda#2018#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 5008000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2018#expenditures#capital development", 
-                      "id": "uganda#2018#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2018#expenditures", 
-                  "id": "uganda#2018#expenditures#capital development"
-                }, 
-                {
                   "value": 10516000000000.0, 
                   "children": [
                     {
@@ -4339,6 +4230,20 @@
                 }, 
                 {
                   "value": 6844000000000.0, 
+                  "children": [
+                    {
+                      "value": 1836000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2018#expenditures#development expenditures", 
+                      "id": "uganda#2018#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 5008000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2018#expenditures#development expenditures", 
+                      "id": "uganda#2018#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2018#expenditures", 
                   "id": "uganda#2018#expenditures#development expenditures"
@@ -4531,25 +4436,6 @@
               "value": 21372000000000.0, 
               "children": [
                 {
-                  "children": [
-                    {
-                      "value": 1570000000000.0, 
-                      "name": "externally-financed projects", 
-                      "parent": "uganda#2019#expenditures#capital development", 
-                      "id": "uganda#2019#expenditures#capital development#externally-financed projects"
-                    }, 
-                    {
-                      "value": 5694000000000.0, 
-                      "name": "government of uganda investment", 
-                      "parent": "uganda#2019#expenditures#capital development", 
-                      "id": "uganda#2019#expenditures#capital development#government of uganda investment"
-                    }
-                  ], 
-                  "name": "capital development", 
-                  "parent": "uganda#2019#expenditures", 
-                  "id": "uganda#2019#expenditures#capital development"
-                }, 
-                {
                   "value": 11870000000000.0, 
                   "children": [
                     {
@@ -4577,6 +4463,20 @@
                 }, 
                 {
                   "value": 7264000000000.0, 
+                  "children": [
+                    {
+                      "value": 1570000000000.0, 
+                      "name": "externally-financed projects", 
+                      "parent": "uganda#2019#expenditures#development expenditures", 
+                      "id": "uganda#2019#expenditures#development expenditures#externally-financed projects"
+                    }, 
+                    {
+                      "value": 5694000000000.0, 
+                      "name": "government of uganda investment", 
+                      "parent": "uganda#2019#expenditures#development expenditures", 
+                      "id": "uganda#2019#expenditures#development expenditures#government of uganda investment"
+                    }
+                  ], 
                   "name": "development expenditures", 
                   "parent": "uganda#2019#expenditures", 
                   "id": "uganda#2019#expenditures#development expenditures"

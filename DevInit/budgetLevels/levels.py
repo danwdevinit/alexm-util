@@ -50,7 +50,7 @@ except:
     orgDict = {}
 flatData = []
 hierData = {"name":"budget","children":[]}
-for i in range(0,2):
+for i in range(0,1):
     sheet = sheets[i]
 #for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
@@ -353,7 +353,9 @@ def buildTree(parent,arr):
         if len(child['children'])==0:
             del child['children']
             if child['value']=="":
-                child['value']=1
+            #Give value to non-valued end nodes?
+            #    child['value']=1
+                child['value']=""
         else:
             if child['value']=="":
                 del child['value']

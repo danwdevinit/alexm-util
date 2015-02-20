@@ -25,7 +25,7 @@
   }, 
   "l2capitaldevelopment": {
     "l1": "expenditure", 
-    "l2": "capital development", 
+    "l2": "development expenditures", 
     "l3": "", 
     "l4": ""
   }, 
@@ -41,9 +41,39 @@
     "l3": "", 
     "l4": ""
   }, 
+  "l2ecaswf": {
+    "l1": "expenditure", 
+    "l2": "spending from ecaswf", 
+    "l3": "", 
+    "l4": ""
+  }, 
+  "l2extrabudgetary ": {
+    "l1": "expenditure", 
+    "l2": "extrabudgetary funds", 
+    "l3": "", 
+    "l4": ""
+  }, 
+  "l2federal ": {
+    "l1": "expenditure", 
+    "l2": "federal government", 
+    "l3": "", 
+    "l4": ""
+  }, 
   "l2grants": {
     "l1": "total revenue and grants", 
     "l2": "grants", 
+    "l3": "", 
+    "l4": ""
+  }, 
+  "l2netlending": {
+    "l1": "expenditure", 
+    "l2": "net lending and investment", 
+    "l3": "", 
+    "l4": ""
+  }, 
+  "l2otherexpenditure": {
+    "l1": "expenditure", 
+    "l2": "other spending", 
     "l3": "", 
     "l4": ""
   }, 
@@ -71,7 +101,19 @@
     "l3": "", 
     "l4": ""
   }, 
+  "l2stateandlocalgovernment": {
+    "l1": "expenditure", 
+    "l2": "state and local government", 
+    "l3": "", 
+    "l4": ""
+  }, 
   "l3externalfinanceinflow": {
+    "l1": "financing", 
+    "l2": "external financing net", 
+    "l3": "external financing inflow", 
+    "l4": ""
+  }, 
+  "l3externalfinanceinflows": {
     "l1": "financing", 
     "l2": "external financing net", 
     "l3": "external financing inflow", 
@@ -83,10 +125,64 @@
     "l3": "external financing outflow", 
     "l4": ""
   }, 
+  "l3externalfinanceoutflows": {
+    "l1": "financing", 
+    "l2": "external financing net", 
+    "l3": "external financing outflow", 
+    "l4": ""
+  }, 
+  "l3federalcapital": {
+    "l1": "expenditure", 
+    "l2": "federal government", 
+    "l3": "federal government capital expenditure", 
+    "l4": ""
+  }, 
+  "l3federalexpenditure": {
+    "l1": "expenditure", 
+    "l2": "current expenditures", 
+    "l3": "federal", 
+    "l4": ""
+  }, 
+  "l3federalextrabudgetary ": {
+    "l1": "expenditure", 
+    "l2": "federal government", 
+    "l3": "extrabudgetary funds", 
+    "l4": ""
+  }, 
+  "l3federalrecurrent ": {
+    "l1": "expenditure", 
+    "l2": "federal government", 
+    "l3": "recurrent expenditure", 
+    "l4": ""
+  }, 
+  "l3nonresource": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "non-oil revenue", 
+    "l4": ""
+  }, 
+  "l3nontax": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "nontax", 
+    "l4": ""
+  }, 
+  "l3resource": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "oil revenue", 
+    "l4": ""
+  }, 
   "l3tax": {
     "l1": "total revenue and grants", 
     "l2": "revenue", 
     "l3": "tax", 
     "l4": ""
+  }, 
+  "l4federaltax": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "tax", 
+    "l4": "federal"
   }
 }
