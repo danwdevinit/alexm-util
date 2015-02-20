@@ -1,0 +1,177 @@
+{
+  "divestment receipts": {
+    "l1": "", 
+    "l2": "", 
+    "l3": ""
+  }, 
+  "l2expenditue": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": ""
+  }, 
+  "l2expenditure": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": ""
+  }, 
+  "l2expenditure ": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": ""
+  }, 
+  "l2expenditures": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": ""
+  }, 
+  "l2finance": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": ""
+  }, 
+  "l2finance ": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": ""
+  }, 
+  "l2financing ": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": ""
+  }, 
+  "l2revenue": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": ""
+  }, 
+  "l2revenue ": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": ""
+  }, 
+  "l3capital": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": "capital"
+  }, 
+  "l3capitaldevelopment": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": "capital"
+  }, 
+  "l3doemsticfinance": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": "domestic finance"
+  }, 
+  "l3domestic": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": "domestic finance"
+  }, 
+  "l3domesticfianance": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": "domestic finance"
+  }, 
+  "l3domesticfinance": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": "domestic finance"
+  }, 
+  "l3eca": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": "eca"
+  }, 
+  "l3exceptional": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": "exceptional"
+  }, 
+  "l3externalfinanace": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": "external finance"
+  }, 
+  "l3externalfinance": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": "external finance"
+  }, 
+  "l3foreignfinance": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": "foreign finance"
+  }, 
+  "l3foreignloans": {
+    "l1": "total financing", 
+    "l2": "financing", 
+    "l3": "foreign loans"
+  }, 
+  "l2grants": {
+    "l1": "total revenue and grants", 
+    "l2": "grants", 
+    "l3": ""
+  }, 
+  "l2grants ": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "grants"
+  }, 
+  "l3lending": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": "lending"
+  }, 
+  "l3netlending": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": "lending"
+  }, 
+  "l3nonoil": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "nonoil"
+  }, 
+  "l3nontax": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "nontax"
+  }, 
+  "l3oil": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "oil"
+  }, 
+  "l3recurrent": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": "recurrent"
+  }, 
+  "l3recurrent ": {
+    "l1": "expenditures and net lending", 
+    "l2": "expenditure", 
+    "l3": "recurrent"
+  }, 
+  "l3tax": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "tax"
+  }, 
+  "l3taxes": {
+    "l1": "total revenue and grants", 
+    "l2": "revenue", 
+    "l3": "tax"
+  }, 
+  "of which corporate tax": {
+    "l1": "", 
+    "l2": "", 
+    "l3": ""
+  }, 
+  "small savings net of states share": {
+    "l1": "", 
+    "l2": "", 
+    "l3": ""
+  }
+}
