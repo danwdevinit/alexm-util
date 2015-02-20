@@ -50,9 +50,7 @@ except:
     orgDict = {}
 flatData = []
 hierData = {"name":"budget","children":[]}
-for i in range(0,1):
-    sheet = sheets[i]
-#for sheet in sheets:
+for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
     rowIndex = 0
     names = []
@@ -74,8 +72,7 @@ for i in range(0,1):
         if uni(row[0].value) == "type":
             for i in range(2,colLen):
                 val = uni(row[i].value)
-                if val!='none':
-                    types.append(val)
+                types.append(val)
         if rowIndex>=5:
             rowValues = []
             for i in range(2,colLen):
