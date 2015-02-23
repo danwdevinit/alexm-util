@@ -53,6 +53,7 @@ hierData = {"name":"budget","children":[]}
 for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
     rowIndex = 0
+    oldNames = []
     names = []
     levels = []
     years = []
@@ -62,25 +63,26 @@ for sheet in sheets:
     print('Reading sheet: '+country)
     for row in ws.iter_rows():
         names.append(uni(row[0].value))
-        levels.append(uni(row[1].value))
+        oldNames.append(uni(row[0].value))
+        levels.append(uni(row[2].value))
         colLen = len(row)
-        if uni(row[0].value) == "year":
-            for i in range(2,colLen):
+        if uni(row[1].value) == "year":
+            for i in range(3,colLen):
                 val = uni(row[i].value)
                 if val!='none':
                     years.append(val)
-        if uni(row[0].value) == "type":
-            for i in range(2,colLen):
+        if uni(row[1].value) == "type":
+            for i in range(3,colLen):
                 val = uni(row[i].value)
                 types.append(val)
         if rowIndex>=5:
             rowValues = []
-            for i in range(2,colLen):
+            for i in range(3,colLen):
                 val = uni(row[i].value)
                 rowValues.append(val)
             values.append(rowValues)
         rowIndex+=1
-    currency = names[1]
+    currency = oldNames[1]
     names = names[5:]
     levels = levels[5:]
     nameLen = len(names)
@@ -140,9 +142,9 @@ parentModel = []
 for item in flatData:
     #systematize results a little
     if item['l1'].find('expend')>-1:
-        item['l1'] = "expenditures"
+        item['l1'] = "total expenditure and net lending"
     elif item['l1'].find('financ')>-1:
-        item['l1'] = "total financing"
+        item['l1'] = "financing"
     elif item['l1'].find('venue')>-1:
         item['l1'] = "total revenue and grants"
     if item['l5']!="":
