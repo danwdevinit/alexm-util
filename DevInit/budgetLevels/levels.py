@@ -63,7 +63,7 @@ for sheet in sheets:
     print('Reading sheet: '+country)
     for row in ws.iter_rows():
         names.append(uni(row[0].value))
-        oldNames.append(uni(row[0].value))
+        oldNames.append(uni(row[1].value))
         levels.append(uni(row[2].value))
         colLen = len(row)
         if uni(row[1].value) == "year":
