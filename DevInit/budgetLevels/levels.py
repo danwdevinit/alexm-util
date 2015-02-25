@@ -347,8 +347,9 @@ def buildTree(parent,arr):
     for child in arr:
         child['children'] = []
         buildTree(child['id'],child['children'])
-        if child['value']<0:
-            child['value']=child['value']*-1
+        #Keep negatives?
+        #if child['value']<0:
+        #    child['value']=child['value']*-1
         if len(child['children'])==0:
             del child['children']
             if child['value']=="":
