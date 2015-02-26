@@ -34,23 +34,24 @@ with open(options.input,'rb') as inFile:
         copyIndicies = map(try_parse_int,raw_input("Copy: ").split(","))
         splitIndicies = map(try_parse_int,raw_input("Split: ").split(","))
         for splitIndex in splitIndicies:
-            inFile.seek(0)
-            header = next(r)
-            splitName = header[splitIndex]
-            outPath = options.output+splitName+'.csv'
-            newHeader = []
-            for copyIndex in copyIndicies:
-                if copyIndex is not None:
-                    copyName = header[copyIndex]
-                    newHeader.append(copyName)
-            newHeader.append("value")
-            with open(outPath,'wb') as outFile:
-                w = csv.writer(outFile)
-                w.writerow(newHeader)
-                for row in r:
-                    newRow = []
-                    for copyIndex in copyIndicies:
-                        if copyIndex is not None:
-                            newRow.append(row[copyIndex])
-                    newRow.append(row[splitIndex])
-                    w.writerow(newRow)
+            if splitIndex is not None:
+                inFile.seek(0)
+                header = next(r)
+                splitName = header[splitIndex]
+                outPath = options.output+splitName+'.csv'
+                newHeader = []
+                for copyIndex in copyIndicies:
+                    if copyIndex is not None:
+                        copyName = header[copyIndex]
+                        newHeader.append(copyName)
+                newHeader.append("value")
+                with open(outPath,'wb') as outFile:
+                    w = csv.writer(outFile)
+                    w.writerow(newHeader)
+                    for row in r:
+                        newRow = []
+                        for copyIndex in copyIndicies:
+                            if copyIndex is not None:
+                                newRow.append(row[copyIndex])
+                        newRow.append(row[splitIndex])
+                        w.writerow(newRow)
