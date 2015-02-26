@@ -40,8 +40,9 @@ with open(options.input,'rb') as inFile:
             outPath = options.output+splitName+'.csv'
             newHeader = []
             for copyIndex in copyIndicies:
-                copyName = header[copyIndex]
-                newHeader.append(copyName)
+                if copyIndex is not None:
+                    copyName = header[copyIndex]
+                    newHeader.append(copyName)
             newHeader.append("value")
             with open(outPath,'wb') as outFile:
                 w = csv.writer(outFile)
@@ -49,6 +50,7 @@ with open(options.input,'rb') as inFile:
                 for row in r:
                     newRow = []
                     for copyIndex in copyIndicies:
-                        newRow.append(row[copyIndex])
+                        if copyIndex is not None:
+                            newRow.append(row[copyIndex])
                     newRow.append(row[splitIndex])
                     w.writerow(newRow)
