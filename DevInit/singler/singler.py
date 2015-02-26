@@ -30,6 +30,7 @@ with open(options.input,'rb') as inFile:
         for varname in header:
             print index,varname
             index+=1
+        print("Enter indicies to copy/split, separated by commas...")
         copyIndicies = map(try_parse_int,raw_input("Copy: ").split(","))
         splitIndicies = map(try_parse_int,raw_input("Split: ").split(","))
         for splitIndex in splitIndicies:
