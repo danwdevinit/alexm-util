@@ -32,7 +32,9 @@ with open(options.input,'rb') as inFile:
             index+=1
         print("Enter indicies to copy/split, separated by commas...")
         copyIndicies = map(try_parse_int,raw_input("Copy: ").split(","))
-        splitIndicies = map(try_parse_int,raw_input("Split: ").split(","))
+        splitStart = try_parse_int(raw_input("Split start index: "))
+        splitEnd = try_parse_int(raw_input("Split end index: "))
+        splitIndicies = range(splitStart,splitEnd+1)
         outPath = options.output+filename
         newHeader = []
         for copyIndex in copyIndicies:
