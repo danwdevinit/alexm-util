@@ -34,6 +34,7 @@ with open(options.input,'rb') as inFile:
         copyIndicies = map(try_parse_int,raw_input("Copy: ").split(","))
         splitStart = try_parse_int(raw_input("Split start index: "))
         splitEnd = try_parse_int(raw_input("Split end index: "))
+        splitHeader = raw_input("Split variable header name: ")
         splitIndicies = range(splitStart,splitEnd+1)
         outPath = options.output+filename
         newHeader = []
@@ -41,7 +42,7 @@ with open(options.input,'rb') as inFile:
             if copyIndex is not None:
                 copyName = header[copyIndex]
                 newHeader.append(copyName)
-        newHeader.append("year")
+        newHeader.append(splitHeader)
         newHeader.append("value")
         with open(outPath,'wb') as outFile:
             w = csv.writer(outFile)
