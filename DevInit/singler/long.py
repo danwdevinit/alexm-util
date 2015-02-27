@@ -33,7 +33,7 @@ with open(options.input,'rb') as inFile:
         print("Enter indicies to copy/split, separated by commas...")
         copyIndicies = map(try_parse_int,raw_input("Copy: ").split(","))
         splitIndicies = map(try_parse_int,raw_input("Split: ").split(","))
-        outPath = options.output+filename+'.csv'
+        outPath = options.output+filename
         newHeader = []
         for copyIndex in copyIndicies:
             if copyIndex is not None:
