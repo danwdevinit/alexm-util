@@ -14,7 +14,6 @@ interpolateSimple <- function(data)
       naLen <- nrow(x[which(is.na(x$value)),])
       allLen <- nrow(x)
       valueLen <- allLen-naLen
-      ival <- x$value
       if(valueLen>=2)
       {
         interpVals <- na.approx(x$value)
@@ -22,11 +21,10 @@ interpolateSimple <- function(data)
         while(is.na(x$value[xIndex])){xIndex<-xIndex+1}
         for(i in 1:length(interpVals))
         {
-          ival[xIndex] <- interpVals[i]
+          x$value <- interpVals[i]
           xIndex<-xIndex+1
         }
       }
-      x[,"i-value"] <- ival
       return(x)
     }
   ))
@@ -40,8 +38,6 @@ for (i in 1:length(filenames))
   {
     data <- data[order(data$id,data$year),]
     data <- interpolateSimple(data)
-    data <- sapply(data,as.character)
-    data[is.na(data)] <- ""
-    write.csv(data,basename(filenames[i]),row.names=FALSE)
+    write.csv(data,paste("interpolated",basename(filenames[i]),sep="-"),row.names=FALSE)
   }
 }

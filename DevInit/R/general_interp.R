@@ -13,7 +13,6 @@ interpolateCol <- function(data,colname)
       naLen <- nrow(x[which(is.na(x[,colname])),])
       allLen <- nrow(x)
       valueLen <- allLen-naLen
-      ival <- x[,colname]
       if(valueLen>=2)
       {
         interpVals <- na.approx(x[,colname])
@@ -21,11 +20,10 @@ interpolateCol <- function(data,colname)
         while(is.na(x[,colname][xIndex])){xIndex<-xIndex+1}
         for(i in 1:length(interpVals))
         {
-          ival[xIndex] <- interpVals[i]
+          x[,colname][xIndex] <- interpVals[i]
           xIndex<-xIndex+1
         }
       }
-      x[,paste("i",colname,sep="-")] <- ival 
       return(x)
     }
     ))
@@ -36,6 +34,4 @@ names <- colnames(data)
 data <- interpolateCol(data,"employment.agriculture")
 data <- interpolateCol(data,"employment.industry")
 data <- interpolateCol(data,"employment.services")
-data <- sapply(data,as.character)
-data[is.na(data)] <- ""
-write.csv(data,"employment-by-sector.csv",row.names=FALSE)
+write.csv(data,"interpolated-employment-by-sector.csv",row.names=FALSE)
