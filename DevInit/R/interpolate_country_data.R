@@ -11,9 +11,10 @@ interpolateSimple <- function(data)
   return(
     ddply(data,.(id),function(x)
     {
-      naLen = nrow(x[which(is.na(x$value)),])
-      allLen = nrow(x)
-      valueLen = allLen-naLen
+      naLen <- nrow(x[which(is.na(x$value)),])
+      allLen <- nrow(x)
+      valueLen <- allLen-naLen
+      ival <- x$value
       if(valueLen>=2)
       {
         interpVals <- na.approx(x$value)
@@ -21,10 +22,11 @@ interpolateSimple <- function(data)
         while(is.na(x$value[xIndex])){xIndex<-xIndex+1}
         for(i in 1:length(interpVals))
         {
-          x$value[xIndex] <- interpVals[i]
+          ival[xIndex] <- interpVals[i]
           xIndex<-xIndex+1
         }
       }
+      x[,"i-value"] <- ival
       return(x)
     }
   ))
@@ -37,9 +39,9 @@ for (i in 1:length(filenames))
   if(length(names)==3 & "id" %in% names & "year" %in% names & "value" %in% names)
   {
     data <- data[order(data$id,data$year),]
-    interpData <- interpolateSimple(data)
-    interpData <- sapply(interpData,as.character)
-    interpData[is.na(interpData)] <- ""
-    write.csv(interpData,basename(filenames[i]),row.names=FALSE)
+    data <- interpolateSimple(data)
+    data <- sapply(data,as.character)
+    data[is.na(data)] <- ""
+    write.csv(data,basename(filenames[i]),row.names=FALSE)
   }
 }

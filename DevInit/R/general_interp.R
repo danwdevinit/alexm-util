@@ -10,9 +10,10 @@ interpolateCol <- function(data,colname)
   return(
     ddply(data,.(id),function(x)
     {
-      naLen = nrow(x[which(is.na(x[,colname])),])
-      allLen = nrow(x)
-      valueLen = allLen-naLen
+      naLen <- nrow(x[which(is.na(x[,colname])),])
+      allLen <- nrow(x)
+      valueLen <- allLen-naLen
+      ival <- x[,colname]
       if(valueLen>=2)
       {
         interpVals <- na.approx(x[,colname])
@@ -20,10 +21,11 @@ interpolateCol <- function(data,colname)
         while(is.na(x[,colname][xIndex])){xIndex<-xIndex+1}
         for(i in 1:length(interpVals))
         {
-          x[,colname][xIndex] <- interpVals[i]
+          ival[xIndex] <- interpVals[i]
           xIndex<-xIndex+1
         }
       }
+      x[,paste("i",colname,sep="-")] <- ival 
       return(x)
     }
     ))
