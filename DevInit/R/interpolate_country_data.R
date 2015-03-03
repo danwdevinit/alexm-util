@@ -38,6 +38,6 @@ for (i in 1:length(filenames))
   {
     data <- data[order(data$id,data$year),]
     data <- interpolateSimple(data)
-    write.csv(data,paste("interpolated",basename(filenames[i]),sep="-"),row.names=FALSE)
+    write.csv(data,paste("interpolated",basename(filenames[i]),sep="-"),row.names=FALSE,na="")
   }
 }
