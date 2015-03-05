@@ -8,9 +8,11 @@ from optparse import OptionParser
 #Parse Options
 parser = OptionParser()
 parser.add_option("-i", "--input", dest="input",
-                help="Input csv name", metavar="FILE")
+                help="Input csv name.", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="./tmp/",
                 help="Output folder", metavar="FOLDER")
+parser.add_option("-d", "--delim", dest="delim", default=",",
+                help="Delimiter. Default is comma.")
 (options, args) = parser.parse_args()
 
 def try_parse_int(s, base=10, val=None):
@@ -23,8 +25,10 @@ filename = os.path.basename(options.input)
 print("Reading "+filename+"...")
 
 #Import csv data
+if options.delim=="t" or options.delim=="tab":
+    delim = '\t'
 with open(options.input,'rb') as inFile:
-        r = csv.reader(inFile)
+        r = csv.reader(inFile,delimiter=delim)
         header = next(r)
         index = 0
         for varname in header:
