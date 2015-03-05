@@ -46,7 +46,7 @@ def recode(arr,donor,blanks):
             elif donor in recipients:
                 result.append("NA")
             else:
-                result.append(arr[j])
+                result.append("NR")
     return result
 def recodeNA(arr,blanks):
     result = []
@@ -93,7 +93,22 @@ for inPath in paths:
                         w.writerow(header)
                         for row in data:
                             entityId = row[idIndex]
-                            donor = entities[entityId]["donor-recipient-type"]
+                            try:
+                                donor = entities[entityId]["donor-recipient-type"]
+                            except:
+                                donor = "recipient"
+                            w.writerow(recode(row,donor,blanks))
+                elif "id-from" in header:
+                    idIndex = header.index("id-from")
+                    with open(outPath,'wb') as outFile:
+                        w = csv.writer(outFile)
+                        w.writerow(header)
+                        for row in data:
+                            entityId = row[idIndex]
+                            try:
+                                donor = entities[entityId]["donor-recipient-type"]
+                            except:
+                                donor = "recipient"
                             w.writerow(recode(row,donor,blanks))
                 else:
                     print("\tCannot determine 'id' field.")
