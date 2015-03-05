@@ -31,7 +31,7 @@ def uni(input):
     try:
         output = float(unicode(input).encode(sys.stdout.encoding, 'replace'))
     except:
-        output = re.sub(r'[^a-zA-Z0-9-\s]', '',unicode(input).encode(sys.stdout.encoding, 'replace')).lower()
+        output = re.sub(r'[^a-zA-Z0-9-_\s]', '',unicode(input).encode(sys.stdout.encoding, 'replace')).strip()
     return output
 
 #Import xlsx data
@@ -50,7 +50,9 @@ except:
     orgDict = {}
 flatData = []
 hierData = {"name":"budget","children":[]}
-for sheet in sheets:
+for k in range(0,5):
+    sheet = sheets[k]
+#for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
     rowIndex = 0
     oldNames = []
@@ -66,12 +68,12 @@ for sheet in sheets:
         oldNames.append(uni(row[1].value))
         levels.append(uni(row[2].value))
         colLen = len(row)
-        if uni(row[1].value) == "year":
+        if uni(row[1].value).lower() == "year":
             for i in range(3,colLen):
                 val = uni(row[i].value)
-                if val!='none':
+                if str(val).lower()!='none':
                     years.append(val)
-        if uni(row[1].value) == "type":
+        if uni(row[1].value).lower() == "type":
             for i in range(3,colLen):
                 val = uni(row[i].value)
                 types.append(val)
@@ -91,7 +93,7 @@ for sheet in sheets:
         name = names[i]
         level = str(levels[i])
         levelSlug = level
-        if level.find('l0')>-1:
+        if level.lower().find('l0')>-1:
             for j in range(0,yearLen):
                 item = {}
                 year = years[j]
@@ -107,21 +109,27 @@ for sheet in sheets:
                 item['l5'] = ""
                 item['value'] = values[i][j]
                 flatData.append(item)
-        elif level!='none':
+        elif level!='none' and level!='None':
             for j in range(0,yearLen):
                 item = {}
                 year = years[j]
                 yearType = types[j]
                 try:
-                    levelDict = orgDict[levelSlug]
+                    levelDict = orgDict[country][levelSlug]
                 except:
-                    print("Please define '"+level+"' in the sheet named '"+country+":'")
-                    orgDict[levelSlug] = {}
-                    orgDict[levelSlug]['l1'] = str(raw_input('L1:'))
-                    orgDict[levelSlug]['l2'] = str(raw_input('L2:'))
-                    orgDict[levelSlug]['l3'] = str(raw_input('L3:'))
-                    orgDict[levelSlug]['l4'] = str(raw_input('L4:'))
-                    levelDict = orgDict[levelSlug]
+                    print("Please define '"+level+"' in the sheet named '"+country+"':")
+                    if country not in orgDict:
+                        orgDict[country] = {}
+                    orgDict[country][levelSlug] = {}
+                    orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
+                    orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
+                    orgDict[country][levelSlug]['l3'] = str(raw_input('L3:')).strip()
+                    orgDict[country][levelSlug]['l4'] = str(raw_input('L4:')).strip()
+                    levelDict = orgDict[country][levelSlug]
+                    print('Writing orgDict...')
+                    with open(options.dict, 'w') as output_file:
+                        json.dump(orgDict,output_file,ensure_ascii=False,sort_keys=True,indent=2)
+                    print('Done.')
                 item['country'] = country
                 item['currency'] = currency
                 item['year'] = year
@@ -133,7 +141,7 @@ for sheet in sheets:
                 item['l5'] = name if level.find('l4')>-1 else ""
                 item['value'] = values[i][j]
                 flatData.append(item)
-
+    
 #Build hierarchical data... turns out this is completely the wrong approach
 #need to use IDs of some sort (concatenation of all ancestors)
 #def similar(a,b):
@@ -141,11 +149,11 @@ for sheet in sheets:
 parentModel = []
 for item in flatData:
     #systematize results a little
-    if item['l1'].find('expend')>-1:
+    if item['l1'].lower().find('expend')>-1:
         item['l1'] = "total expenditure and net lending"
-    elif item['l1'].find('financ')>-1:
+    elif item['l1'].lower().find('financ')>-1:
         item['l1'] = "financing"
-    elif item['l1'].find('venue')>-1:
+    elif item['l1'].lower().find('venue')>-1:
         item['l1'] = "total revenue and grants"
     if item['l5']!="":
         obj0 = {}
@@ -373,10 +381,6 @@ with open(options.output, 'wb') as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()
     dict_writer.writerows(flatData)
-print('Done.')
-print('Writing orgDict...')
-with open(options.dict, 'w') as output_file:
-    json.dump(orgDict,output_file,ensure_ascii=False,sort_keys=True,indent=2)
 print('Done.')
 print('Writing JSON...')
 with open(options.outputjson, 'w') as output_file:
