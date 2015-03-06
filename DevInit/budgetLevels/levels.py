@@ -50,9 +50,7 @@ except:
     orgDict = {}
 flatData = []
 hierData = {"name":"budget","children":[]}
-for k in range(0,5):
-    sheet = sheets[k]
-#for sheet in sheets:
+for sheet in sheets:
     ws = wb.get_sheet_by_name(name=sheet)
     rowIndex = 0
     oldNames = []
