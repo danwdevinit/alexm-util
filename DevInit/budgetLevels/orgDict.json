@@ -1,7 +1,7 @@
 {
   "Bangladesh": {
     "L1_expenditure": {
-      "l1": "Total expenditure and net lending", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": ""
@@ -19,7 +19,7 @@
       "l4": ""
     }, 
     "L2_capital_development": {
-      "l1": "Total expenditure and net lending", 
+      "l1": "Total Expenditure", 
       "l2": "Development Expenditure", 
       "l3": "", 
       "l4": ""
@@ -30,52 +30,46 @@
       "l3": "", 
       "l4": ""
     }, 
-    "L2_external_finance_inflows": {
+    "L2_external_finance": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External finance inflows", 
-      "l4": ""
-    }, 
-    "L2_external_finance_outflows": {
-      "l1": "Financing", 
-      "l2": "Net External Finance", 
-      "l3": "External finance outflows", 
+      "l3": "", 
       "l4": ""
     }, 
     "L2_other_expenditure": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Other expenditures", 
+      "l1": "Total Expenditure", 
+      "l2": "Other Expenditures", 
       "l3": "", 
       "l4": ""
     }, 
     "L2_recurrent": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Recurrent expenditures", 
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditures", 
       "l3": "", 
       "l4": ""
     }, 
     "L2_revenue": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
+      "l2": "Total Revenue", 
       "l3": "", 
       "l4": ""
     }, 
     "L3_tax": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
       "l4": ""
     }, 
     "L4_NBR_tax": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
-      "l4": "National Board of Revenue NBR taxes"
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
+      "l4": "National Board of Revenue (NBR) taxes"
     }
   }, 
   "Kenya": {
     "L1_expenditure": {
-      "l1": "Total expenditure and net lending", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": ""
@@ -93,8 +87,8 @@
       "l4": ""
     }, 
     "L2_capital_development": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Development expenditure", 
+      "l1": "Total Expenditure", 
+      "l2": "Development Expenditure", 
       "l3": "", 
       "l4": ""
     }, 
@@ -104,16 +98,10 @@
       "l3": "", 
       "l4": ""
     }, 
-    "L2_external_finance_inflows": {
+    "L2_external_finance": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External finance inflow", 
-      "l4": ""
-    }, 
-    "L2_external_finance_outflows": {
-      "l1": "Financing", 
-      "l2": "Net External Finance", 
-      "l3": "External finance outflow", 
+      "l3": "", 
       "l4": ""
     }, 
     "L2_grants": {
@@ -123,51 +111,51 @@
       "l4": ""
     }, 
     "L2_other_expenditure": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Other expenditure", 
+      "l1": "Total Expenditure", 
+      "l2": "Other Expenditures", 
       "l3": "", 
       "l4": ""
     }, 
     "L2_recurrent": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Recurrent expenditures", 
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditures", 
       "l3": "", 
       "l4": ""
     }, 
     "L2_revenue": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
+      "l2": "Total Revenue", 
       "l3": "", 
       "l4": ""
     }, 
-    "L3_external_loans_inflows": {
+    "L3_external_loans": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External loans inflow", 
+      "l3": "External Loans", 
       "l4": ""
     }, 
     "L3_interest": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Recurrent expenditures", 
-      "l3": "Interest payments", 
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditures", 
+      "l3": "Interest Payments", 
       "l4": ""
     }, 
     "L3_nontax": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
+      "l2": "Total Revenue", 
       "l3": "Nontax Revenue", 
       "l4": ""
     }, 
     "L3_tax": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
       "l4": ""
     }
   }, 
   "Mozambique": {
     "L1_expenditure": {
-      "l1": "Total expenditure and net lending", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": ""
@@ -185,15 +173,15 @@
       "l4": ""
     }, 
     "L2_capital_development": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Capital expenditure", 
+      "l1": "Total Expenditure", 
+      "l2": "Capital Expenditure", 
       "l3": "", 
       "l4": ""
     }, 
-    "L2_external_finance_inflow": {
+    "L2_external_finance": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External finance inflow", 
+      "l3": "", 
       "l4": ""
     }, 
     "L2_grants": {
@@ -203,63 +191,63 @@
       "l4": ""
     }, 
     "L2_net_lending": {
-      "l1": "Total expenditure and net lending", 
+      "l1": "Total Expenditure", 
       "l2": "Net lending", 
       "l3": "", 
       "l4": ""
     }, 
     "L2_recurrent": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Recurrent expenditures", 
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditures", 
       "l3": "", 
       "l4": ""
     }, 
     "L2_revenue": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
+      "l2": "Total Revenue", 
       "l3": "", 
       "l4": ""
     }, 
     "L3_Interest": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Recurrent expenditures", 
-      "l3": "Interest payments", 
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditures", 
+      "l3": "Interest Payments", 
       "l4": ""
     }, 
     "L3_tax": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
       "l4": ""
     }, 
     "L4_ Income_profits": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
-      "l4": "Income and profits"
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
+      "l4": "Income and Profits"
     }, 
     "L4_tax_good_services": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
-      "l4": "Taxes on goods and services"
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
+      "l4": "Taxes on Goods and Services"
     }, 
-    "l2_external_finance_outflow": {
+    "l2_external_finance": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External finance outflow", 
+      "l3": "", 
       "l4": ""
     }, 
-    "l3_external_finance_inflow": {
+    "l3_external_loans": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External finance inflow", 
+      "l3": "External Loans", 
       "l4": ""
     }
   }, 
   "Rwanda": {
     "L1_expenditure": {
-      "l1": "Total expenditure and net lending", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": ""
@@ -277,8 +265,8 @@
       "l4": ""
     }, 
     "L2_capital_development": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Capital expenditure", 
+      "l1": "Total Expenditure", 
+      "l2": "Capital Expenditure", 
       "l3": "", 
       "l4": ""
     }, 
@@ -288,16 +276,10 @@
       "l3": "", 
       "l4": ""
     }, 
-    "L2_external_finance_inflows": {
+    "L2_external_finance": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External finance inflow", 
-      "l4": ""
-    }, 
-    "L2_external_finance_outflows": {
-      "l1": "Financing", 
-      "l2": "Net External Finance", 
-      "l3": "External finance outflow", 
+      "l3": "", 
       "l4": ""
     }, 
     "L2_grants": {
@@ -307,57 +289,57 @@
       "l4": ""
     }, 
     "L2_recurrent": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Recurrent expenditures", 
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditures", 
       "l3": "", 
       "l4": ""
     }, 
     "L2_revenue": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
+      "l2": "Total Revenue", 
       "l3": "", 
       "l4": ""
     }, 
-    "L3_external_loans_inflows": {
+    "L3_external_loans": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External loans inflow", 
+      "l3": "External Loans", 
       "l4": ""
     }, 
     "L3_interest": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Recurrent expenditures", 
-      "l3": "Interest payments", 
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditures", 
+      "l3": "Interest Payments", 
       "l4": ""
     }, 
     "L3_nontax": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
+      "l2": "Total Revenue", 
       "l3": "Nontax Revenue", 
       "l4": ""
     }, 
     "L3_project grants": {
       "l1": "Total Revenue and Grants", 
       "l2": "Grants", 
-      "l3": "Project grants", 
+      "l3": "Project Grants", 
       "l4": ""
     }, 
     "L3_tax": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
       "l4": ""
     }, 
     "L4_direct_taxes": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
-      "l4": "Direct taxes"
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
+      "l4": "Direct Taxes"
     }
   }, 
   "Uganda": {
     "L1_expenditure": {
-      "l1": "Total expenditure and net lending", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": ""
@@ -381,21 +363,15 @@
       "l4": ""
     }, 
     "L2_capital_development": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Development expenditure", 
+      "l1": "Total Expenditure", 
+      "l2": "Development Expenditure", 
       "l3": "", 
       "l4": ""
     }, 
-    "L2_external_finance_inflow": {
+    "L2_external_finance": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External finance inflow", 
-      "l4": ""
-    }, 
-    "L2_external_finance_outflow": {
-      "l1": "Financing", 
-      "l2": "Net External Finance", 
-      "l3": "External finance outflow", 
+      "l3": "", 
       "l4": ""
     }, 
     "L2_grants": {
@@ -405,27 +381,27 @@
       "l4": ""
     }, 
     "L2_recurrent": {
-      "l1": "Total expenditure and net lending", 
-      "l2": "Recurrent expenditures", 
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditures", 
       "l3": "", 
       "l4": ""
     }, 
     "L2_revenue": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
+      "l2": "Total Revenue", 
       "l3": "", 
       "l4": ""
     }, 
-    "L3_external_loans_inflow": {
+    "L3_external_loans": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "External loans inflow", 
+      "l3": "External Loans", 
       "l4": ""
     }, 
     "L3_tax": {
       "l1": "Total Revenue and Grants", 
-      "l2": "Total revenue", 
-      "l3": "Tax revenue", 
+      "l2": "Total Revenue", 
+      "l3": "Tax Revenue", 
       "l4": ""
     }
   }

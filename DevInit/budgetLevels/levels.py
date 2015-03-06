@@ -37,7 +37,7 @@ def uni(input):
 #Import xlsx data
 inPath = options.input
 try:
-    wb = load_workbook(filename = inPath, use_iterators = True)
+    wb = load_workbook(filename = inPath, use_iterators = True, data_only=True)
 except:
     raise Exception("Input xlsx path required!")
 sheets = wb.get_sheet_names()
@@ -85,6 +85,7 @@ for k in range(0,5):
             values.append(rowValues)
         rowIndex+=1
     currency = oldNames[1]
+    iso = names[0]
     names = names[5:]
     levels = levels[5:]
     nameLen = len(names)
@@ -98,6 +99,7 @@ for k in range(0,5):
                 item = {}
                 year = years[j]
                 yearType = types[j]
+                item['iso'] = iso
                 item['country'] = country
                 item['currency'] = currency
                 item['year'] = year
@@ -107,7 +109,7 @@ for k in range(0,5):
                 item['l3'] = ""
                 item['l4'] = ""
                 item['l5'] = ""
-                item['value'] = values[i][j]
+                item['value'] = values[i][j] if str(values[i][j]).lower()!='none' else ""
                 flatData.append(item)
         elif level!='none' and level!='None':
             for j in range(0,yearLen):
@@ -121,46 +123,55 @@ for k in range(0,5):
                     if country not in orgDict:
                         orgDict[country] = {}
                     orgDict[country][levelSlug] = {}
-                    orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
-                    orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
-                    orgDict[country][levelSlug]['l3'] = str(raw_input('L3:')).strip()
-                    orgDict[country][levelSlug]['l4'] = str(raw_input('L4:')).strip()
+                    if levelSlug[0:2].lower()=="l1":
+                        orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
+                        orgDict[country][levelSlug]['l2'] = ""
+                        orgDict[country][levelSlug]['l3'] = ""
+                        orgDict[country][levelSlug]['l4'] = ""
+                    elif levelSlug[0:2].lower()=="l2":
+                        orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
+                        orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
+                        orgDict[country][levelSlug]['l3'] = ""
+                        orgDict[country][levelSlug]['l4'] = ""
+                    elif levelSlug[0:2].lower()=="l3":
+                        orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
+                        orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
+                        orgDict[country][levelSlug]['l3'] = str(raw_input('L3:')).strip()
+                        orgDict[country][levelSlug]['l4'] = ""
+                    else:
+                        orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
+                        orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
+                        orgDict[country][levelSlug]['l3'] = str(raw_input('L3:')).strip()
+                        orgDict[country][levelSlug]['l4'] = str(raw_input('L4:')).strip()
                     levelDict = orgDict[country][levelSlug]
                     print('Writing orgDict...')
                     with open(options.dict, 'w') as output_file:
                         json.dump(orgDict,output_file,ensure_ascii=False,sort_keys=True,indent=2)
                     print('Done.')
+                item['iso'] = iso
                 item['country'] = country
                 item['currency'] = currency
                 item['year'] = year
                 item['type'] = yearType
                 item['l1'] = levelDict['l1']
-                item['l2'] = name if level.find('l1')>-1 else levelDict['l2']
-                item['l3'] = name if level.find('l2')>-1 else levelDict['l3']
-                item['l4'] = name if level.find('l3')>-1 else levelDict['l4']
-                item['l5'] = name if level.find('l4')>-1 else ""
-                item['value'] = values[i][j]
+                item['l2'] = name if level.lower().find('l1')>-1 else levelDict['l2']
+                item['l3'] = name if level.lower().find('l2')>-1 else levelDict['l3']
+                item['l4'] = name if level.lower().find('l3')>-1 else levelDict['l4']
+                item['l5'] = name if level.lower().find('l4')>-1 else ""
+                item['value'] = values[i][j] if str(values[i][j]).lower()!='none' else ""
                 flatData.append(item)
     
-#Build hierarchical data... turns out this is completely the wrong approach
-#need to use IDs of some sort (concatenation of all ancestors)
+#Build hierarchical data.
 #def similar(a,b):
 #    return SequenceMatcher(None,a,b).ratio()
 parentModel = []
 for item in flatData:
-    #systematize results a little
-    if item['l1'].lower().find('expend')>-1:
-        item['l1'] = "total expenditure and net lending"
-    elif item['l1'].lower().find('financ')>-1:
-        item['l1'] = "financing"
-    elif item['l1'].lower().find('venue')>-1:
-        item['l1'] = "total revenue and grants"
     if item['l5']!="":
         obj0 = {}
         obj0['name'] = item['l5']
         obj0['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
         obj0['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
-        obj0['value'] = item['value'] if item['value']!='none' else ""
+        obj0['value'] = item['value'] if str(item['value']).lower()!='none' else ""
         parentModel.append(obj0)
         obj1 = {}
         obj1['name'] = item['l4']
@@ -203,7 +214,7 @@ for item in flatData:
         obj1['name'] = item['l4']
         obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
         obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
-        obj1['value'] = item['value'] if item['value']!='none' else ""
+        obj1['value'] = item['value'] if str(item['value']).lower()!='none' else ""
         parentModel.append(obj1)
         obj2 = {}
         obj2['name'] = item['l3']
@@ -240,7 +251,7 @@ for item in flatData:
         obj2['name'] = item['l3']
         obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
         obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj2['value'] = item['value'] if item['value']!='none' else ""
+        obj2['value'] = item['value'] if str(item['value']).lower()!='none' else ""
         parentModel.append(obj2)
         obj3 = {}
         obj3['name'] = item['l2']
@@ -271,7 +282,7 @@ for item in flatData:
         obj3['name'] = item['l2']
         obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj3['value'] = item['value'] if item['value']!='none' else ""
+        obj3['value'] = item['value'] if str(item['value']).lower()!='none' else ""
         parentModel.append(obj3)
         obj4 = {}
         obj4['name'] = item['l1']
@@ -296,7 +307,7 @@ for item in flatData:
         obj4['name'] = item['l1']
         obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
         obj4['parent'] = item['country']+"#"+str(int(item['year']))
-        obj4['value'] = item['value'] if item['value']!='none' else ""
+        obj4['value'] = item['value'] if str(item['value']).lower()!='none' else ""
         parentModel.append(obj4)
         obj5 = {}
         obj5['name'] = str(int(item['year']))
@@ -376,7 +387,7 @@ sys.stdout.write('\nDone.\n')
 print('Writing CSV...')
 #Enforce order
 #keys = flatData[0].keys()
-keys = ['country','currency','year','type','l1','l2','l3','l4','l5','value']
+keys = ['iso','country','currency','year','type','l1','l2','l3','l4','l5','value']
 with open(options.output, 'wb') as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()

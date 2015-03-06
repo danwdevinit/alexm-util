@@ -27,6 +27,8 @@ print("Reading "+filename+"...")
 #Import csv data
 if options.delim=="t" or options.delim=="tab":
     delim = '\t'
+else:
+    delim=options.delim
 with open(options.input,'rb') as inFile:
         r = csv.reader(inFile,delimiter=delim)
         header = next(r)
