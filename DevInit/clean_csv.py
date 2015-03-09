@@ -41,7 +41,7 @@ def recode(arr,donor,blanks,header):
         if str(value) not in blanks and value not in blanks:
             result.append(arr[j])
         else:
-            if header[j]!="id" and header[j]!="year" and header[j]!="":
+            if header[j][0:2]!="id" and header[j]!="year" and header[j]!="":
                 if donor in donors:
                     result.append("NR")
                 elif donor in recipients:
@@ -58,7 +58,7 @@ def recodeNA(arr,blanks,header):
         if str(value) not in blanks and value not in blanks:
             result.append(arr[j])
         else:
-            if header[j]!="id" and header[j]!="year" and header[j]!="":
+            if header[j][0:2]!="id" and header[j]!="year" and header[j]!="":
                 result.append("NA")
             else:
                 result.append(arr[j])
