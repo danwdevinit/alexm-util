@@ -36,6 +36,4 @@ names <- colnames(data)
 data <- interpolateCol(data,"employment.agriculture")
 data <- interpolateCol(data,"employment.industry")
 data <- interpolateCol(data,"employment.services")
-data <- sapply(data,as.character)
-data[is.na(data)] <- ""
-write.csv(data,"employment-by-sector.csv",row.names=FALSE)
+write.csv(data,"employment-by-sector.csv",row.names=FALSE,na="")

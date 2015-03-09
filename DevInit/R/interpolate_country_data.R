@@ -40,8 +40,6 @@ for (i in 1:length(filenames))
   {
     data <- data[order(data$id,data$year),]
     data <- interpolateSimple(data)
-    data <- sapply(data,as.character)
-    data[is.na(data)] <- ""
-    write.csv(data,basename(filenames[i]),row.names=FALSE)
+    write.csv(data,basename(filenames[i]),row.names=FALSE,na="")
   }
 }
