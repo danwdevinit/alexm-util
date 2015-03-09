@@ -52,7 +52,9 @@ def recode(arr,donor,blanks):
     return result
 def recodeNA(arr,blanks):
     result = []
-    for j in range(0,len(arr)):
+    result.append(arr[0])
+    result.append(arr[1])
+    for j in range(2,len(arr)):
         value = arr[j]
         if str(value) not in blanks and value not in blanks:
             result.append(arr[j])
