@@ -15,6 +15,7 @@ interpolateSimple <- function(data)
       allLen <- nrow(x)
       valueLen <- allLen-naLen
       ival <- x$value
+      x[,"original-value"] <- ival
       if(valueLen>=2)
       {
         interpVals <- na.approx(x$value)
@@ -26,7 +27,7 @@ interpolateSimple <- function(data)
           xIndex<-xIndex+1
         }
       }
-      x[,"i-value"] <- ival
+      x$value <- ival
       return(x)
     }
   ))
