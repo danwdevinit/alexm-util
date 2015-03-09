@@ -34,32 +34,34 @@ recipients = options.recipients.split(",")
 def clean(text):
     return re.sub('[ _]', '-',text)
 
-def recode(arr,donor,blanks):
+def recode(arr,donor,blanks,header):
     result = []
-    result.append(arr[0])
-    result.append(arr[1])
-    for j in range(2,len(arr)):
+    for j in range(0,len(arr)):
         value = arr[j]
         if str(value) not in blanks and value not in blanks:
             result.append(arr[j])
         else:
-            if donor in donors:
-                result.append("NR")
-            elif donor in recipients:
+            if header[j]!="id" and header[j]!="year" and header[j]!="":
+                if donor in donors:
+                    result.append("NR")
+                elif donor in recipients:
+                    result.append("NA")
+                else:
+                    result.append("NR")
+            else:
+                result.append(arr[j])
+    return result
+def recodeNA(arr,blanks,header):
+    result = []
+    for j in range(0,len(arr)):
+        value = arr[j]
+        if str(value) not in blanks and value not in blanks:
+            result.append(arr[j])
+        else:
+            if header[j]!="id" and header[j]!="year" and header[j]!="":
                 result.append("NA")
             else:
-                result.append("NR")
-    return result
-def recodeNA(arr,blanks):
-    result = []
-    result.append(arr[0])
-    result.append(arr[1])
-    for j in range(2,len(arr)):
-        value = arr[j]
-        if str(value) not in blanks and value not in blanks:
-            result.append(arr[j])
-        else:
-            result.append("NA")
+                result.append(arr[j])
     return result
     
 #Find .csvs in folder
@@ -86,7 +88,7 @@ for inPath in paths:
             header = next(data)
             map(clean,header)
             print filename
-            NA="n"
+            NA="y"
             if options.auto!=True and options.auto!="true" and options.auto!="True" and options.auto!="T" and options.auto!="t":
                 NA = raw_input("Are donor data relevant to this indicator? (y/n) ")
             if NA=="n":
@@ -101,7 +103,7 @@ for inPath in paths:
                                 donor = entities[entityId]["donor-recipient-type"]
                             except:
                                 donor = "recipient"
-                            w.writerow(recode(row,donor,blanks))
+                            w.writerow(recode(row,donor,blanks,header))
                 else:
                     print("\tCannot determine 'id' field.")
             else:
@@ -109,5 +111,5 @@ for inPath in paths:
                     w = csv.writer(outFile)
                     w.writerow(header)
                     for row in data:
-                        w.writerow(recodeNA(row,blanks))
+                        w.writerow(recodeNA(row,blanks,header))
     #os.remove(inPath)
