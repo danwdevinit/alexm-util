@@ -16,7 +16,7 @@ parser.add_option("-o", "--output", dest="output", default="./tmp/",
                 help="Output folder", metavar="FOLDER")
 parser.add_option("-e", "--entity", dest="entity", default="../../digital-platform/reference/entity.csv",
                 help="Entity reference csv", metavar="FILE")
-parser.add_option("-b", "--blanks", dest="blanks", default="",
+parser.add_option("-b", "--blanks", dest="blanks", default=",na,NA,NR,nr",
                 help="A list of what counts as blanks, separated by commas", metavar="TEXT")
 parser.add_option("-a", "--auto", dest="auto", default=True,
                 help="Should the program run automatically?", metavar="TEXT")
@@ -36,7 +36,9 @@ def clean(text):
 
 def recode(arr,donor,blanks):
     result = []
-    for j in range(0,len(arr)):
+    result.append(arr[0])
+    result.append(arr[1])
+    for j in range(2,len(arr)):
         value = arr[j]
         if str(value) not in blanks and value not in blanks:
             result.append(arr[j])
@@ -88,18 +90,6 @@ for inPath in paths:
             if NA=="n":
                 if "id" in header:
                     idIndex = header.index("id")
-                    with open(outPath,'wb') as outFile:
-                        w = csv.writer(outFile)
-                        w.writerow(header)
-                        for row in data:
-                            entityId = row[idIndex]
-                            try:
-                                donor = entities[entityId]["donor-recipient-type"]
-                            except:
-                                donor = "recipient"
-                            w.writerow(recode(row,donor,blanks))
-                elif "id-from" in header:
-                    idIndex = header.index("id-from")
                     with open(outPath,'wb') as outFile:
                         w = csv.writer(outFile)
                         w.writerow(header)
