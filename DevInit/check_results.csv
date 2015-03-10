@@ -18,7 +18,6 @@ employment-by-sector.csv,0,Bad Column Description,'original-employment-industry'
 employment-by-sector.csv,0,Bad Column Description,'original-employment-services' is not listed in headers in concepts.csv
 employment-industry.csv,0,Bad Column Description,'original-value' is not listed in headers in concepts.csv
 employment-services.csv,0,Bad Column Description,'original-value' is not listed in headers in concepts.csv
-EVI.csv,0,Missing Concept,'EVI' is not in concepts.csv
 gdp-current-ncu-fy.csv,152,Entity Misidentification,'CS' is not in entity.csv
 gdp-current-ncu-fy.csv,341,Entity Misidentification,'CS' is not in entity.csv
 gdp-current-ncu-fy.csv,530,Entity Misidentification,'CS' is not in entity.csv
