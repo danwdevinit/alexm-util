@@ -100,6 +100,10 @@ refMap["oof"] = {}
 refMap["oof"]["sector"] = "sector"
 refMap["oof"]["bundle"] = "oof-bundle"
 refMap["oof"]["channel"] = "channel"
+
+refMap["international-finance"] = {}
+refMap["international-finance"]["flow-type"] = "flow-type-reference"
+refMap["international-finance"]["flow-name"] = "flow-name-reference"
 #Import csv data
 for inPath in paths:
     filename = os.path.basename(inPath)
