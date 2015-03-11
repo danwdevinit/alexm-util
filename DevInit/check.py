@@ -65,8 +65,8 @@ for refPath in refPaths:
 #Ref mapping
 refMap = {}
 refMap["domestic-revenue-finance-and-expenditure"] = {}
-refMap["domestic-revenue-finance-and-expenditure"]["budget-type"] = "domestic-budget-type"
-refMap["domestic-revenue-finance-and-expenditure"]["sectoral-type"] = "domestic-budget-sectoral-type"
+refMap["domestic-revenue-finance-and-expenditure"]["budget-type"] = "budget-type"
+refMap["domestic-revenue-finance-and-expenditure"]["sectoral-type"] = "sectoral-type"
 refMap["domestic-revenue-finance-and-expenditure"]["l1"] = "domestic-budget-level"
 refMap["domestic-revenue-finance-and-expenditure"]["l2"] = "domestic-budget-level"
 refMap["domestic-revenue-finance-and-expenditure"]["l3"] = "domestic-budget-level"
