@@ -29,7 +29,8 @@ interpolateCol <- function(data,colname)
       x[,colname] <- ival 
       return(x)
     }
-    ))
+    )
+  )
 }
 
 data <- read.csv("C:/git/digital-platform/country-year/employment-by-sector.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE)

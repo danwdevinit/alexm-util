@@ -30,7 +30,8 @@ interpolateSimple <- function(data)
       x$value <- ival
       return(x)
     }
-  ))
+    )
+  )
 }
 
 for (i in 1:length(filenames))
