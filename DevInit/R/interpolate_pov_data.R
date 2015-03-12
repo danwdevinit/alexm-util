@@ -4,44 +4,36 @@ require(zoo)
 require(plyr)
 
 setwd("C:/git/alexm-util/DevInit/R/tmp")
-filenames <- list.files("C:/git/digital-platform/country-year", pattern="*.csv", full.names=TRUE)
 
-interpolateSimple <- function(data)
+interpolateCol <- function(data,colname)
 {
   return(
     ddply(data,.(id),function(x)
     {
-      naLen <- nrow(x[which(is.na(x$value)),])
+      naLen <- nrow(x[which(is.na(x[,colname])),])
       allLen <- nrow(x)
       valueLen <- allLen-naLen
-      ival <- x$value
-      x[,"original-value"] <- ival
+      ival <- x[,colname]
+      x[,paste("original",colname,sep="-")] <- ival 
       if(valueLen>=2)
       {
-        interpVals <- na.approx(x$value)
+        interpVals <- na.approx(x[,colname])
         xIndex = 1
-        while(is.na(x$value[xIndex])){xIndex<-xIndex+1}
+        while(is.na(x[,colname][xIndex])){xIndex<-xIndex+1}
         for(i in 1:length(interpVals))
         {
           ival[xIndex] <- interpVals[i]
           xIndex<-xIndex+1
         }
       }
-      x$value <- ival
+      x[,colname] <- ival 
       return(x)
     }
     )
   )
 }
 
-for (i in 1:length(filenames))
-{
-  data <- read.csv(filenames[i], header = TRUE,sep=",",na.strings="",check.names=FALSE)
-  names <- colnames(data)
-  if(length(names)==3 & "id" %in% names & "year" %in% names & "value" %in% names)
-  {
-    data <- data[order(data$id,data$year),]
-    data <- interpolateSimple(data)
-    write.csv(data,basename(filenames[i]),row.names=FALSE,na="")
-  }
-}
+data <- read.csv("C:/git/alexm-util/DevInit/R/pov_long.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE)
+names <- colnames(data)
+data <- interpolateCol(data,"value")
+write.csv(data,"pov_long.csv",row.names=FALSE,na="")
