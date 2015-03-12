@@ -12,7 +12,9 @@ from optparse import OptionParser
 
 #Parse Options
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default="../../digital-platform/country-year/intl-flows-donors.csv",
+parser.add_option("-d", "--donors", dest="donors", default="../../../digital-platform/country-year/intl-flows-donors.csv",
+                help="Input file", metavar="recipients")
+parser.add_option("-r", "--recipients", dest="recipients", default="../../../digital-platform/country-year/intl-flows-recipients.csv",
                 help="Input file", metavar="FILE")
 parser.add_option("-j", "--outputjson", dest="outputjson", default="./intl_results.json",
                 help="Output json file", metavar="FILE")
@@ -20,7 +22,8 @@ parser.add_option("-j", "--outputjson", dest="outputjson", default="./intl_resul
 
 #Import csv
 flatData = []
-with open(options.input,'rb') as inFile:
+hierData = {"name":"international","children":[]}
+with open(options.donors,'rb') as inFile:
     r = csv.reader(inFile)
     header = next(r)
     headerLen = len(header)
@@ -29,6 +32,18 @@ with open(options.input,'rb') as inFile:
         for i in range(0,headerLen):
             var = header[i]
             obj[var] = row[i]
+        obj["donor"] = "donor"
+        flatData.append(obj)
+with open(options.recipients,'rb') as inFile:
+    r = csv.reader(inFile)
+    header = next(r)
+    headerLen = len(header)
+    for row in r:
+        obj = {}
+        for i in range(0,headerLen):
+            var = header[i]
+            obj[var] = row[i]
+        obj["donor"] = "recipient"
         flatData.append(obj)
 
 #Build hierarchical data.
@@ -36,34 +51,40 @@ parentModel = []
 for item in flatData:
     obj0 = {}
     obj0['name'] = item['flow-name']
-    obj0['id'] = item['id']+"#"+str(int(item['year']))+"#"+item['direction']+"#"+item['flow-type']+"#"+item['flow-name']
-    obj0['parent'] = item['id']+"#"+str(int(item['year']))+"#"+item['direction']+"#"+item['flow-type']
+    obj0['id'] = item['donor']+"#"+item['id']+"#"+str(int(item['year']))+"#"+item['direction']+"#"+item['flow-type']+"#"+item['flow-name']
+    obj0['parent'] = item['donor']+"#"+item['id']+"#"+str(int(item['year']))+"#"+item['direction']+"#"+item['flow-type']
     obj0['value'] = item['value']
     parentModel.append(obj0)
     obj1 = {}
     obj1['name'] = item['flow-type']
-    obj1['id'] = item['id']+"#"+str(int(item['year']))+"#"+item['direction']+"#"+item['flow-type']
-    obj1['parent'] = item['id']+"#"+str(int(item['year']))+"#"+item['direction']
+    obj1['id'] = item['donor']+"#"+item['id']+"#"+str(int(item['year']))+"#"+item['direction']+"#"+item['flow-type']
+    obj1['parent'] = item['donor']+"#"+item['id']+"#"+str(int(item['year']))+"#"+item['direction']
     obj1['value'] = 0
     parentModel.append(obj1)
     obj2 = {}
     obj2['name'] = item['direction']
-    obj2['id'] = item['id']+"#"+str(int(item['year']))+"#"+item['direction']
-    obj2['parent'] = item['id']+"#"+str(int(item['year']))
+    obj2['id'] = item['donor']+"#"+item['id']+"#"+str(int(item['year']))+"#"+item['direction']
+    obj2['parent'] = item['donor']+"#"+item['id']+"#"+str(int(item['year']))
     obj2['value'] = 0
     parentModel.append(obj2)
     obj3 = {}
     obj3['name'] = str(int(item['year']))
-    obj3['id'] = item['id']+"#"+str(int(item['year']))
-    obj3['parent'] = item['id']
+    obj3['id'] = item['donor']+"#"+item['id']+"#"+str(int(item['year']))
+    obj3['parent'] = item['donor']+"#"+item['id']
     obj3['value'] = 0
     parentModel.append(obj3)
     obj4 = {}
     obj4['name'] = item['id']
-    obj4['id'] = item['id']
-    obj4['parent'] = ""
+    obj4['id'] = item['donor']+"#"+item['id']
+    obj4['parent'] = item['donor']
     obj4['value'] = 0
     parentModel.append(obj4)
+    obj5 = {}
+    obj5['name'] = item['donor']
+    obj5['id'] = item['donor']
+    obj5['parent'] = ""
+    obj5['value'] = 0
+    parentModel.append(obj5)
 #Remove exact duplicates
 getvals = operator.itemgetter('id','parent')
 parentModel.sort(key=getvals)
