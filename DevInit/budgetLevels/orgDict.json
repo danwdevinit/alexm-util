@@ -468,6 +468,12 @@
       "l3": "Non-Oil Revenue", 
       "l4": ""
     }, 
+    "L3_non_oil_revenue": {
+      "l1": "Total Revenue and Grants", 
+      "l2": "Revenue", 
+      "l3": "Non-Oil Revenue", 
+      "l4": ""
+    }, 
     "L3_resource": {
       "l1": "Total Revenue And Grants", 
       "l2": "Revenue", 
@@ -481,6 +487,12 @@
       "l4": ""
     }, 
     "L3_wages and salaries": {
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditure", 
+      "l3": "Wages and Salaries", 
+      "l4": ""
+    }, 
+    "L3_wagesandsalaries": {
       "l1": "Total Expenditure", 
       "l2": "Recurrent Expenditure", 
       "l3": "Wages and Salaries", 
@@ -699,7 +711,7 @@
     "L3_external_loans": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "Loans", 
+      "l3": "Disbursement", 
       "l4": ""
     }, 
     "L3_interest": {
@@ -1034,6 +1046,12 @@
       "l3": "Tax Revenue", 
       "l4": "Income and Profits"
     }, 
+    "L4_Income_profits": {
+      "l1": "Total Revenue and Grants", 
+      "l2": "Revenue", 
+      "l3": "Tax Revenue", 
+      "l4": "Income and Profits"
+    }, 
     "L4_tax_good_services": {
       "l1": "Total Revenue and Grants", 
       "l2": "Revenue", 
@@ -1049,7 +1067,7 @@
     "l3_external_loans": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "Loans", 
+      "l3": "Disbursement", 
       "l4": ""
     }
   }, 
@@ -1283,7 +1301,7 @@
     "L3_external_loans": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "Loans", 
+      "l3": "Drawings", 
       "l4": ""
     }, 
     "L3_interest": {
@@ -1299,6 +1317,12 @@
       "l4": ""
     }, 
     "L3_project grants": {
+      "l1": "Total Revenue and Grants", 
+      "l2": "Grants", 
+      "l3": "Project Grants", 
+      "l4": ""
+    }, 
+    "L3_projectgrants": {
       "l1": "Total Revenue and Grants", 
       "l2": "Grants", 
       "l3": "Project Grants", 
@@ -1633,7 +1657,7 @@
     "L3_external_loans": {
       "l1": "Financing", 
       "l2": "Net External Finance", 
-      "l3": "Loans", 
+      "l3": "Disbursement", 
       "l4": ""
     }, 
     "L3_tax": {

@@ -1,0 +1,251 @@
+IndicatorId,FullName,GNAYear,IndicatorScore,WorkflowId,MethodologyId,StepNumber,Iso3,Country,ShortDescription,ParentLevel1
+INFORM,InfoRM Risk Index,2014,2.5879442132182,193,176,8,ALB,Albania,,
+INFORM,InfoRM Risk Index,2013,2.57883203321289,194,177,8,ALB,Albania,,
+INFORM,InfoRM Risk Index,2012,2.80069298464363,202,185,8,ALB,Albania,,
+INFORM,InfoRM Risk Index,2011,2.52572544294066,203,186,8,ALB,Albania,,
+INFORM,InfoRM Risk Index,2010,2.46375956227774,204,187,8,ALB,Albania,,
+HA,Hazard & Exposure Index,2014,1.98931101083204,193,176,7,ALB,Albania,,
+HA,Hazard & Exposure Index,2013,1.9617303177107,194,177,7,ALB,Albania,,
+HA,Hazard & Exposure Index,2012,1.96975114937375,202,185,7,ALB,Albania,,
+HA,Hazard & Exposure Index,2011,1.97518291761746,203,186,7,ALB,Albania,,
+HA,Hazard & Exposure Index,2010,1.71000218127905,204,187,7,ALB,Albania,,
+VU,Vulnerability Index,2014,1.70078796649202,193,176,7,ALB,Albania,,
+VU,Vulnerability Index,2013,1.72583197786523,194,177,7,ALB,Albania,,
+VU,Vulnerability Index,2012,2.16711558079569,202,185,7,ALB,Albania,,
+VU,Vulnerability Index,2011,1.57651951799396,203,186,7,ALB,Albania,,
+VU,Vulnerability Index,2010,1.63721704702932,204,187,7,ALB,Albania,,
+CC,Lack of Coping Capacity Index,2014,5.12285271577272,193,176,7,ALB,Albania,,
+CC,Lack of Coping Capacity Index,2013,5.06560536200523,194,177,7,ALB,Albania,,
+CC,Lack of Coping Capacity Index,2012,5.14639449101637,202,185,7,ALB,Albania,,
+CC,Lack of Coping Capacity Index,2011,5.17430166302639,203,186,7,ALB,Albania,,
+CC,Lack of Coping Capacity Index,2010,5.34185439671627,204,187,7,ALB,Albania,,
+HA.NAT,Natural Hazard,2010,3.03922400501694,204,187,0,ALB,Albania,Natural,HA
+HA.HUM,Human Hazard,2010,0.161893419024987,204,187,0,ALB,Albania,Human,HA
+HA.HUM,Human Hazard,2011,0.154871709563117,203,186,0,ALB,Albania,Human,HA
+HA.NAT,Natural Hazard,2011,3.49306071100033,203,186,0,ALB,Albania,Natural,HA
+HA.NAT,Natural Hazard,2012,3.48920933915215,202,185,0,ALB,Albania,Natural,HA
+HA.HUM,Human Hazard,2012,0.147382575866905,202,185,0,ALB,Albania,Human,HA
+HA.HUM,Human Hazard,2013,0.140073250496312,194,177,0,ALB,Albania,Human,HA
+HA.NAT,Natural Hazard,2013,3.48091513820676,194,177,0,ALB,Albania,Natural,HA
+HA.NAT,Natural Hazard,2014,3.52585641150796,193,176,0,ALB,Albania,Natural,HA
+HA.HUM,Human Hazard,2014,0.141507536190336,193,176,0,ALB,Albania,Human,HA
+VU.VGR,Vulnerable Groups,2010,0.678728565195325,204,187,0,ALB,Albania,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2010,2.50764317438533,204,187,0,ALB,Albania,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2011,2.44113502442675,203,186,0,ALB,Albania,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2011,0.625680016651635,203,186,0,ALB,Albania,Vulnerable Groups,VU
+VU.VGR,Vulnerable Groups,2012,1.921014166888,202,185,0,ALB,Albania,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2012,2.40662665008624,202,185,0,ALB,Albania,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2013,2.34021246051336,194,177,0,ALB,Albania,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2013,1.06841561115371,194,177,0,ALB,Albania,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2014,2.51493445044095,193,176,0,ALB,Albania,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2014,0.809533423519705,193,176,0,ALB,Albania,Vulnerable Groups,VU
+CC.INF,Infrastructure,2010,4.41941950571264,204,187,0,ALB,Albania,Infrastructure,CC
+CC.INS,Institutional,2010,6.13713367770128,204,187,0,ALB,Albania,Institutional,CC
+CC.INS,Institutional,2011,6.12405558172698,203,186,0,ALB,Albania,Institutional,CC
+CC.INF,Infrastructure,2011,4.04367297748747,203,186,0,ALB,Albania,Infrastructure,CC
+CC.INF,Infrastructure,2012,3.90640708728464,202,185,0,ALB,Albania,Infrastructure,CC
+CC.INS,Institutional,2012,6.17297010762562,202,185,0,ALB,Albania,Institutional,CC
+CC.INS,Institutional,2013,6.124,194,177,0,ALB,Albania,Institutional,CC
+CC.INF,Infrastructure,2013,3.78259186455887,194,177,0,ALB,Albania,Infrastructure,CC
+CC.INS,Institutional,2014,6.28354252576828,193,176,0,ALB,Albania,Institutional,CC
+CC.INF,Infrastructure,2014,3.68309885703058,193,176,0,ALB,Albania,Infrastructure,CC
+INFORM,InfoRM Risk Index,2014,4.64133286221441,193,176,8,DZA,Algeria,,
+INFORM,InfoRM Risk Index,2013,4.65364022866889,194,177,8,DZA,Algeria,,
+INFORM,InfoRM Risk Index,2012,4.72222620801557,202,185,8,DZA,Algeria,,
+INFORM,InfoRM Risk Index,2011,5.51768240892413,203,186,8,DZA,Algeria,,
+INFORM,InfoRM Risk Index,2010,5.57909059504385,204,187,8,DZA,Algeria,,
+HA,Hazard & Exposure Index,2014,6.16042322715933,193,176,7,DZA,Algeria,,
+HA,Hazard & Exposure Index,2013,6.15879318539139,194,177,7,DZA,Algeria,,
+HA,Hazard & Exposure Index,2012,6.16188653692642,202,185,7,DZA,Algeria,,
+HA,Hazard & Exposure Index,2011,6.16517477690593,203,186,7,DZA,Algeria,,
+HA,Hazard & Exposure Index,2010,6.14226422491894,204,187,7,DZA,Algeria,,
+VU,Vulnerability Index,2014,3.30113594810688,193,176,7,DZA,Algeria,,
+VU,Vulnerability Index,2013,3.23836307881876,194,177,7,DZA,Algeria,,
+VU,Vulnerability Index,2012,3.30027333451336,202,185,7,DZA,Algeria,,
+VU,Vulnerability Index,2011,4.93678993581578,203,186,7,DZA,Algeria,,
+VU,Vulnerability Index,2010,5.04304422868269,204,187,7,DZA,Algeria,,
+CC,Lack of Coping Capacity Index,2014,4.91647899310813,193,176,7,DZA,Algeria,,
+CC,Lack of Coping Capacity Index,2013,5.05309258132853,194,177,7,DZA,Algeria,,
+CC,Lack of Coping Capacity Index,2012,5.1781753625009,202,185,7,DZA,Algeria,,
+CC,Lack of Coping Capacity Index,2011,5.51924988421834,203,186,7,DZA,Algeria,,
+CC,Lack of Coping Capacity Index,2010,5.60620493316322,204,187,7,DZA,Algeria,,
+HA.NAT,Natural Hazard,2010,3.17521988233274,204,187,0,DZA,Algeria,Natural,HA
+HA.HUM,Human Hazard,2010,8,204,187,0,DZA,Algeria,Human,HA
+HA.HUM,Human Hazard,2011,8,203,186,0,DZA,Algeria,Human,HA
+HA.NAT,Natural Hazard,2011,3.2482333968933,203,186,0,DZA,Algeria,Natural,HA
+HA.NAT,Natural Hazard,2012,3.23777486213173,202,185,0,DZA,Algeria,Natural,HA
+HA.HUM,Human Hazard,2012,8,202,185,0,DZA,Algeria,Human,HA
+HA.HUM,Human Hazard,2013,8,194,177,0,DZA,Algeria,Human,HA
+HA.NAT,Natural Hazard,2013,3.22792984194525,194,177,0,DZA,Algeria,Natural,HA
+HA.NAT,Natural Hazard,2014,3.23311844258386,193,176,0,DZA,Algeria,Natural,HA
+HA.HUM,Human Hazard,2014,8,193,176,0,DZA,Algeria,Human,HA
+VU.VGR,Vulnerable Groups,2010,6.11134748098051,204,187,0,DZA,Algeria,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2010,3.7464758176097,204,187,0,DZA,Algeria,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2011,3.53937533262874,203,186,0,DZA,Algeria,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2011,6.07630230491406,203,186,0,DZA,Algeria,Vulnerable Groups,VU
+VU.VGR,Vulnerable Groups,2012,3.33753287858004,202,185,0,DZA,Algeria,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2012,3.26283520169611,202,185,0,DZA,Algeria,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2013,3.16576582065414,194,177,0,DZA,Algeria,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2013,3.31029701000383,194,177,0,DZA,Algeria,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2014,3.24556132614247,193,176,0,DZA,Algeria,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2014,3.35631790348205,193,176,0,DZA,Algeria,Vulnerable Groups,VU
+CC.INF,Infrastructure,2010,5.3426424035709,204,187,0,DZA,Algeria,Infrastructure,CC
+CC.INS,Institutional,2010,5.85772523620862,204,187,0,DZA,Algeria,Institutional,CC
+CC.INS,Institutional,2011,5.78476483612715,203,186,0,DZA,Algeria,Institutional,CC
+CC.INF,Infrastructure,2011,5.24049918193816,203,186,0,DZA,Algeria,Infrastructure,CC
+CC.INF,Infrastructure,2012,5.04339949458533,202,185,0,DZA,Algeria,Infrastructure,CC
+CC.INS,Institutional,2012,5.30995759200377,202,185,0,DZA,Algeria,Institutional,CC
+CC.INS,Institutional,2013,5.13975,194,177,0,DZA,Algeria,Institutional,CC
+CC.INF,Infrastructure,2013,4.96517757530452,194,177,0,DZA,Algeria,Infrastructure,CC
+CC.INS,Institutional,2014,4.92146780689558,193,176,0,DZA,Algeria,Institutional,CC
+CC.INF,Infrastructure,2014,4.91148615836798,193,176,0,DZA,Algeria,Infrastructure,CC
+INFORM,InfoRM Risk Index,2014,2.66143312528914,193,176,8,ATG,Antigua and Barbuda,,
+INFORM,InfoRM Risk Index,2013,2.93189689086455,194,177,8,ATG,Antigua and Barbuda,,
+INFORM,InfoRM Risk Index,2012,2.98088054104185,202,185,8,ATG,Antigua and Barbuda,,
+INFORM,InfoRM Risk Index,2011,2.87565526535907,203,186,8,ATG,Antigua and Barbuda,,
+INFORM,InfoRM Risk Index,2010,2.85026406468204,204,187,8,ATG,Antigua and Barbuda,,
+HA,Hazard & Exposure Index,2014,3.38794533416868,193,176,7,ATG,Antigua and Barbuda,,
+HA,Hazard & Exposure Index,2013,3.41431473697739,194,177,7,ATG,Antigua and Barbuda,,
+HA,Hazard & Exposure Index,2012,3.41674807834721,202,185,7,ATG,Antigua and Barbuda,,
+HA,Hazard & Exposure Index,2011,3.44263310777505,203,186,7,ATG,Antigua and Barbuda,,
+HA,Hazard & Exposure Index,2010,2.26530573492896,204,187,7,ATG,Antigua and Barbuda,,
+VU,Vulnerability Index,2014,1.6766933233933,193,176,7,ATG,Antigua and Barbuda,,
+VU,Vulnerability Index,2013,2.1958097051166,194,177,7,ATG,Antigua and Barbuda,,
+VU,Vulnerability Index,2012,2.16436279939916,202,185,7,ATG,Antigua and Barbuda,,
+VU,Vulnerability Index,2011,2.05597731616802,203,186,7,ATG,Antigua and Barbuda,,
+VU,Vulnerability Index,2010,3.03469809955502,204,187,7,ATG,Antigua and Barbuda,,
+CC,Lack of Coping Capacity Index,2014,3.31861326484266,193,176,7,ATG,Antigua and Barbuda,,
+CC,Lack of Coping Capacity Index,2013,3.36161386242867,194,177,7,ATG,Antigua and Barbuda,,
+CC,Lack of Coping Capacity Index,2012,3.58171228416542,202,185,7,ATG,Antigua and Barbuda,,
+CC,Lack of Coping Capacity Index,2011,3.35970700259276,203,186,7,ATG,Antigua and Barbuda,,
+CC,Lack of Coping Capacity Index,2010,3.36831713797672,204,187,7,ATG,Antigua and Barbuda,,
+HA.NAT,Natural Hazard,2010,4.06328646882863,204,187,0,ATG,Antigua and Barbuda,Natural,HA
+HA.HUM,Human Hazard,2010,0.00863953656979473,204,187,0,ATG,Antigua and Barbuda,Human,HA
+HA.HUM,Human Hazard,2011,0.00917620032007467,203,186,0,ATG,Antigua and Barbuda,Human,HA
+HA.NAT,Natural Hazard,2011,5.81423670496681,203,186,0,ATG,Antigua and Barbuda,Natural,HA
+HA.NAT,Natural Hazard,2012,5.77838810640376,202,185,0,ATG,Antigua and Barbuda,Natural,HA
+HA.HUM,Human Hazard,2012,0.00923643513352306,202,185,0,ATG,Antigua and Barbuda,Human,HA
+HA.HUM,Human Hazard,2013,0.00941472453643261,194,177,0,ATG,Antigua and Barbuda,Human,HA
+HA.NAT,Natural Hazard,2013,5.77492893119508,194,177,0,ATG,Antigua and Barbuda,Natural,HA
+HA.NAT,Natural Hazard,2014,5.73832804870928,193,176,0,ATG,Antigua and Barbuda,Natural,HA
+HA.HUM,Human Hazard,2014,0.0093619942446009,193,176,0,ATG,Antigua and Barbuda,Human,HA
+VU.VGR,Vulnerable Groups,2010,3.70951138789521,204,187,0,ATG,Antigua and Barbuda,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2010,2.29836122291645,204,187,0,ATG,Antigua and Barbuda,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2011,2.65321015295027,203,186,0,ATG,Antigua and Barbuda,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2011,1.41657242474769,203,186,0,ATG,Antigua and Barbuda,Vulnerable Groups,VU
+VU.VGR,Vulnerable Groups,2012,0.974186300224411,202,185,0,ATG,Antigua and Barbuda,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2012,3.21480065735735,202,185,0,ATG,Antigua and Barbuda,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2013,3.4038335290826,194,177,0,ATG,Antigua and Barbuda,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2013,0.798442556774663,194,177,0,ATG,Antigua and Barbuda,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2014,2.48525724711064,193,176,0,ATG,Antigua and Barbuda,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2014,0.79233683130592,193,176,0,ATG,Antigua and Barbuda,Vulnerable Groups,VU
+CC.INF,Infrastructure,2010,2.65150382659763,204,187,0,ATG,Antigua and Barbuda,Infrastructure,CC
+CC.INS,Institutional,2010,4.0243922488591,204,187,0,ATG,Antigua and Barbuda,Institutional,CC
+CC.INS,Institutional,2011,4.02403461538562,203,186,0,ATG,Antigua and Barbuda,Institutional,CC
+CC.INF,Infrastructure,2011,2.63310671962549,203,186,0,ATG,Antigua and Barbuda,Infrastructure,CC
+CC.INF,Infrastructure,2012,2.22966786159713,202,185,0,ATG,Antigua and Barbuda,Infrastructure,CC
+CC.INS,Institutional,2012,4.72793158695961,202,185,0,ATG,Antigua and Barbuda,Institutional,CC
+CC.INS,Institutional,2013,4.72075,194,177,0,ATG,Antigua and Barbuda,Institutional,CC
+CC.INF,Infrastructure,2013,1.71340939079396,194,177,0,ATG,Antigua and Barbuda,Infrastructure,CC
+CC.INS,Institutional,2014,4.7274515235424,193,176,0,ATG,Antigua and Barbuda,Institutional,CC
+CC.INF,Infrastructure,2014,1.5988522177409,193,176,0,ATG,Antigua and Barbuda,Infrastructure,CC
+INFORM,InfoRM Risk Index,2014,7.87547032975271,193,176,8,AFG,Afghanistan,,
+INFORM,InfoRM Risk Index,2013,8.28392083577787,194,177,8,AFG,Afghanistan,,
+INFORM,InfoRM Risk Index,2012,8.25244804473169,202,185,8,AFG,Afghanistan,,
+INFORM,InfoRM Risk Index,2011,8.23142587040353,203,186,8,AFG,Afghanistan,,
+INFORM,InfoRM Risk Index,2010,8.16621194688657,204,187,8,AFG,Afghanistan,,
+HA,Hazard & Exposure Index,2014,8.70429265352286,193,176,7,AFG,Afghanistan,,
+HA,Hazard & Exposure Index,2013,8.72169212140527,194,177,7,AFG,Afghanistan,,
+HA,Hazard & Exposure Index,2012,8.73363804450527,202,185,7,AFG,Afghanistan,,
+HA,Hazard & Exposure Index,2011,8.74770631105809,203,186,7,AFG,Afghanistan,,
+HA,Hazard & Exposure Index,2010,8.75368083845938,204,187,7,AFG,Afghanistan,,
+VU,Vulnerability Index,2014,6.85338353838638,193,176,7,AFG,Afghanistan,,
+VU,Vulnerability Index,2013,7.54050854717759,194,177,7,AFG,Afghanistan,,
+VU,Vulnerability Index,2012,7.48931679573037,202,185,7,AFG,Afghanistan,,
+VU,Vulnerability Index,2011,7.54878842788478,203,186,7,AFG,Afghanistan,,
+VU,Vulnerability Index,2010,7.19626730244093,204,187,7,AFG,Afghanistan,,
+CC,Lack of Coping Capacity Index,2014,8.18824780757052,193,176,7,AFG,Afghanistan,,
+CC,Lack of Coping Capacity Index,2013,8.64383426968233,194,177,7,AFG,Afghanistan,,
+CC,Lack of Coping Capacity Index,2012,8.59233113673627,202,185,7,AFG,Afghanistan,,
+CC,Lack of Coping Capacity Index,2011,8.44605231047697,203,186,7,AFG,Afghanistan,,
+CC,Lack of Coping Capacity Index,2010,8.64497909989277,204,187,7,AFG,Afghanistan,,
+HA.NAT,Natural Hazard,2010,6.10938136973777,204,187,0,AFG,Afghanistan,Natural,HA
+HA.HUM,Human Hazard,2010,10,204,187,0,AFG,Afghanistan,Human,HA
+HA.HUM,Human Hazard,2011,10,203,186,0,AFG,Afghanistan,Human,HA
+HA.NAT,Natural Hazard,2011,6.08399708708883,203,186,0,AFG,Afghanistan,Natural,HA
+HA.NAT,Natural Hazard,2012,6.02397074691856,202,185,0,AFG,Afghanistan,Natural,HA
+HA.HUM,Human Hazard,2012,10,202,185,0,AFG,Afghanistan,Human,HA
+HA.HUM,Human Hazard,2013,10,194,177,0,AFG,Afghanistan,Human,HA
+HA.NAT,Natural Hazard,2013,5.9727203135809,194,177,0,AFG,Afghanistan,Natural,HA
+HA.NAT,Natural Hazard,2014,5.89761353210239,193,176,0,AFG,Afghanistan,Natural,HA
+HA.HUM,Human Hazard,2014,10,193,176,0,AFG,Afghanistan,Human,HA
+VU.VGR,Vulnerable Groups,2010,6.03871454260058,204,187,0,AFG,Afghanistan,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2010,8.08965925117036,204,187,0,AFG,Afghanistan,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2011,8.0746711017533,203,186,0,AFG,Afghanistan,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2011,6.93182785166257,203,186,0,AFG,Afghanistan,Vulnerable Groups,VU
+VU.VGR,Vulnerable Groups,2012,6.7217507614248,202,185,0,AFG,Afghanistan,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2012,8.12265880419088,202,185,0,AFG,Afghanistan,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2013,8.20464627422761,194,177,0,AFG,Afghanistan,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2013,6.72461294750725,194,177,0,AFG,Afghanistan,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2014,6.86312628262108,193,176,0,AFG,Afghanistan,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2014,6.84361844918835,193,176,0,AFG,Afghanistan,Vulnerable Groups,VU
+CC.INF,Infrastructure,2010,8.91156379716791,204,187,0,AFG,Afghanistan,Infrastructure,CC
+CC.INS,Institutional,2010,8.34608439029338,204,187,0,AFG,Afghanistan,Institutional,CC
+CC.INS,Institutional,2011,8.26708289929515,203,186,0,AFG,Afghanistan,Institutional,CC
+CC.INF,Infrastructure,2011,8.61375950913724,203,186,0,AFG,Afghanistan,Infrastructure,CC
+CC.INF,Infrastructure,2012,8.93280658904634,202,185,0,AFG,Afghanistan,Infrastructure,CC
+CC.INS,Institutional,2012,8.19863836221457,202,185,0,AFG,Afghanistan,Institutional,CC
+CC.INS,Institutional,2013,8.567,194,177,0,AFG,Afghanistan,Institutional,CC
+CC.INF,Infrastructure,2013,8.71834808057187,194,177,0,AFG,Afghanistan,Infrastructure,CC
+CC.INS,Institutional,2014,7.88944368362427,193,176,0,AFG,Afghanistan,Institutional,CC
+CC.INF,Infrastructure,2014,8.45933836191441,193,176,0,AFG,Afghanistan,Infrastructure,CC
+INFORM,InfoRM Risk Index,2014,4.81877982974431,193,176,8,AGO,Angola,,
+INFORM,InfoRM Risk Index,2013,4.95637915441854,194,177,8,AGO,Angola,,
+INFORM,InfoRM Risk Index,2012,5.19730054855771,202,185,8,AGO,Angola,,
+INFORM,InfoRM Risk Index,2011,5.01069288565548,203,186,8,AGO,Angola,,
+INFORM,InfoRM Risk Index,2010,5.35115252044322,204,187,8,AGO,Angola,,
+HA,Hazard & Exposure Index,2014,3.52890520976525,193,176,7,AGO,Angola,,
+HA,Hazard & Exposure Index,2013,3.50748165588566,194,177,7,AGO,Angola,,
+HA,Hazard & Exposure Index,2012,3.59893079098597,202,185,7,AGO,Angola,,
+HA,Hazard & Exposure Index,2011,3.41924588594961,203,186,7,AGO,Angola,,
+HA,Hazard & Exposure Index,2010,3.70210338668145,204,187,7,AGO,Angola,,
+VU,Vulnerability Index,2014,4.69092514925858,193,176,7,AGO,Angola,,
+VU,Vulnerability Index,2013,5.01183103922986,194,177,7,AGO,Angola,,
+VU,Vulnerability Index,2012,5.6163433709024,202,185,7,AGO,Angola,,
+VU,Vulnerability Index,2011,5.08708171697473,203,186,7,AGO,Angola,,
+VU,Vulnerability Index,2010,5.61847472925044,204,187,7,AGO,Angola,,
+CC,Lack of Coping Capacity Index,2014,6.75947171976718,193,176,7,AGO,Angola,,
+CC,Lack of Coping Capacity Index,2013,6.92630697176694,194,177,7,AGO,Angola,,
+CC,Lack of Coping Capacity Index,2012,6.9455453088193,202,185,7,AGO,Angola,,
+CC,Lack of Coping Capacity Index,2011,7.23259767667979,203,186,7,AGO,Angola,,
+CC,Lack of Coping Capacity Index,2010,7.36673443161848,204,187,7,AGO,Angola,,
+HA.NAT,Natural Hazard,2010,1.8285165891877,204,187,0,AGO,Angola,Natural,HA
+HA.HUM,Human Hazard,2010,5.19752786334429,204,187,0,AGO,Angola,Human,HA
+HA.HUM,Human Hazard,2011,4.7385483758841,203,186,0,AGO,Angola,Human,HA
+HA.NAT,Natural Hazard,2011,1.82681010062587,203,186,0,AGO,Angola,Natural,HA
+HA.NAT,Natural Hazard,2012,1.82519378868628,202,185,0,AGO,Angola,Natural,HA
+HA.HUM,Human Hazard,2012,5.03385980651528,202,185,0,AGO,Angola,Human,HA
+HA.HUM,Human Hazard,2013,4.88602415256925,194,177,0,AGO,Angola,Human,HA
+HA.NAT,Natural Hazard,2013,1.82366158993777,194,177,0,AGO,Angola,Natural,HA
+HA.NAT,Natural Hazard,2014,1.82956357913949,193,176,0,AGO,Angola,Natural,HA
+HA.HUM,Human Hazard,2014,4.91711747671211,193,176,0,AGO,Angola,Human,HA
+VU.VGR,Vulnerable Groups,2010,5.31554420063677,204,187,0,AGO,Angola,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2010,5.905571275342,204,187,0,AGO,Angola,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2011,4.8414276057032,203,186,0,AGO,Angola,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2011,5.32311079018292,203,186,0,AGO,Angola,Vulnerable Groups,VU
+VU.VGR,Vulnerable Groups,2012,6.31539770171065,202,185,0,AGO,Angola,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2012,4.81539034104683,202,185,0,AGO,Angola,Socio-economic,VU
+VU.SEV,Socio-Economic Vulnerability,2013,4.58068649248102,194,177,0,AGO,Angola,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2013,5.41451103259254,194,177,0,AGO,Angola,Vulnerable Groups,VU
+VU.SEV,Socio-Economic Vulnerability,2014,4.44921610080024,193,176,0,AGO,Angola,Socio-economic,VU
+VU.VGR,Vulnerable Groups,2014,4.92386443115407,193,176,0,AGO,Angola,Vulnerable Groups,VU
+CC.INF,Infrastructure,2010,8.14247785982442,204,187,0,AGO,Angola,Infrastructure,CC
+CC.INS,Institutional,2010,6.38827890816001,204,187,0,AGO,Angola,Institutional,CC
+CC.INS,Institutional,2011,6.46146032583711,203,186,0,AGO,Angola,Institutional,CC
+CC.INF,Infrastructure,2011,7.87584309728375,203,186,0,AGO,Angola,Infrastructure,CC
+CC.INF,Infrastructure,2012,7.39133670324687,202,185,0,AGO,Angola,Infrastructure,CC
+CC.INS,Institutional,2012,6.44632864028761,202,185,0,AGO,Angola,Institutional,CC
+CC.INS,Institutional,2013,6.3865,194,177,0,AGO,Angola,Institutional,CC
+CC.INF,Infrastructure,2013,7.4044386945207,194,177,0,AGO,Angola,Infrastructure,CC
+CC.INS,Institutional,2014,6.42776774168015,193,176,0,AGO,Angola,Institutional,CC
+CC.INF,Infrastructure,2014,7.06768232561998,193,176,0,AGO,Angola,Infrastructure,CC

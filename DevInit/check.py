@@ -33,17 +33,24 @@ output = []
 paths = glob.glob(options.input+"/*.csv")
 
 #Import concept data
-concepts = {}
+concepts = {"country-year":{},"reference":{}}
 with open(options.concept,'rb') as inFile:
     r = csv.reader(inFile)
     header = next(r)
     headerLen = len(header)
     for row in r:
-        obj = {}
-        for i in range(0,headerLen):
-            var = header[i]
-            obj[var] = row[i]
-        concepts[obj['id']] = obj
+        if row[0]=="country-year":
+            obj = {}
+            for i in range(0,headerLen):
+                var = header[i]
+                obj[var] = row[i]
+            concepts["country-year"][obj['id']] = obj
+        elif row[0]=="reference":
+            obj = {}
+            for i in range(0,headerLen):
+                var = header[i]
+                obj[var] = row[i]
+            concepts["reference"][obj['id']] = obj
 #Import refs
 ref = {}
 refPaths = glob.glob(options.ref+"/*.csv")
@@ -84,6 +91,9 @@ refMap["intl-flows-recipients"]["flow-name"] = "flow-name"
 
 refMap["largest-intl-flow"] = {}
 refMap["largest-intl-flow"]["value"] = "largest-intl-flow"
+
+refMap["fragile-states"] = {}
+refMap["fragile-states"]["value"] = "fragile-states"
 
 refMap["long-term-debt"] = {}
 refMap["long-term-debt"]["debt-flow"] = "debt-flow"
