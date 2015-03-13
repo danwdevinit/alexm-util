@@ -33,7 +33,7 @@ interpolateCol <- function(data,colname)
   )
 }
 
-data <- read.csv("C:/git/alexm-util/DevInit/R/pov_long.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE)
+data <- read.csv("C:/git/alexm-util/DevInit/R/125pct.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE)
 names <- colnames(data)
 data <- interpolateCol(data,"value")
-write.csv(data,"pov_long.csv",row.names=FALSE,na="")
+write.csv(data,"poverty-125-pct.csv",row.names=FALSE,na="")
