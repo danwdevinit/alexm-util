@@ -74,15 +74,15 @@ refMap["domestic-revenue-finance-and-expenditure"]["l4"] = "domestic-budget-leve
 refMap["domestic-revenue-finance-and-expenditure"]["l5"] = "domestic-budget-level"
 
 refMap["intl-flows-donors"] = {}
-refMap["intl-flows-donors"]["flow-type"] = "flow-type-reference"
-refMap["intl-flows-donors"]["flow-name"] = "flow-name-reference"
+refMap["intl-flows-donors"]["flow-type"] = "flow-type"
+refMap["intl-flows-donors"]["flow-name"] = "flow-name"
 
 refMap["intl-flows-recipients"] = {}
-refMap["intl-flows-recipients"]["flow-type"] = "flow-type-reference"
-refMap["intl-flows-recipients"]["flow-name"] = "flow-name-reference"
+refMap["intl-flows-recipients"]["flow-type"] = "flow-type"
+refMap["intl-flows-recipients"]["flow-name"] = "flow-name"
 
 refMap["largest-intl-flow"] = {}
-refMap["largest-intl-flow"]["flow"] = "flow-name-reference"
+refMap["largest-intl-flow"]["value"] = "largest-intl-flow"
 
 refMap["long-term-debt"] = {}
 refMap["long-term-debt"]["debt-flow"] = "debt-flow"
