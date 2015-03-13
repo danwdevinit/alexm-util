@@ -61,7 +61,8 @@ for refPath in refPaths:
                 for i in range(0,headerLen):
                     var = header[i]
                     obj[var] = row[i]
-                ref[refname][obj['id']] = obj
+                if "id" in header:
+                    ref[refname][obj['id']] = obj
 #Ref mapping
 refMap = {}
 refMap["domestic-revenue-finance-and-expenditure"] = {}
