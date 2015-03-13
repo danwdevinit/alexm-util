@@ -120,7 +120,7 @@ for inPath in paths:
             data = csv.reader(inFile)
             header = next(data)
             #Check that file is in concepts
-            if name not in concepts:
+            if name not in concepts["country-year"]:
                 errObj = {}
                 errObj["file"] = filename
                 errObj["row"] = 0
@@ -130,7 +130,7 @@ for inPath in paths:
                 output.append(errObj)
             else:
                 #Check column description
-                concept_header = map(str.strip,concepts[name]["columns"].split(","))
+                concept_header = map(str.strip,concepts["country-year"][name]["columns"].split(","))
                 for var in header:
                     if var not in concept_header:
                         errObj = {}
