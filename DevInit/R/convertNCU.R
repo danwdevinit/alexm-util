@@ -1,7 +1,7 @@
 path<- "C:/git/digital-platform"
 setwd(path)
 
-df <- read.csv("./country-year/domestic-revenue-and-expenditure.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+df <- read.csv("./country-year/domestic-revenue-finance-and-expenditure.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
 mult <- read.csv("./reference/current-ncu-to-constant-2012-usd-cy.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
 
 for(i in 1:nrow(df)){
