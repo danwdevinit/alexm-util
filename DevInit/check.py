@@ -72,14 +72,22 @@ for refPath in refPaths:
                     ref[refname][obj['id']] = obj
 #Ref mapping
 refMap = {}
-refMap["domestic-revenue-finance-and-expenditure"] = {}
-refMap["domestic-revenue-finance-and-expenditure"]["budget-type"] = "budget-type"
-refMap["domestic-revenue-finance-and-expenditure"]["sectoral-type"] = "sectoral-type"
-refMap["domestic-revenue-finance-and-expenditure"]["l1"] = "domestic-budget-level"
-refMap["domestic-revenue-finance-and-expenditure"]["l2"] = "domestic-budget-level"
-refMap["domestic-revenue-finance-and-expenditure"]["l3"] = "domestic-budget-level"
-refMap["domestic-revenue-finance-and-expenditure"]["l4"] = "domestic-budget-level"
-refMap["domestic-revenue-finance-and-expenditure"]["l5"] = "domestic-budget-level"
+refMap["domestic"] = {}
+refMap["domestic"]["budget-type"] = "budget-type"
+refMap["domestic"]["l1"] = "domestic-budget-level"
+refMap["domestic"]["l2"] = "domestic-budget-level"
+refMap["domestic"]["l3"] = "domestic-budget-level"
+refMap["domestic"]["l4"] = "domestic-budget-level"
+refMap["domestic"]["l5"] = "domestic-budget-level"
+
+refMap = {}
+refMap["domestic-sectors"] = {}
+refMap["domestic-sectors"]["budget-type"] = "budget-type"
+refMap["domestic-sectors"]["l1"] = "domestic-budget-level"
+refMap["domestic-sectors"]["l2"] = "domestic-budget-level"
+refMap["domestic-sectors"]["l3"] = "domestic-budget-level"
+refMap["domestic-sectors"]["l4"] = "domestic-budget-level"
+refMap["domestic-sectors"]["l5"] = "domestic-budget-level"
 
 refMap["intl-flows-donors"] = {}
 refMap["intl-flows-donors"]["flow-type"] = "flow-type"
