@@ -19,9 +19,9 @@ def page():
     fh = open(options.input, 'rb')
     pdf = pyPdf.PdfFileReader(fh)
     pages = pdf.getNumPages()
-    print(dir(pdf))
-    #pdf_page = pdftables.get_pdf_page(fh, int(options.page))
-    #table1, _ = pdftables.page_to_tables(pdf_page)
+    pdf_page = pdf.getPage(int(options.page))
+    #Use pdfminer!!!
+    table1, _ = pdftables.page_to_tables(pdf_page)
     #data = pd.DataFrame(table1)
     #print data
 
