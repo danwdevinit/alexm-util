@@ -1,11 +1,4 @@
 #!/usr/bin/env python
-# ScraperWiki Limited
-# Ian Hopkinson, 2013-06-17
-# -*- coding: utf-8 -*-
-
-"""
-Finds tables tests
-"""
 
 import sys
 import pdftables
