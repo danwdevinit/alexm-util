@@ -25,6 +25,7 @@ def spin():
 def search((inputFile,search)):
     baseName = os.path.basename(inputFile)
     inputName, inputExtension = os.path.splitext(baseName)
+    print inputName
     regionName = inputFile.split("/")[-2]
     fr = open(inputFile, 'rb')
     pdf = pyPdf.PdfFileReader(fr)
@@ -43,46 +44,12 @@ def search((inputFile,search)):
     cells = [pdfextract.process_page(inputFile,p) for p in hits]
     cells = [item for sublist in cells for item in sublist ]
     li = pdfextract.table_to_list(cells, hits)
-    table1 = li[-2][1:-1]
-    table2 = li[-1][1:-1]
-    data = []
-    for row in table1:
-        spin()
-        parsedText = re.findall("[^0-9]{2,}",row[0])
-        if len(parsedText)>1:
-            for i in range(0,len(parsedText)):
-                text = parsedText[i]
-                startIndex = row[0].index(text)+len(text)
-                endIndex = row[0].index(parsedText[i+1]) if i+1<len(parsedText) else len(row[0])
-                parsedNum = row[0][startIndex:endIndex].split(" ")
-                parsedRow = []
-                parsedRow.append(text.strip())
-                parsedRow.extend(parsedNum)
-                if(len(parsedRow)>1):
-                    parsedRow.insert(0,inputName)
-                    parsedRow.insert(0,regionName)
-                    data.append(parsedRow)
-        elif len(parsedText)==1:
-            parsedRow = []
-            parsedRow.append(parsedText[0].strip())
-            parsedNum = re.findall("[0-9.,]+",row[0][len(parsedText[0]):])
-            parsedRow.extend(parsedNum)
-            if(len(parsedRow)>1):
-                parsedRow.insert(0,inputName)
-                parsedRow.insert(0,regionName)
-                data.append(parsedRow)
-        else:
-            parsedRow = []
-            parsedRow.append("")
-            parsedNum = re.findall("[0-9.,]+",row[0])
-            parsedRow.extend(parsedNum)
-            if(len(parsedRow)>1):
-                parsedRow.insert(0,inputName)
-                parsedRow.insert(0,regionName)
-                data.append(parsedRow)
-    for row in table2:
-        spin()
-        if row[0].find("Page")==-1:
+    if len(li)>1:
+        table1 = li[-2][1:-1]
+        table2 = li[-1][1:-1]
+        data = []
+        for row in table1:
+            spin()
             parsedText = re.findall("[^0-9]{2,}",row[0])
             if len(parsedText)>1:
                 for i in range(0,len(parsedText)):
@@ -115,9 +82,49 @@ def search((inputFile,search)):
                     parsedRow.insert(0,inputName)
                     parsedRow.insert(0,regionName)
                     data.append(parsedRow)
-    cols = ["Region","District","Sector/MDA/MMDA","Central GOG and CF: Comp of Emp","Central GOG and CF: Goods/Service","Central GOG and CF: Assets (Capital)","Central GOG and CF: Total","IGF: Comp of Emp","IGF: Goods/Service","IGF: Assets (Capital)","IGF: Total","Funds/Others: Comp of Emp","Funds/Others: Goods/Service","Funds/Others: Assets (Capital)","Funds/Others: Total","Donor: Comp of Emp","Donor: Goods/Service","Donor: Assets (Capital)","Donor: Total","Grand Total Less NREG / Statutory"]
-    data = pd.DataFrame(data,columns=cols)
-    return data
+        for row in table2:
+            spin()
+            if row[0].find("Page")==-1:
+                parsedText = re.findall("[^0-9]{2,}",row[0])
+                if len(parsedText)>1:
+                    for i in range(0,len(parsedText)):
+                        text = parsedText[i]
+                        startIndex = row[0].index(text)+len(text)
+                        endIndex = row[0].index(parsedText[i+1]) if i+1<len(parsedText) else len(row[0])
+                        parsedNum = row[0][startIndex:endIndex].split(" ")
+                        parsedRow = []
+                        parsedRow.append(text.strip())
+                        parsedRow.extend(parsedNum)
+                        if(len(parsedRow)>1):
+                            parsedRow.insert(0,inputName)
+                            parsedRow.insert(0,regionName)
+                            data.append(parsedRow)
+                elif len(parsedText)==1:
+                    parsedRow = []
+                    parsedRow.append(parsedText[0].strip())
+                    parsedNum = re.findall("[0-9.,]+",row[0][len(parsedText[0]):])
+                    parsedRow.extend(parsedNum)
+                    if(len(parsedRow)>1):
+                        parsedRow.insert(0,inputName)
+                        parsedRow.insert(0,regionName)
+                        data.append(parsedRow)
+                else:
+                    parsedRow = []
+                    parsedRow.append("")
+                    parsedNum = re.findall("[0-9.,]+",row[0])
+                    parsedRow.extend(parsedNum)
+                    if(len(parsedRow)>1):
+                        parsedRow.insert(0,inputName)
+                        parsedRow.insert(0,regionName)
+                        data.append(parsedRow)
+        cols = ["Region","District","Sector/MDA/MMDA","Central GOG and CF: Comp of Emp","Central GOG and CF: Goods/Service","Central GOG and CF: Assets (Capital)","Central GOG and CF: Total","IGF: Comp of Emp","IGF: Goods/Service","IGF: Assets (Capital)","IGF: Total","Funds/Others: Comp of Emp","Funds/Others: Goods/Service","Funds/Others: Assets (Capital)","Funds/Others: Total","Donor: Comp of Emp","Donor: Goods/Service","Donor: Assets (Capital)","Donor: Total","Grand Total Less NREG / Statutory"]
+        data = pd.DataFrame(data,columns=cols)
+        return data
+    else:
+        cols = ["Region","District","Sector/MDA/MMDA","Central GOG and CF: Comp of Emp","Central GOG and CF: Goods/Service","Central GOG and CF: Assets (Capital)","Central GOG and CF: Total","IGF: Comp of Emp","IGF: Goods/Service","IGF: Assets (Capital)","IGF: Total","Funds/Others: Comp of Emp","Funds/Others: Goods/Service","Funds/Others: Assets (Capital)","Funds/Others: Total","Donor: Comp of Emp","Donor: Goods/Service","Donor: Assets (Capital)","Donor: Total","Grand Total Less NREG / Statutory"]
+        data = [[regionName,inputName,"ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR","ERR"]]
+        data = pd.DataFrame(data,columns=cols)
+        return data
 
 if __name__ == "__main__":
     parser = OptionParser()
@@ -130,7 +137,7 @@ if __name__ == "__main__":
     parser.add_option("-s", "--search", dest="search", default="SUMMARY OF EXPENDITURE BY DEPARTMENT",
                             help="Search phrase",metavar="TEXT")
     (options, args) = parser.parse_args()
-    sys.stdout.write("Searching "+options.input+" for '"+options.search+"' utilizing "+str(options.cpus)+" cores....")
+    print("Searching "+options.input+" for '"+options.search+"' utilizing "+str(options.cpus)+" cores....")
     folderPaths = glob.glob(options.input+"/*")
     paths = []
     cols = ["Region","District","Sector/MDA/MMDA","Central GOG and CF: Comp of Emp","Central GOG and CF: Goods/Service","Central GOG and CF: Assets (Capital)","Central GOG and CF: Total","IGF: Comp of Emp","IGF: Goods/Service","IGF: Assets (Capital)","IGF: Total","Funds/Others: Comp of Emp","Funds/Others: Goods/Service","Funds/Others: Assets (Capital)","Funds/Others: Total","Donor: Comp of Emp","Donor: Goods/Service","Donor: Assets (Capital)","Donor: Total","Grand Total Less NREG / Statutory"]
