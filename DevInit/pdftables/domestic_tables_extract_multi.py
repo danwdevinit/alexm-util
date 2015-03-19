@@ -140,8 +140,6 @@ if __name__ == "__main__":
     print("Searching "+options.input+" for '"+options.search+"' utilizing "+str(options.cpus)+" cores....")
     folderPaths = glob.glob(options.input+"/*")
     paths = []
-    cols = ["Region","District","Sector/MDA/MMDA","Central GOG and CF: Comp of Emp","Central GOG and CF: Goods/Service","Central GOG and CF: Assets (Capital)","Central GOG and CF: Total","IGF: Comp of Emp","IGF: Goods/Service","IGF: Assets (Capital)","IGF: Total","Funds/Others: Comp of Emp","Funds/Others: Goods/Service","Funds/Others: Assets (Capital)","Funds/Others: Total","Donor: Comp of Emp","Donor: Goods/Service","Donor: Assets (Capital)","Donor: Total","Grand Total Less NREG / Statutory"]
-    output = pd.DataFrame(columns=cols)
     for folder in folderPaths:
         filePaths = glob.glob(folder+"/*.pdf")
         paths.extend(filePaths)
@@ -149,7 +147,6 @@ if __name__ == "__main__":
     pool_outputs = pool.map(search,zip(paths,repeat(options.search)))
     pool.close()
     pool.join()
-    for data in pool_outputs:
-        output = pd.concat([output,data])
+    output = pd.concat(pool_outputs)
     output.to_csv(options.output+"output_multi.csv", encoding='utf-8',index=False)
     print("Done.")
