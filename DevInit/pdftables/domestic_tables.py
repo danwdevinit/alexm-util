@@ -11,6 +11,10 @@ import pdftableextract as pdf
 parser = OptionParser()
 parser.add_option("-i", "--input", dest="input", default = "/vagrant/data/budgets/",
                 help="Input folder", metavar="FILE")
+parser.add_option("-o", "--output", dest="output", default="./tmp/",
+                        help="Output path. Default is './tmp/'",metavar="FOLDER")
+parser.add_option("-s", "--search", dest="search", default="SUMMARY OF EXPENDITURE BY DEPARTMENT",
+                        help="Search phrase",metavar="TEXT")
 (options, args) = parser.parse_args()
 
 syms = ['\\', '|', '/', '-']
@@ -54,4 +58,4 @@ for folder in folderPaths:
     filePaths = glob.glob(folder+"/*.pdf")
     paths.extend(filePaths)
 for path in paths:
-    search(path,"SUMMARY OF EXPENDITURE BY DEPARTMENT")
+    search(path,options.search)
