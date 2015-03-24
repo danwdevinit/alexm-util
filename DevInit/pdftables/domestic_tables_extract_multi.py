@@ -128,7 +128,7 @@ def search((inputFile,search)):
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="input", default = "/vagrant/data/budgets/",
+    parser.add_option("-i", "--input", dest="input", default = "/s/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Ghana/2015/District budgets/",
                     help="Input folder", metavar="FILE")
     parser.add_option("-o", "--output", dest="output", default="./tmp/",
                             help="Output path. Default is './tmp/'",metavar="FOLDER")
