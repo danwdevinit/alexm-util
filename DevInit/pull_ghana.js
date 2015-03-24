@@ -1,9 +1,10 @@
+#!/usr/bin/nodejs
 var request = require('request'),
 cheerio = require('cheerio'),
 fs = require('fs'),
 baseUrl = "http://www.mofep.gov.gh",
 pageUrl = "http://www.mofep.gov.gh/?q=divisions/fdu/composite-budget-of-MDAs-2013",
-outputPath = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Ghana/2013/District budgets/"
+outputPath = "/s/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Ghana/2013/District budgets/"
 request(pageUrl,parseCallback);
 
 function parseCallback(e,r,b) {
