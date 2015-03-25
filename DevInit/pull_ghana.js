@@ -3,9 +3,10 @@ var request = require('request'),
 cheerio = require('cheerio'),
 fs = require('fs'),
 httpreq = require('httpreq'),
+year = process.argv[2],
 baseUrl = "http://www.mofep.gov.gh",
-pageUrl = "http://www.mofep.gov.gh/?q=divisions/fdu/composite-budget-of-MDAs-2015",
-outputPath = "/s/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Ghana/2015/District budgets/"
+pageUrl = "http://www.mofep.gov.gh/?q=divisions/fdu/composite-budget-of-MDAs-"+year,
+outputPath = "/s/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Ghana/"+year+"/District budgets/"
 request(pageUrl,parseCallback);
 
 var mkdirSync = function (path) {
@@ -25,7 +26,7 @@ function parseCallback(e,r,b) {
         var link = links[i],
         keys = Object.keys(link.attribs),
         href = keys.indexOf("href")>-1?link.attribs.href:"";
-        if(href.substr(0,30)=="/?q=budget-statement/2015-comp"){
+        if(href.substr(0,30)=="/?q=budget-statement/"+year+"-comp"){
             var regionUrl = baseUrl+href;
             request(regionUrl,parseRegion);
         };
@@ -47,17 +48,19 @@ function parseRegion(e,r,b){
             href = keys.indexOf("href")>-1?link.attribs.href:"";
             if(href.substr(0,28)=="/sites/default/files/budget/"){
                 var pdfUrl = baseUrl+href,
-                filename = href.split("/").slice(-1)[0];
-                httpreq.download(
-                    pdfUrl,
-                    regionPath+filename
-                , function (err, progress){
-                    if (err) return console.log(err);
-                    console.log(progress);
-                }, function (err, res){
-                    if (err) return console.log(err);
-                    console.log(res);
-                });
+                filename = href.split("/").slice(-1)[0],
+                filepath = regionPath+filename;
+                try{
+                    var stats = fs.lstatSync(filepath);
+                    if(stats.size<20000){
+                        console.log(region+"/"+filename+" exists, but size is insufficient. Downloading...");
+                        httpreq.download(pdfUrl,filepath);  
+                    };
+                }
+                catch(e){
+                    console.log(region+"/"+filename+" does not exist. Downloading...");
+                    httpreq.download(pdfUrl,filepath);
+                };
             };
         };
     };

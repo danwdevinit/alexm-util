@@ -136,8 +136,8 @@ if __name__ == "__main__":
     parser = OptionParser()
     parser.add_option("-i", "--input", dest="input", default = "/s/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Ghana/2015/District budgets/",
                     help="Input folder", metavar="FILE")
-    parser.add_option("-o", "--output", dest="output", default="./tmp/",
-                            help="Output path. Default is './tmp/'",metavar="FOLDER")
+    parser.add_option("-o", "--output", dest="output", default="./tmp/output_multi.csv",
+                            help="Output path. Default is './tmp/output_multi.csv'",metavar="FILE")
     parser.add_option("-c", "--cpus", dest="cpus", default=multiprocessing.cpu_count(),
                             help="Number of CPUs to utilize. Default is all CPUs")
     parser.add_option("-s", "--search", dest="search", default="SUMMARY OF EXPENDITURE BY DEPARTMENT",
@@ -154,5 +154,5 @@ if __name__ == "__main__":
     pool.close()
     pool.join()
     output = pd.concat(pool_outputs)
-    output.to_csv(options.output+"output_multi.csv", encoding='utf-8',index=False)
+    output.to_csv(options.output, encoding='utf-8',index=False)
     print("Done.")
