@@ -1,4 +1,5 @@
 ###Thanks to Kyle Walker, http://rpubs.com/walkerke/wdi_leaflet
+##Color codes from http://colorbrewer2.org/
 #install.packages('rgdal')
 #install.packages('devtools')
 #install.packages('plyr')
@@ -129,6 +130,9 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
                 weight = 1, 
                 popup = country_popup)
 }
+
+##Syntax is:
+#hub_leaflet(series,indicator,year,value,classes,colorRamp)
 
 ## Example country-year
 #hub_leaflet("country-year","adult-literacy",2012,"value",5,"Blues")
