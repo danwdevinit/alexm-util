@@ -133,16 +133,19 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 
 ##Syntax is:
 #hub_leaflet(series,indicator,year,value,classes,colorRamp)
+#Map appears in viewer, legend appears in plots along with min and max of data in those bins
 
-## Example country-year
+## Example: Map "value" from adult-literacy in 2012 with 5 bins in blue hues
 #hub_leaflet("country-year","adult-literacy",2012,"value",5,"Blues")
 
-## Example latest-year
+## Example: Map "value" from adult-literacy in the latest-year with 5 bins in red hues
 #hub_leaflet("latest-year","climate-vulnerability",NA,"value",5,"Reds")
 
-## Example latest-year w/ range from concepts.csv
+## Example: Map "value" from avg-income-of-extreme-poor
+#in the latest-year with bins automatically grabbed from concepts.csv in green hues
 #hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,"Greens")
 
-## Example latest-year w/ defined range
-hub_leaflet("latest-year","education-pc-transferred-oda",NA,"value",c(3,5,7,11),"Greens")
+## Example: Map "value" from education-pc-transferred-oda
+#in the latest-year with bins defined in the function in purple hues
+hub_leaflet("latest-year","education-pc-transferred-oda",NA,"value",c(3,5,7,11),"Purples")
 
