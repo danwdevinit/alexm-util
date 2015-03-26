@@ -1,4 +1,4 @@
-###Credit to Kyle Walker, http://rpubs.com/walkerke/wdi_leaflet
+###Thanks to Kyle Walker, http://rpubs.com/walkerke/wdi_leaflet
 #install.packages('rgdal')
 #install.packages('devtools')
 #install.packages('plyr')
