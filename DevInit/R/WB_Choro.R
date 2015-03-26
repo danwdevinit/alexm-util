@@ -72,6 +72,6 @@ wdi_leaflet <- function(indicator, indicator_alias = "Value", year = 2012, class
 
 ## Example call
 
-## wdi_leaflet(indicator = "SP.RUR.TOTL.ZS", indicator_alias = "Percent rural", colors = "OrRd")
-wdi_leaflet("SP.URB.TOTL.IN.ZS")
+wdi_leaflet(indicator = "SP.RUR.TOTL.ZS", indicator_alias = "Percent rural", colors = "OrRd")
+##wdi_leaflet("SP.URB.TOTL.IN.ZS")
 
