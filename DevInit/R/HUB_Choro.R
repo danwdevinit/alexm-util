@@ -106,7 +106,7 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
   legend <- data.frame(val,color,stringsAsFactors=FALSE)
   legend <- ddply(legend,.(color),summarize,from=min(val),to=max(val),count=length(val),stringsAsFactors=FALSE)
   legend <- legend[order(legend$from),]
-  legend$from.to <- paste(as.character(legend$from),as.character(legend$to),sep=" - ")
+  legend$from.to <- paste(as.character(round(legend$from,2)),as.character(round(legend$to,2)),sep=" - ")
   legend<- legend[c("color","from.to","count")]
   for(i in 1:length(legend$from.to)){
     if(legend$from.to[i]=="NA - NA"){
@@ -139,7 +139,7 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 #hub_leaflet("country-year","adult-literacy",2012,"value",5,"Blues")
 
 ## Example: Map "value" from adult-literacy in the latest-year with 5 bins in red hues
-#hub_leaflet("latest-year","climate-vulnerability",NA,"value",5,"Reds")
+hub_leaflet("latest-year","climate-vulnerability",NA,"value",5,"OrRd")
 
 ## Example: Map "value" from avg-income-of-extreme-poor
 #in the latest-year with bins automatically grabbed from concepts.csv in green hues
@@ -147,5 +147,5 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 
 ## Example: Map "value" from education-pc-transferred-oda
 #in the latest-year with bins defined in the function in purple hues
-hub_leaflet("latest-year","education-pc-transferred-oda",NA,"value",c(3,5,7,11),"Purples")
+#hub_leaflet("latest-year","education-pc-transferred-oda",NA,"value",c(3,5,7,11),"Purples")
 
