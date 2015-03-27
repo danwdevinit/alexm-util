@@ -104,21 +104,21 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
   val<-countries2[[indicator]]
   color<- pal(countries2[[indicator]])
   legend <- data.frame(val,color,stringsAsFactors=FALSE)
-  legend <- ddply(legend,.(color),summarize,from=min(val),to=max(val),stringsAsFactors=FALSE)
+  legend <- ddply(legend,.(color),summarize,from=min(val),to=max(val),count=length(val),stringsAsFactors=FALSE)
   legend <- legend[order(legend$from),]
   legend$from.to <- paste(as.character(legend$from),as.character(legend$to),sep=" - ")
-  legend$length <- legend$to-legend$from
-  legend<- legend[c("color","from.to","length")]
+  legend<- legend[c("color","from.to","count")]
   for(i in 1:length(legend$from.to)){
     if(legend$from.to[i]=="NA - NA"){
       legend$from.to[i]="NA"
     }
   }
-  barplot(legend$length,
+  bp <- barplot(legend$count,
           legend.text=legend$from.to,
           beside=FALSE,
           col=legend$color,
           main = indicator)
+          text(bp, 0, round(legend$count, 1),cex=1,pos=3)
   
   leaflet(data = countries2) %>%
     #addTiles(urlTemplate = stamen_tiles,  
@@ -133,7 +133,7 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 
 ##Syntax is:
 #hub_leaflet(series,indicator,year,value,classes,colorRamp)
-#Map appears in viewer, legend appears in plots along with min and max of data in those bins
+#Map appears in viewer, legend appears in plots along with count of data in those bins
 
 ## Example: Map "value" from adult-literacy in 2012 with 5 bins in blue hues
 #hub_leaflet("country-year","adult-literacy",2012,"value",5,"Blues")
