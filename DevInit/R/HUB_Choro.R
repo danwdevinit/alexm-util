@@ -1,5 +1,4 @@
 ###Thanks to Kyle Walker, http://rpubs.com/walkerke/wdi_leaflet
-##Color codes from http://colorbrewer2.org/
 #install.packages('rgdal')
 #install.packages('devtools')
 #install.packages('plyr')
@@ -9,7 +8,34 @@ library(rgdal)
 library(leaflet)
 library(plyr)
 
-### Function to create a Leaflet interactive map in RStudio from a World Bank indicator.
+### Function to create a Leaflet interactive map.
+
+diRamp <- function(colorText1,colorText2=NA,colorText3=NA){
+  colorRef <- list("red"="#BA0C2F")
+  colorRef <- c(colorRef,"white"="#FFFFFF")
+  colorRef <- c(colorRef,"black"="#000000")
+  colorRef <- c(colorRef,"orange"="#EA7600")
+  colorRef <- c(colorRef,"purple"="#93328E")
+  colorRef <- c(colorRef,"blue"="#1B365D")
+  colorRef <- c(colorRef,"lightblue"="#0095CB")
+  colorRef <- c(colorRef,"green"="#B7BF10")
+  if(!is.na(colorText2)){
+    if(!is.na(colorText3)){
+      color1 <- colorRef[[colorText1]]
+      color2 <- colorRef[[colorText2]]
+      color3 <- colorRef[[colorText3]]
+      colorRamp(c(color1,color2,color3), interpolate="linear")
+    }else{
+      color1 <- colorRef[[colorText1]]
+      color2 <- colorRef[[colorText2]]
+      colorRamp(c(color1,color2), interpolate="linear")
+    }
+  }else{
+    color1 <- colorRef[["white"]]
+    color2 <- colorRef[[colorText1]]
+    colorRamp(c(color1,color2), interpolate="linear")
+  }
+}
 
 hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 5, colors = "Blues") {
   
@@ -106,7 +132,7 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
   legend <- data.frame(val,color,stringsAsFactors=FALSE)
   legend <- ddply(legend,.(color),summarize,from=min(val),to=max(val),count=length(val),stringsAsFactors=FALSE)
   legend <- legend[order(legend$from),]
-  legend$from.to <- paste(as.character(round(legend$from,2)),as.character(round(legend$to,2)),sep=" - ")
+  legend$from.to <- paste(as.character(legend$from),as.character(legend$to),sep=" - ")
   legend<- legend[c("color","from.to","count")]
   for(i in 1:length(legend$from.to)){
     if(legend$from.to[i]=="NA - NA"){
@@ -136,16 +162,16 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 #Map appears in viewer, legend appears in plots along with count of data in those bins
 
 ## Example: Map "value" from adult-literacy in 2012 with 5 bins in blue hues
-#hub_leaflet("country-year","adult-literacy",2012,"value",5,"Blues")
+#hub_leaflet("country-year","adult-literacy",2012,"value",5,diRamp("blue"))
 
-## Example: Map "value" from adult-literacy in the latest-year with 5 bins in red hues
-hub_leaflet("latest-year","climate-vulnerability",NA,"value",5,"OrRd")
+## Example: Map "value" from adult-literacy in the latest-year with 5 bins in divergent hues
+hub_leaflet("latest-year","climate-vulnerability",NA,"value",5,diRamp("orange","white","red"))
 
 ## Example: Map "value" from avg-income-of-extreme-poor
 #in the latest-year with bins automatically grabbed from concepts.csv in green hues
-#hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,"Greens")
+#hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,diRamp("green"))
 
 ## Example: Map "value" from education-pc-transferred-oda
 #in the latest-year with bins defined in the function in purple hues
-#hub_leaflet("latest-year","education-pc-transferred-oda",NA,"value",c(3,5,7,11),"Purples")
+#hub_leaflet("latest-year","education-pc-transferred-oda",NA,"value",c(3,5,7,11),diRamp("purple"))
 
