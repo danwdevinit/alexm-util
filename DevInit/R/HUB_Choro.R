@@ -91,26 +91,35 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
       pal <- colorBin(colors, c(indMin,indMax) , bins = levels)
     }
   }else{
-    conceptPath <- "C:/git/digital-platform/concepts.csv"
-    concepts <- read.csv(conceptPath, header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
-    range <- concepts[which(concepts$id==indicator),]$range
-    if(!is.na(range)){
-      classes <- as.numeric(strsplit(range,",")[[1]])
-      levels <- classes[order(classes)]
-      indDat <- dat[[indicator]]
-      indDat <- indDat[which(!is.na(indDat))]
-      indMin <- min(indDat)
-      indMax <- max(indDat)
-      if(levels[1]>indMin){
-        levels <- c(indMin,levels)
-      }
-      if(levels[length(levels)]<indMax){
-        levels <- c(levels,indMax)
-      }
-      pal <- colorBin(colors, c(indMin,indMax) , bins = levels)
+    if(!is.na(classes)){
+      pal <- colorFactor(colors, NULL,levels=classes)
     }else{
-      warning("Error reading range from concepts.csv. Choosing 5 chucks instead.")
-      pal <- colorQuantile(colors, NULL, n = 5)
+      conceptPath <- "C:/git/digital-platform/concepts.csv"
+      concepts <- read.csv(conceptPath, header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+      range <- concepts[which(concepts$id==indicator&concepts$series=="country-year"),]$range
+      if(!is.na(range)){
+        classes <- as.numeric(strsplit(range,",")[[1]])
+        if(!is.na(classes[1])){
+          levels <- classes[order(classes)]
+          indDat <- dat[[indicator]]
+          indDat <- indDat[which(!is.na(indDat))]
+          indMin <- min(indDat)
+          indMax <- max(indDat)
+          if(levels[1]>indMin){
+            levels <- c(indMin,levels)
+          }
+          if(levels[length(levels)]<indMax){
+            levels <- c(levels,indMax)
+          }
+          pal <- colorBin(colors, c(indMin,indMax) , bins = levels)
+        }else{
+          levels <- strsplit(range,",")[[1]]
+          pal <- colorFactor(colors, NULL, levels = levels)
+        }
+      }else{
+        warning("Error reading range from concepts.csv. Choosing 5 chucks instead.")
+        pal <- colorQuantile(colors, NULL, n = 5)
+      }  
     }
   }
   
@@ -161,17 +170,66 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 #hub_leaflet(series,indicator,year,value,classes,colorRamp)
 #Map appears in viewer, legend appears in plots along with count of data in those bins
 
-## Example: Map "value" from adult-literacy in 2012 with 5 bins in blue hues
-#hub_leaflet("country-year","adult-literacy",2012,"value",5,diRamp("blue"))
+####Files that appear in Global Picture
+###Poverty
+#avg-income-of-extreme-poor
+hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,diRamp("red","white"))
 
-## Example: Map "value" from adult-literacy in the latest-year with 5 bins in divergent hues
-hub_leaflet("latest-year","climate-vulnerability",NA,"value",5,diRamp("orange","white","red"))
+#poor-people
+hub_leaflet("latest-year","poor-people",NA,"value",NA,diRamp("red"))
 
-## Example: Map "value" from avg-income-of-extreme-poor
-#in the latest-year with bins automatically grabbed from concepts.csv in green hues
-#hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,diRamp("green"))
+#poorest20pct
+hub_leaflet("latest-year","poorest20pct",NA,"value",NA,diRamp("red"))
 
-## Example: Map "value" from education-pc-transferred-oda
-#in the latest-year with bins defined in the function in purple hues
-#hub_leaflet("latest-year","education-pc-transferred-oda",NA,"value",c(3,5,7,11),diRamp("purple"))
+#poorest20pct-percentages
+hub_leaflet("latest-year","poorest20pct-percentages",NA,"value",NA,diRamp("red"))
+
+#poverty-125
+hub_leaflet("latest-year","poverty-125",NA,"value",NA,diRamp("red"))
+
+#poverty-200
+hub_leaflet("latest-year","poverty-200",NA,"value",NA,diRamp("red"))
+
+#poverty-gap-125
+hub_leaflet("latest-year","poverty-gap-125",NA,"value",NA,diRamp("red"))
+
+###Vulnerability
+#climate-vulnerability
+hub_leaflet("latest-year","climate-vulnerability",NA,"value",c(0.18,0.4,0.6,0.8,0.9),diRamp("orange","white","red"))
+
+#fragile-states
+hub_leaflet("latest-year","fragile-states",NA,"value",NA,diRamp("red"))
+
+#human-hazard
+#natural-hazard
+
+
+###Domestic resources
+#govtspend-pc
+#govtspend-USD
+
+###International resources
+#fdi-pp
+#intl-flows-donors
+#intl-flows-recipients
+#intlresources-total
+#largest-intl-flow
+#profits-pct-fdi
+#rems-pp
+
+
+###International official finance
+#in-oda-gross
+#in-oda-net
+#in-oof-gross
+#oda
+#oof
+#out-oda-net
+#out-oof-net
+
+###Humanitarian
+#in-ha
+
+
+
 
