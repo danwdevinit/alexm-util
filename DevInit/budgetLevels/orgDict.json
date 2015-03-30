@@ -1224,6 +1224,12 @@
       "l3": "Tax Revenue", 
       "l4": ""
     }, 
+    "L4_Supplementary_Federal_Expenditure": {
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditure", 
+      "l3": "Federal Government Expenditure", 
+      "l4": "Supplementary Federal Expenditure"
+    }, 
     "L4_federal_tax": {
       "l1": "Total Revenue and Grants", 
       "l2": "Revenue", 
@@ -1241,6 +1247,12 @@
       "l2": "Recurrent Expenditure", 
       "l3": "Federal Government Expenditure", 
       "l4": "Other Federal Expenditure"
+    }, 
+    "L5_other_federal_expenditure": {
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditure", 
+      "l3": "Federal Government Expenditure", 
+      "l4": "Supplementary Federal Expenditure"
     }
   }, 
   "Rwanda": {
@@ -1499,6 +1511,12 @@
       "l2": "Recurrent Expenditure", 
       "l3": "Transfer Payments", 
       "l4": ""
+    }, 
+    "L4_transfers_states": {
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditure", 
+      "l3": "Transfer Payments", 
+      "l4": "States"
     }
   }, 
   "Tanzania": {

@@ -378,7 +378,7 @@ def buildTree(parent,arr):
                 del child['value']
     
 sys.stdout.write("Building tree... This can take a while....")
-buildTree("",hierData['children'])
+#buildTree("",hierData['children'])
 sys.stdout.write('\nDone.\n')
 
 #Output results
