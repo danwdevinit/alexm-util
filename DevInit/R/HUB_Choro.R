@@ -91,36 +91,27 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
       pal <- colorBin(colors, c(indMin,indMax) , bins = levels)
     }
   }else{
-    if(!is.na(classes)){
-      pal <- colorFactor(colors, NULL,levels=classes)
+    conceptPath <- "C:/git/digital-platform/concepts.csv"
+    concepts <- read.csv(conceptPath, header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+    range <- concepts[which(concepts$id==indicator&concepts$series=="country-year"),]$range
+    if(!is.na(range)){
+      classes <- as.numeric(strsplit(range,",")[[1]])
+      levels <- classes[order(classes)]
+      indDat <- dat[[indicator]]
+      indDat <- indDat[which(!is.na(indDat))]
+      indMin <- min(indDat)
+      indMax <- max(indDat)
+      if(levels[1]>indMin){
+        levels <- c(indMin,levels)
+      }
+      if(levels[length(levels)]<indMax){
+        levels <- c(levels,indMax)
+      }
+      pal <- colorBin(colors, c(indMin,indMax) , bins = levels)
     }else{
-      conceptPath <- "C:/git/digital-platform/concepts.csv"
-      concepts <- read.csv(conceptPath, header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
-      range <- concepts[which(concepts$id==indicator&concepts$series=="country-year"),]$range
-      if(!is.na(range)){
-        classes <- as.numeric(strsplit(range,",")[[1]])
-        if(!is.na(classes[1])){
-          levels <- classes[order(classes)]
-          indDat <- dat[[indicator]]
-          indDat <- indDat[which(!is.na(indDat))]
-          indMin <- min(indDat)
-          indMax <- max(indDat)
-          if(levels[1]>indMin){
-            levels <- c(indMin,levels)
-          }
-          if(levels[length(levels)]<indMax){
-            levels <- c(levels,indMax)
-          }
-          pal <- colorBin(colors, c(indMin,indMax) , bins = levels)
-        }else{
-          levels <- strsplit(range,",")[[1]]
-          pal <- colorFactor(colors, NULL, levels = levels)
-        }
-      }else{
-        warning("Error reading range from concepts.csv. Choosing 5 chucks instead.")
-        pal <- colorQuantile(colors, NULL, n = 5)
-      }  
-    }
+      warning("Error reading range from concepts.csv. Choosing 5 chucks instead.")
+      pal <- colorQuantile(colors, NULL, n = 5)
+    }  
   }
   
   country_popup <- paste0("<strong>Country: </strong>", 
@@ -198,38 +189,73 @@ hub_leaflet("latest-year","poverty-gap-125",NA,"value",NA,diRamp("red"))
 hub_leaflet("latest-year","climate-vulnerability",NA,"value",c(0.18,0.4,0.6,0.8,0.9),diRamp("orange","white","red"))
 
 #fragile-states
-hub_leaflet("latest-year","fragile-states",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","fragile-states",NA,"value",c(1,2,3,4,5,6),diRamp("orange","white","red"))
 
 #human-hazard
+hub_leaflet("latest-year","human-hazard",NA,"value",NA,diRamp("orange","white","red"))
+
 #natural-hazard
+hub_leaflet("latest-year","natural-hazard",NA,"value",NA,diRamp("orange","white","red"))
 
 
 ###Domestic resources
 #govtspend-pc
+hub_leaflet("latest-year","govtspend-pc",NA,"value",NA,diRamp("red","white","orange"))
 #govtspend-USD
+hub_leaflet("latest-year","govtspend-USD",NA,"value",NA,diRamp("red","white","orange"))
+
 
 ###International resources
 #fdi-pp
+hub_leaflet("latest-year","fdi-pp",NA,"value",NA,diRamp("red","white","orange"))
+
 #intl-flows-donors
+#hub_leaflet("country-year","intl-flows-donors",NA,"value",NA,diRamp("orange","white","red"))
+#has theme but does not work
+
 #intl-flows-recipients
+#hub_leaflet("country-year","intl-flows-recipients",NA,"value",NA,diRamp("orange","white","red"))
+#has theme but does not work
+
 #intlresources-total
+hub_leaflet("latest-year","intlresources-total",NA,"value",NA,diRamp("red","white","orange"))
+
 #largest-intl-flow
+hub_leaflet("country-year","largest-intl-flow",2013,"value",c(1,2,3,4,5,6,7,8),diRamp("red"))
+#Can't get colors right on this one. 
+
 #profits-pct-fdi
+hub_leaflet("latest-year","profits-pct-fdi",NA,"value",NA,diRamp("orange","white","red"))
+
 #rems-pp
+hub_leaflet("latest-year","rems-pp",NA,"value",NA,diRamp("red","white","orange"))
 
 
 ###International official finance
 #in-oda-gross
+hub_leaflet("latest-year","in-oda-gross",NA,"value",NA,diRamp("red"))
+
 #in-oda-net
+hub_leaflet("latest-year","in-oda-net",NA,"value",NA,diRamp("red"))
+
 #in-oof-gross
+hub_leaflet("latest-year","in-oof-gross",NA,"value",NA,diRamp("red"))
+
 #oda
+#hub_leaflet("latest-year","oda",NA,"value",NA,diRamp("orange","white","red"))
+#Has theme but will not work
+
 #oof
+#hub_leaflet("latest-year","oof",NA,"value",NA,diRamp("orange","white","red"))
+#Has theme but will not work
+
 #out-oda-net
+hub_leaflet("latest-year","out-oda-net",NA,"value",NA,diRamp("red"))
+
 #out-oof-net
+hub_leaflet("latest-year","out-oof-net",NA,"value",NA,diRamp("red"))
+
 
 ###Humanitarian
 #in-ha
-
-
-
-
+hub_leaflet("latest-year","in-ha",NA,"value",NA,diRamp("red"))
