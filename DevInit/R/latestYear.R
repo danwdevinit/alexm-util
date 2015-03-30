@@ -1,7 +1,7 @@
 #install.packages('plyr')
 require(plyr)
 
-setwd("C:/git/alexm-util/DevInit/R/tmp")
+setwd("C:/git/digital-platform/latest-year")
 filenames <- list.files("C:/git/digital-platform/country-year", pattern="*.csv", full.names=TRUE)
 
 latestYear <- function(data)
