@@ -16,7 +16,7 @@ import pdb
 
 #Parse Options
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/25 priority countries - VA edit 050315.xlsx",
+parser.add_option("-i", "--input", dest="input", default = "/s/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA310315.xlsx",
                 help="Input file", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="./results.csv",
                 help="Output CSV file", metavar="FILE")
@@ -378,7 +378,7 @@ def buildTree(parent,arr):
                 del child['value']
     
 sys.stdout.write("Building tree... This can take a while....")
-#buildTree("",hierData['children'])
+buildTree("",hierData['children'])
 sys.stdout.write('\nDone.\n')
 
 #Output results
