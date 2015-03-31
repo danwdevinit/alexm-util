@@ -18,7 +18,7 @@ diRamp <- function(colorText1,colorText2=NA,colorText3=NA){
   colorRef <- c(colorRef,"purple"="#93328E")
   colorRef <- c(colorRef,"blue"="#1B365D")
   colorRef <- c(colorRef,"lightblue"="#0095CB")
-  colorRef <- c(colorRef,"green"="#B7BF10")
+  colorRef <- c(colorRef,"yellow"=rgb(192,204,64,1,maxColorValue=255))
   if(!is.na(colorText2)){
     if(!is.na(colorText3)){
       color1 <- colorRef[[colorText1]]
@@ -165,28 +165,38 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 ###Poverty
 #avg-income-of-extreme-poor
 hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,diRamp("red","white"))
+#5 equal categories
+hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",5,diRamp("red","white"))
+#Suggestion
+hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",5,diRamp("red","white"))
 
 #poor-people
 hub_leaflet("latest-year","poor-people",NA,"value",NA,diRamp("red"))
+#5 equal categories
+hub_leaflet("latest-year","poor-people",NA,"value",5,diRamp("red"))
+#5 equal categories
+hub_leaflet("latest-year","poor-people",NA,"value",c(1000000,5000000,10000000,100000000),diRamp("red"))
 
 #poorest20pct
 hub_leaflet("latest-year","poorest20pct",NA,"value",NA,diRamp("red"))
-
-#poorest20pct-percentages
-hub_leaflet("latest-year","poorest20pct-percentages",NA,"value",NA,diRamp("red"))
+#5 equal categories
+hub_leaflet("latest-year","poorest20pct",NA,"value",5,diRamp("red"))
 
 #poverty-125
 hub_leaflet("latest-year","poverty-125",NA,"value",NA,diRamp("red"))
+#5 equal categories
+hub_leaflet("latest-year","poverty-125",NA,"value",5,diRamp("red"))
 
 #poverty-200
 hub_leaflet("latest-year","poverty-200",NA,"value",NA,diRamp("red"))
-
-#poverty-gap-125
-hub_leaflet("latest-year","poverty-gap-125",NA,"value",NA,diRamp("red"))
+#5 equal categories
+hub_leaflet("latest-year","poverty-200",NA,"value",5,diRamp("red"))
 
 ###Vulnerability
 #climate-vulnerability
 hub_leaflet("latest-year","climate-vulnerability",NA,"value",c(0.18,0.4,0.6,0.8,0.9),diRamp("orange","white","red"))
+#Suggestion 1
+hub_leaflet("latest-year","climate-vulnerability",NA,"value",4,"RdYlGn")
 
 #fragile-states
 hub_leaflet("latest-year","fragile-states",NA,"value",c(1,2,3,4,5,6),diRamp("orange","white","red"))
@@ -255,6 +265,9 @@ hub_leaflet("latest-year","out-oda-net",NA,"value",NA,diRamp("red"))
 #out-oof-net
 hub_leaflet("latest-year","out-oof-net",NA,"value",NA,diRamp("red"))
 
+#oda-per-poor-person
+#net-oda-per-gni
+#net-oda-to-ldcs-per-gni
 
 ###Humanitarian
 #in-ha
