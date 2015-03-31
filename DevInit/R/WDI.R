@@ -5,7 +5,7 @@ new_cache <- WDIcache()
 wd <- "C:/git/digital-platform/country-year/"
 entityPath <- "C:/git/digital-platform/reference/entity.csv"
 entities <- read.csv(entityPath, header = TRUE,na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
-entities <- entities$id
+entities <- entities[which(entities$type=="country"),]$id
 setwd(wd)
 indicator <- "NY.GNP.MKTP.KD"
 
