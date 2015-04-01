@@ -339,5 +339,9 @@ hub_leaflet("latest-year","oda-to-ldcs-pc-gni",NA,"value",c(0.02, 0.04, 0.08, 0.
 hub_leaflet("latest-year","in-ha",NA,"value",NA,diRamp("red"))
 #in-ha 5 classes
 hub_leaflet("latest-year","in-ha",NA,"value",5,diRamp("red"))
-#in-ha recommend
+#in-ha recommend AM
 hub_leaflet("latest-year","in-ha",NA,"value",c(2000000, 10000000, 50000000,100000000),diRamp("lightblue"))
+#in-ha recommend RW
+hub_leaflet("latest-year","in-ha",NA,"value",c(25000000,50000000,100000000,300000000,500000000),diRamp("red"))
+#in-ha recommend RW alternative
+hub_leaflet("latest-year","in-ha",NA,"value",c(25000000,50000000,100000000,300000000,500000000),diRamp("lightblue"))
