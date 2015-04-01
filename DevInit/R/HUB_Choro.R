@@ -176,9 +176,9 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 #avg-income-of-extreme-poor
 hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,diRamp("darkred","red","pink"))
 #avg-income-of-extreme-poor 5 class
-hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",5,diRamp("darkred","red","pink"))
+hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",5,diRamp("red","white"))
 #avg-income-of-extreme-poor recommend
-hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",c(0.75,1,1.1,1.2),diRamp("darkred","red","pink"))
+hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",c(0.75,1,1.1,1.2),diRamp("red","white"))
 
 #poor-people
 hub_leaflet("latest-year","poor-people",NA,"value",NA,diRamp("pink","red","darkred"))
