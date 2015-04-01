@@ -20,6 +20,8 @@ diRamp <- function(colorText1,colorText2=NA,colorText3=NA){
   colorRef <- c(colorRef,"blue"="#1B365D")
   colorRef <- c(colorRef,"lightblue"="#0095CB")
   colorRef <- c(colorRef,"yellow"=rgb(192,204,64,1,maxColorValue=255))
+  colorRef <- c(colorRef,"darkred"=rgb(96, 6, 24,1,maxColorValue=255))
+  colorRef <- c(colorRef,"pink"=rgb(251, 197, 208,1,maxColorValue=255))
   if(!is.na(colorText2)){
     if(!is.na(colorText3)){
       color1 <- colorRef[[colorText1]]
@@ -172,27 +174,27 @@ hub_leaflet <- function(series,indicator, year = NA, value = "value", classes = 
 
 ###Poverty########################################################################################
 #avg-income-of-extreme-poor
-hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,diRamp("red","white"))
+hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",NA,diRamp("darkred","red","pink"))
 #avg-income-of-extreme-poor 5 class
-hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",5,diRamp("red","white"))
+hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",5,diRamp("darkred","red","pink"))
 #avg-income-of-extreme-poor recommend
-hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",c(0.75,1,1.1,1.2),diRamp("red","white"))
+hub_leaflet("latest-year","avg-income-of-extreme-poor",NA,"value",c(0.75,1,1.1,1.2),diRamp("darkred","red","pink"))
 
 #poor-people
-hub_leaflet("latest-year","poor-people",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","poor-people",NA,"value",NA,diRamp("pink","red","darkred"))
 
 #poorest20pct
-hub_leaflet("latest-year","poorest20pct",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","poorest20pct",NA,"value",NA,diRamp("pink","red","darkred"))
 
 #poverty-125
-hub_leaflet("latest-year","poverty-125",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","poverty-125",NA,"value",NA,diRamp("pink","red","darkred"))
 #poverty-125 5 class
 hub_leaflet("latest-year","poverty-125",NA,"value",5,diRamp("red"))
 #poverty-125 recommend
 hub_leaflet("latest-year","poverty-125",NA,"value",c(5,20,40,60,80),diRamp("red"))
 
 #poverty-200
-hub_leaflet("latest-year","poverty-200",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","poverty-200",NA,"value",NA,diRamp("pink","red","darkred"))
 
 ###Vulnerability########################################################################################
 #climate-vulnerability
@@ -289,31 +291,31 @@ hub_leaflet("latest-year","rems-pp",NA,"value",c(5, 25, 100, 250),"Blues")
 
 ###International official finance########################################################################################
 #in-oda-gross
-hub_leaflet("latest-year","in-oda-gross",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","in-oda-gross",NA,"value",NA,diRamp("pink","red","darkred"))
 #in-oda-gross recommend
 hub_leaflet("latest-year","in-oda-gross",NA,"value",NA,diRamp("purple"))
 
 #in-oda-net
-hub_leaflet("latest-year","in-oda-net",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","in-oda-net",NA,"value",NA,diRamp("pink","red","darkred"))
 #in-oda-net recommend
 hub_leaflet("latest-year","in-oda-net",NA,"value",NA,diRamp("purple"))
 
 #in-oof-gross
-hub_leaflet("latest-year","in-oof-gross",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","in-oof-gross",NA,"value",NA,diRamp("pink","red","darkred"))
 #in-oof-gross 5 class
-hub_leaflet("latest-year","in-oof-gross",NA,"value",5,diRamp("red"))
+hub_leaflet("latest-year","in-oof-gross",NA,"value",5,diRamp("pink","red","darkred"))
 #in-oof-gross recommend
 hub_leaflet("latest-year","in-oof-gross",NA,"value",c(0, 3000000, 30000000, 300000000, 3000000000),diRamp("purple"))
 
 #out-oda-net
-hub_leaflet("latest-year","out-oda-net",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","out-oda-net",NA,"value",NA,diRamp("pink","red","darkred"))
 #out-oda-net 5 class
 hub_leaflet("latest-year","out-oda-net",NA,"value",5,diRamp("red"))
 #out-oda-net recommend
 hub_leaflet("latest-year","out-oda-net",NA,"value",NA,diRamp("purple"))
 
 #out-oof-net
-hub_leaflet("latest-year","out-oof-net",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","out-oof-net",NA,"value",NA,diRamp("pink","red","darkred"))
 #out-oof-net 5 class
 hub_leaflet("latest-year","out-oof-net",NA,"value",5,diRamp("red"))
 #out-oof-net recommend
@@ -336,7 +338,7 @@ hub_leaflet("latest-year","oda-to-ldcs-pc-gni",NA,"value",c(0.02, 0.04, 0.08, 0.
 
 ###Humanitarian########################################################################################
 #in-ha
-hub_leaflet("latest-year","in-ha",NA,"value",NA,diRamp("red"))
+hub_leaflet("latest-year","in-ha",NA,"value",NA,diRamp("pink","red","darkred"))
 #in-ha 5 classes
 hub_leaflet("latest-year","in-ha",NA,"value",5,diRamp("red"))
 #in-ha recommend AM
