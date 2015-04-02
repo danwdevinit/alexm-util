@@ -4893,7 +4893,7 @@
       "l2": "Recurrent Expenditure", 
       "l3": "Federal Government Expenditure", 
       "l4": "Supplementary Federal Expenditure", 
-      "l5": ""
+      "l5": "Other"
     }
   }, 
   "Rwanda": {
@@ -5674,7 +5674,7 @@
       "l2": "Revenue", 
       "l3": "Tax Revenue", 
       "l4": "Taxes on Goods and Services", 
-      "l5": ""
+      "l5": "Excises and Other Internal Indirect Taxes"
     }, 
     "l3_goods_services_expenditure": {
       "l1": "Total Expenditure", 
