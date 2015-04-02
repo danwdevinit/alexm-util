@@ -1,12 +1,13 @@
 wd<- "C:/git/digital-platform/country-year"
 isoPath <- "C:/git/alexm-util/DevInit/R/povCalISOs.csv"
-poorPeoplePath <- "./poor-people.csv"
+indicator <- "poverty-200"
+datPath <- paste("./",indicator,".csv",sep="")
 setwd(wd)
 
 isos <- read.csv(isoPath, header = TRUE,na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
 isos <- isos$iso
 
-dat <- read.csv(poorPeoplePath, header = TRUE,na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+dat <- read.csv(datPath, header = TRUE,na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
 
 id <- c()
 year <- c()
@@ -23,4 +24,4 @@ for(i in 1:nrow(dat)){
 }
 dat <- data.frame(id,year,value,o.value)
 names(dat)[names(dat) == "o.value"] <- "original-value"
-write.csv(dat,"poor-people.csv",row.names=FALSE,na="")
+write.csv(dat,datPath,row.names=FALSE,na="")
