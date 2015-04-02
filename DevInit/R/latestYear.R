@@ -40,7 +40,7 @@ for (i in 1:length(filenames))
 {
   data <- read.csv(filenames[i], header = TRUE,sep=",",na.strings="",check.names=FALSE)
   names <- colnames(data)
-  if((length(names)==3 & "id" %in% names & "year" %in% names & "value" %in% names) | (length(names)==4 & "id" %in% names & "year" %in% names  & "value" %in% names & "original-value" %in% names))
+  if((length(names)==3 & "id" %in% names & "year" %in% names & "value" %in% names) | (length(names)==4 & "id" %in% names & "year" %in% names  & "value" %in% names & "original-value" %in% names) | (length(names)==4 & "id" %in% names & "year" %in% names  & "value" %in% names & "estimate" %in% names))
   {
     data <- data[order(data$id,data$year),]
     data <- latestYear(data)
