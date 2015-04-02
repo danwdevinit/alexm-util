@@ -107,6 +107,7 @@ for sheet in sheets:
                 item['l3'] = ""
                 item['l4'] = ""
                 item['l5'] = ""
+                item['l6'] = ""
                 item['value'] = values[i][j] if str(values[i][j]).lower()!='none' else ""
                 flatData.append(item)
         elif level!='none' and level!='None':
@@ -126,21 +127,31 @@ for sheet in sheets:
                         orgDict[country][levelSlug]['l2'] = ""
                         orgDict[country][levelSlug]['l3'] = ""
                         orgDict[country][levelSlug]['l4'] = ""
+                        orgDict[country][levelSlug]['l5'] = ""
                     elif levelSlug[0:2].lower()=="l2":
                         orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
                         orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
                         orgDict[country][levelSlug]['l3'] = ""
                         orgDict[country][levelSlug]['l4'] = ""
+                        orgDict[country][levelSlug]['l5'] = ""
                     elif levelSlug[0:2].lower()=="l3":
                         orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
                         orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
                         orgDict[country][levelSlug]['l3'] = str(raw_input('L3:')).strip()
                         orgDict[country][levelSlug]['l4'] = ""
+                        orgDict[country][levelSlug]['l5'] = ""
+                    elif levelSlug[0:2].lower()=="l4":
+                        orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
+                        orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
+                        orgDict[country][levelSlug]['l3'] = str(raw_input('L3:')).strip()
+                        orgDict[country][levelSlug]['l4'] = str(raw_input('L4:')).strip()
+                        orgDict[country][levelSlug]['l5'] = ""
                     else:
                         orgDict[country][levelSlug]['l1'] = str(raw_input('L1:')).strip()
                         orgDict[country][levelSlug]['l2'] = str(raw_input('L2:')).strip()
                         orgDict[country][levelSlug]['l3'] = str(raw_input('L3:')).strip()
                         orgDict[country][levelSlug]['l4'] = str(raw_input('L4:')).strip()
+                        orgDict[country][levelSlug]['l5'] = str(raw_input('L5:')).strip()
                     levelDict = orgDict[country][levelSlug]
                     print('Writing orgDict...')
                     with open(options.dict, 'w') as output_file:
@@ -155,7 +166,8 @@ for sheet in sheets:
                 item['l2'] = name if level.lower().find('l1')>-1 else levelDict['l2']
                 item['l3'] = name if level.lower().find('l2')>-1 else levelDict['l3']
                 item['l4'] = name if level.lower().find('l3')>-1 else levelDict['l4']
-                item['l5'] = name if level.lower().find('l4')>-1 else ""
+                item['l5'] = name if level.lower().find('l4')>-1 else levelDict['l5']
+                item['l6'] = name if level.lower().find('l5')>-1 else ""
                 item['value'] = values[i][j] if str(values[i][j]).lower()!='none' else ""
                 flatData.append(item)
     
@@ -164,7 +176,56 @@ for sheet in sheets:
 #    return SequenceMatcher(None,a,b).ratio()
 parentModel = []
 for item in flatData:
-    if item['l5']!="":
+    if item['l6']!="":
+        obja = {}
+        obja['name'] = item['l6']
+        obja['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']+"#"+item['l6']
+        obja['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
+        obja['value'] = item['value'] if str(item['value']).lower()!='none' else ""
+        parentModel.append(obja)
+        obj0 = {}
+        obj0['name'] = item['l5']
+        obj0['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
+        obj0['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+        obj0['value'] = ""
+        parentModel.append(obj0)
+        obj1 = {}
+        obj1['name'] = item['l4']
+        obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+        obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+        obj1['value'] = ""
+        parentModel.append(obj1)
+        obj2 = {}
+        obj2['name'] = item['l3']
+        obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+        obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+        obj2['value'] = ""
+        parentModel.append(obj2)
+        obj3 = {}
+        obj3['name'] = item['l2']
+        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+        obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+        obj3['value'] = ""
+        parentModel.append(obj3)
+        obj4 = {}
+        obj4['name'] = item['l1']
+        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+        obj4['parent'] = item['country']+"#"+str(int(item['year']))
+        obj4['value'] = ""
+        parentModel.append(obj4)
+        obj5 = {}
+        obj5['name'] = str(int(item['year']))
+        obj5['id'] = item['country']+"#"+str(int(item['year']))
+        obj5['parent'] = item['country']
+        obj5['value'] = ""
+        parentModel.append(obj5)
+        obj6 = {}
+        obj6['name'] = item['country']
+        obj6['id'] = item['country']
+        obj6['parent'] = ""
+        obj6['value'] = ""
+        parentModel.append(obj6)
+    elif item['l5']!="":
         obj0 = {}
         obj0['name'] = item['l5']
         obj0['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
@@ -378,14 +439,14 @@ def buildTree(parent,arr):
                 del child['value']
     
 sys.stdout.write("Building tree... This can take a while....")
-buildTree("",hierData['children'])
+#buildTree("",hierData['children'])
 sys.stdout.write('\nDone.\n')
 
 #Output results
 print('Writing CSV...')
 #Enforce order
 #keys = flatData[0].keys()
-keys = ['iso','country','currency','year','type','l1','l2','l3','l4','l5','value']
+keys = ['iso','country','currency','year','type','l1','l2','l3','l4','l5','l6','value']
 with open(options.output, 'wb') as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()
