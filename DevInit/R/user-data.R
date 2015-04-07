@@ -24,7 +24,7 @@ refMap <- c(refMap,"long-term-debt"="debt-flow,destination-institution-type,cred
 refMap <- c(refMap,"oda"="sector,bundle,channel")
 refMap <- c(refMap,"oof"="sector,oof-bundle,channel")
 refMap <- c(refMap,"fdi-out"="financing-type")
-refMap <- c(refMap,"dfis-out"="financing-type")
+refMap <- c(refMap,"dfis-out-dev"="financing-type")
 
 #Iterate through files, reading them in
 for (i in 1:length(filenames))

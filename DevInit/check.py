@@ -123,8 +123,8 @@ refMap["oof"]["channel"] = "channel"
 refMap["fdi-out"] = {}
 refMap["fdi-out"]["financing-type"] = "financing-type"
 
-refMap["dfis-out"] = {}
-refMap["dfis-out"]["financing-type"] = "financing-type"
+refMap["dfis-out-dev"] = {}
+refMap["dfis-out-dev"]["financing-type"] = "financing-type"
 
 #Import csv data
 for inPath in paths:
