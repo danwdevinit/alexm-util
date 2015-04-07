@@ -1,6 +1,6 @@
 #install.packages('WDI')
 library(WDI)
-new_cache <- WDIcache()
+#new_cache <- WDIcache()
 
 wd <- "C:/git/digital-platform/country-year/"
 entityPath <- "C:/git/digital-platform/reference/entity.csv"
@@ -13,8 +13,9 @@ dat <- WDI(country = "all",
            indicator = indicator, 
            start = 2000, 
            end = 2015,
-           extra = TRUE,
-           cache = new_cache)
+           extra = TRUE
+           #cache = new_cache
+           )
 
 names(dat)[names(dat) == indicator] <- "value"
 names(dat)[names(dat) == "iso2c"] <- "id"
