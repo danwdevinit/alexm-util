@@ -8,7 +8,7 @@ t1URL <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/TABLE1/20005+20001+80
 
 t1sdmx <- readSDMX(t1URL)
 t1 <- as.data.frame(t1sdmx)
-cls <- t1@codelists
+cls <- t1sdmx@codelists
 codelists <- sapply(cls@codelists, function(x) x@id)
 
 head(t1)

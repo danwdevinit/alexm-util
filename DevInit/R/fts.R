@@ -3,24 +3,50 @@
 library(jsonlite)
 setwd("C:/git/alexm-util/DevInit/R")
 
-root <- "http://fts.unocha.org/api/v1/"
+#years = c(2000:2015)
+years = c(2013)
 
 ####Meta-data####
+root <- "http://fts.unocha.org/api/v1/"
 countries <- fromJSON(paste(root,"country.json",sep=""))
 sectors <- fromJSON(paste(root,"sector.json",sep=""))
 organizations <- fromJSON(paste(root,"organization.json",sep=""))
-emergencies <- fromJSON(paste(root,"Emergency/year/2000.json",sep=""))
-for(i in 2001:2015){
-  emergencies <- rbind(emergencies, fromJSON(paste(root,"Emergency/year/",i,".json",sep="")))
+emergencies <- fromJSON(paste(root,"Emergency/year/",years[1],".json",sep=""))
+if(length(years)>1){
+  for(i in 2:length(years)){
+    year <- years[i]
+    emergencies <- rbind(emergencies, fromJSON(paste(root,"Emergency/year/",year,".json",sep="")))
+    print(paste("Pulling emergencies for year ==",year))
+  }
 }
-appeals <- fromJSON(paste(root,"Appeal/year/2000.json",sep=""))
-for(i in 2001:2015){
-  appeals <- rbind(appeals, fromJSON(paste(root,"Appeal/year/",i,".json",sep="")))
+appeals <- fromJSON(paste(root,"Appeal/year/",years[1],".json",sep=""))
+if(length(years)>1){
+  for(i in 2:length(years)){
+    year <- years[i]
+    appeals <- rbind(appeals, fromJSON(paste(root,"Appeal/year/",year,".json",sep="")))
+    print(paste("Pulling appeals for year ==",year))
+  }
 }
-clusters <- list()
-i = 1
-while(length(clusters)==0){
-  clusters <- fromJSON(paste(root,"cluster/appeal/",appeals$id[i],".json",sep=""))
-  i <- i+1
-  print(appeals$id[i])
+
+####Projects####
+projects <- fromJSON(paste(root,"Project/appeal/",appeals$id[1],".json",sep=""))
+for(i in 2:nrow(appeals)){
+  projects <- rbind(projects, fromJSON(paste(root,"Project/appeal/",appeals$id[i],".json",sep="")))
+  print(paste("Pulling projects for appeal ==",appeals$id[i]))
 }
+
+####Contributions####
+contrib_appeal <- fromJSON(paste(root,"Contribution/appeal/",appeals$id[1],".json",sep=""))
+for(i in 2:nrow(appeals)){
+  contrib_appeal <- rbind(contrib_appeal, fromJSON(paste(root,"Contribution/emergency/",appeals$id[i],".json",sep="")))
+  print(paste("Pulling contributions for appeal ==",appeals$id[i]))
+}
+contrib_appeal <- unique(contrib_appeal)
+contrib_emerg <- fromJSON(paste(root,"Contribution/emergency/",emergencies$id[1],".json",sep=""))
+for(i in 2:nrow(emergencies)){
+  contrib_emerg <- rbind(contrib_emerg, fromJSON(paste(root,"Contribution/emergency/",emergencies$id[1],".json",sep="")))
+  print(paste("Pulling contributions for emergency ==",emergencies$id[i]))
+}
+contrib_emerg <- unique(contrib_emerg)
+contributions <- rbind(contrib_emerg,contrib_appeal)
+contributions <- unique(contributions)
