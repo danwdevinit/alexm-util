@@ -133,8 +133,8 @@ def buildTree(parent,arr):
         if len(child['children'])==0:
             del child['children']
             if child['value']=="":
-            #Give value to non-valued end nodes?
-            #    child['value']=1
+            Give value to non-valued end nodes?
+                child['value']=1
                 child['value']=""
         else:
             if child['value']=="":
