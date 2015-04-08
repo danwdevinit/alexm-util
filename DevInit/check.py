@@ -72,6 +72,7 @@ for refPath in refPaths:
                     ref[refname][obj['id']] = obj
 #Ref mapping
 refMap = {}
+
 refMap["domestic"] = {}
 refMap["domestic"]["budget-type"] = "budget-type"
 refMap["domestic"]["l1"] = "domestic-budget-level"
@@ -80,7 +81,6 @@ refMap["domestic"]["l3"] = "domestic-budget-level"
 refMap["domestic"]["l4"] = "domestic-budget-level"
 refMap["domestic"]["l5"] = "domestic-budget-level"
 
-refMap = {}
 refMap["domestic-sectors"] = {}
 refMap["domestic-sectors"]["budget-type"] = "budget-type"
 refMap["domestic-sectors"]["l1"] = "domestic-budget-level"

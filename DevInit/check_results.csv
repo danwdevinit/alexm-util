@@ -1,6 +1,4 @@
 file,row,col,error-type,error
-long-debt-disbursement-in.csv,0,0,Bad Column Description,'value (negative observations set to zero)' is not listed in headers in concepts.csv
-long-debt-disbursement-in.csv,0,0,Bad Column Description,'value' is incorrectly listed as a header in concepts.csv
 oda-capital-and-interest-repayments.csv,1,1,Entity Misidentification,'angola' is not in entity.csv
 oda-capital-and-interest-repayments.csv,2,1,Entity Misidentification,'benin' is not in entity.csv
 oda-capital-and-interest-repayments.csv,3,1,Entity Misidentification,'botswana' is not in entity.csv
