@@ -1,11 +1,12 @@
 #install.packages("jsonlite")
 #install.packages("curl")
+#install.packages("plyr")
 library(jsonlite)
 wd <- "C:/Users/alexm/Documents/"
 setwd(wd)
 
-years = c(2000:2015)
-#years = c(2013)
+#years = c(2000:2015)
+years = c(2015)
 
 ####Meta-data####
 root <- "http://fts.unocha.org/api/v1/"
@@ -49,12 +50,33 @@ for(i in 2:nrow(emergencies)){
 }
 
 ####Save####
-setwd(paste(wd,"FTS-Complete",sep=""))
-write.csv(countries,"./countries.csv",row.names=FALSE,na="")
-write.csv(sectors,"./sectors.csv",row.names=FALSE,na="")
-write.csv(organizations,"./organizations.csv",row.names=FALSE,na="")
-write.csv(emergencies,"./emergencies.csv",row.names=FALSE,na="")
-write.csv(appeals,"./appeals.csv",row.names=FALSE,na="")
-write.csv(projects,"./projects.csv",row.names=FALSE,na="")
+#setwd(paste(wd,"FTS-Complete",sep=""))
+#write.csv(countries,"./countries.csv",row.names=FALSE,na="")
+#write.csv(sectors,"./sectors.csv",row.names=FALSE,na="")
+#write.csv(organizations,"./organizations.csv",row.names=FALSE,na="")
+#write.csv(emergencies,"./emergencies.csv",row.names=FALSE,na="")
+#write.csv(appeals,"./appeals.csv",row.names=FALSE,na="")
+#write.csv(projects,"./projects.csv",row.names=FALSE,na="")
 #write.csv(contrib_appeal,"./contrib_appeal.csv",row.names=FALSE,na="")
-write.csv(contrib_emerg,"./contrib_emerg.csv",row.names=FALSE,na="")
+#write.csv(contrib_emerg,"./contrib_emerg.csv",row.names=FALSE,na="")
+
+####Merge####
+#appealEmerg <- merge(appeals
+#                    ,emergencies
+#                    ,by.x=c("emergency_id")
+#                    ,by.y=c("id")
+#                    ,all=TRUE
+#                    ,suffixes=c(".appeal",".emerg"))
+#projAppealEmerg <- merge(projects
+#                    ,appealEmerg
+#                    ,by.x=c("appeal_id")
+#                    ,by.y=c("id")
+#                    ,all=TRUE
+#                    ,suffixes=c(".project",".appeal"))
+#names(contrib_emerg)[names(contrib_emerg)=="project_code"] <- "code"
+#contrib <- merge(contrib_emerg
+#                 ,projAppealEmerg
+#                 ,by=c("code")
+#                 ,all=TRUE
+#                 ,suffixes=c(".contrib",".project"))
+#projects <- ddply
