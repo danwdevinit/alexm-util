@@ -60,23 +60,70 @@ for(i in 2:nrow(emergencies)){
 #write.csv(contrib_appeal,"./contrib_appeal.csv",row.names=FALSE,na="")
 #write.csv(contrib_emerg,"./contrib_emerg.csv",row.names=FALSE,na="")
 
-####Merge####
-#appealEmerg <- merge(appeals
-#                    ,emergencies
-#                    ,by.x=c("emergency_id")
-#                    ,by.y=c("id")
-#                    ,all=TRUE
-#                    ,suffixes=c(".appeal",".emerg"))
-#projAppealEmerg <- merge(projects
-#                    ,appealEmerg
-#                    ,by.x=c("appeal_id")
-#                    ,by.y=c("id")
-#                    ,all=TRUE
-#                    ,suffixes=c(".project",".appeal"))
-#names(contrib_emerg)[names(contrib_emerg)=="project_code"] <- "code"
-#contrib <- merge(contrib_emerg
-#                 ,projAppealEmerg
-#                 ,by=c("code")
-#                 ,all=TRUE
-#                 ,suffixes=c(".contrib",".project"))
-#projects <- ddply
+####Merge Contributions to Projects####
+colnames(appeals) <- paste("appeal",colnames(appeals),sep=".")
+colnames(emergencies) <- paste("emergency",colnames(emergencies),sep=".")
+colnames(projects) <- paste("project",colnames(projects),sep=".")
+colnames(contrib_emerg) <- paste("contrib",colnames(contrib_emerg),sep=".")
+
+projectContrib <- merge(contrib_emerg
+                 ,projects
+                 ,by.x=c("contrib.project_code")
+                 ,by.y=c("project.code")
+                 ,all.y=TRUE)
+projectContrib <- ddply(projectContrib,.(contrib.project_code),function(x){
+  pledges = 0
+  commited = 0
+  contributed = 0
+  for(i in 1:nrow(x)){
+    if(!is.na(x$contrib.status[i])){
+      if(x$contrib.status[i]=="Pledge"){
+        if(class(x$contrib.amount[i])=="numeric"){
+          pledges <- pledges+x$contrib.amount[i]
+        }
+      }else if(x$contrib.status[i]=="Commitment"){
+        if(class(x$contrib.amount[i])=="numeric"){
+          commited <- commited+x$contrib.amount[i]
+        }
+      }else if(x$contrib.status[i]=="Paid contribution"){
+        if(class(x$contrib.amount[i])=="numeric"){
+          contributed <- contributed+x$contrib.amount[i]
+        }
+      }
+    }
+  }
+  keep <- colnames(contrib)[which(substr(colnames(contrib),1,2)=="pr")]
+  y <- x[keep][1,]
+  y$pledges <- pledges
+  y$commited <- commited
+  y$contributed <- contributed
+  return(y)
+})
+appealEmerg <- merge(appeals
+                    ,emergencies
+                    ,by.x=c("appeal.emergency_id")
+                    ,by.y=c("emergency.id")
+                    ,all.x=TRUE)
+projectContrib <- merge(projectContrib
+                    ,appealEmerg
+                    ,by.x=c("project.appeal_id")
+                    ,by.y=c("appeal.id")
+                    ,all.x=TRUE)
+names(projectContrib)[names(projectContrib) == "contrib.project_code"] <- "project.code"
+
+####Merge data to contributions####
+contrib <- merge(contrib_emerg
+                  ,projects
+                  ,by.x=c("contrib.project_code")
+                  ,by.y=c("project.code")
+                  ,all.x=TRUE)
+contrib <- merge(contrib
+                  ,appeals
+                  ,by.x=c("contrib.appeal_id")
+                  ,by.y=c("appeal.id")
+                  ,all.x=TRUE)
+contrib <- merge(contrib
+                 ,emergencies
+                 ,by.x=c("contrib.emergency_id")
+                 ,by.y=c("emergency.id")
+                 ,all.x=TRUE)

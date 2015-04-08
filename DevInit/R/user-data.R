@@ -1,5 +1,7 @@
 #install.packages('reshape')
+#install.packages("utils")
 library(reshape)
+library(utils)
 
 wd <- "C:/git/digital-platform/user-data/"
 setwd(wd)
@@ -61,4 +63,10 @@ for (i in 1:length(filenames))
     }
   }
   setwd(wd)
+}
+#Zip em up
+filenames <- list.files(wd, pattern="/*", full.names=FALSE)
+for(i in 1:length(filenames)){
+  files <- dir(filenames[i],full.names=TRUE)
+  zip(zipfile = filenames[i],files=files)
 }
