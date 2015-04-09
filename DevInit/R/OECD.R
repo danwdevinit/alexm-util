@@ -1,7 +1,12 @@
 #install.packages("rsdmx")
 #install.packages("curl")
 #install.packages("plyr")
+#install.packages("xlsx")
+#install.packages("rJava")
+#Add jvm.dll to your PATH, w/ 64 bit java
 library(rsdmx)
+library(rJava)
+library(xlsx)
 setwd("C:/git/alexm-util/DevInit/R")
 
 #Func####
@@ -46,6 +51,17 @@ OECD <- function(url,concept=FALSE){
 }
 
 #E.g.####
-url <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/TABLE1/20005+20001+801+1+2+301+68+3+18+4+5+40+20+21+6+701+742+22+7+820+8+76+9+69+61+50+10+11+12+302+20002+918+20006+72+62+30+82+75+546+552+83+70+84+45+77+87+566+732+764+55+576+20007.1.1010.1140.A/all?startTime=2004&endTime=2013"
-t1 <- OECD(url)
-t1Concepts <- OECD(url,TRUE)
+constantUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/TABLE1/20005+20001+801+1+2+301+68+3+18+4+5+40+20+21+6+701+742+22+7+820+8+76+9+69+61+50+10+11+12+302+20002+918+20006+72+62+30+82+75+546+552+83+70+84+45+77+87+566+732+764+55+576+20007+20003+301+4+5+6+701+12+302+20011+1+2+68+3+18+4+5+40+21+6+22+7+76+9+69+61+50+10+12+20004+1+2+68+3+18+4+5+40+21+6+22+7+76+9+69+61+50+10+12+918.1.1015.1140.D/all?startTime=1990&endTime=2014"
+t1Constant <- OECD(constantUrl)
+t1Constant <- t1Constant[order(t1Constant$DAC_DONOR,t1Constant$obsTime),]
+t1ConstantWide <- reshape(t1Constant,idvar="DAC_DONOR",timevar="obsTime",direction="wide")
+t1ConstantConcepts <- OECD(constantUrl,TRUE)
+file <- "Table 1 Constant.xlsx"
+wb <- createWorkbook()
+dataSheet <- createSheet(wb,sheetName="data")
+addDataFrame(t1Constant,dataSheet,row.names=FALSE)
+dataWideSheet <- createSheet(wb,sheetName="datawide")
+addDataFrame(t1ConstantWide,dataWideSheet,row.names=FALSE)
+conceptSheet <- createSheet(wb,sheetName="concepts")
+addDataFrame(t1ConstantConcepts,conceptSheet,row.names=FALSE)
+saveWorkbook(wb, file)
