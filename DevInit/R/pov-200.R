@@ -8,11 +8,12 @@ require(plyr)
 wd <- "C:/git/digital-platform/country-year/"
 setwd(wd)
 
+indicator <- "SI.POV.2DAY"
+
 #Download####
 entityPath <- "C:/git/digital-platform/reference/entity.csv"
 entities <- read.csv(entityPath, header = TRUE,na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
 entities <- entities[which(entities$type=="country"),]$id
-indicator <- "SI.POV.2DAY"
 
 dat <- WDI(country = "all", 
            indicator = indicator, 
