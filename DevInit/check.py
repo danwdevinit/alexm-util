@@ -126,6 +126,9 @@ refMap["fdi-out"]["financing-type"] = "financing-type"
 refMap["dfis-out-dev"] = {}
 refMap["dfis-out-dev"]["financing-type"] = "financing-type"
 
+refMap["ssc-out"] = {}
+refMap["ssc-out"]["financing-type"] = "financing-type"
+
 #Import csv data
 for inPath in paths:
     filename = os.path.basename(inPath)

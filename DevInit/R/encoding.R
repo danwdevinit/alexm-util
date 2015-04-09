@@ -20,9 +20,7 @@ encoding <- function(path,sep){
   
   #View encodings that might be right
   maybe_ok <- sapply(x, function(x) isTRUE(all.equal(dim(x), c(row,col))))
-  codepages[maybe_ok]
-  #Check to see which encodings are best
-  #vapply(tries, function(x) sum(is.na(x)), integer(1))
+  return(codepages[maybe_ok])
 }
 
 path <- "C:/Users/alexm/Downloads/CRS 2013 data/CRS 2013 data.txt"

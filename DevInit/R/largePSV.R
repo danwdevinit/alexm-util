@@ -8,5 +8,6 @@ dat <- read.table(
   ,dec = "."
   ,fill = TRUE
   ,comment.char = ""
-  ,fileEncoding="UTF-16LE"
+  ,fileEncoding="UTF-16"
+  ,nrow=100
   )
