@@ -9,5 +9,12 @@ dat <- read.table(
   ,fill = TRUE
   ,comment.char = ""
   ,fileEncoding="UTF-16"
-  ,nrow=100
   )
+
+
+data <- dat[which(dat$flowname=="ODA Grants" | dat$flowname=="ODA Loans"),]
+library(plyr)
+pivot <- ddply(dat, .(donorname,purposecode),summarize,usd_sum=sum(usd_disbursement_defl))
+pivot <- pivot[which(pivot$purposecode==998),]
+write.csv(pivot,"pivot.csv",na="",row.names=FALSE)
+getwd()
