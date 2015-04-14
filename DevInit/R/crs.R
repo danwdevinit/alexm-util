@@ -16,17 +16,17 @@ writeBin(content(response, as = "raw"), zip)
 path <- unzip(zip, list = TRUE)$Name
 #Unzip it
 unzip(zip, exdir = ".")
-#Change encoding
-#http://stackoverflow.com/questions/28979857/is-there-a-sed-type-package-in-r-for-removing-embedded-nuls
 #Read it
 
-dat <- read.csv(
+dat <- read.table(
   path
   ,header = TRUE
   ,sep = "|"
-  ,fileEncoding="UTF-16LE"
-  ,na.strings=""
+  ,fileEncoding="UTF-16"
+  ,na.strings=NULL
   ,quote=""
-  ,stringsAsFactors=FALSE
-  ,skipNul=TRUE
+  ,as.is=T
+  ,fill=TRUE
+  ,encoding="UTF-8 BOM"
+  ,nrow=80000
 )
