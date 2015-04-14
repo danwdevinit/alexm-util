@@ -36,17 +36,17 @@ def unzip(source_filename, dest_dir):
             zf.extract(member, path)
 
 #Find .zip in folder
-paths = glob.glob(options.input+"/CRS 2012.zip")
+paths = glob.glob(options.input+"/*.zip")
 
 #Iterate through paths and unzip
-#for inPath in paths:
-#    filename = os.path.basename(inPath)
-#    print "Extracting "+filename
-#    unzip(inPath,options.input)
+for inPath in paths:
+    filename = os.path.basename(inPath)
+    print "Extracting "+filename
+    unzip(inPath,options.input)
     #os.remove(inPath)
 
 #Find .txt in folder
-txtpaths = glob.glob(options.input+"/CRS 2012 data.txt")
+txtpaths = glob.glob(options.input+"/*.txt")
 
 #Iterate through paths and re-encode and replace nul
 for inPath in txtpaths:
