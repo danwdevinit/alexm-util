@@ -5,7 +5,7 @@ var request = require('request')
 ,glob = require("glob")
 ,url = "https://stats.oecd.org/DownloadFiles.aspx?DatasetCode=CRS1"
 ,dataRoot = "https://stats.oecd.org/FileView2.aspx?IDFile="
-,filepath="/s/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/"
+,filepath="/s/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/Raw/"
 ;
 console.log("Requesting list of CRS files...")
 request(url,parseFiles);
