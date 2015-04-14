@@ -5201,6 +5201,13 @@
       "l3": "Noninterest Recurrent Expenditures", 
       "l4": "Provinces", 
       "l5": ""
+    }, 
+    "L4_provinces_check": {
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditure", 
+      "l3": "Noninterest Recurrent Expenditures", 
+      "l4": "Provinces", 
+      "l5": ""
     }
   }, 
   "Paraguay": {
