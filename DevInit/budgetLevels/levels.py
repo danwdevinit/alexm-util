@@ -43,6 +43,22 @@ except:
     raise Exception("Input xlsx path required!")
 sheets = wb.get_sheet_names()
 
+#budget reference
+budgetDict = {}
+budgetDict["Actual"] = "actual"
+budgetDict["Budget"] = "budget"
+budgetDict["Est"] = "actual"
+budgetDict["EST"] = "actual"
+budgetDict["est"] = "actual"
+budgetDict["Estim"] = "actual"
+budgetDict["None"] = ""
+budgetDict["Prel"] = "actual"
+budgetDict["Prel Est"] = "actual"
+budgetDict["Proj"] = "proj"
+budgetDict["proj"] = "proj"
+budgetDict["Prov"] = "actual"
+budgetDict["Revised prog"] = "proj"
+
 #Define hierarchy
 try:
     with open(options.dict, 'r') as f:
@@ -102,7 +118,7 @@ for sheet in sheets:
                 item['country'] = country
                 item['currency'] = currency
                 item['year'] = year
-                item['type'] = yearType
+                item['type'] = budgetDict[yearType]
                 item['l1'] = name
                 item['l2'] = ""
                 item['l3'] = ""
@@ -162,7 +178,7 @@ for sheet in sheets:
                 item['country'] = country
                 item['currency'] = currency
                 item['year'] = year
-                item['type'] = yearType
+                item['type'] = budgetDict[yearType]
                 item['l1'] = levelDict['l1']
                 item['l2'] = name if level.lower().find('l1')>-1 else levelDict['l2']
                 item['l3'] = name if level.lower().find('l2')>-1 else levelDict['l3']
@@ -447,7 +463,7 @@ sys.stdout.write('\nDone.\n')
 print('Writing CSV...')
 #Enforce order
 #keys = flatData[0].keys()
-keys = ['iso','country','currency','year','type','l1','l2','l3','l4','l5','l6','value']
+keys = ['country','iso','year','currency','type','l1','l2','l3','l4','l5','l6','value']
 with open(options.output, 'wb') as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()

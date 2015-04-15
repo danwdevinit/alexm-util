@@ -80,6 +80,16 @@ refMap["domestic"]["l2"] = "domestic-budget-level"
 refMap["domestic"]["l3"] = "domestic-budget-level"
 refMap["domestic"]["l4"] = "domestic-budget-level"
 refMap["domestic"]["l5"] = "domestic-budget-level"
+refMap["domestic"]["l6"] = "domestic-budget-level"
+
+refMap["domestic-netlending"] = {}
+refMap["domestic-netlending"]["budget-type"] = "budget-type"
+refMap["domestic-netlending"]["l1"] = "domestic-budget-level"
+refMap["domestic-netlending"]["l2"] = "domestic-budget-level"
+refMap["domestic-netlending"]["l3"] = "domestic-budget-level"
+refMap["domestic-netlending"]["l4"] = "domestic-budget-level"
+refMap["domestic-netlending"]["l5"] = "domestic-budget-level"
+refMap["domestic-netlending"]["l6"] = "domestic-budget-level"
 
 refMap["domestic-sectors"] = {}
 refMap["domestic-sectors"]["budget-type"] = "budget-type"
@@ -88,6 +98,7 @@ refMap["domestic-sectors"]["l2"] = "domestic-budget-level"
 refMap["domestic-sectors"]["l3"] = "domestic-budget-level"
 refMap["domestic-sectors"]["l4"] = "domestic-budget-level"
 refMap["domestic-sectors"]["l5"] = "domestic-budget-level"
+refMap["domestic-sectors"]["l6"] = "domestic-budget-level"
 
 refMap["intl-flows-donors"] = {}
 refMap["intl-flows-donors"]["flow-type"] = "flow-type"
@@ -117,7 +128,7 @@ refMap["oda"]["channel"] = "channel"
 
 refMap["oof"] = {}
 refMap["oof"]["sector"] = "sector"
-refMap["oof"]["bundle"] = "oof-bundle"
+refMap["oof"]["oof-bundle"] = "oof-bundle"
 refMap["oof"]["channel"] = "channel"
 
 refMap["fdi-out"] = {}
