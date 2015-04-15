@@ -18,7 +18,7 @@ parser.add_option("-i", "--input", dest="input", default="S:/Projects/Programme 
                 help="Input folder.", metavar="FOLDER")
 parser.add_option("-o", "--output", dest="output", default="S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/",
                 help="Output folder.", metavar="FILE")
-parser.add_option("-d", "--download", dest="download", default=False,
+parser.add_option("-d", "--download", dest="download", default=True,
                 help="Re-download?", metavar="BOOLEAN")
 (options, args) = parser.parse_args()
 
@@ -94,7 +94,7 @@ def spin():
     spinIndex+=1
 
 #Re-download?
-if options.download:
+if options.download==True:
     print "Re-downloading zip files to "+options.input
     print subprocess.check_output(["node","downloadCRS.js",options.input])
 
@@ -123,6 +123,6 @@ for inPath in txtpaths:
             writer = csv.writer(fw,delimiter=",",quotechar="\"")
             for line in sr:
                 spin()
-                row = line.replace("\x00","").split("|")[0:-1]
+                row = line.replace("\x00","").replace("\x1a","'").split("|")[0:-1]
                 writer.writerow(map(uni,row))
     os.remove(inPath)
