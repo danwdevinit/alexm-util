@@ -242,7 +242,7 @@ d5$legend(
   height = 30,
   horizontalAlign = "right"
 )
-d5
+#d5
 
 ## vertical stacked bar (top 5)
 top <- pivot3$donorname[1:5]
