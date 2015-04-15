@@ -115,7 +115,7 @@ txtpaths = glob.glob(options.input+"/*.txt")
 for inPath in txtpaths:
     filename = os.path.basename(inPath)
     name, extension = os.path.splitext(filename)
-    print "Reading "+filename+"...."
+    print "Reading "+filename
     with open(inPath,'rb') as fr:
         sr = Recoder(fr, 'utf-16', 'utf-8')
         outPath = options.output+name+".csv"
