@@ -388,3 +388,56 @@ d12 <- rPlot(x = 'donorname'
       , type = 'tile')
 d12$guides("{color: {scale: {type: gradient, lower: white, upper: steelblue}}}")
 #d12
+
+## Line over time
+lineDat <- ddply(dat,.(Year),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
+d13 <- dPlot(
+  total ~ Year,
+  data = lineDat,
+  type = "line"
+)
+d13$xAxis(type = "addCategoryAxis", orderRule = "Date")
+d13$yAxis(type = "addMeasureAxis")
+d13
+
+## Bar over time
+lineDat <- ddply(dat,.(Year),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
+d14 <- dPlot(
+  total ~ Year,
+  data = lineDat,
+  type = "bar"
+)
+d14$xAxis(type = "addCategoryAxis", orderRule = "Date")
+d14$yAxis(type = "addMeasureAxis")
+d14
+
+## Area over time by donor
+top <- pivot3$donorname[1:5]
+lineDat <- ddply(dat,.(Year,donorname),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
+d15 <- dPlot(
+  total ~ Year,
+  data = lineDat,
+  groups = "donorname",
+  type = "area"
+)
+d15$xAxis(type = "addCategoryAxis", orderRule = "Date")
+d15$yAxis(type = "addMeasureAxis")
+d15$legend(
+  x = 200,
+  y = 10,
+  width = 500,
+  height = 20,
+  horizontalAlign = "right"
+)
+d15
+
+## Bar over time
+lineDat <- ddply(dat,.(Year),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
+d14 <- dPlot(
+  total ~ Year,
+  data = lineDat,
+  type = "bar"
+)
+d14$xAxis(type = "addCategoryAxis", orderRule = "Date")
+d14$yAxis(type = "addMeasureAxis")
+d14
