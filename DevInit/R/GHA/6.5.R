@@ -814,5 +814,5 @@ charts <- c(d0
 
 for(i in 1:length(charts)){
   chart <- charts[[i]]
-  chart$save(paste0('//dipr-dc01/home$/AlexM/My Documents/GHA/6.5/chart',i,'.html'), standalone = TRUE)
+  chart$save(paste0('//dipr-dc01/home$/AlexM/My Documents/GHA/6.5/chart',i,'.html'), cdn = TRUE)
 }
