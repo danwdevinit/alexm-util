@@ -15,7 +15,7 @@ for(i in 1:nrow(df)){
   l1 <- row[5][1,1]
   l2 <- row[6][1,1]
   l3 <- row[7][1,1]
-  dfvalue <- row[12][1,1]
+  dfvalue <- row[11][1,1]
   if(!is.na(l1) && !is.na(l2)){
     if(l1=="total-revenue-and-grants" && l2=="revenue" && is.na(l3)){
       id <- c(id,dfid)
