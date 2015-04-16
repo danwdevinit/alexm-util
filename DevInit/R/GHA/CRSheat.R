@@ -14,7 +14,7 @@ dataset <- "CRS 2013 data.csv"
 dat <- read.csv(dataset,stringsAsFactors=FALSE,encoding="latin1")
 dat <- ddply(dat,.(donorname,purposecode,purposename),summarize,value=sum(usd_disbursement_defl,na.rm=TRUE))
 
-dat <- dat[order(-dat$value),][1:100,]
+dat <- dat[order(-dat$value),][1:50,]
 
 d1 <- rPlot(x = 'donorname'
              , y = 'purposename'

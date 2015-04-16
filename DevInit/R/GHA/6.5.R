@@ -126,6 +126,46 @@ names(pivot3)[which(substr(names(pivot3),0,3)=="usd")] <-
 #Write
 write.csv(pivot3,"./Subsets/6.5/2008-2013 Donor by Year.csv",row.names=FALSE,na="")
 
+####Define DI colors####
+diColors <- c("#ba0c2f" #Red
+              ,"#1b365d" #blue
+              ,"#ea7600" #Orange
+              ,"#93328e" #purple
+              ,"#b7bf10" #Yellow
+              ,"#0095c8" #lightblue
+              )
+diColorsLong <- c('#00688c'
+                  ,'#be84bb'
+                  ,'#662363'
+                  ,'#b7bf10'
+                  ,'#0c192d'
+                  ,'#1b365d'
+                  ,'#cceaf4'
+                  ,'#f2ad66'
+                  ,'#ea7600'
+                  ,'#0095c8'
+                  ,'#595d07'
+                  ,'#66bfde'
+                  ,'#471845'
+                  ,'#e9d6e8'
+                  ,'#820820'
+                  ,'#93328e'
+                  ,'#004862'
+                  ,'#f7f2cf'
+                  ,'#80850b'
+                  ,'#f7ced5'
+                  ,'#d4d970'
+                  ,'#d1d7df'
+                  ,'#122541'
+                  ,'#76869e'
+                  ,'#5b0516'
+                  ,'#fbe4cc'
+                  ,'#ba0c2f'
+                  ,'#723900'
+                  ,'#d66d82'
+                  ,'#a35200'
+              )
+
 ####Graphs####
 ## Bar (just codes)
 barDat <- ddply(dat,.(purposecode,purposename),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
@@ -138,6 +178,11 @@ d0 <- dPlot(
 )
 d0$xAxis(type = "addMeasureAxis")
 d0$yAxis(type = "addCategoryAxis")
+d0$colorAxis(
+  type = "addColorAxis",
+  colorSeries = "Value",
+  palette = diColors
+)
 #d0
 
 ## Bar (top 10)
@@ -155,6 +200,11 @@ d1 <- dPlot(
   type = "bar",
   bounds = list(x = 50, y = 50, height = 240, width = 600)
 )
+d1$colorAxis(
+  type = "addColorAxis",
+  colorSeries = "Value",
+  palette = diColors
+)
 #d1
 
 ## Bar (top 5)
@@ -171,6 +221,11 @@ d2 <- dPlot(
   data = barDat,
   type = "bar"
 )
+d2$colorAxis(
+  type = "addColorAxis",
+  colorSeries = "Value",
+  palette = diColors
+)
 #d2
 
 ## vertical grouped bar (top 10)
@@ -186,7 +241,8 @@ d3 <- dPlot(
   groups = "purposename",
   data = gBarDat,
   type = "bar",
-  bounds = list(x = 50, y = 50, height = 240, width = 600)
+  bounds = list(x = 50, y = 50, height = 240, width = 600),
+  color = diColors
 )
 d3$legend(
   x = 60,
@@ -195,7 +251,7 @@ d3$legend(
   height = 30,
   horizontalAlign = "right"
 )
-#d3
+d3
 
 ## vertical grouped bar (top 5)
 top <- pivot3$donorname[1:5]
@@ -398,7 +454,7 @@ d13 <- dPlot(
 )
 d13$xAxis(type = "addCategoryAxis", orderRule = "Date")
 d13$yAxis(type = "addMeasureAxis")
-d13
+#d13
 
 ## Bar over time
 lineDat <- ddply(dat,.(Year),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
@@ -409,35 +465,73 @@ d14 <- dPlot(
 )
 d14$xAxis(type = "addCategoryAxis", orderRule = "Date")
 d14$yAxis(type = "addMeasureAxis")
-d14
+#d14
 
 ## Area over time by donor
 top <- pivot3$donorname[1:5]
 lineDat <- ddply(dat,.(Year,donorname),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
+areaDat <- lineDat[which(lineDat$donorname %in% top),]
+leftovers <- lineDat[which(!lineDat$donorname %in% top),]
+leftovers <- ddply(leftovers,.(Year),summarize,total=sum(total,na.rm=TRUE))
+leftovers$donorname <- rep("Other Donors")
+areaDat <- rbind(areaDat,leftovers)
 d15 <- dPlot(
   total ~ Year,
-  data = lineDat,
+  data = areaDat,
   groups = "donorname",
   type = "area"
 )
 d15$xAxis(type = "addCategoryAxis", orderRule = "Date")
 d15$yAxis(type = "addMeasureAxis")
 d15$legend(
-  x = 200,
-  y = 10,
-  width = 500,
-  height = 20,
+  x = 60,
+  y = 0,
+  width = 700,
+  height = 30,
   horizontalAlign = "right"
 )
-d15
+#d15
 
-## Bar over time
-lineDat <- ddply(dat,.(Year),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
-d14 <- dPlot(
+## Stacked bar over time by donor
+top <- pivot3$donorname[1:5]
+lineDat <- ddply(dat,.(Year,donorname),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
+areaDat <- lineDat[which(lineDat$donorname %in% top),]
+leftovers <- lineDat[which(!lineDat$donorname %in% top),]
+leftovers <- ddply(leftovers,.(Year),summarize,total=sum(total,na.rm=TRUE))
+leftovers$donorname <- rep("Other Donors")
+areaDat <- rbind(areaDat,leftovers)
+d16 <- dPlot(
   total ~ Year,
-  data = lineDat,
+  data = areaDat,
+  groups = "donorname",
   type = "bar"
 )
-d14$xAxis(type = "addCategoryAxis", orderRule = "Date")
-d14$yAxis(type = "addMeasureAxis")
-d14
+d16$xAxis(type = "addCategoryAxis", orderRule = "Date")
+d16$yAxis(type = "addMeasureAxis")
+d16$legend(
+  x = 60,
+  y = 0,
+  width = 700,
+  height = 30,
+  horizontalAlign = "right"
+)
+#d16
+
+## Stacked bar over time by purposecode
+lineDat <- ddply(dat,.(Year,purposecode,purposename),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
+d17 <- dPlot(
+  total ~ Year,
+  data = lineDat,
+  groups = "purposename",
+  type = "bar"
+)
+d17$xAxis(type = "addCategoryAxis", orderRule = "Date")
+d17$yAxis(type = "addMeasureAxis")
+d17$legend(
+  x = 60,
+  y = 0,
+  width = 700,
+  height = 30,
+  horizontalAlign = "right"
+)
+d17

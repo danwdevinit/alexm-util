@@ -14,9 +14,9 @@ import pdb
 
 #Parse Options
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default="S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/Raw/",
+parser.add_option("-i", "--input", dest="input", default="S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/Other/Raw/",
                 help="Input folder.", metavar="FOLDER")
-parser.add_option("-o", "--output", dest="output", default="S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/",
+parser.add_option("-o", "--output", dest="output", default="S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/Other/CRS CSV files April 2015/",
                 help="Output folder.", metavar="FILE")
 parser.add_option("-d", "--download", dest="download", default=True,
                 help="Re-download?", metavar="BOOLEAN")
