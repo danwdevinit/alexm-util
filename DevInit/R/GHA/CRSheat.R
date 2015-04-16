@@ -6,7 +6,7 @@ library(rCharts)
 ####Data####
 
 #Set the working directory
-wd <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/"
+wd <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/Other/CRS CSV files April 2015/"
 setwd(wd)
 
 #Define the datasets we want to work with

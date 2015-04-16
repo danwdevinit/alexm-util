@@ -1,7 +1,7 @@
 ###By Alex Miller
 
 #Set the working directory
-wd <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/"
+wd <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/Other/CRS CSV files April 2015/"
 setwd(wd)
 
 #Define the datasets we want to work with
@@ -31,4 +31,4 @@ for(i in 2:length(datasets)){
 }
 
 #Export as csv
-write.csv(data,"./Subsets/2009-2013 CRS Relevant Purposecodes Only.csv",row.names=FALSE,na="")
+write.csv(data,"../Subsets/2009-2013 CRS Relevant Purposecodes Only.csv",row.names=FALSE,na="")

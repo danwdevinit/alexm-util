@@ -16,10 +16,10 @@ import pdb
 
 #Parse Options
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_originalnetlending.xlsx",
-#parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_zeronetlending.xlsx",
+#parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_originalnetlending.xlsx",
+parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_zeronetlending.xlsx",
                 help="Input file", metavar="FILE")
-parser.add_option("-o", "--output", dest="output", default="./results.csv",
+parser.add_option("-o", "--output", dest="output", default="./results_znl.csv",
                 help="Output CSV file", metavar="FILE")
 parser.add_option("-j", "--outputjson", dest="outputjson", default="./results.json",
                 help="Output json file", metavar="FILE")
