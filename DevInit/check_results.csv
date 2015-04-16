@@ -1,1 +1,4 @@
 file,row,col,error-type,error
+dfis-out-dev.csv,0,0,Bad Column Description,'id-from' is not listed in headers in concepts.csv
+dfis-out-dev.csv,0,0,Bad Column Description,'id' is incorrectly listed as a header in concepts.csv
+domestic-netlending.csv,0,0,Missing Concept,'domestic-netlending' is not in concepts.csv
