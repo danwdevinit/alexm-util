@@ -5,7 +5,6 @@
 #install.packages('plyr')
 #require(devtools)
 #install_github('ramnathv/rCharts')
-#install.packages('base64enc')
 library(plyr)
 library(rCharts)
 ####Data####
@@ -33,6 +32,9 @@ datasets <- c("CRS 2013 data.csv"
 #Define the purposecodes we want to filter by
 purposes <- c(72010,72040,72050,73010,74010)
 
+#Define the flownames we want to filter by
+flownames <- c("ODA Grants","ODA Grant-Like", "ODA Loans", "Equity Investment")
+
 #Set up empty variables
 Year <- c()
 donorname <- c()
@@ -47,6 +49,8 @@ for(i in 1:length(datasets)){
   dat <- read.csv(dataset,stringsAsFactors=FALSE,encoding="latin1")
   #Keep only those rows which purposecode == purposes
   dat <- dat[which(dat$purposecode %in% purposes),]
+  #Keep only those rows which flowname == flownames
+  dat <- dat[which(dat$flowname %in% flownames),]
   #Keep only those rows which donorname == dac
   dat <- dat[which(dat$donorname %in% dac$donorname),]
   #Keep only those rows which have usd_disbursement_defl
