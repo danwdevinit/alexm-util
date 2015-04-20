@@ -72,6 +72,10 @@ dat <- data.frame(Year
   ,purposename
   ,stringsAsFactors=FALSE)
 
+#Set the working directory to a different folder
+wd <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/What is it Spent on/6.5 & 6.6/"
+setwd(wd)
+
 #Create a pivot table, grouping by Year, donorname, & purposecode
 #And making a new variable named usd_sum, which is the sum of
 #usd_disbursement_defl
@@ -91,7 +95,7 @@ names(pivot)[which(substr(names(pivot),0,3)=="usd")] <-
   substr(names(pivot)[which(substr(names(pivot),0,3)=="usd")],9,nchar(names(pivot)[which(substr(names(pivot),0,3)=="usd")]))
 
 #Export as csv
-write.csv(pivot,"../Subsets/6.5/2009-2013 Donor by expenditure type by year.csv",row.names=FALSE,na="")
+write.csv(pivot,"2009-2013 Donor by expenditure type by year.csv",row.names=FALSE,na="")
 
 #Create another pivot table, grouping by donorname, & purposecode
 #And making a new variable named usd_sum, which is the sum of
@@ -113,7 +117,7 @@ pivot2 <- pivot2[order(-pivot2$usd_sum.total),]
 names(pivot2)[which(substr(names(pivot2),0,3)=="usd")] <-
   substr(names(pivot2)[which(substr(names(pivot2),0,3)=="usd")],9,nchar(names(pivot2)[which(substr(names(pivot2),0,3)=="usd")]))
 #Write
-write.csv(pivot2,"../Subsets/6.5/2009-2013 Donor by expenditure type.csv",row.names=FALSE,na="")
+write.csv(pivot2,"2009-2013 Donor by expenditure type.csv",row.names=FALSE,na="")
 
 #Create a third pivot table, grouping by donorname (filtered by purposecode)
 #And making a new variable named usd_sum, which is the sum of
@@ -134,7 +138,7 @@ pivot3 <- pivot3[order(-pivot3$usd_sum.total),]
 names(pivot3)[which(substr(names(pivot3),0,3)=="usd")] <-
   substr(names(pivot3)[which(substr(names(pivot3),0,3)=="usd")],9,nchar(names(pivot3)[which(substr(names(pivot3),0,3)=="usd")]))
 #Write
-write.csv(pivot3,"../Subsets/6.5/2009-2013 Donor by Year.csv",row.names=FALSE,na="")
+write.csv(pivot3,"2009-2013 Donor by Year.csv",row.names=FALSE,na="")
 
 ####Define DI colors####
 diColors <- c("#ba0c2f" #Red

@@ -13,7 +13,8 @@ library(xlsx)
 library(plyr)
 library(rCharts)
 ####Data####
-
+dacPath <- "C:/git/alexm-util/DevInit/R/GHA/dac.csv"
+dac <- read.csv(dacPath,header=T,as.is=T)
 
 #Parallel sum for creating new var with NA's present
 psum <- function(..., na.rm=FALSE) { 
@@ -54,7 +55,7 @@ for(i in 1:length(datasets)){
   #Keep only those rows which flowname == flownames
   dat <- dat[which(dat$flowname %in% flownames),]
   #Keep only those rows which donorname == dac
-  #dat <- dat[which(dat$donorname %in% dac$donorname),]
+  dat <- dat[which(dat$donorname %in% dac$donorname),]
   #Keep only those rows which have usd_disbursement_defl
   dat <- dat[complete.cases(dat$usd_disbursement_defl),]
   #Append to our blank variables
@@ -104,6 +105,23 @@ dat <- merge(dat,
              all.x=TRUE,
              suffixes=c(".crs",".inform"))
 
+#Pull in INFORM categorical
+informPath <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/What is it Spent on/6.5 & 6.6/Inform.xlsx"
+inform2 <- read.xlsx(informPath,sheetName="Sheet2",header=T,stringsAsFactors=FALSE)
+names(inform2)[which(names(inform2)=="ISO3")] <- "Iso3"
+
+#Merge inform2 with dataframe
+dat <- merge(dat,
+             inform2,
+             by=c("Iso3"),
+             all.x=TRUE,
+             suffixes=c(".crs",".inform"))
+
+
+#Set the working directory to a different folder
+wd <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/What is it Spent on/6.5 & 6.6/"
+setwd(wd)
+
 #Create a pivot table, grouping by recipientname to calculate top 10
 #And making a new variable named usd_sum, which is the sum of
 #usd_disbursement_defl
@@ -115,7 +133,7 @@ pivot <- ddply(dat
 pivot <- pivot[order(-pivot$usd_sum),]
 
 #Export as csv
-write.csv(pivot,"../Subsets/6.6/2010-2013 Top recipients CRS DPP.csv",row.names=FALSE,na="")
+write.csv(pivot,"2010-2013 Top recipients CRS DPP.csv",row.names=FALSE,na="")
 
 #Calculate top ten recipients, excluding unspecified and regions
 recips <- pivot$recipientname[which(!grepl(", regional",pivot$recipientname))]
@@ -141,7 +159,21 @@ pivot2$top10 <- pivot2$recipientname %in% top10
 pivot2$highRisk <- pivot2$Iso3 %in% highs$Iso3
 
 #Export as csv
-write.csv(pivot2,"../Subsets/6.6/2010-2013 CRS and INFORM.csv",row.names=FALSE,na="")
+write.csv(pivot2,"2010-2013 CRS and INFORM.csv",row.names=FALSE,na="")
+
+#Create a third pivot table, grouping by Natural Hazard Category
+#And making a new variable named usd_sum, which is the sum of
+#usd_disbursement_defl
+pivot3 <- ddply(dat
+                ,.(Year,Natural.Cat)
+                ,summarize,usd_sum=sum(usd_disbursement_defl,na.rm=TRUE),usd_avg=mean(usd_disbursement_defl,na.rm=TRUE))
+
+pivot3 <- pivot3[which(!is.na(pivot3$Natural.Cat)),]
+pivot3 <- pivot3[which(pivot3$Natural.Cat!="Zero"),]
+
+
+#Export as csv
+write.csv(pivot3,"2010-2013 CRS by Natural Cat.csv",row.names=FALSE,na="")
 
 ####Define DI colors####
 diColors <- c("#ba0c2f" #Red
@@ -403,13 +435,78 @@ d3$setTemplate(afterScript = "
                ")
 #d3
 
+## Bar natural cat
+scatterDat <- pivot3
+scatterDat <- subset(scatterDat, usd_sum > 0)
+scatterDat$usd_sum <- scatterDat$usd_sum*1000000
+scatterDat$usd_avg <- scatterDat$usd_avg*1000000
+d4 <- dPlot(
+  y = "usd_sum",
+  x = "Natural.Cat",
+  groups = c(rep("")),
+  data = subset(scatterDat,Year == 2013),
+  type = "bar"
+)
+d4$defaultColors(diColors)
+d4$xAxis( type = "addCategoryAxis")
+d4$yAxis( type = "addMeasureAxis")
+d4$setTemplate(afterScript = "
+               <script>
+                myChart.draw()
+                myChart.axes[0].titleShape.text('InfoRM Natural Hazard Category')
+                myChart.axes[1].titleShape.text('Deflated USD')
+                myChart.svg.append('text')
+                .attr('x', 120)
+                .attr('y', 20)
+                .text('Total Disaster Preparedness and Prevention ODA against Natural Hazard (2013)')
+                .style('text-anchor','beginning')
+                .style('font-size', '100%')
+                .style('font-family','sans-serif')
+                </script>               
+                ")
+#d4
+
+## Scatter All Recipients by category
+scatterDat <- ddply(dat,.(recipientname,Year,Natural.Cat),summarize,usd_sum=sum(usd_disbursement_defl,na.rm=TRUE))
+scatterDat$recipientname <- iconv(scatterDat$recipientname,to="utf8")
+scatterDat <- scatterDat[complete.cases(scatterDat[c("Natural.Cat","usd_sum")]),]
+scatterDat <- subset(scatterDat, usd_sum > 0)
+scatterDat$usd_sum <- scatterDat$usd_sum*1000000
+d5 <- dPlot(
+  y = "usd_sum",
+  x = "Natural.Cat",
+  groups = c("recipientname",rep("")),
+  data = subset(scatterDat,Year == 2013),
+  type = "bubble"
+)
+d5$defaultColors(diColors)
+d4$xAxis( type = "addCategoryAxis")
+d5$yAxis( type = "addMeasureAxis")
+d5$setTemplate(afterScript = "
+               <script>
+                myChart.draw()
+                myChart.axes[0].titleShape.text('InfoRM Natural Hazard Category')
+                myChart.axes[1].titleShape.text('Deflated USD')
+                myChart.svg.append('text')
+                .attr('x', 120)
+                .attr('y', 20)
+                .text('Total Disaster Preparedness and Prevention ODA against Natural Hazard (2013)')
+                .style('text-anchor','beginning')
+                .style('font-size', '100%')
+                .style('font-family','sans-serif')
+                </script>               
+                ")
+#d5
+
 ####Export them####
 charts <- c(d1
             ,p1
             ,d2
             ,p2
             ,d3
-            ,p3)
+            ,p3
+            ,d4
+            ,d5)
 
 for(i in 1:length(charts)){
   chart <- charts[[i]]
