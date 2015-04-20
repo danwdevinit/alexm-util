@@ -2,11 +2,12 @@
 #install.packages("curl")
 #install.packages("plyr")
 library(jsonlite)
+library(plyr)
 wd <- "C:/Users/alexm/Documents/"
 setwd(wd)
 
-#years = c(2000:2015)
-years = c(2015)
+years = c(2005:2015)
+#years = c(2015)
 
 ####Meta-data####
 root <- "http://fts.unocha.org/api/v1/"
