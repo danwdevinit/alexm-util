@@ -190,6 +190,7 @@ def main():
         groups.append(list(g))
     #Add in votes/ministry/sector
     #Add in vote function and programme
+    err = []
     for group in groups:
         if len(group)==1:
             obj = {}
@@ -203,7 +204,8 @@ def main():
                 obj[el['type']]=el['val']
             results.append(obj)
         else:
-            pdb.set_trace()
+            err.append(group)
+        pdb.set_trace()
     data = pd.DataFrame(results)
     data.to_csv(options.output+inputname+".csv",encoding="utf-8")
     print("Done.")
