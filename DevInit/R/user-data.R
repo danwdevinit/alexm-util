@@ -52,6 +52,8 @@ for (i in 1:length(filenames))
   rwd = paste(fwd,"reference",sep="/")
   dir.create(rwd)
   setwd(rwd)
+  #Copy entity.csv
+  file.copy(paste(refPath,"entity",".csv",sep=""),"entity.csv")
   #Provide meta-data from concepts.csv
   #write.csv(concept,paste(basename,"-metadata-wide",".csv",sep=""),row.names=FALSE,na="")
   write.table(t(concept),paste(basename,"-metadata",".csv",sep=""),col.names=FALSE,na="",sep=",")
