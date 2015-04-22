@@ -1,12 +1,12 @@
 path<- "C:/git/digital-platform/reference/"
 setwd(path)
 
-deflator <- read.csv("gdp-deflator-constant-2013-cy.csv"
+deflator <- read.csv("gdp-deflator-constant-2012-cy.csv"
                      ,header=T
                      ,as.is=T
                      ,na.strings="")
 
-rate <- read.csv("implied-ncu-per-usd-cy.csv"
+rate <- read.csv("implied-usd-per-ncu-cy.csv"
                      ,header=T
                      ,as.is=T
                      ,na.strings="")

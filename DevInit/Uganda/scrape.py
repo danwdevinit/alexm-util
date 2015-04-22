@@ -198,6 +198,8 @@ def main():
                 obj[el['type']]=el['val']
             if 'Economic Function' not in obj:    
                 results.append(obj)
+            else:
+                err.append(group)
         elif len(group)==7:
             obj = {}
             for el in group:
@@ -205,7 +207,7 @@ def main():
             results.append(obj)
         else:
             err.append(group)
-        pdb.set_trace()
+    pdb.set_trace()
     data = pd.DataFrame(results)
     data.to_csv(options.output+inputname+".csv",encoding="utf-8")
     print("Done.")

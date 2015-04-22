@@ -1,3 +1,1 @@
 file,row,col,error-type,error
-domestic-netlending.csv,0,0,Bad Column Description,'value-ncu' is incorrectly listed as a header in concepts.csv
-domestic.csv,0,0,Bad Column Description,'value-ncu' is incorrectly listed as a header in concepts.csv
