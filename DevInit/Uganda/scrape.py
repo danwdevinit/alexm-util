@@ -49,167 +49,143 @@ def main():
     pages = list(root)
     output = []
     pageLen = len(pages)
+    #Cascade these down...
+    ministry = ""
+    vote = ""
+    department = ""
+    budgetType = ""
+    programme = ""
+    econOutput = ""
+    #Cascade this up...
+    sector = 0
+    sectors = []
     for i in range(0,pageLen):
         page = pages[i]
-        for el in page:
+        elLen = len(page)
+        for j in range(0,elLen):
+            el = page[j]
             if el.tag == "text":
-                obj = {}
                 left = int(el.attrib['left'])
                 right = int(el.attrib['left'])+int(el.attrib['width'])
                 top = int(el.attrib['top'])
                 font = int(el.attrib['font'])
-                if left == 37:
-                    obj['val']=trytext(el)
-                    obj['type']="Economic Function"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
-                elif 362<=right<=363:
-                    obj['val']=trytext(el)
-                    obj['type']="Wage"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
-                elif 432<=right<=434:
-                    obj['val']=trytext(el)
-                    obj['type']="Non-wage"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
-                elif 557<=right<=558:
-                    obj['val']=trytext(el)
-                    obj['type']="Total"
-                    obj['top'] = top-4
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
-                elif 629<=right<=630:
-                    obj['val']=trytext(el)
-                    obj['type']="Wage Est"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
-                elif 696<=right<=697:
-                    obj['val']=trytext(el)
-                    obj['type']="Non-wage Est"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
-                elif 831<=right<=832:
-                    obj['val']=trytext(el)
-                    obj['type']="Total Est"
-                    obj['top'] = top-4
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
                 if font==0:
-                    obj['val']=trytext(el)
-                    obj['type']="Ministry"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
+                    if trytext(el)!=None:
+                        ministry = trytext(el)
                 elif font==1:
-                    obj['val']=trytext(el)
-                    obj['type']="Vote"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
+                    if trytext(el)!=None:
+                        vote = trytext(el)
                 elif font==3:
-                    obj['val']=trytext(el)
-                    obj['type']="Department"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
+                    if trytext(el)!=None:
+                        department = trytext(el)
                 elif font==4:            
-                    obj['val']=trytext(el)
-                    obj['type']="Budget Type"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
+                    if trytext(el)!=None:
+                        budgetType = trytext(el)
                 elif font==5:
-                    obj['val']=trytext(el)
-                    obj['type']="Programme"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
+                    if trytext(el)!=None:
+                        programme = trytext(el)
                 elif font==9:
-                    obj['val']=trytext(el)
-                    obj['type']="Output"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
+                    if trytext(el)!=None:
+                        econOutput = trytext(el)
                 elif font==14:
+                    sector+=1
                     try:
-                        obj['val']=str.split(el.getprevious().text,"- ")[1]
+                        sectors.append(str.split(el.getprevious().text,"- ")[1])
                     except:
                         try:
-                            obj['val']=el.getprevious().text
+                            sectors.append(el.getprevious().text)
                         except:
-                            obj['val']
-                    obj['type']="Sector"
-                    obj['top'] = top
-                    obj['page'] = i
-                    if obj['val']!=None:
-                        output.append(obj)
+                            sectors.append("Unknown Sector")
+                elif font==10:
+                    if j<elLen-6:
+                        el2 = page[j+1]
+                        font2 = int(el2.attrib['font'])
+                        el3 = page[j+2]
+                        font3 = int(el3.attrib['font'])
+                        el4 = page[j+3]
+                        font4 = int(el4.attrib['font'])
+                        el5 = page[j+4]
+                        font5 = int(el5.attrib['font'])
+                        el6 = page[j+5]
+                        font6 = int(el6.attrib['font'])
+                        el7 = page[j+6]
+                        font7 = int(el7.attrib['font'])
+                        #Pattern is 10 10 11 10 10 11 8 for:
+                        #wage non-wage total wageEst non-wageEst totalEst econFunc
+                        if font2==10 and font3==11 and font4==10 and font5==10 and font6==11 and font7==8:
+                            #Wage 2012/13
+                            obj = {}
+                            obj['year']="2012/13"
+                            obj['Government']="Central Government"
+                            obj['sectorId']=sector
+                            obj['Vote']=vote
+                            obj['Ministry']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Department']=department
+                            obj['Programme']=programme
+                            obj['Budget Function']="Wage"
+                            obj['Economic Function']=trytext(el7)
+                            obj['Budget']=trytext(el)
+                            obj['Output']=econOutput
+                            output.append(obj)
+                            #Non-Wage 2012/13
+                            obj = {}
+                            obj['year']="2012/13"
+                            obj['Government']="Central Government"
+                            obj['sectorId']=sector
+                            obj['Vote']=vote
+                            obj['Ministry']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Department']=department
+                            obj['Programme']=programme
+                            obj['Budget Function']="Non Wage"
+                            obj['Economic Function']=trytext(el7)
+                            obj['Budget']=trytext(el2)
+                            obj['Output']=econOutput
+                            output.append(obj)
+                            #Wage 2013/14
+                            obj = {}
+                            obj['year']="2013/14"
+                            obj['Government']="Central Government"
+                            obj['sectorId']=sector
+                            obj['Vote']=vote
+                            obj['Ministry']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Department']=department
+                            obj['Programme']=programme
+                            obj['Budget Function']="Wage"
+                            obj['Economic Function']=trytext(el7)
+                            obj['Budget']=trytext(el4)
+                            obj['Output']=econOutput
+                            output.append(obj)
+                            #Non-Wage 2013/14
+                            obj = {}
+                            obj['year']="2013/14"
+                            obj['Government']="Central Government"
+                            obj['sectorId']=sector
+                            obj['Vote']=vote
+                            obj['Ministry']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Department']=department
+                            obj['Programme']=programme
+                            obj['Budget Function']="Non Wage"
+                            obj['Economic Function']=trytext(el7)
+                            obj['Budget']=trytext(el5)
+                            obj['Output']=econOutput
+                            output.append(obj)
+    #Add sectors in by sectorId
+    for obj in output:
+        obj['MTEF Sector'] = sectors[obj['sectorId']]
+        del obj['sectorId']
     #Sort/Find Unique
-    getvals = operator.itemgetter('page','type','top','val')
-    output.sort(key=getvals)
-    unique = []
-    for k, g in itertools.groupby(output,getvals):
-        unique.append(list(g)[0])
-    output = unique[:]
-    getvals = operator.itemgetter('page','top')
-    output.sort(key=getvals)
-    outputFixed = output[:1]
-    prev = output[1]['top']
-    for i in range(1,len(output)):
-        obj = output[i]
-        if obj['top']-prev==1:
-            obj['top']-=1
-            outputFixed.append(obj)
-        elif obj['top']-prev==-1:
-            obj['top']+=1
-            outputFixed.append(obj)
-        else:
-            outputFixed.append(obj)
-        prev = obj['top']
-    results = []
-    groups = []
-    for k, g in itertools.groupby(outputFixed,getvals):
-        groups.append(list(g))
-    #Add in votes/ministry/sector
-    #Add in vote function and programme
-    err = []
-    for group in groups:
-        if len(group)==1:
-            obj = {}
-            for el in group:
-                obj[el['type']]=el['val']
-            if 'Economic Function' not in obj:    
-                results.append(obj)
-            else:
-                err.append(group)
-        elif len(group)==7:
-            obj = {}
-            for el in group:
-                obj[el['type']]=el['val']
-            results.append(obj)
-        else:
-            err.append(group)
-    pdb.set_trace()
-    data = pd.DataFrame(results)
-    data.to_csv(options.output+inputname+".csv",encoding="utf-8")
+    #getvals = operator.itemgetter('page','type','top','val')
+    #output.sort(key=getvals)
+    #unique = []
+    #for k, g in itertools.groupby(output,getvals):
+    #    unique.append(list(g)[0])
+    #output = unique[:]
+    data = pd.DataFrame(output)
+    data.to_csv(options.output+inputname+".csv",encoding="utf-8",index=False)
     print("Done.")
 
 main()
