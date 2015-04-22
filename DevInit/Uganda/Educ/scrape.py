@@ -17,6 +17,8 @@ parser.add_option("-i", "--input", dest="input", default="./tmp/Uganda Primary L
                 help="Input pdf name", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="./tmp/",
                         help="Output path. Default is './tmp/'",metavar="FOLDER")
+parser.add_option("-d", "--debug", dest="debug", default=False,
+                        help="Debug",metavar="BOOLEAN")
 (options, args) = parser.parse_args()
 
 syms = ['\\', '|', '/', '-']
@@ -138,12 +140,17 @@ def main():
                     notSecondRow = True
                 #And if we're missing something, add it to errors
                 else:
-                    errs.append(rowArr)
+                    errs.append(realRow)
             else:
                 notSecondRow = True
         if row[0]['text']=="No.":
             #Detect header, start data read
             data = True
+    if len(errs)>0:
+        sys.stdout.write("\n")
+        sys.stdout.write(str(len(errs))+" odd rows omitted. Debug (-d true) for more info.")
+    if options.debug:
+        pdb.set_trace()
     cols = ["DISTRICT","SCHOOL","NO.","NAME","M/F","ENG","SCI","SST","MAT","AGG","DIV"]
     data = pd.DataFrame(results,columns=cols)
     data.to_csv(options.output+inputname+".csv",encoding="utf-8",index=False)

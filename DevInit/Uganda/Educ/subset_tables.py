@@ -12,12 +12,10 @@ parser.add_option("-i", "--input", dest="input", default="./Uganda Primary Leavi
                 help="Input folder", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="./tmp/",
                         help="Output path. Default is './tmp/'",metavar="FOLDER")
-parser.add_option("-s", "--search", dest="search", default=" ",
-                        help="Search phrase",metavar="TEXT")
-parser.add_option("-a", "--another", dest="another", default=False,
-                        help="Another search phrase",metavar="TEXT")
+parser.add_option("-s", "--skip", dest="skip", default=0,
+                        help="Skip how many pages?",metavar="NUMBER")
 parser.add_option("-p", "--pages", dest="pages", default=False,
-                        help="Stop after matching X pages?",metavar="NUMBER")
+                        help="Stop after X pages?",metavar="NUMBER")
 (options, args) = parser.parse_args()
 
 syms = ['\\', '|', '/', '-']
@@ -31,17 +29,17 @@ def spin():
     sys.stdout.flush()
     spinIndex+=1
 
-def search(inputFile,search,another):
-    baseName = os.path.basename(inputFile)
+def search():
+    baseName = os.path.basename(options.input)
     inputName, inputExtension = os.path.splitext(baseName)
-    fr = open(inputFile, 'rb')
+    fr = open(options.input, 'rb')
     pdf = pyPdf.PdfFileReader(fr)
     pages = pdf.getNumPages()
-    sys.stdout.write("Searching "+baseName+" for '"+search+"'...")
-    fw = file("./tmp/"+baseName, 'wb')
+    sys.stdout.write("Subsetting "+baseName+"....")
+    fw = file(options.output+inputName+" "+str(options.skip)+"-"+str(int(options.pages)+int(options.skip))+".pdf", 'wb')
     writer = pyPdf.PdfFileWriter()
     count = 0
-    for page in range(0,pages):
+    for page in range(int(options.skip),pages):
         if options.pages:
             if count<int(options.pages):
                 if page%50==0:
@@ -50,18 +48,8 @@ def search(inputFile,search,another):
                     sys.stdout.flush()
                 spin()
                 pdf_page = pdf.getPage(page) 
-                try:
-                    text = pdf_page.extractText()
-                except:
-                    text = ""
-                if text.find(search)>-1:
-                    if another:
-                        if text.find(another)>-1:
-                            writer.addPage(pdf_page)
-                            count+=1
-                    else:
-                        writer.addPage(pdf_page)
-                        count+=1
+                writer.addPage(pdf_page)
+                count+=1
         else:
             if page%50==0:
                 sys.stdout.write("\n")
@@ -69,21 +57,11 @@ def search(inputFile,search,another):
                 sys.stdout.flush()
             spin()
             pdf_page = pdf.getPage(page) 
-            try:
-                text = pdf_page.extractText()
-            except:
-                text = ""
-            if text.find(search)>-1:
-                if another:
-                    if text.find(another)>-1:
-                        writer.addPage(pdf_page)
-                        count+=1
-                else:
-                    writer.addPage(pdf_page)
-                    count+=1
+            writer.addPage(pdf_page)
+            count+=1
     writer.write(fw)
     fw.close()
     sys.stdout.write("\n")
     fr.close()
 
-search(options.input,options.search,options.another)
+search()

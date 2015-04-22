@@ -18,22 +18,24 @@ for(i in 1:nrow(df)){
   dfvalue <- row[12][1,1]
   if(!is.na(l1) && !is.na(l2)){
     if(l1=="total-revenue-and-grants" && l2=="revenue" && is.na(l3)){
-      id <- c(id,dfid)
-      year <- c(year,dfyear)
-      thisGDP <- gdp[which(gdp$id==dfid),]
-      thisGDP <- thisGDP[which(thisGDP$year==dfyear),]
-      if(nrow(thisGDP)>0){
-        if(is.na(thisGDP$value[[1]])){
+      if(dfyear<=2014){
+        id <- c(id,dfid)
+        year <- c(year,dfyear)
+        thisGDP <- gdp[which(gdp$id==dfid),]
+        thisGDP <- thisGDP[which(thisGDP$year==dfyear),]
+        if(nrow(thisGDP)>0){
+          if(is.na(thisGDP$value[[1]])){
+            value <- c(value,NA)
+            estimate <- c(estimate,NA)
+          }else{
+            value <- c(value,(dfvalue/thisGDP$value[[1]])*100)
+            estimate <- c(estimate,thisGDP$estimate[[1]])
+          }
+        }else{
           value <- c(value,NA)
           estimate <- c(estimate,NA)
-        }else{
-          value <- c(value,dfvalue/thisGDP$value[[1]])
-          estimate <- c(estimate,thisGDP$estimate[[1]])
+          print(paste("No multiplier for:",dfid,dfyear))
         }
-      }else{
-        value <- c(value,NA)
-        estimate <- c(estimate,NA)
-        print(paste("No multiplier for:",dfid,dfyear))
       }
     }
   }
