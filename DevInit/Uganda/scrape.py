@@ -41,6 +41,7 @@ def trytext(el):
         return el.text
 
 def main():
+    #Before writing, try pdftohtml NAME.pdf -xml NAME.xml
     basename = os.path.basename(options.input)
     inputname, inputextension = os.path.splitext(basename)
     pdfdata = open(options.input,'r',1).read()

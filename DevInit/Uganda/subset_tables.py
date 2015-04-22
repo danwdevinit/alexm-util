@@ -6,7 +6,6 @@ import os
 import pyPdf
 from optparse import OptionParser
 import pandas as pd
-import pdftableextract as pdf
 
 parser = OptionParser()
 parser.add_option("-i", "--input", dest="input", default="Draft Detailed Estimates FY13-14 10.7.13.pdf",
