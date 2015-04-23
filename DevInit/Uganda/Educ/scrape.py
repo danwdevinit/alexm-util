@@ -105,51 +105,97 @@ def main():
         row = rows[i]
         if row[0]['text']=="SCHOOL:":
             [school, district] = map(str.strip,str.split(rows[i][1]['text'],"DISTRICT:"))
+            data = False
+            notSecondRow = True
         if row[0]['text']=="DIV-1":
             #Detect footer, end data read
             data = False
+            notSecondRow = True
         if data:
             if notSecondRow:
                 if i<rowLen-1:
                     row2 = rows[i+1]
-                realRow = row+row2
-                realRow.sort(key=rowvals)
-                rowArr = []
-                for obj in realRow:
-                    rowArr.append(obj['text'])
-                #Split concatenated rows into 2
-                if len(rowArr)==18:
-                    rowArr1 = rowArr[:9]
-                    rowArr2 = rowArr[9:]
-                    rowArr1.insert(0, school)
-                    rowArr1.insert(0, district)
-                    rowArr2.insert(0, school)
-                    rowArr2.insert(0, district)
-                    results.append(rowArr1)
-                    results.append(rowArr2)
-                    notSecondRow = False
-                #Unless it's already a solo row
-                elif len(rowArr)==9:
-                    rowArr.insert(0, school)
-                    rowArr.insert(0, district)
-                    results.append(rowArr)
-                    notSecondRow = False
-                #Detect page break, reset toggles
-                elif rowArr[0]=="Printed On:":
-                    data = False
-                    notSecondRow = True
-                #And if we're missing something, add it to errors
-                else:
-                    errs.append(realRow)
+                    #Drop hanging last names
+                    if len(row)>1 and len(row2)>1:
+                        realRow = row+row2
+                        realRow.sort(key=rowvals)
+                        rowArr = []
+                        for obj in realRow:
+                            rowArr.append(obj['text'])
+                        #Split concatenated rows into 2
+                        if len(rowArr)==18:
+                            rowArr1 = rowArr[:9]
+                            rowArr2 = rowArr[9:]
+                            rowArr1.insert(0, school)
+                            rowArr1.insert(0, district)
+                            rowArr2.insert(0, school)
+                            rowArr2.insert(0, district)
+                            results.append(rowArr1)
+                            results.append(rowArr2)
+                            notSecondRow = False
+                        #Unless it's already a solo row
+                        elif len(rowArr)==9:
+                            rowArr.insert(0, school)
+                            rowArr.insert(0, district)
+                            results.append(rowArr)
+                            notSecondRow = False
+                        #Detect page break, reset toggles
+                        elif row2[0]['text']=="Printed On:":
+                            data = False
+                            notSecondRow = True
+                        #And if we're missing something, add a blank using location
+                        #or failing that, add it to errors
+                        else:
+                            notSecondRow = False
+                            if rowArr[0]!="SCHOOL:":
+                                rowArr = []
+                                lefts = [126, 178, 441, 504, 558, 621, 681, 753, 828, 936, 988, 1251, 1314, 1368, 1431, 1491, 1563, 1638]
+                                for left in lefts:
+                                    textMatch = False
+                                    for element in realRow:
+                                        if element['left']==left:
+                                            textMatch = element['text']
+                                    if textMatch:
+                                        rowArr.append(textMatch)
+                                    else:
+                                        rowArr.append("")
+                                #Split concatenated rows into 2
+                                if len(rowArr)==18:
+                                    rowArr1 = rowArr[:9]
+                                    rowArr2 = rowArr[9:]
+                                    rowArr1.insert(0, school)
+                                    rowArr1.insert(0, district)
+                                    rowArr2.insert(0, school)
+                                    rowArr2.insert(0, district)
+                                    results.append(rowArr1)
+                                    if rowArr2[2]!="":
+                                        results.append(rowArr2)
+                                #It's still an error, append it to errors
+                                else:
+                                    rowArr.insert(0, school)
+                                    rowArr.insert(0, district)
+                                    rowArr.insert(0,realRow[0]['page'])
+                                    errs.append(rowArr)
+                            else:
+                                [school, district] = map(str.strip,str.split(rowArr[1],"DISTRICT:"))
             else:
-                notSecondRow = True
+                #Reset second row as long as row is longer than one...
+                if len(row)>1:
+                    notSecondRow = True
+                #Detect page break, reset toggles
+                if row[0]['text']=="Printed On:":
+                    notSecondRow = True
+                    data = False
         if row[0]['text']=="No.":
             #Detect header, start data read
             data = True
+            notSecondRow = True
     if len(errs)>0:
         sys.stdout.write("\n")
         sys.stdout.write(str(len(errs))+" odd rows omitted. Debug (-d true) for more info.")
     if options.debug:
+        errData = pd.DataFrame(errs)
+        errData.to_csv(options.output+"debug.csv",encoding="utf-8",index=False)
         pdb.set_trace()
     cols = ["DISTRICT","SCHOOL","NO.","NAME","M/F","ENG","SCI","SST","MAT","AGG","DIV"]
     data = pd.DataFrame(results,columns=cols)
