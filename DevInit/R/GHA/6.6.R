@@ -480,7 +480,7 @@ d5 <- dPlot(
   type = "bubble"
 )
 d5$defaultColors(diColors)
-d4$xAxis( type = "addCategoryAxis")
+d5$xAxis( type = "addCategoryAxis")
 d5$yAxis( type = "addMeasureAxis")
 d5$setTemplate(afterScript = "
                <script>
