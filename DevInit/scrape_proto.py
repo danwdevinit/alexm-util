@@ -4,7 +4,6 @@ import sys, os
 import re
 import scraperwiki
 import urllib2, lxml.etree
-import pyPdf
 from optparse import OptionParser
 import pandas as pd
 import pdb
