@@ -4,8 +4,8 @@ wd <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Da
 setwd(wd)
 
 #Pull in DAC
-dacPath <- "C:/git/alexm-util/DevInit/R/GHA/dac.csv"
-dac <- read.csv(dacPath,header=T,as.is=T)
+#dacPath <- "C:/git/alexm-util/DevInit/R/GHA/dac.csv"
+#dac <- read.csv(dacPath,header=T,as.is=T)
 
 #Define the datasets we want to work with
 datasets <- c("CRS 2013 data.csv"
@@ -43,7 +43,7 @@ for(i in 1:length(datasets)){
   #Keep only those rows which flowname == flownames
   dat <- dat[which(dat$flowname %in% flownames),]
   #Keep only those rows which donorname == dac
-  dat <- dat[which(dat$donorname %in% dac$donorname),]
+  #dat <- dat[which(dat$donorname %in% dac$donorname),]
   #Keep only those rows which have usd_disbursement_defl
   dat <- dat[complete.cases(dat$usd_disbursement_defl),]
   #Append to our blank variables
@@ -77,7 +77,7 @@ dat <- merge(dat,
 #And making a new variable named usd_sum, which is the sum of
 #usd_disbursement_defl
 pivot <- ddply(dat
-               ,.(recipientname)
+               ,.(recipientname,Iso3,Year)
                ,summarize,usd_sum=sum(usd_disbursement_defl,na.rm=TRUE))
 
 #Sort
