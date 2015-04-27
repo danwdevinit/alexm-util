@@ -117,7 +117,7 @@ def main():
             if len(row)==1 and row[0]['text'][:48]=='Subcounty / Town Council / Municipal Division : ':
                 subcountry = row[0]['text'][48:]
             if len(row)==1 and row[0]['text'][:9]=="Workplan ":
-                costCentre = row[0]['text'][9:]
+                workplan = row[0]['text'][9:]
             if len(row)==1 and row[0]['text'][:14]=="Cost Centre : ":
                 costCentre = row[0]['text'][14:]
             if len(row)==6:
