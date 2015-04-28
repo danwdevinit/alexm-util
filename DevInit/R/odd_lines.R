@@ -111,3 +111,13 @@ testSchoolData <- transform(testSchoolData
                             ,percentFemale = female/students)
 
 plot(passRate~percentFemale,testSchoolData)
+
+####Heatmap?####
+#install.packages("gplots",dependencies=TRUE)
+library(gplots)
+#install.packages("RColorBrewer",dependencies=TRUE)
+library(RColorBrewer)
+
+mat <- data.matrix(schoolData[,10:11])
+heatmap(mat
+        ,Colv=NA)

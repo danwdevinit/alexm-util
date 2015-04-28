@@ -58,7 +58,7 @@ for sheet in sheets:
                         obj['Country']=country
                         obj['ISO3']=iso
                         obj['Year']=uni(year)
-                        obj['Comment']=uni(comment.text)
+                        obj['Comment']=uni(comment.text.replace("\n"," "))
                         sources.append(obj)
 #Output results
 print('Writing CSV...')
