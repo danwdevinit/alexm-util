@@ -4,8 +4,8 @@ wd <- "S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Da
 setwd(wd)
 
 #Pull in DAC
-#dacPath <- "C:/git/alexm-util/DevInit/R/GHA/dac.csv"
-#dac <- read.csv(dacPath,header=T,as.is=T)
+dacPath <- "C:/git/alexm-util/DevInit/R/GHA/dac.csv"
+dac <- read.csv(dacPath,header=T,as.is=T)
 
 #Define the datasets we want to work with
 datasets <- c("CRS 2013 data.csv"
@@ -62,6 +62,8 @@ dat <- data.frame(Year
                   ,purposecode
                   ,purposename
                   ,stringsAsFactors=FALSE)
+
+dat <- transform(dat,dac=)
 
 #Pull in ISO3 list
 iso3Path <- "C:/git/alexm-util/DevInit/R/GHA/CRS-iso3.csv"
