@@ -6,8 +6,8 @@ library(plyr)
 wd <- "C:/Users/alexm/Documents/"
 setwd(wd)
 
-years = c(2005:2015)
-#years = c(2015)
+#years = c(2005:2015)
+years = c(2015)
 
 ####Meta-data####
 root <- "http://fts.unocha.org/api/v1/"
@@ -72,7 +72,8 @@ projectContrib <- merge(contrib_emerg
                  ,by.x=c("contrib.project_code")
                  ,by.y=c("project.code")
                  ,all.y=TRUE)
-projectContrib <- ddply(projectContrib,.(contrib.project_code),function(x){
+names(projectContrib)[names(projectContrib) == "contrib.project_code"] <- "project.code"
+projectContrib <- ddply(projectContrib,.(project.code),function(x){
   pledges = 0
   commited = 0
   contributed = 0
@@ -110,7 +111,6 @@ projectContrib <- merge(projectContrib
                     ,by.x=c("project.appeal_id")
                     ,by.y=c("appeal.id")
                     ,all.x=TRUE)
-names(projectContrib)[names(projectContrib) == "contrib.project_code"] <- "project.code"
 
 ####Merge data to contributions####
 contrib <- merge(contrib_emerg
