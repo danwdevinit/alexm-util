@@ -59,9 +59,6 @@ while 1:
         print(str(len(errs))+" errors found...")
         print("Sending emails to "+" and ".join(recip))
         print("")
-        #Reset lastTime and errs
-        lastTime = time.time()
-        errs = []
         #Connect to gmail and login
         s = smtplib.SMTP("smtp.gmail.com:587")
         s.starttls()
@@ -75,3 +72,6 @@ while 1:
             msg['To'] = you
             s.sendmail(me, [you], msg.as_string())
         s.quit()
+        #Reset lastTime and errs
+        lastTime = time.time()
+        errs = []
