@@ -70,7 +70,7 @@ while 1:
         for recipient in recip:
             me = options.user+"@gmail.com"
             you = recipient
-            msg['Subject'] = 'Heroku Error Notification'
+            msg['Subject'] = 'Heroku Error Notification: '+str(len(errs))+' error(s) logged'
             msg['From'] = me
             msg['To'] = you
             s.sendmail(me, [you], msg.as_string())
