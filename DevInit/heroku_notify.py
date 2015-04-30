@@ -22,11 +22,13 @@ parser.add_option("-r", "--recip", dest="recip", default='["Alex.Miller@devinit.
                 help="Recipient email address array.", metavar="TEXT")
 parser.add_option("-w", "--wait", dest="wait", default="60",
                 help="Wait time in seconds", metavar="INT")
-parser.add_option("-e", "--errors", dest="errors", default='["error code=H","Error R","Error L"]',
+#parser.add_option("-e", "--errors", dest="errors", default='["error code=H","Error R","Error L"]',
+parser.add_option("-e", "--errors", dest="errors", default='["error code=H","Error R"]',
                 help="Error code array.", metavar="TEXT")
 (options, args) = parser.parse_args()
 
 ##Collect errors
+print("Email notification system initialized")
 #Set lastTime to the present time
 lastTime = time.time()
 #Parse wait option
@@ -35,6 +37,7 @@ wait = int(options.wait)
 errs = []
 #Parse errCode option
 errCodes = ast.literal_eval(options.errors)
+print("Listening for keywords: "+" or ".join(errCodes))
 #Infinite loop
 while 1:
     #Read logs
