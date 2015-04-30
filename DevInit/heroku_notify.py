@@ -22,7 +22,6 @@ parser.add_option("-r", "--recip", dest="recip", default='["Alex.Miller@devinit.
                 help="Recipient email address array.", metavar="TEXT")
 parser.add_option("-w", "--wait", dest="wait", default="60",
                 help="Wait time in seconds", metavar="INT")
-#parser.add_option("-e", "--errors", dest="errors", default='["error code=H","Error R","Error L"]',
 parser.add_option("-e", "--errors", dest="errors", default='["error code=H","Error R"]',
                 help="Error code array.", metavar="TEXT")
 (options, args) = parser.parse_args()
@@ -48,6 +47,9 @@ while 1:
             if code in log:
                 #Append it to err list if so
                 errs.append(log)
+            #Print any logging errors
+            elif "Error L" in log:
+                print log
     #If we've waited 60 seconds since the last email
     #And we have at least one error, send the emails
     if time.time()-lastTime>=wait and len(errs)>=1:
