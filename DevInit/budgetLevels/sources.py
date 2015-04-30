@@ -14,7 +14,7 @@ parser = OptionParser()
 #parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_originalnetlending.xlsx",
 parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_zeronetlending.xlsx",
                 help="Input file", metavar="FILE")
-parser.add_option("-o", "--output", dest="output", default="./sources.csv",
+parser.add_option("-o", "--output", dest="output", default="./domestic-sources.csv",
                 help="Output CSV file", metavar="FILE")
 (options, args) = parser.parse_args()
 
@@ -59,6 +59,10 @@ for sheet in sheets:
                         obj['ISO3']=iso
                         obj['Year']=uni(year)
                         obj['Comment']=uni(comment.text.replace("\n"," "))
+                        try:
+                            obj['URL']=obj['Comment'][obj['Comment'].lower().index("http"):].strip()
+                        except:
+                            obj['URL']=""
                         sources.append(obj)
 #Output results
 print('Writing CSV...')
