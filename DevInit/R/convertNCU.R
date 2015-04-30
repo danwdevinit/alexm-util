@@ -1,8 +1,8 @@
 path<- "C:/git/digital-platform"
 setwd(path)
 
-df <- read.csv("./country-year/domestic-netlending.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
-mult <- read.csv("./reference/current-ncu-to-constant-2013-usd-cy.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+df <- read.csv("./country-year/domestic-sectors.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+mult <- read.csv("./reference/current-ncu-to-constant-2012-usd-cy.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
 if("value-ncu" %in% colnames(df)){
   names(df)[names(df)=="value-ncu"] <- "value.ncu"
   df$value <- df$value.ncu
@@ -29,4 +29,4 @@ for(i in 1:nrow(df)){
   }
 }
 names(df)[names(df) == "value.ncu"] <- "value-ncu"
-write.csv(df,"./country-year/domestic-netlending.csv",row.names=FALSE,na="")
+write.csv(df,"./country-year/domestic-sectors.csv",row.names=FALSE,na="")
