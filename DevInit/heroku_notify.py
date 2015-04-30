@@ -10,7 +10,7 @@ import time
 import pdb
 
 ##To run:
-#heroku logs --ps router --tail | python -u /git/alexm-util/DevInit/heroku_notify.py -p password
+#heroku logs --tail | python -u /git/alexm-util/DevInit/heroku_notify.py -p password
 
 ##Parse Options
 parser = OptionParser()
