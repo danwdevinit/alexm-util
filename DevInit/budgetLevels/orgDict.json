@@ -1565,7 +1565,7 @@
   }, 
   "China": {
     "L1_expenditure": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -1839,7 +1839,7 @@
   }, 
   "Costa Rica": {
     "L1_expenditure": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -1860,7 +1860,7 @@
       "l5": ""
     }, 
     "L2_recurrent": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "Recurrent Expenditure", 
       "l3": "", 
       "l4": "", 
@@ -3194,7 +3194,7 @@
   }, 
   "Guyana": {
     "L1_expenditure": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -3215,14 +3215,14 @@
       "l5": ""
     }, 
     "L2_capital_development": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "Capital Expenditure", 
       "l3": "", 
       "l4": "", 
       "l5": ""
     }, 
     "L2_recurrent": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "Recurrent Expenditure", 
       "l3": "", 
       "l4": "", 
@@ -3243,7 +3243,7 @@
       "l5": ""
     }, 
     "L3_interest": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "Recurrent Expenditure", 
       "l3": "Interest", 
       "l4": "", 
@@ -7421,7 +7421,7 @@
   }, 
   "Syria": {
     "L1_expenditure": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -7442,7 +7442,7 @@
       "l5": ""
     }, 
     "L2_recurrent": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "Recurrent Expenditure", 
       "l3": "", 
       "l4": "", 
@@ -7463,14 +7463,14 @@
       "l5": ""
     }, 
     "L3_subsidies": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "Recurrent Expenditure", 
       "l3": "Subsidies", 
       "l4": "", 
       "l5": ""
     }, 
     "L3_transfers": {
-      "l1": "Expenditure", 
+      "l1": "Total Expenditure", 
       "l2": "Recurrent Expenditure", 
       "l3": "Transfers", 
       "l4": "", 
