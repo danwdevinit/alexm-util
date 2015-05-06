@@ -12,7 +12,7 @@ import csv
 from operator import itemgetter
 
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default="S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Uganda/2014-15/Districts/Final Form B/",
+parser.add_option("-i", "--input", dest="input", default="S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Uganda/2015-16/BFP/",
                 help="Input pdf name", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="../tmp/",
                         help="Output path. Default is './tmp/'",metavar="FOLDER")
@@ -64,7 +64,6 @@ def pdftoxml(pdfdata, options):
     cmd += absDir
     cmd +='output.xml"'
     cmd = cmd + " > NUL 2>&1" # can't turn off output, so throw away even stderr yeuch
-    os.system(cmd)
     with open(absDir+'output.xml', 'r') as f:
         return f.read()
 
@@ -158,7 +157,7 @@ def main():
     if options.debug:
         pdb.set_trace()
     keys = datasets[0].keys()
-    with open(options.output+"staff 2014-15.csv", 'wb') as output_file:
+    with open(options.output+"staff.csv", 'wb') as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(datasets)
