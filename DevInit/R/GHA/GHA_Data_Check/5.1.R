@@ -59,3 +59,5 @@ print(msg)
 #But the source data has been drawn from
 #http://stats.oecd.org/OECDStat_Metadata/ShowMetadata.ashx?Dataset=TABLE1&ShowOnWeb=true&Lang=en
 
+#Spoke with Dan, the Table1 data is just used for percentages. Kinda shakey methodology, but it's a methodology!
+

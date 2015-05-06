@@ -54,14 +54,17 @@ def trytext(el):
 def pdftoxml(pdfdata, options):
     """converts pdf file to xml file"""
     # lots of hacky Windows fixes c.f. original
-    cmd = 'pdftohtml -xml -nodrm -zoom 1.5 -enc UTF-8 -noframes '
+    absDir = os.path.dirname(pdfdata)+"/"
+    cmd = 'pdftohtml -xml -nodrm -zoom 1.5 -enc UTF-8 -noframes "'
     if options:
         cmd += options
     cmd += pdfdata
-    cmd +=  ' output.xml'
+    cmd +=  '" "'
+    cmd += absDir
+    cmd +='output.xml"'
     cmd = cmd + " > NUL 2>&1" # can't turn off output, so throw away even stderr yeuch
-    print cmd
-    with open('output.xml', 'r') as f:
+    os.system(cmd)
+    with open(absDir+'output.xml', 'r') as f:
         return f.read()
 
 def main():
