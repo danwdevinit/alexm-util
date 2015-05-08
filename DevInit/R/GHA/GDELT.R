@@ -51,7 +51,7 @@ diColors <- c("#ba0c2f" #Red
               ,"#0095c8" #lightblue
               ,"#b7bf10" #Yellow
 )
-dat <- subset(df,as.numeric(substr(SQLDATE,1,8))>=20150405)
+dat <- subset(df,as.numeric(substr(SQLDATE,1,8))>=as.numeric(yesterday))
 dat <- ddply(dat,.(SQLDATE),function(x){
   protests <- 0
   military <- 0
@@ -112,7 +112,7 @@ d1$setTemplate(afterScript = "
     myChart.svg.append('text')
         .attr('x', 60)
         .attr('y', 15)
-        .text('News Reports on Burundi Since April 5, 2015')
+        .text('News Reports on Burundi In the Past 31 Days')
         .style('text-anchor','beginning')
         .style('font-size', '100%')
         .style('font-family','sans-serif')
