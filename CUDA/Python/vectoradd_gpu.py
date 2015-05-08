@@ -1,9 +1,10 @@
 import numpy as np
 from timeit import default_timer as timer
+from numbapro import vectorize
 
-def VectorAdd(a,b,c):
-    for i in xrange(a.size):
-        c[i] = a[i] + b[i]
+@vectorize(["float32(float32, float32)"], target='gpu')
+def VectorAdd(a , b):
+    return a + b
         
 def main():
     N = 32000000
@@ -13,7 +14,7 @@ def main():
     C = np.zeros(N,dtype=np.float32)
     
     start = timer()
-    VectorAdd(A,B,C)
+    C = VectorAdd(A , B)
     vectoradd_time = timer() - start
     
     print("C[:5] = " + str(C[:5]))
