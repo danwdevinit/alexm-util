@@ -31,25 +31,28 @@ def spin():
     spinIndex+=1
 
 def trytext(el):
+    textList = []
+    text = el.text
+    childText = None
+    grandchildText = None
     children = el.getchildren()
     childLen = len(children)
     if childLen>0:
-        grandchildren = children[0].getchildren()
+        child = children[0]
+        childText = child.text
+        grandchildren = child.getchildren()
         grandchildLen = len(grandchildren)
         if grandchildLen>0:
-            if el.getchildren()[0].getchildren()[0].text!=None:
-                return el.getchildren()[0].getchildren()[0].text
-            elif el.getchildren()[0].text!=None:
-                return el.getchildren()[0].text
-            else:
-                return el.text
-        else:
-            if el.getchildren()[0].text!=None:
-                return el.getchildren()[0].text
-            else:
-                return el.text
-    else:
-        return el.text
+            grandchild = grandchildren[0]
+            grandchildText = grandchild.text
+    result = ""
+    textList.append(text)
+    textList.append(childText)
+    textList.append(grandchildText)
+    finalList = filter(None,textList)
+    result = " ".join(finalList)
+    return result
+
     
 def pdftoxml(pdfdata, options):
     """converts pdf file to xml file"""
