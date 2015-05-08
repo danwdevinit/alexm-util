@@ -1,9 +1,10 @@
 import numpy as np
 from timeit import default_timer as timer
+import multiprocessing
+from itertools import izip
 
-def VectorAdd(a,b,c):
-    for i in xrange(a.size):
-        c[i] = a[i] + b[i]
+def VectorAdd((a,b)):
+    return a + b
         
 def main():
     N = 32000000
@@ -16,7 +17,8 @@ def main():
     count = 50
     for i in range(0,count):
         start = timer()
-        VectorAdd(A,B,C)
+        pool = multiprocessing.Pool(processes=multiprocessing.cpu_count()*2)
+        pool.map(VectorAdd,izip(A,B))
         vectoradd_time = timer() - start
         times.append(vectoradd_time)
     

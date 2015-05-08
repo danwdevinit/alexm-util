@@ -13,14 +13,19 @@ def main():
     B = np.ones(N,dtype=np.float32)
     C = np.zeros(N,dtype=np.float32)
     
-    start = timer()
-    C = VectorAdd(A , B)
-    vectoradd_time = timer() - start
+    times = []
+    count = 50
+    for i in range(0,count):
+        start = timer()
+        C = VectorAdd(A , B)
+        vectoradd_time = timer() - start
+        times.append(vectoradd_time)
     
-    print("C[:5] = " + str(C[:5]))
-    print("C[-5:] = " + str(C[-5:]))
-    
-    print("VectorAdd took %f seconds" % vectoradd_time)
+    print("Running "+str(count)+" times:")
+    print("Mean: %f" % np.mean(times))
+    print("Min: %f" % np.min(times))
+    print("Max: %f" % np.max(times))
+    print("Std: %f" % np.std(times))
     
 if __name__ == '__main__':
     main()
