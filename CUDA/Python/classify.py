@@ -7,6 +7,7 @@ documents = [(list(movie_reviews.words(fileid)), category) for category in movie
 random.shuffle(documents)
 all_words = nltk.FreqDist(w.lower() for w in movie_reviews.words())
 word_features = all_words.keys()[:2000] # [_document-classify-all-words]
+pdb.set_trace()
 
 def document_features(document): # [_document-classify-extractor]
     document_words = set(document) # [_document-classify-set]

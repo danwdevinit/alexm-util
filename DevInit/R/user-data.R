@@ -16,9 +16,9 @@ filenames <- list.files("C:/git/digital-platform/country-year/", pattern="*.csv"
 refPath = "C:/git/digital-platform/reference/"
 conceptPath = "C:/git/digital-platform/concepts.csv"
 concepts <- read.csv(conceptPath, header = TRUE,sep=",",na.strings="",check.names=FALSE)
-refMap <- list("domestic"="budget-type,domestic-budget-level")
-refMap <- c(refMap,"domestic-sectors"="budget-type,domestic-budget-level")
-refMap <- c(refMap,"domestic-netlending"="budget-type,domestic-budget-level")
+refMap <- list("domestic"="budget-type,domestic-budget-level,domestic-sources,currency")
+refMap <- c(refMap,"domestic-sectors"="budget-type,domestic-budget-level,domestic-sources,currency")
+refMap <- c(refMap,"domestic-netlending"="budget-type,domestic-budget-level,domestic-sources,currency")
 refMap <- c(refMap,"intl-flows-donors"="flow-type,flow-name")
 refMap <- c(refMap,"intl-flows-recipients"="flow-type,flow-name")
 refMap <- c(refMap,"largest-intl-flow"="largest-intl-flow")

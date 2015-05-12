@@ -36,8 +36,11 @@ data$USD.committed.contributed <- as.numeric(gsub(",","",data$USD.committed.cont
 #Fix capitalization error
 data[which(data["Appealing.Agency.NATIONAL.INTERNATIONAL"]=="Affiliated national NGO"),]["Appealing.Agency.NATIONAL.INTERNATIONAL"] <- "Affiliated National NGO"
 
-
 df <- ddply(data,.(Recipient.Organization,Appealing.Agency.NATIONAL.INTERNATIONAL),summarize,donorCount=length(unique(Donor)),totalContrib=sum(USD.committed.contributed,na.rm=TRUE),countryCount=length(unique(Destination.Country)))
+
+df <- df[complete.cases(df),]
+
+df <- df[2:nrow(df),]
 
 df$class <- as.factor(df$Appealing.Agency.NATIONAL.INTERNATIONAL)
 
@@ -54,7 +57,30 @@ p <- (1 - pnorm(abs(z), 0, 1)) * 2
 p
 
 # Predictions
-head(pp <- fitted(test))
+probabilities <- predict(test, type = "probs")
+colnames(probabilities) <- paste0("prob.",colnames(probabilities))
 
-dses <- data.frame(ses = c("low", "middle", "high"), write = mean(df$totalContrib))
-predict(test, newdata = dses, "probs")
+df <- merge(df
+      ,probabilities
+      ,by=0
+      ,all=TRUE)
+
+winner <- character(nrow(df))
+for(i in 1:nrow(df)){
+  row <- df[i,]
+  keep <- colnames(row)[which(substr(colnames(row),1,4)=="prob")]
+  row <- row[keep]
+  if(!is.na(max(row))){
+  win <- row[match(max(row), row)]
+  winner[i] <- substr(colnames(win),6,nchar(colnames(win)))
+  }
+  else{
+    winner[i] <- NA
+  }
+}
+df$winner <- winner
+df$correct <- df$Appealing.Agency.NATIONAL.INTERNATIONAL==df$winner
+mean(df$correct)
+
+df$isIntl <- df$Appealing.Agency.NATIONAL.INTERNATIONAL=="International NGO"
+mean(df$isIntl)
