@@ -165,11 +165,11 @@ write.csv(pivot2,"2010-2013 CRS and INFORM.csv",row.names=FALSE,na="")
 #And making a new variable named usd_sum, which is the sum of
 #usd_disbursement_defl
 pivot3 <- ddply(dat
-                ,.(Year,Natural.Cat)
+                ,.(Year,natCat)
                 ,summarize,usd_sum=sum(usd_disbursement_defl,na.rm=TRUE),usd_avg=mean(usd_disbursement_defl,na.rm=TRUE))
 
-pivot3 <- pivot3[which(!is.na(pivot3$Natural.Cat)),]
-pivot3 <- pivot3[which(pivot3$Natural.Cat!="Zero"),]
+pivot3 <- pivot3[which(!is.na(pivot3$natCat)),]
+pivot3 <- pivot3[which(pivot3$natCat!="Zero"),]
 
 
 #Export as csv
@@ -442,7 +442,7 @@ scatterDat$usd_sum <- scatterDat$usd_sum*1000000
 scatterDat$usd_avg <- scatterDat$usd_avg*1000000
 d4 <- dPlot(
   y = "usd_sum",
-  x = "Natural.Cat",
+  x = "natCat",
   groups = c(rep("")),
   data = subset(scatterDat,Year == 2013),
   type = "bar"
@@ -467,14 +467,14 @@ d4$setTemplate(afterScript = "
 #d4
 
 ## Scatter All Recipients by category
-scatterDat <- ddply(dat,.(recipientname,Year,Natural.Cat),summarize,usd_sum=sum(usd_disbursement_defl,na.rm=TRUE))
+scatterDat <- ddply(dat,.(recipientname,Year,natCat),summarize,usd_sum=sum(usd_disbursement_defl,na.rm=TRUE))
 scatterDat$recipientname <- iconv(scatterDat$recipientname,to="utf8")
-scatterDat <- scatterDat[complete.cases(scatterDat[c("Natural.Cat","usd_sum")]),]
+scatterDat <- scatterDat[complete.cases(scatterDat[c("natCat","usd_sum")]),]
 scatterDat <- subset(scatterDat, usd_sum > 0)
 scatterDat$usd_sum <- scatterDat$usd_sum*1000000
 d5 <- dPlot(
   y = "usd_sum",
-  x = "Natural.Cat",
+  x = "natCat",
   groups = c("recipientname",rep("")),
   data = subset(scatterDat,Year == 2013),
   type = "bubble"
@@ -498,6 +498,43 @@ d5$setTemplate(afterScript = "
                 ")
 #d5
 
+## GeoMean Investigation
+scatterDat <- ddply(dat,.(recipientname,Year,Iso3)
+                    ,summarize
+                    ,usd_sum=sum(usd_disbursement_defl,na.rm=TRUE)
+                    ,geoMean =mean(geoMean,na.rm=TRUE)
+                    ,natCat = max(natCat))
+scatterDat$recipientname <- iconv(scatterDat$recipientname,to="utf8")
+scatterDat <- scatterDat[complete.cases(scatterDat[c("geoMean","usd_sum")]),]
+scatterDat <- subset(scatterDat, usd_sum > 0)
+scatterDat$usd_sum <- scatterDat$usd_sum*1000000
+d6 <- dPlot(
+  y = "usd_sum",
+  x = "geoMean",
+  groups = c("recipientname",rep("")),
+  data = subset(scatterDat,Year == 2013),
+  type = "bubble"
+)
+d6$defaultColors(diColors)
+d6$xAxis( type = "addMeasureAxis")
+d6$colorAxis(type='addColorAxis',colorSeries="natCat")
+d6$yAxis( type = "addMeasureAxis")
+d6$setTemplate(afterScript = "
+               <script>
+               myChart.draw()
+               myChart.axes[0].titleShape.text('InfoRM Natural Risk Index')
+               myChart.axes[1].titleShape.text('Deflated USD')
+               myChart.svg.append('text')
+               .attr('x', 120)
+               .attr('y', 20)
+               .text('Total Disaster Preparedness and Prevention ODA against Natural Risk Index (2013)')
+               .style('text-anchor','beginning')
+               .style('font-size', '100%')
+               .style('font-family','sans-serif')
+               </script>               
+               ")
+d6
+
 ####Export them####
 charts <- c(d1
             ,p1
@@ -512,3 +549,9 @@ for(i in 1:length(charts)){
   chart <- charts[[i]]
   chart$save(paste0('//dipr-dc01/home$/AlexM/My Documents/GHA/6.6/chart',i,'.html'), cdn = TRUE)
 }
+
+names(dat)[names(dat)=="InfoRM Risk Index"] <- "Inform.Risk.Index"
+collapsedDat <- ddply(dat,.(Iso3,Year,recipientname,purposecode,purposename,Inform.Risk.Index,natCat,nat,vuln,lackOfCoping,geoMean),summarize,usd_disbursement_defl=sum(usd_disbursement_defl,na.rm=TRUE))
+collapsedDat <- transform(collapsedDat,top10=recipientname %in% top10)
+collapsedDat <- transform(collapsedDat,vHighOrHigh=Iso3 %in% highs$Iso3)
+write.csv(collapsedDat,"final_data.csv",row.names=FALSE,na="")
