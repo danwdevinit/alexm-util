@@ -142,7 +142,7 @@ def main():
                             nxtTop = 0
                         while nxt is not None and abs(elTop-nxtTop)<4:
                             obj = {}
-                            obj['text'] = trytext(prev)
+                            obj['text'] = trytext(nxt)
                             obj['top'] = int(nxt.attrib['top'])
                             obj['left'] = int(nxt.attrib['left'])
                             obj['right'] = int(nxt.attrib['left'])+int(nxt.attrib['width'])
@@ -155,12 +155,6 @@ def main():
                                 nxtTop = 0
                         rowvals = operator.itemgetter('left')
                         row.sort(key=rowvals)
-                        if row[0]['text'][:6]=='321426':
-                            for el in row:
-                                print el['right']
-                            pdb.set_trace()
-                        else:
-                            continue
                         #Find missing pieces of data, replace them with blanks
                         rowArr = []
                         rowArr.append(row[0]['text'])
@@ -174,196 +168,161 @@ def main():
                                 rowArr.append(textMatch)
                             else:
                                 rowArr.append("")
-                            if font2==30 and font3==27 and font4==30 and font5==30 and font6==27 and font7==36 and font8==30 and font9==30:
-                                #Wage 2011/12 Approved Budget
-                                obj = {}
-                                obj['year']="2011/12 Approved Budget"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el)
-                                obj['Budget Function']="Wage" if obj['Budget Type']=="Recurrent Budget Estimates" else "GOU"
-                                obj['Economic Function']=trytext(el7)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=""
-                                output.append(obj)
-                                #Non-Wage 2011/12 Approved Budget
-                                obj = {}
-                                obj['year']="2011/12 Approved Budget"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el2)
-                                obj['Budget Function']="Non Wage" if obj['Budget Type']=="Recurrent Budget Estimates" else "External Fin."
-                                obj['Economic Function']=trytext(el7)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=""
-                                output.append(obj)
-                                #Wage 2012/13 Approved Estimates
-                                obj = {}
-                                obj['year']="2012/13 Approved Estimates"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el4)
-                                obj['Budget Function']="Wage" if obj['Budget Type']=="Recurrent Budget Estimates" else "GOU"
-                                obj['Economic Function']=trytext(el7)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=""
-                                output.append(obj)
-                                #Non-Wage 2012/13 Approved Estimates
-                                obj = {}
-                                obj['year']="2012/13 Approved Estimates"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el5)
-                                obj['Budget Function']="Non Wage" if obj['Budget Type']=="Recurrent Budget Estimates" else "External Fin."
-                                obj['Economic Function']=trytext(el7)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=""
-                                output.append(obj)
-                                #NTR 2011/12 Approved Budget
-                                obj = {}
-                                obj['year']="2011/12 Approved Budget"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el8)
-                                obj['Budget Function']="NTR"
-                                obj['Economic Function']=trytext(el7)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=""
-                                output.append(obj)
-                                #NTR 2012/13 Approved Estimates
-                                obj = {}
-                                obj['year']="2012/13 Approved Estimates"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el9)
-                                obj['Budget Function']="NTR"
-                                obj['Economic Function']=trytext(el7)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=""
+                        if rowArr[0]!="" and rowArr[1]!="":
+                            #Wage 2015/16 Draft Estimates
+                            obj = {}
+                            obj['year']="2015/16 Draft Estimates"
+                            obj['Government']="Central Government"
+                            obj['Vote']=vote
+                            obj['District']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Programme']=programme
+                            obj['Budget']=rowArr[1]
+                            obj['Budget Function']="Wage"
+                            obj['Economic Function']=rowArr[0]
+                            obj['ofWhich']=""
+                            output.append(obj)
+                        if rowArr[0]!="" and rowArr[2]!="":
+                            #Non Wage 2015/16 Draft Estimates
+                            obj = {}
+                            obj['year']="2015/16 Draft Estimates"
+                            obj['Government']="Central Government"
+                            obj['Vote']=vote
+                            obj['District']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Programme']=programme
+                            obj['Budget']=rowArr[2]
+                            obj['Budget Function']="Non Wage"
+                            obj['Economic Function']=rowArr[0]
+                            obj['ofWhich']=""
+                            output.append(obj)
+                        if rowArr[0]!="" and rowArr[3]!="":
+                            #Dev't 2015/16 Draft Estimates
+                            obj = {}
+                            obj['year']="2015/16 Draft Estimates"
+                            obj['Government']="Central Government"
+                            obj['Vote']=vote
+                            obj['District']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Programme']=programme
+                            obj['Budget']=rowArr[3]
+                            obj['Budget Function']="Dev't"
+                            obj['Economic Function']=rowArr[0]
+                            obj['ofWhich']=""
+                            output.append(obj)
                     #of which columns
-                    elif font==14:
-                        if j<elLen-7:
-                            el2 = page[j+1]
-                            font2 = int(el2.attrib['font'])
-                            el3 = page[j+2]
-                            font3 = int(el3.attrib['font'])
-                            el4 = page[j+3]
-                            font4 = int(el4.attrib['font'])
-                            el5 = page[j+4]
-                            font5 = int(el5.attrib['font'])
-                            el6 = page[j+5]
-                            font6 = int(el6.attrib['font'])
-                            el7 = page[j+6]
-                            font7 = int(el7.attrib['font'])
-                            el8 = page[j+7]
-                            font8 = int(el8.attrib['font'])
-                            #pattern is 14 14 13 8/19 14 14 14 13
-                            #for wageEst nonWageEst totalEst EconFunc Other? wage nonWage total
-                            if font2==14 and font3==13 and (font4==8 or font4==19) and font5==14 and font6==14 and font7==14 and font8==13:
-                                #Find of last font 9/20 for 'of which'
-                                ofWhich = el.getprevious()
-                                ofWhichFont = int(ofWhich.attrib['font'])
-                                while ofWhichFont!=9 and ofWhichFont!=20:
-                                    ofWhich = ofWhich.getprevious()
-                                    ofWhichFont = int(ofWhich.attrib['font'])
-                                #Wage 2014/15
-                                obj = {}
-                                obj['year']="2014/15 Approved Budget"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el6)
-                                obj['Budget Function']="Wage" if obj['Budget Type']=="Recurrent Budget Estimates" else "GOU"
-                                obj['Economic Function']=trytext(el4)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=trytext(ofWhich)
-                                output.append(obj)
-                                #Non-Wage 2014/15
-                                obj = {}
-                                obj['year']="2014/15 Approved Budget"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el7)
-                                obj['Budget Function']="Non Wage" if obj['Budget Type']=="Recurrent Budget Estimates" else "External Fin."
-                                obj['Economic Function']=trytext(el4)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=trytext(ofWhich)
-                                output.append(obj)
-                                #Wage 2015/16
-                                obj = {}
-                                obj['year']="2015/16 Draft Estimates"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el)
-                                obj['Budget Function']="Wage" if obj['Budget Type']=="Recurrent Budget Estimates" else "GOU"
-                                obj['Economic Function']=trytext(el4)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=trytext(ofWhich)
-                                output.append(obj)
-                                #Non-Wage 2015/16
-                                obj = {}
-                                obj['year']="2015/16 Draft Estimates"
-                                obj['Government']="Central Government"
-                                obj['sectorId']=sector
-                                obj['Vote']=vote
-                                obj['Ministry']=ministry
-                                obj['Budget Type']=budgetType
-                                obj['Department']=department
-                                obj['Programme']=programme
-                                obj['Budget']=trytext(el2)
-                                obj['Budget Function']="Non Wage" if obj['Budget Type']=="Recurrent Budget Estimates" else "External Fin."
-                                obj['Economic Function']=trytext(el4)
-                                obj['Output']=econOutput
-                                obj['ofWhich']=trytext(ofWhich)
-                                output.append(obj)
-    #Add sectors in by sectorId
-    for obj in output:
-        obj['MTEF Sector'] = sectors[obj['sectorId']]
-        del obj['sectorId']
+                    elif font==41 and trytext(el)[:3]=="o/w":
+                        #Find row by going backwards and forwards...
+                        row = []
+                        elTop = int(el.attrib['top'])
+                        obj = {}
+                        obj['text'] = trytext(el)
+                        obj['top'] = int(el.attrib['top'])
+                        obj['left'] = int(el.attrib['left'])
+                        obj['right'] = int(el.attrib['left'])+int(el.attrib['width'])
+                        obj['font'] = int(el.attrib['font'])
+                        row.append(obj)
+                        #Backwards
+                        prev = el.getprevious()
+                        if prev is not None:
+                            prevTop = int(prev.attrib['top'])
+                        else:
+                            prevTop = 0
+                        while prev is not None and abs(elTop-prevTop)<4:
+                            obj = {}
+                            obj['text'] = trytext(prev)
+                            obj['top'] = int(prev.attrib['top'])
+                            obj['left'] = int(prev.attrib['left'])
+                            obj['right'] = int(prev.attrib['left'])+int(prev.attrib['width'])
+                            obj['font'] = int(prev.attrib['font'])
+                            row.append(obj)
+                            prev = prev.getprevious()
+                            if prev is not None:
+                                prevTop = int(prev.attrib['top'])
+                            else:
+                                prevTop = 0
+                        #Forwards
+                        nxt = el.getnext()
+                        if nxt is not None:
+                            nxtTop = int(nxt.attrib['top'])
+                        else:
+                            nxtTop = 0
+                        while nxt is not None and abs(elTop-nxtTop)<4:
+                            obj = {}
+                            obj['text'] = trytext(nxt)
+                            obj['top'] = int(nxt.attrib['top'])
+                            obj['left'] = int(nxt.attrib['left'])
+                            obj['right'] = int(nxt.attrib['left'])+int(nxt.attrib['width'])
+                            obj['font'] = int(nxt.attrib['font'])
+                            row.append(obj)
+                            nxt = nxt.getnext()
+                            if nxt is not None:
+                                nxtTop = int(nxt.attrib['top'])
+                            else:
+                                nxtTop = 0
+                        rowvals = operator.itemgetter('left')
+                        row.sort(key=rowvals)
+                        #Find missing pieces of data, replace them with blanks
+                        rowArr = []
+                        rowArr.append(row[0]['text'])
+                        rights = [558,645,731,808]
+                        for right in rights:
+                            textMatch = False
+                            for element in row:
+                                if abs(element['right']-right)<4:
+                                    textMatch = element['text']
+                            if textMatch:
+                                rowArr.append(textMatch)
+                            else:
+                                rowArr.append("")
+                        #Find of last font 39 for 'of which'
+                        ofWhich = el.getprevious()
+                        ofWhichFont = int(ofWhich.attrib['font'])
+                        while ofWhichFont!=39:
+                            ofWhich = ofWhich.getprevious()
+                            ofWhichFont = int(ofWhich.attrib['font'])
+                        if rowArr[0]!="" and rowArr[1]!="":
+                            #Wage 2015/16 Draft Estimates
+                            obj = {}
+                            obj['year']="2015/16 Draft Estimates"
+                            obj['Government']="Central Government"
+                            obj['Vote']=vote
+                            obj['District']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Programme']=programme
+                            obj['Budget']=rowArr[1]
+                            obj['Budget Function']="Wage"
+                            obj['Economic Function']=rowArr[0]
+                            obj['ofWhich']=trytext(ofWhich)
+                            output.append(obj)
+                        if rowArr[0]!="" and rowArr[2]!="":
+                            #Non Wage 2015/16 Draft Estimates
+                            obj = {}
+                            obj['year']="2015/16 Draft Estimates"
+                            obj['Government']="Central Government"
+                            obj['Vote']=vote
+                            obj['District']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Programme']=programme
+                            obj['Budget']=rowArr[2]
+                            obj['Budget Function']="Non Wage"
+                            obj['Economic Function']=rowArr[0]
+                            obj['ofWhich']=trytext(ofWhich)
+                            output.append(obj)
+                        if rowArr[0]!="" and rowArr[3]!="":
+                            #Dev't 2015/16 Draft Estimates
+                            obj = {}
+                            obj['year']="2015/16 Draft Estimates"
+                            obj['Government']="Central Government"
+                            obj['Vote']=vote
+                            obj['District']=ministry
+                            obj['Budget Type']=budgetType
+                            obj['Programme']=programme
+                            obj['Budget']=rowArr[3]
+                            obj['Budget Function']="Dev't"
+                            obj['Economic Function']=rowArr[0]
+                            obj['ofWhich']=trytext(ofWhich)
+                            output.append(obj)
     if options.debug:
         pdb.set_trace()
     keys = output[0].keys()
