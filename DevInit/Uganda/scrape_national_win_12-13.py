@@ -276,7 +276,7 @@ def main():
                             nxtTop = 0
                         while nxt is not None and abs(elTop-nxtTop)<4:
                             obj = {}
-                            obj['text'] = trytext(prev)
+                            obj['text'] = trytext(nxt)
                             obj['top'] = int(nxt.attrib['top'])
                             obj['left'] = int(nxt.attrib['left'])
                             obj['right'] = int(nxt.attrib['left'])+int(nxt.attrib['width'])
