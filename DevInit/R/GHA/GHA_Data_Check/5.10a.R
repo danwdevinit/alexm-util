@@ -40,7 +40,7 @@ data[which(data["Appealing.Agency.NATIONAL.INTERNATIONAL"]=="Affiliated national
 
 #Calculate sums
 sumsByType = ddply(data
-                   ,.(Appealing.Agency.NATIONAL.INTERNATIONAL)
+                   ,.(Appealing.Agency.NATIONAL.INTERNATIONAL,Emergency.year)
                    ,summarize
                    ,total=sum(Comm.contr.deflated,na.rm=TRUE))
 names(sumsByType)[1] <- "NGO.Type"
