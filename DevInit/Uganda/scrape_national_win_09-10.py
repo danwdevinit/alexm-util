@@ -169,8 +169,8 @@ def main():
                                 nxtTop = 0
                         rowvals = operator.itemgetter('left')
                         row.sort(key=rowvals)
-                        wrongText = ["Services provided","Services Funded","Arrears","Capital Purchases"]
-                        if row[0]['text'] not in wrongText and len(row)==5:
+                        wrongText = ["Services provided","Services Funded","Arrears","Capital Purchases","GoU"]
+                        if row[0]['text'] not in wrongText:
                             #Find missing pieces of data, replace them with blanks
                             rowArr = []
                             rowArr.append(row[0]['text'])

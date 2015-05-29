@@ -41,6 +41,7 @@ donorname <- c()
 usd_disbursement_defl <- c()
 purposecode <- c()
 purposename <- c()
+recipientname <- c()
 
 #Iterate through the datasets
 for(i in 1:length(datasets)){
@@ -61,6 +62,7 @@ for(i in 1:length(datasets)){
   usd_disbursement_defl <- c(usd_disbursement_defl,dat$usd_disbursement_defl)
   purposecode <- c(purposecode,dat$purposecode)
   purposename <- c(purposename,dat$purposename)
+  recipientname <- c(recipientname,dat$recipientname)
   #Repeat
 }
 
@@ -70,6 +72,7 @@ dat <- data.frame(Year
   ,usd_disbursement_defl
   ,purposecode
   ,purposename
+  ,recipientname
   ,stringsAsFactors=FALSE)
 
 #Set the working directory to a different folder

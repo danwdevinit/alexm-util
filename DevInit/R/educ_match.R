@@ -55,7 +55,7 @@ for(i in 1:nrow(staff)){
 staff[,1]<- res
 
 #Pivot Data
-pass <- c("1","2","3")
+pass <- c("1","2","3","4")
 districtScores <- transform(data,indivPass=(DIV %in% pass))
 districtScores <- ddply(districtScores,.(DISTRICT),summarize,
                         pass=sum(indivPass==TRUE),fail=sum(indivPass==FALSE),male=sum(M.F=="M",na.rm=TRUE),female=sum(M.F=="F",na.rm=TRUE))
