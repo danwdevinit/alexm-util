@@ -63,7 +63,7 @@ for org in data:
             time.sleep(5)
             page = bs(browser.page_source)
             soupPara = page.find_all("p")
-            wikiText = re.sub('\[.*?\]','', " ".join([p.text for p in soupPara])).split(".")
+            wikiText = re.sub('\[.*?\]','', " .".join([p.text for p in soupPara])).split(".")
             for sentence in wikiText:
                 if len(sentence)>5:
                     result = []
