@@ -9,7 +9,7 @@ def shared(data):
         np.asarray(data[1], dtype=theano.config.floatX), borrow=True)
     return shared_x, T.cast(shared_y, "int32")
 
-def shallow(training_data,validation_data,test_data,input_size,output_size,iterations=1,mini_batch_size=1,epochs=50):
+def shallow(training_data,validation_data,test_data,input_size,output_size,iterations=1,mini_batch_size=1,epochs=100):
     nets = []
     for j in xrange(iterations):
         net = Network([
@@ -85,17 +85,34 @@ if __name__ == "__main__":
             if not header:
                 header = row
             else:
-                if row[5]!="":
+                #if row[5]!="":
+                keep = ["International NGO","National NGO","Local NGOs"]
+                if row[5] in keep:
                     raw_data.append((row[3],row[5]))
-    shuffle(raw_data)
-    docs = [tup[0] for tup in raw_data]
-    categories = [tup[1] for tup in raw_data]
+    #shuffle(raw_data)
+    #docs = [tup[0] for tup in raw_data]
+    #categories = [tup[1] for tup in raw_data]
+    #uniqueCat = list(set(categories))
+    #numCat = [uniqueCat.index(cat) for cat in categories]
+    #vectorizer = TfidfVectorizer(min_df=1,stop_words="english",strip_accents="unicode",ngram_range=(1,1))
+    #Xmat = vectorizer.fit_transform(docs)
+    #X = Xmat.toarray()
+    #XLen = X.shape[0]
+    #Equality Testing here:
+    local = [tup for tup in raw_data if tup[1]=="Local NGOs"]
+    intl = [tup for tup in raw_data if tup[1]=="International NGO"][:60]
+    natl = [tup for tup in raw_data if tup[1]=="National NGO"][:60]
+    equal = local+intl+natl
+    shuffle(equal)
+    docs = [tup[0] for tup in equal]
+    categories = [tup[1] for tup in equal]
     uniqueCat = list(set(categories))
     numCat = [uniqueCat.index(cat) for cat in categories]
     vectorizer = TfidfVectorizer(min_df=1,stop_words="english",strip_accents="unicode",ngram_range=(1,1))
     Xmat = vectorizer.fit_transform(docs)
     X = Xmat.toarray()
     XLen = X.shape[0]
+    #End equality testing
     trainIndex = int(.7*XLen)
     valIndex = int(.7*XLen)+int(.15*XLen)
     training_data = shared((X[:trainIndex],np.array(numCat)[:trainIndex]))
