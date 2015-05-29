@@ -37,7 +37,7 @@ for org in data:
         google_url = "https://www.google.co.uk/search?q="+urllib.quote(org[0])
         
         browser.get(google_url)
-        time.sleep(randint(15,55))
+        time.sleep(randint(60,120))
         page = bs(browser.page_source)
         for span in page.find_all('span','st'):
             if len(span.text)>5:
@@ -73,7 +73,7 @@ for org in data:
                     result.append(sentence.encode('utf-8'))
                     results.append(result)
             browser.back()
-            time.sleep(5)
+            time.sleep(randint(20,40))
             firstHit = browser.find_elements_by_css_selector("h3.r a")[0]
         firstHit.click()
         time.sleep(5)
