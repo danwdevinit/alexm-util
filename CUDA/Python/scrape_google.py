@@ -47,17 +47,18 @@ for org in data:
                 result.append(org[1])
                 result.append(span.text.encode('utf-8'))
                 results.append(result)
-        if len(page.find_all('span','st'))==0 and page.text.find("did not match any")==-1:
+        if page.text.find("detected unusual traffic")>-1:
             print("We've been caught!")
             break    
         wikiLink = None
+        firstHit = browser.find_elements_by_css_selector("h3.r a")[0]
         soupLinks = page.find_all('a')
         selLinks = browser.find_elements_by_tag_name('a')
         for i in range(len(soupLinks)):
             link = soupLinks[i]
             if "wikipedia" in link.text.lower():
                 wikiLink = selLinks[i]
-        if wikiLink:
+        if wikiLink and wikiLink!=firstHit:
             wikiLink.click()
             time.sleep(5)
             page = bs(browser.page_source)
@@ -71,6 +72,21 @@ for org in data:
                     result.append(org[1])
                     result.append(sentence.encode('utf-8'))
                     results.append(result)
+            browser.back()
+            time.sleep(5)
+            firstHit = browser.find_elements_by_css_selector("h3.r a")[0]
+        firstHit.click()
+        time.sleep(5)
+        page = bs(browser.page_source)
+        bodyText = " ".join([el.text for el in browser.find_elements_by_css_selector("p, span")]).replace("\n","|").replace(".","|").split("|")
+        for sentence in bodyText:
+            if len(sentence)>5:
+                result = []
+                result.append(org[0])
+                result.append("First hit")
+                result.append(org[1])
+                result.append(sentence.encode('utf-8'))
+                results.append(result)
     except:
         print("We've been caught!")
         break
