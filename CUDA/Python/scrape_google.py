@@ -10,7 +10,7 @@ from random import randint
 
 ##Parse Options
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default="./org_training_set.csv",
+parser.add_option("-i", "--input", dest="input", default="./org_training_set_sub.csv",
                 help="Output path. Default is /git/alexm-util/CUDA/Python/", metavar="PATH")
 parser.add_option("-o", "--output", dest="output", default="/git/alexm-util/CUDA/Python/",
                 help="Output path. Default is /git/alexm-util/CUDA/Python/", metavar="PATH")
@@ -37,7 +37,7 @@ for org in data:
         google_url = "https://www.google.co.uk/search?q="+urllib.quote(org[0])
         
         browser.get(google_url)
-        time.sleep(randint(60,120))
+        time.sleep(randint(5,7))
         page = bs(browser.page_source)
         for span in page.find_all('span','st'):
             if len(span.text)>5:
@@ -60,7 +60,7 @@ for org in data:
                 wikiLink = selLinks[i]
         if wikiLink and wikiLink!=firstHit:
             wikiLink.click()
-            time.sleep(5)
+            time.sleep(randint(5,7))
             page = bs(browser.page_source)
             soupPara = page.find_all("p")
             wikiText = re.sub('\[.*?\]','', " .".join([p.text for p in soupPara])).split(".")
@@ -73,7 +73,7 @@ for org in data:
                     result.append(sentence.encode('utf-8'))
                     results.append(result)
             browser.back()
-            time.sleep(randint(20,40))
+            time.sleep(randint(5,7))
             firstHit = browser.find_elements_by_css_selector("h3.r a")[0]
         firstHit.click()
         time.sleep(5)
@@ -88,7 +88,7 @@ for org in data:
                 result.append(sentence.encode('utf-8'))
                 results.append(result)
     except:
-        print("We've been caught!")
+        print("Something went wrong...")
         break
 
 browser.quit()
