@@ -9,14 +9,14 @@ def shared(data):
         np.asarray(data[1], dtype=theano.config.floatX), borrow=True)
     return shared_x, T.cast(shared_y, "int32")
 
-def shallow(training_data,validation_data,test_data,input_size,output_size,iterations=1,mini_batch_size=1,epochs=50):
+def shallow(training_data,validation_data,test_data,input_size,output_size,iterations=1,mini_batch_size=1,epochs=20):
     nets = []
     for j in xrange(iterations):
         net = Network([
             FullyConnectedLayer(n_in=input_size, n_out=100),
             SoftmaxLayer(n_in=100, n_out=output_size)], mini_batch_size)
         net.SGD(
-            training_data, epochs, mini_batch_size, 0.05, 
+            training_data, epochs, mini_batch_size, 0.1, 
             validation_data, test_data,0.01)
         nets.append(net)
     return nets
@@ -72,10 +72,15 @@ if __name__ == "__main__":
     import theano.tensor as T
     from random import shuffle
     from collections import Counter
+    from operator import itemgetter
+    import operator
+    import itertools
     
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="input", default = "./org_training_set.csv",
-                    help="Input folder", metavar="FILE")
+    parser.add_option("-i", "--input", dest="input", default = "./google_results_01.csv",
+                    help="Input file", metavar="FILE")
+    parser.add_option("-j", "--input2", dest="input2", default = "./org_training_set.csv",
+                    help="Input file 2", metavar="FILE")
     (options, args) = parser.parse_args()
     with open(options.input,'rb') as csvfile:
         reader = csv.reader(csvfile,delimiter=",",quotechar="\"")
@@ -85,11 +90,42 @@ if __name__ == "__main__":
             if not header:
                 header = row
             else:
-                if row[5]!="":
-                    raw_data.append((row[3],row[5]))
-    shuffle(raw_data)
-    docs = [tup[0] for tup in raw_data]
-    categories = [tup[1] for tup in raw_data]
+                if row[2]!="":
+                    obj = {}
+                    obj["org"]=row[0]
+                    obj["source"]=row[1]
+                    obj["class"]=row[2]
+                    obj["text"]=row[3]
+                    raw_data.append(obj)
+                    
+    #Group by org and source
+    getvals = operator.itemgetter('org','source')
+    raw_data.sort(key=getvals)
+    groups = []
+    for k, g in itertools.groupby(raw_data,getvals):
+        row = list(g)
+        #obj = {}
+        #obj['org'] = row[0]["org"]
+        #obj['source'] = row[0]["source"]
+        #obj['class'] = row[0]["class"]
+        #obj['text'] = ". ".join([el["text"] for el in row])
+        tup = (". ".join([el["text"] for el in row]),row[0]["class"])
+        groups.append(tup)
+    if options.input2:
+        with open(options.input2,'rb') as csvfile:
+            reader = csv.reader(csvfile,delimiter=",",quotechar="\"")
+            header = False
+            raw_data = []
+            for row in reader:
+                if not header:
+                    header = row
+                else:
+                    if row[5]!="":
+                        tup = (row[3],row[5])
+                        groups.append(tup)
+    shuffle(groups)
+    docs = [tup[0] for tup in groups]
+    categories = [tup[1] for tup in groups]
     uniqueCat = list(set(categories))
     numCat = [uniqueCat.index(cat) for cat in categories]
     vectorizer = TfidfVectorizer(min_df=1,stop_words="english",strip_accents="unicode",ngram_range=(1,1))
@@ -103,7 +139,7 @@ if __name__ == "__main__":
     test_data = shared((X[valIndex:],np.array(numCat)[valIndex:]))
     print("Features: {0}; Categories: {3}; Training set: {1}; Testing set: {2};".format(X.shape[1],int(.7*XLen),int(.15*XLen),len(uniqueCat)))
     print("")
-    nets = shallow(training_data,validation_data,test_data,X.shape[1],len(uniqueCat),1,1)
+    nets = shallow(training_data,validation_data,test_data,X.shape[1],len(uniqueCat),1)
     error_locations, erroneous_predictions = ensemble(nets,X[valIndex:].shape[0])
     result_analysis = []
     for i in range(len(nets[0].test_predictions)):
