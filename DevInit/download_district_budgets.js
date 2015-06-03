@@ -3,7 +3,7 @@ var request = require('request')
 ,fs = require('fs')
 ,Download = require('download')
 ,url = "http://budget.go.ug/budget/individual-lg-budgets-and-performance-reports?field_document_type_tid=32&field_lg_namrtree_tid=All&field_financial_year123_tid=503&field_periodewq_tid=All"
-,filepath="/s/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Uganda/2015-16/BFP/"
+,filepath="S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Uganda/2015-16/BFP/"
 ;
 console.log("Requesting first page...")
 request(url,parseFirstPage);
