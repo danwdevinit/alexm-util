@@ -9,15 +9,15 @@ def shared(data):
         np.asarray(data[1], dtype=theano.config.floatX), borrow=True)
     return shared_x, T.cast(shared_y, "int32")
 
-def shallow(training_data,validation_data,test_data,input_size,output_size,iterations=1,mini_batch_size=1,epochs=20):
+def shallow(training_data,validation_data,test_data,input_size,output_size,iterations=1,mini_batch_size=1,epochs=50):
     nets = []
     for j in xrange(iterations):
         net = Network([
             FullyConnectedLayer(n_in=input_size, n_out=100),
             SoftmaxLayer(n_in=100, n_out=output_size)], mini_batch_size)
         net.SGD(
-            training_data, epochs, mini_batch_size, 0.1, 
-            validation_data, test_data,0.01)
+            training_data, epochs, mini_batch_size, 0.05, 
+            validation_data, test_data,0.05)
         nets.append(net)
     return nets
 
@@ -44,7 +44,7 @@ def ensemble(nets,matSize):
                 test_x[i*net.mini_batch_size: (i+1)*net.mini_batch_size]
             })
         net.test_predictions = list(np.concatenate(
-            [net.test_mb_predictions(i) for i in xrange(matSize)]))
+            [net.test_mb_predictions(i) for i in xrange(matSize/net.mini_batch_size)]))
     all_test_predictions = zip(*[net.test_predictions for net in nets])
     def plurality(p): return Counter(p).most_common(1)[0][0]
     plurality_test_predictions = [plurality(p) 
@@ -123,6 +123,11 @@ if __name__ == "__main__":
                     if row[5]!="":
                         tup = (row[3],row[5])
                         groups.append(tup)
+    #Binary choice
+    #groups = [(tup[0],tup[1]) if tup[1]=="International NGO" else (tup[0],"Non-international NGO") for tup in groups]
+    #Three categories
+    keep = ["International NGO","National NGO","Local NGOs"]
+    groups = [(tup[0],tup[1]) if tup[1] in keep else (tup[0],"International NGO") for tup in groups if tup[1]!="Undefined"]
     shuffle(groups)
     docs = [tup[0] for tup in groups]
     categories = [tup[1] for tup in groups]
@@ -133,11 +138,11 @@ if __name__ == "__main__":
     X = Xmat.toarray()
     XLen = X.shape[0]
     trainIndex = int(.7*XLen)
-    valIndex = int(.7*XLen)+int(.15*XLen)
+    valIndex = trainIndex+int(.15*XLen)
     training_data = shared((X[:trainIndex],np.array(numCat)[:trainIndex]))
     validation_data = shared((X[trainIndex:valIndex],np.array(numCat)[trainIndex:valIndex]))
     test_data = shared((X[valIndex:],np.array(numCat)[valIndex:]))
-    print("Features: {0}; Categories: {3}; Training set: {1}; Testing set: {2};".format(X.shape[1],int(.7*XLen),int(.15*XLen),len(uniqueCat)))
+    print("Features: {0}; Categories: {3}; Training set: {1}; Testing set: {2};".format(X.shape[1],trainIndex,XLen-valIndex,len(uniqueCat)))
     print("")
     nets = shallow(training_data,validation_data,test_data,X.shape[1],len(uniqueCat),1)
     error_locations, erroneous_predictions = ensemble(nets,X[valIndex:].shape[0])
@@ -149,9 +154,9 @@ if __name__ == "__main__":
         else:
             tup = (numCat[valIndex:][i],1)
             result_analysis.append(tup)
-    print("Features: {0}; Categories: {3}; Training set: {1}; Testing set: {2};".format(X.shape[1],int(.7*XLen),int(.15*XLen),len(uniqueCat)))
+    print("Features: {0}; Categories: {3}; Training set: {1}; Testing set: {2};".format(X.shape[1],trainIndex,XLen-valIndex,len(uniqueCat)))
     print("")
-    print("Classification"+" "*9+" "*4+"Actual"+" "*4+"Correct"+" "*4+"Incorrect")
+    print("Classification"+" "*9+" "*4+"Actual"+" "*4+"Correct"+" "*4+"Percent")
     for i in range(len(uniqueCat)):
         name = uniqueCat[i]
         nameLen = len(name)
@@ -160,6 +165,6 @@ if __name__ == "__main__":
         corr_predicted = str(result_analysis.count((i,1)))
         cpLen = len(corr_predicted)
         incorr_predicted = str(result_analysis.count((i,0)))
-        print(name+" "*(27-nameLen)+actual+" "*(10-actualLen)+corr_predicted+" "*(11-cpLen)+incorr_predicted)
+        percent = str(round(100*(float(result_analysis.count((i,1)))/float(numCat[valIndex:].count(i)))))+"%"
+        print(name+" "*(27-nameLen)+actual+" "*(10-actualLen)+corr_predicted+" "*(11-cpLen)+percent)
     print("")
-    pdb.set_trace()
