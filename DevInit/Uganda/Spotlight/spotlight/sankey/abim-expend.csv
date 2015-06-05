@@ -1,36 +1,31 @@
 Revenue/Expenditure,Workplan,Budget Type,Revenue Source,Value
-Revenue,Education,Development,District Unconditional Grant - Non Wage,13449
-Revenue,Education,Recurrent,Transfer of District Unconditional Grant - Wage,57818
-Expenditure,Education,Recurrent,Wage,57818
-Revenue,Education,Development,Locally Raised Revenues,62551
-Revenue,Education,Recurrent,Multi-Sectoral Transfers to LLGs,163536
-Revenue,Education,Development,Roads Rehabilitation Grant,220344
-Expenditure,Education,Development,Domestic Development,296343
-Revenue,Education,Recurrent,Other Transfers from Central Government,325603
-Expenditure,Education,Recurrent,Non Wage,489139
-Revenue,Health,Recurrent,District Unconditional Grant - Non Wage,2131
-Revenue,Health,Recurrent,Locally Raised Revenues,7000
-Revenue,Health,Recurrent,Conditional transfers to School Inspection Grant,15413
-Revenue,Health,Recurrent,Transfer of District Unconditional Grant - Wage,48657
-Revenue,Health,Recurrent,Conditional Grant to PHC- Non wage,90040
-Revenue,Health,Recurrent,Conditional Grant to NGO Hospitals,119867
-Revenue,Health,Recurrent,Conditional Grant to District Hospitals,137577
-Revenue,Health,Recurrent,Conditional Transfers for Non Wage Technical Institut,162512
-Revenue,Health,Recurrent,Conditional Grant to Primary Education,209670
-Revenue,Health,Development,Donor Funding,259145
-Expenditure,Health,Development,Donor Development,259145
-Revenue,Health,Recurrent,Conditional Grant to Tertiary Salaries,272274
-Expenditure,Health,Recurrent,Non Wage,347484
-Revenue,Health,Development,Conditional Grant to PHC - development,370085
-Expenditure,Health,Development,Domestic Development,370085
-Revenue,Health,Development,Conditional Grant to SFG,385173
-Expenditure,Health,Development,Domestic Development,385173
-Revenue,Health,Recurrent,Conditional Grant to Secondary Education,470627
-Revenue,Health,Recurrent,Conditional Grant to Secondary Salaries,486792
-Expenditure,Health,Recurrent,Non Wage,867353
-Revenue,Health,Development,Donor Funding,1761902
-Expenditure,Health,Development,Donor Development,1761902
-Revenue,Health,Recurrent,Conditional Grant to PHC Salaries,1938193
-Expenditure,Health,Recurrent,Wage,1938193
-Revenue,Health,Recurrent,Conditional Grant to Primary Salaries,3520509
-Expenditure,Health,Recurrent,Wage,4328232
+Revenue,Health,Recurrent Revenues,Conditional Grant to District Hospitals,"137,577"
+Revenue,Health,Recurrent Revenues,Conditional Grant to NGO Hospitals,"119,867"
+Revenue,Health,Recurrent Revenues,Conditional Grant to PHC- Non wage,"90,040"
+Revenue,Health,Recurrent Revenues,Conditional Grant to PHC Salaries,"1,938,193"
+Revenue,Health,Recurrent Revenues,Unspent balances - Other Government Transfers,0
+Revenue,Health,Development Revenues,Conditional Grant to PHC - development,"370,085"
+Revenue,Health,Development Revenues,Donor Funding,"1,761,902"
+Revenue,Health,Development Revenues,Unspent balances - Conditional Grants,0
+Revenue,Health,Development Revenues,Unspent balances - donor,0
+Expenditure,Health,Recurrent Expenditure,Wage,"1,938,193"
+Expenditure,Health,Recurrent Expenditure,Non Wage,"347,484"
+Expenditure,Health,Development Expenditure,Domestic Development,"370,085"
+Expenditure,Health,Development Expenditure,Donor Development,"1,761,902"
+Revenue,Education,Recurrent Revenues,Conditional Grant to Primary Education,"209,670"
+Revenue,Education,Recurrent Revenues,Conditional Grant to Primary Salaries,"3,520,509"
+Revenue,Education,Recurrent Revenues,Conditional Grant to Secondary Education,"470,627"
+Revenue,Education,Recurrent Revenues,Conditional Grant to Secondary Salaries,"486,792"
+Revenue,Education,Recurrent Revenues,Conditional Grant to Tertiary Salaries,"272,274"
+Revenue,Education,Recurrent Revenues,Conditional Transfers for Non Wage Technical Institut,"162,512"
+Revenue,Education,Recurrent Revenues,Conditional transfers to School Inspection Grant,"15,413"
+Revenue,Education,Recurrent Revenues,District Unconditional Grant - Non Wage,"2,131"
+Revenue,Education,Recurrent Revenues,Locally Raised Revenues,"7,000"
+Revenue,Education,Recurrent Revenues,Transfer of District Unconditional Grant - Wage,"48,657"
+Revenue,Education,Development Revenues,Conditional Grant to SFG,"385,173"
+Revenue,Education,Development Revenues,Donor Funding,"259,145"
+Revenue,Education,Development Revenues,Unspent balances - Conditional Grants,0
+Expenditure,Education,Recurrent Expenditure,Wage,"4,328,232"
+Expenditure,Education,Recurrent Expenditure,Non Wage,"867,353"
+Expenditure,Education,Development Expenditure,Domestic Development,"385,173"
+Expenditure,Education,Development Expenditure,Donor Development,"259,145"
