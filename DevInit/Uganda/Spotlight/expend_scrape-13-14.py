@@ -123,7 +123,7 @@ def main():
                                 pageTexts.append(trytext(nxt))
                                 nxt = nxt.getnext()
                             if AorBs[0] in pageTexts or AorBs[1] in pageTexts or budgetTypes[0] in pageTexts or budgetTypes[1] in pageTexts or budgetTypes[2] in pageTexts or budgetTypes[3] in pageTexts:
-                                workplans = [elemText for elemText in pageTexts if elemText[:9]=="Workplan "]
+                                workplans = [elemText for elemText in pageTexts if elemText[:9]=="Workplan " and ":" in elemText]
                                 if len(workplans)>=1:
                                     workplan = workplans[0] if len(workplans)==1 else workplans[1]
                                     isTable = True
