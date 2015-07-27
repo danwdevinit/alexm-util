@@ -104,7 +104,7 @@ def main():
                     top = int(el.attrib['top'])
                     font = int(el.attrib['font'])
                     if not isTable:
-                        if trytext(el)=="Local Government Budget Framework Paper":
+                        if trytext(el) in ["Local Government Budget Framework Paper","Local Government Performance Contract FY 2015/16"]:
                             prev1 = el.getprevious()
                             prev2 = el.getprevious().getprevious()
                             vote = "" if prev1 is None else trytext(prev1)
@@ -128,7 +128,7 @@ def main():
                                     workplan = workplans[0] if len(workplans)==1 else workplans[1]
                                     isTable = True
                     else:
-                        if trytext(el)=="Local Government Budget Framework Paper":
+                        if trytext(el) in ["Local Government Budget Framework Paper","Local Government Performance Contract FY 2015/16"]:
                             prev1 = el.getprevious()
                             prev2 = el.getprevious().getprevious()
                             vote = "" if prev1 is None else trytext(prev1)
