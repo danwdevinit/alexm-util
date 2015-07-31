@@ -212,12 +212,14 @@ def main():
                                 rowArr.append(row[0]['text'])
                                 rights = [401,502,632]
                                 altRights = [415,516,646]
+                                altAltRights = [487,586,714]
                                 for r in range(len(rights)):
                                     right = rights[r]
                                     altRight = altRights[r]
+                                    altAltRight = altAltRights[r]
                                     textMatch = False
                                     for element in row:
-                                        if abs(element['right']-right)<15 or abs(element['right']-altRight)<15:
+                                        if abs(element['right']-right)<15 or abs(element['right']-altRight)<15 or abs(element['right']-altAltRight)<15:
                                             textMatch = element['text']
                                     if textMatch:
                                         rowArr.append(textMatch)
