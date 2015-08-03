@@ -3,14 +3,13 @@
 #install.packages("dplyr")
 #install.packages("httpuv")
 #install.packages("googlesheets")
-#install.packages("jsonlite")
-#install.packages("curl")
-library(jsonlite)
+#install.packages("rvest")
 library(rsdmx)
 library(plyr)
 suppressPackageStartupMessages(library("dplyr"))
 library(httpuv)
 library(googlesheets)
+library(rvest)
 
 #Configuration
 startYear <- "2000"
@@ -104,6 +103,7 @@ for(i in 1:length(years)){
   for(j in 1:length(agencies)){
     agency <- agencies[j]
     share <- shares[[agency]]
+    if(is.null(share)){share <- 1}
     totalUN <- sum(subset(toun, (RECIPIENT==agency & obsTime==year))$obsValue,na.rm=TRUE)
     for(k in 1:length(donors)){
       donor <- donors[k]
@@ -148,14 +148,19 @@ for(i in 1:length(years)){
     toEUpercent <- toEU / totalEU
     fromEUset <- subset(fromeu, (obsTime==year))
     recipients <- unique(fromEUset$RECIPIENT)
-    for(m in 1:length(recipients)){
-      recipient <- recipients[m]
-      fromEU <- subset(fromEUset, RECIPIENT==recipient)$obsValue
-      EUimputed <- toEUpercent * fromEU
-      cDONOR <- c(cDONOR,donor)
-      cRECIPIENT <- c(cRECIPIENT,recipient)
-      cobsTime <- c(cobsTime, year)
-      cobsValue <- c(cobsValue, EUimputed)
+    if(length(recipients)>0){
+      for(m in 1:length(recipients)){
+        recipient <- recipients[m]
+        fromEU <- subset(fromEUset, RECIPIENT==recipient)$obsValue
+        EUimputed <- toEUpercent * fromEU
+        cDONOR <- c(cDONOR,donor)
+        recipLen1 <- length(cRECIPIENT)
+        cRECIPIENT <- c(cRECIPIENT,recipient)
+        recipLen2 <- length(cRECIPIENT)
+        if(recipLen1==recipLen2){sample <- recipient; sample2 <- m;sample3 <- recipients}
+        cobsTime <- c(cobsTime, year)
+        cobsValue <- c(cobsValue, EUimputed)
+      }
     }
   }
 }
@@ -163,36 +168,76 @@ eufunding <- data.frame(cDONOR,cRECIPIENT,cobsTime,cobsValue)
 names(eufunding) <- c("DONOR","RECIPIENT","obsTime","obsValue")
 
 #Donor spending via the CERF####
-root <- "http://fts.unocha.org/api/v1/"
-ftsYears <- c(as.integer(startYear):as.integer(endYear))
-emergencies <- fromJSON(paste(root,"Emergency/year/",ftsYears[1],".json",sep=""))
-if(length(ftsYears)>1){
-  for(i in 2:length(ftsYears)){
-    year <- ftsYears[i]
-    emergencies <- rbind(emergencies, fromJSON(paste(root,"Emergency/year/",year,".json",sep="")))
-    print(paste("Pulling emergencies for year ==",year))
+if(as.integer(startYear)>=2006){cerfStart <- as.integer(startYear)}else{cerfStart <- 2006}
+CERFyears <- c(cerfStart:as.integer(endYear))
+fromUrl <- "https://cerf.unocha.org/admin/Webservices/SummaryFundingadv.aspx?type=country&year="
+toUrl <- "http://www.unocha.org/cerf/our-donors/funding/pledges-and-contributions/"
+
+if(exists("fromCERF")){rm(fromCERF)}
+if(exists("toCERF")){rm(toCERF)}
+
+for(i in 1:length(CERFyears)){
+  year <- CERFyears[i]
+  #From
+  page <- html(paste0(fromUrl,year))
+  fromCERFtmp <- page %>%
+    html_node("table") %>%
+    html_table(fill=TRUE)
+  fromCERFtmp <- fromCERFtmp[,c(2,3)]
+  fromCERFtmp$obsTime <- year
+  fromCERFtmp$DONOR <- "Central Emergency Response Fund"
+  names(fromCERFtmp) <- c("RECIPIENT","obsValue","obsTime","DONOR")
+  fromCERFtmp$obsValue <- as.numeric(gsub(",","", fromCERFtmp$obsValue))
+  fromCERFtmp <- subset(fromCERFtmp,!is.na(RECIPIENT))
+  fromCERFtmp <- subset(fromCERFtmp, !grepl("Country",RECIPIENT))
+  fromCERFtmp <- subset(fromCERFtmp, !grepl("Total",RECIPIENT))
+  fromCERFtmp <- subset(fromCERFtmp, !grepl(as.character(year),RECIPIENT))
+  if(exists("fromCERF")){fromCERF <- rbind(fromCERF,fromCERFtmp)}else{fromCERF <- fromCERFtmp}
+  #To
+  page <- html(paste0(toUrl,year))
+  toCERFtmp <- page %>%
+    html_node("table") %>%
+    html_table(fill=TRUE)
+  if("Donors" %in% names(toCERFtmp)){
+    toCERFtmp <- toCERFtmp[,c(2,3)]
+    toCERFtmp$obsTime <- year
+    toCERFtmp$RECIPIENT <- "Central Emergency Response Fund"
+    names(toCERFtmp) <- c("DONOR","obsValue","obsTime","RECIPIENT")
+    toCERFtmp$obsValue <- as.numeric(gsub(",","", toCERFtmp$obsValue))
+    toCERFtmp <- subset(toCERFtmp,!is.na(DONOR))
+    if(exists("toCERF")){toCERF <- rbind(toCERF,toCERFtmp)}else{toCERF <- toCERFtmp}
   }
 }
-contrib_emerg <- fromJSON(paste(root,"Contribution/emergency/",emergencies$id[1],".json",sep=""))
-for(i in 2:nrow(emergencies)){
-  nextEmerg <- tryCatch({
-    attempt <- fromJSON(paste(root,"Contribution/emergency/",emergencies$id[i],".json",sep=""))
-  },warning = function(war){
-    message(war)
-    message("\n")
-  },error = function(err){
-    message(err)
-    message("\n")
-  })
-  if(!is.null(nextEmerg)){contrib_emerg <- rbind(contrib_emerg,nextEmerg)}
-  print(paste("Pulling contributions for emergency ==",emergencies$id[i]))
-}
-for(i in 1:nrow(contrib_emerg)){
-  if(!is.na(contrib_emerg[i,]$recipient)){
-    if(contrib_emerg[i,]$recipient=="Bilateral (affected government)"){
-      contrib_emerg[i,]$recipient <- subset(emergencies,id==contrib_emerg[1,]$emergency_id)[1,]$country
+
+cDONOR <- c()
+cRECIPIENT <- c()
+cobsTime <- c()
+cobsValue <- c()
+years <- unique(toCERF$obsTime)
+donors <- unique(toCERF$DONOR)
+for(i in 1:length(years)){
+  year <- years[i]
+  totalCERF <- sum(subset(toCERF, (obsTime==year))$obsValue,na.rm=TRUE)
+  for(k in 1:length(donors)){
+    donor <- donors[k]
+    tocerf <- subset(toCERF, (DONOR==donor & obsTime==year))$obsValue
+    if(length(tocerf)<1){tocerf<-0}
+    toCERFpercent <- tocerf / totalCERF
+    messagE(toCERFpercent)
+    fromCERFset <- subset(fromCERF, (obsTime==year))
+    recipients <- unique(fromCERFset$RECIPIENT)
+    if(length(recipients)>0){
+      for(m in 1:length(recipients)){
+        recipient <- recipients[m]
+        fromCERFnum <- subset(fromCERFset, RECIPIENT==recipient)$obsValue
+        CERFimputed <- toCERFpercent * fromCERFnum
+        cDONOR <- c(cDONOR,donor)
+        cRECIPIENT <- c(cRECIPIENT,recipient)
+        cobsTime <- c(cobsTime, year)
+        cobsValue <- c(cobsValue, CERFimputed)
+      }
     }
   }
 }
-tocerf <- subset(contrib_emerg,recipient=="Central Emergency Response Fund" & status!="Pledge")
-fromcerf <- subset(contrib_emerg,donor=="Central Emergency Response Fund" & status!="Pledge")
+cerffunding <- data.frame(cDONOR,cRECIPIENT,cobsTime,cobsValue)
+names(cerffunding) <- c("DONOR","RECIPIENT","obsTime","obsValue")
