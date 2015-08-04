@@ -12,6 +12,7 @@ library(googlesheets)
 library(rvest)
 
 #Configuration
+setwd("C:/git/alexm-util/DevInit/R/GHA/")
 startYear <- "2000"
 endYear <- "2015"
 shares <- list(
@@ -193,6 +194,7 @@ for(i in 1:length(CERFyears)){
   fromCERFtmp <- subset(fromCERFtmp, !grepl("Total",RECIPIENT))
   fromCERFtmp <- subset(fromCERFtmp, !grepl(as.character(year),RECIPIENT))
   if(exists("fromCERF")){fromCERF <- rbind(fromCERF,fromCERFtmp)}else{fromCERF <- fromCERFtmp}
+  rm(page)
   #To
   page <- html(paste0(toUrl,year))
   toCERFtmp <- page %>%
@@ -207,6 +209,7 @@ for(i in 1:length(CERFyears)){
     toCERFtmp <- subset(toCERFtmp,!is.na(DONOR))
     if(exists("toCERF")){toCERF <- rbind(toCERF,toCERFtmp)}else{toCERF <- toCERFtmp}
   }
+  rm(page)
 }
 
 cDONOR <- c()
@@ -220,16 +223,17 @@ for(i in 1:length(years)){
   totalCERF <- sum(subset(toCERF, (obsTime==year))$obsValue,na.rm=TRUE)
   for(k in 1:length(donors)){
     donor <- donors[k]
-    tocerf <- subset(toCERF, (DONOR==donor & obsTime==year))$obsValue
-    if(length(tocerf)<1){tocerf<-0}
-    toCERFpercent <- tocerf / totalCERF
-    messagE(toCERFpercent)
+    donortoCERF <- subset(toCERF, (DONOR==donor & obsTime==year))$obsValue
+    if(length(donortoCERF)<1){donortoCERF<-0}
+    toCERFpercent <- donortoCERF / totalCERF
     fromCERFset <- subset(fromCERF, (obsTime==year))
     recipients <- unique(fromCERFset$RECIPIENT)
     if(length(recipients)>0){
       for(m in 1:length(recipients)){
         recipient <- recipients[m]
         fromCERFnum <- subset(fromCERFset, RECIPIENT==recipient)$obsValue
+        if(length(fromCERFnum)<1){fromCERFnum<-0}
+        if(is.na(fromCERFnum)){fromCERFnum<-0}
         CERFimputed <- toCERFpercent * fromCERFnum
         cDONOR <- c(cDONOR,donor)
         cRECIPIENT <- c(cRECIPIENT,recipient)
@@ -240,4 +244,35 @@ for(i in 1:length(years)){
   }
 }
 cerffunding <- data.frame(cDONOR,cRECIPIENT,cobsTime,cobsValue)
-names(cerffunding) <- c("DONOR","RECIPIENT","obsTime","obsValue")
+names(cerffunding) <- c("CERF_DONOR","CERF_RECIPIENT","obsTime","obsValue")
+
+#Convert cerffunding names... Would be nice to make this more robust in the future
+oecd_codes <- read.csv("oecd_codes.csv",na.strings="",stringsAsFactors=FALSE)
+cerffundingcurrent <- merge(cerffunding
+                     ,oecd_codes
+                     ,by.x = "CERF_DONOR"
+                     ,by.y = "cerf_names"
+                     )
+cerffundingcurrent <- cerffundingcurrent[,c(1:5)]
+names(cerffundingcurrent)[5] <- "DONOR"
+cerffundingcurrent <- merge(cerffundingcurrent
+                     ,oecd_codes
+                     ,by.x = "CERF_RECIPIENT"
+                     ,by.y = "cerf_names"
+                     )
+cerffundingcurrent <- cerffundingcurrent[,c(1:6)]
+names(cerffundingcurrent)[6] <- "RECIPIENT"
+
+####Calculate implied price deflator from OECD####
+#Use oecd_deflator.R
+#Unfortunately we only get 44 donors out of it...
+#Get the rest out of WDI...
+deflator <- read.csv("oecd_deflator.csv",na.strings="",as.is=TRUE)
+
+cerffundingconstant <- merge(
+    cerffundingcurrent
+    ,deflator
+    ,by=c("DONOR","obsTime")
+  )
+
+cerffundingconstant <- transform(cerffundingconstant,obsValue=obsValue.x*obsValue.y)
