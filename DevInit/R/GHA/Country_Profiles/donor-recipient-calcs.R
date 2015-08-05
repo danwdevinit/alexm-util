@@ -63,6 +63,7 @@ OECD <- function(url,concept=FALSE){
   }
 }
 
+message("Downloading tables")
 #Donor Bilateral HA####
 haUrl <- paste0("http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/TABLE2A/10200+10100+10010+71+86+64+62+30+66+35+57+45+93+65+63+61+88+55+85+89+10001+10002+130+142+133+136+139+189+10003+225+236+227+287+228+230+229+231+232+233+234+247+235+274+237+245+271+238+239+240+241+243+244+248+249+251+252+253+255+256+257+258+259+275+260+261+266+276+268+269+270+272+273+218+279+278+280+282+283+285+288+265+289+298+10004+10005+376+377+373+328+329+352+331+388+386+336+338+378+340+342+381+347+349+351+354+358+385+361+364+366+382+383+384+375+387+380+389+10006+425+428+431+434+437+440+443+446+451+454+457+460+463+489+498+10007+10008+725+728+730+732+740+735+738+742+745+748+751+752+753+755+761+764+765+769+789+10009+625+610+611+666+630+612+645+650+613+614+655+635+660+665+640+615+616+617+619+679+689+10011+530+540+543+546+549+552+555+558+561+566+573+576+550+580+589+798+10012+831+832+840+836+859+860+845+850+856+858+861+862+880+866+868+870+872+854+876+889+9998+10016+225+236+287+228+231+232+233+235+274+245+271+238+240+243+244+249+251+252+253+255+256+259+260+266+268+269+272+273+279+278+282+283+285+288+349+728+745+765+625+666+630+635+660+580+836+880+866+872+854+10017+248+279+265+740+614+615+10018+57+93+85+142+136+230+229+234+247+241+261+280+352+342+347+351+364+428+446+451+738+753+755+769+610+612+645+614+665+640+616+617+543+573+550+832+859+860+862+880+868+870+10019+71+86+64+66+65+63+55+130+133+139+227+239+257+275+276+270+218+376+377+352+336+338+378+340+381+354+358+385+366+382+383+384+425+431+434+437+440+454+457+460+463+730+751+764+611+613+655+616+540+543+549+555+831+832+859+845+856+861+870+876+10025+62+30+35+45+61+258+376+373+328+329+331+388+386+361+382+375+387+443+725+732+735+742+748+761+530+546+552+558+561+566+576+840+850+858+105+10024+88+89+189+237+289+298+380+389+489+498+752+789+650+619+679+689+589+798+889+9998+10030+236+287+228+229+231+232+233+234+247+235+271+238+240+241+243+244+251+252+253+255+256+259+260+266+268+269+272+273+278+282+283+285+288+349+351+364+428+446+625+614+10201+66+93+227+287+228+231+232+238+249+253+255+260+266+279+280+285+288+265+428+451+745+753+625+610+611+630+613+614+660+615+616+617+10202+230+233+244+257+268+270+376+377+328+329+352+338+378+340+381+349+354+385+382+383+384+375+446+457+761+765+655+831+832+836+859+860+845+856+861+862+880+866+870+872+854+10203+64+57+142+133+225+287+228+229+231+232+233+234+247+235+271+238+243+244+248+251+252+253+255+256+260+261+266+272+273+279+278+283+285+265+349+740+765+625+666+635+660+665+640+543+573+550+580+836+859+860+866+872+10150+913+914+916+915+910+906+917+918+919+901+905+904+909+912+988+903+907+902+927+989+816+975+900+959+974+967+963+964+966+10013+71+72+68+82+75+83+84+76+77+69+101+10014+86+93+85+610+611+612+613+614+615+616+617+87+102+10023+71+86+93+85+610+611+612+613+614+615+616+617+72+68+82+75+83+84+76+77+69+101+87+102+79+10040+225+236+227+287+228+230+229+231+232+233+234+247+235+274+245+271+238+239+240+241+243+244+248+249+251+252+253+255+256+257+259+275+260+261+266+268+269+270+272+273+278+280+282+283+285+288+265+377+328+329+352+378+340+381+349+354+382+383+384+375+446+457+832+836+862+880+866+870+872+854+10041+287+230+232+240+244+255+256+260+269+10152+996+990+878+98+1106+10026+10027.20005+20001+801+1+2+301+68+3+18+4+5+40+20+21+6+701+742+22+7+820+8+76+9+69+61+50+10+11+12+302+20002+1012+913+914+921+916+953+906+1011+1013+990+918+1311+811+1313+1312+944+901+905+912+988+903+958+976+812+104+951+978+971+959+948+974+967+963+923+964+960+966+928+20018+20006+72+62+30+82+75+546+552+83+70+84+45+77+87+566+732+764+55+576+20007+21600+1601+20003+301+4+5+6+701+12+302+20011+1+2+68+3+18+4+5+40+21+6+22+7+76+9+69+61+50+10+12+20004+1+2+68+3+18+4+5+40+21+6+22+7+76+9+69+61+50+10+12+918.1.216.D/all?startTime=",startYear,"&endTime=",endYear)
 ha <- OECD(haUrl)
@@ -91,6 +92,7 @@ fromeu <- OECD(fromeuUrl)
 fromeu <- subset(fromeu, !grepl(", Total",RECIPIENT))
 
 #To UN Imputed####
+message("Calculating UN imputed")
 cDONOR <- c()
 cRECIPIENT <- c()
 cAGENCY <- c()
@@ -133,6 +135,7 @@ names(unFunding) <- c("DONOR","RECIPIENT","AGENCY","obsTime","obsValue")
 allunfunding <- ddply(unFunding,.(DONOR,RECIPIENT,obsTime),summarize,obsValue=sum(obsValue,na.rm=TRUE))
 
 #Donor spending via EU####
+message("Donor spending via EU")
 cDONOR <- c()
 cRECIPIENT <- c()
 cobsTime <- c()
@@ -169,6 +172,7 @@ eufunding <- data.frame(cDONOR,cRECIPIENT,cobsTime,cobsValue)
 names(eufunding) <- c("DONOR","RECIPIENT","obsTime","obsValue")
 
 #Donor spending via the CERF####
+message("Donor spending via the CERF")
 if(as.integer(startYear)>=2006){cerfStart <- as.integer(startYear)}else{cerfStart <- 2006}
 CERFyears <- c(cerfStart:as.integer(endYear))
 fromUrl <- "https://cerf.unocha.org/admin/Webservices/SummaryFundingadv.aspx?type=country&year="
@@ -268,7 +272,8 @@ names(cerffundingcurrent)[6] <- "RECIPIENT"
 #Unfortunately we only get 44 donors out of it...
 #Get the rest out of WDI...
 deflator <- read.csv("oecd_deflator.csv",na.strings="",as.is=TRUE)
-
+keep <- c(3,4,5,6)
+cerffundingcurrent <- cerffundingcurrent[,keep]
 cerffundingconstant <- merge(
     cerffundingcurrent
     ,deflator
@@ -276,3 +281,39 @@ cerffundingconstant <- merge(
   )
 
 cerffundingconstant <- transform(cerffundingconstant,obsValue=obsValue.x*obsValue.y)
+keep <- c("DONOR","RECIPIENT","obsTime","obsValue")
+cerffundingconstant <- cerffundingconstant[keep]
+cerffundingconstant <- cerffundingconstant[complete.cases(cerffundingconstant),]
+cerffundingconstant <- transform(cerffundingconstant,obsValue=obsValue/1000000)
+
+#Let's add everything together
+ha$obsValue <- as.numeric(ha$obsValue)
+allunfunding$obsValue <- as.numeric(allunfunding$obsValue)
+eufunding$obsValue <- as.numeric(eufunding$obsValue)
+cerffundingconstant$obsValue <- as.numeric(cerffundingconstant$obsValue)
+
+donorRecipientCalc <- merge(
+  ha
+  ,allunfunding
+  ,by=c("DONOR","RECIPIENT","obsTime")
+  ,suffixes=c(".ha",".un")
+  ,all.x=TRUE
+)
+EuCerf <- merge(
+  eufunding
+  ,cerffundingconstant
+  ,by=c("DONOR","RECIPIENT","obsTime")
+  ,suffixes=c(".eu",".cerf")
+  ,all=TRUE
+)
+donorRecipientCalc <- merge(
+  donorRecipientCalc
+  ,EuCerf
+  ,by=c("DONOR","RECIPIENT","obsTime")
+  ,suffixes=c(".ha2",".ha3")
+  ,all.x=TRUE
+)
+add <- c("obsValue.ha","obsValue.un","obsValue.eu","obsValue.cerf")
+add <- which(names(donorRecipientCalc) %in% add)
+donorRecipientCalc <- transform(donorRecipientCalc,obsValue.all=rowSums(donorRecipientCalc[,c(add)],na.rm=TRUE))
+write.csv(donorRecipientCalc,"donor-recipient-calc.csv",na="",row.names=FALSE)
