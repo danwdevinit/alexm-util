@@ -297,7 +297,7 @@ donorRecipientCalc <- merge(
   ,allunfunding
   ,by=c("DONOR","RECIPIENT","obsTime")
   ,suffixes=c(".ha",".un")
-  ,all.x=TRUE
+  ,all=TRUE
 )
 EuCerf <- merge(
   eufunding
@@ -311,9 +311,12 @@ donorRecipientCalc <- merge(
   ,EuCerf
   ,by=c("DONOR","RECIPIENT","obsTime")
   ,suffixes=c(".ha2",".ha3")
-  ,all.x=TRUE
+  ,all=TRUE
 )
 add <- c("obsValue.ha","obsValue.un","obsValue.eu","obsValue.cerf")
 add <- which(names(donorRecipientCalc) %in% add)
 donorRecipientCalc <- transform(donorRecipientCalc,obsValue.all=rowSums(donorRecipientCalc[,c(add)],na.rm=TRUE))
+keep <- c("DONOR","RECIPIENT","obsTime","obsValue.ha","obsValue.un","obsValue.eu","obsValue.cerf","obsValue.all")
+donorRecipientCalc <- donorRecipientCalc[keep]
+donorRecipientCalc$REFERENCEPERIOD <- ha$REFERENCEPERIOD[[1]]
 write.csv(donorRecipientCalc,"donor-recipient-calc.csv",na="",row.names=FALSE)
