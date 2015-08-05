@@ -319,4 +319,5 @@ donorRecipientCalc <- transform(donorRecipientCalc,obsValue.all=rowSums(donorRec
 keep <- c("DONOR","RECIPIENT","obsTime","obsValue.ha","obsValue.un","obsValue.eu","obsValue.cerf","obsValue.all")
 donorRecipientCalc <- donorRecipientCalc[keep]
 donorRecipientCalc$REFERENCEPERIOD <- ha$REFERENCEPERIOD[[1]]
+donorRecipientCalc <- donorRecipientCalc[complete.cases(donorRecipientCalc$DONOR,donorRecipientCalc$RECIPIENT,donorRecipientCalc$obsTime),]
 write.csv(donorRecipientCalc,"donor-recipient-calc.csv",na="",row.names=FALSE)
