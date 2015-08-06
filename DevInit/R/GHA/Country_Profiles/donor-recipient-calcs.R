@@ -13,7 +13,7 @@ library(rvest)
 
 #Configuration
 setwd("C:/git/alexm-util/DevInit/R/GHA/Country_Profiles")
-startYear <- "2000"
+startYear <- "1990"
 endYear <- "2015"
 shares <- list(
   WFP = 0.913364375831843

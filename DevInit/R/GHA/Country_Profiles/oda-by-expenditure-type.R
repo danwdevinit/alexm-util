@@ -10,7 +10,7 @@ library(httpuv)
 library(googlesheets)
 
 #Configuration
-startYear <- "2008"
+startYear <- "2012"
 endYear <- "2012"
 includeEUinRecipientTotals <- TRUE
 
