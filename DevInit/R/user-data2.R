@@ -17,12 +17,14 @@ filenames <- list.files("C:/git/digital-platform/country-year/", pattern="*.csv"
 #Define references and mapping
 refPath = "C:/git/digital-platform/reference/"
 conceptPath = "C:/git/digital-platform/concepts.csv"
-concepts <- read.csv(conceptPath, header = TRUE,sep=",",na.strings="",check.names=FALSE)
+concepts <- read.csv(conceptPath, header = TRUE,sep=",",na.strings="",check.names=FALSE,as.is=TRUE)
 refMap <- list("domestic"="budget-type,domestic-budget-level,domestic-sources,currency,fiscal-year")
 refMap <- c(refMap,"domestic-sectors"="budget-type,domestic-budget-level,domestic-sources,currency,fiscal-year")
 refMap <- c(refMap,"domestic-netlending"="budget-type,domestic-budget-level,domestic-sources,currency,fiscal-year")
 refMap <- c(refMap,"intl-flows-donors"="flow-type,flow-name")
 refMap <- c(refMap,"intl-flows-recipients"="flow-type,flow-name")
+refMap <- c(refMap,"intl-flows-donors-wide"="flow-type,flow-name")
+refMap <- c(refMap,"intl-flows-recipients-wide"="flow-type,flow-name")
 refMap <- c(refMap,"largest-intl-flow"="largest-intl-flow")
 refMap <- c(refMap,"fragile-states"="fragile-states")
 refMap <- c(refMap,"long-term-debt"="debt-flow,destination-institution-type,creditor-type,creditor-institution,financing-type")
@@ -31,6 +33,8 @@ refMap <- c(refMap,"oof"="sector,oof-bundle,channel")
 refMap <- c(refMap,"fdi-out"="financing-type")
 refMap <- c(refMap,"dfis-out-dev"="financing-type")
 refMap <- c(refMap,"ssc-out"="financing-type")
+#Uganda
+refMap <- c(refMap,"uganda-finance"="uganda-budget-level")
 
 #Iterate through files, reading them in
 for (i in 1:length(filenames))
@@ -41,6 +45,90 @@ for (i in 1:length(filenames))
   basename = substr(basename(filenames[i]), 1, nchar(basename(filenames[i])) - 4)
   fwd = paste(wd,basename,sep="/")
   
+  #Add country names
+  entities <- read.csv(paste(refPath,"entity.csv",sep="/"),as.is=TRUE,na.strings="")[c("id","name")]
+  districts <- read.csv(paste(refPath,"uganda-district-entity.csv",sep="/"),as.is=TRUE,na.strings="")[c("id","name")]
+  names(districts) <- c("id","entity-name")
+  names(entities) <- c("id","entity-name")
+  if("id" %in% names){
+    data <- merge(
+      entities
+      ,data
+      ,by=c("id")
+      ,all.y=TRUE
+    ) 
+  }
+  else{
+    if("id-to" %in% names){
+      names(entities) <- c("id-to","entity-to-name")
+      data <- merge(
+        entities
+        ,data
+        ,by=c("id-to")
+        ,all.y=TRUE
+      ) 
+    }
+    if("id-from" %in% names){
+      names(entities) <- c("id-from","entity-from-name")
+      data <- merge(
+        entities
+        ,data
+        ,by=c("id-from")
+        ,all.y=TRUE
+      ) 
+    }
+  }
+  #Special Uganda-data case
+  if(substr(basename,1,7)=="uganda-"){
+    data <- data[,-which(names(data) %in% c("entity-name"))]
+    if("id" %in% names){
+      data <- merge(
+        districts
+        ,data
+        ,by=c("id")
+        ,all.y=TRUE
+      ) 
+    }
+  }
+  
+  #Try and sort by entity name, failing that: id, failing that: year, failing that, the first column.
+  names <- colnames(data)
+  if("entity-name" %in% names){
+    if("year" %in% names){
+      data <- data[order(data["entity-name"],data$year),]
+    }else{
+      data <- data[order(data["entity-name"]),]
+    }
+  }
+  else if("entity-to-name" %in% names){
+    if("year" %in% names){
+      data <- data[order(data["entity-to-name"],data$year),]
+    }else{
+      data <- data[order(data["entity-to-name"]),]
+    }
+  }
+  else if("entity-from-name" %in% names){
+    if("year" %in% names){
+      data <- data[order(data["entity-from-name"],data$year),]
+    }else{
+      data <- data[order(data["entity-from-name"]),]
+    }
+  }
+  else if("id" %in% names){
+    if("year" %in% names){
+      data <- data[order(data["id"],data$year),]
+    }else{
+      data <- data[order(data["id"]),]
+    }
+  }
+  else{
+    if("year" %in% names){
+      data <- data[data$year,]
+    }else{
+      data <- data[order(data[,1]),]
+    }
+  }
+  
   #Create a folder for each indicator with sub-csv dir
   dir.create(fwd)
   setwd(fwd)
@@ -48,76 +136,116 @@ for (i in 1:length(filenames))
   dir.create(cwd)
   
   #Create workbook
-  wb <- list()
+  wb <- createWorkbook(basename)
   
-  #Fill meta-data sheet/csv
+  #Start notes sheet/csv
   concept = concepts[which(concepts$id==basename),]
-  wideConcept <- t(concept)
-  wideConcept <- data.frame(rownames(wideConcept),wideConcept,row.names=NULL) 
-  wb <- list(wb,"Metadata"=wideConcept)
-  
-  write.table(wideConcept,paste0(cwd,"/",basename,"-metaData",".csv"),col.names=FALSE,row.names=FALSE,na="",sep=",")
-  
-  #Fill notes sheet/csv
+  notesList <- c(
+    paste("Name:",basename)
+    ,paste("Description:",concept$description)
+    ,paste("Units of measure:",concept$uom)
+    ,paste("Source:",concept[,"source"])
+    ,paste("Source-link:",concept[,"source-link"])
+    ,""
+    ,"Notes:"
+    ,if(!is.na(concept[,"calculation"])) c("",concept[,"calculation"],"") else ""
+    )
   interpolated <- concept$interpolated[1]
-  notesList <- c(basename,"")
-  baseLength <- length(notesList)
   if(!is.na(interpolated)){
     notesList<-c(
       notesList
-      ,"Note: This data contains interpolated values. The interpolated values are typically contained in a column called 'value,' while the uninterpolated values are stored in 'original-value.'"
+      ,"This data contains interpolated values. The interpolated values are typically contained in a column called 'value,' while the uninterpolated values are stored in 'original-value.'"
       ,""
     )
   }
-  notesDf <- data.frame(notesList)
-  if(length(notesList)>baseLength){
-    wb <- list(wb,"Notes"=notesDf)
-    write.table(notesDf,paste0(cwd,"/",basename,"-notes",".csv"),col.names=FALSE,row.names=FALSE,na="",sep=",")
+  if("estimate" %in% names){
+    notesList<-c(
+      notesList
+      ,"This data contains information that may be a projection. Projected datapoints are indicated by a value of TRUE in the 'estimate' column. The year at which projections begin varies from country to country."
+      ,""
+    )
+  }
+  if("value-ncu" %in% names){
+    notesList<-c(
+      notesList
+      ,"This data contains information that has been converted from current native currency units (NCU) to constant US Dollars. The NCU values are contained in the 'value-ncu' column, while the converted and deflated values are contained in the 'value' column."
+      ,""
+    )
+  }
+  addWorksheet(wb,"Notes")
+  
+  #Copy the data
+  write.csv(data,paste0(cwd,"/",basename,".csv"),row.names=FALSE,na="")
+  addWorksheet(wb,"Data")
+  writeData(wb,sheet="Data",data,colNames=TRUE,rowNames=FALSE)    
+  
+  #If we have an ID, a year to widen it b and it's simple, provide wide
+  if("id" %in% names & "year" %in% names & concept$type=="simple")  {
+    if("entity-name" %in% names){
+      wdata <- reshape(data[c("id","entity-name","year","value")],idvar=c("id","entity-name"),timevar="year",direction="wide")
+    }else{
+      wdata <- reshape(data[c("id","year","value")],idvar=c("id"),timevar="year",direction="wide")
+    }
+    wnames <- names(wdata)
+    for(j in 1:length(wnames)){
+      wname = wnames[j]
+      if(substr(wname,1,5)=="value"){
+        names(wdata)[names(wdata) == wname] <- substr(wname,7,nchar(wname))
+      }
+    }
+    notesList<-c(
+      notesList
+      ,"On the 'Data-wide' sheet, we have provided the indicator in a wide format. The values you see listed there are only from the 'value' column."
+      ,""
+    )
+    addWorksheet(wb,"Data-wide")
+    writeData(wb,sheet="Data-wide",wdata,colNames=TRUE,rowNames=FALSE)  
+    write.csv(wdata,paste(cwd,"/",basename,"-wide",".csv",sep=""),row.names=FALSE,na="")
   }
   
+  #Reference
+  #Copy entity.csv
+  file.copy(paste(refPath,"entity.csv",sep=""),paste(cwd,"entity.csv",sep="/"))
+  if(basename %in% names(refMap)){
+    refNames = strsplit(refMap[[basename]],",")[[1]]
+    notesList<-c(
+      notesList
+      ,"The following tabs have been included for reference purposes:"
+      ,paste(refNames,collapse=", ")
+      ,""
+    )
+    for(j in 1:length(refNames)){
+      refBaseName = refNames[j]
+      refName = paste(refPath,refBaseName,".csv",sep="")
+      #Copy the reference files
+      file.copy(refName,paste(cwd,"/",refBaseName,".csv",sep=""))
+      refData <- read.csv(refName,as.is=TRUE,na.strings="")
+      addWorksheet(wb,refBaseName)
+      writeData(wb,sheet=refBaseName,refData,colNames=TRUE,rowNames=FALSE)   
+    }
+  }
   
-  #Copy the original CSV
-  file.copy(filenames[i],paste0(cwd,"/",basename,".csv"))
-  wb <- list(wb,"Data"=data)
+  #Cap off notes sheet
+  notesList<-c(
+    notesList
+    ,""
+    ,""
+    ,"The following is data downloaded from Development Initiative's Datahub: http://devinit.org/data"
+    ,"It is provided on an as-is basis under an open-use license."
+    ,"For concerns, questions, or corrections: please email info@devinit.org"
+    ,"Copyright Development Initiatives Poverty Research Ltd. 2015"
+  )
+  notesDf <- data.frame(notesList)
+  writeData(wb,sheet="Notes",notesDf,colNames=FALSE,rowNames=FALSE)  
+  write.table(notesDf,paste0(cwd,"/",basename,"-notes",".csv"),col.names=FALSE,row.names=FALSE,na="",sep=",")
+  saveWorkbook(wb, paste0(basename,".xlsx"), overwrite = TRUE)
   
-  
-  #If we have an ID and a year to widen it by, provide wide
-#   if("id" %in% names & "year" %in% names)  {
-#     wdata <- reshape(data,idvar="id",timevar="year",direction="wide")
-#     write.csv(wdata,paste(basename,"-wide",".csv",sep=""),row.names=FALSE,na="")
-#   }
-#   
-#   #Reference folder
-#   rwd = paste(fwd,"reference",sep="/")
-#   dir.create(rwd)
-#   setwd(rwd)
-#   #Copy entity.csv
-#   file.copy(paste(refPath,"entity",".csv",sep=""),"entity.csv")
-#   #Provide meta-data from concepts.csv
-#   #write.csv(concept,paste(basename,"-metadata-wide",".csv",sep=""),row.names=FALSE,na="")
-#   write.table(t(concept),paste(basename,"-metadata",".csv",sep=""),col.names=FALSE,na="",sep=",")
-#   if(basename %in% names(refMap)){
-#     refNames = strsplit(refMap[[basename]],",")
-#     for(j in 1:length(refNames)){
-#       refBaseName = refNames[[j]]
-#       refName = paste(refPath,refBaseName,".csv",sep="")
-#       #Copy the reference files
-#       file.copy(refName,paste(refBaseName,".csv",sep=""))
-#     }
-#   }
-#addDataFrame(x=wideConcept,sheet=meta,col.names=FALSE,row.names=FALSE,showNA=FALSE)
-#addDataFrame(x=notesDf,sheet=notes,col.names=FALSE,row.names=FALSE,showNA=FALSE)
-#addDataFrame(x=data,sheet=dataSheet,row.names=FALSE,showNA=FALSE)
-  write.xlsx(wb
-             ,paste0(basename,".xlsx")
-             ,colNames=c(FALSE,FALSE,FALSE)
-             ,rowNames=c(FALSE,FALSE,FALSE)
-             )
+  #Go back to user-data folder
   setwd(wd)
 }
 #Zip em up
-# filenames <- list.files(wd, pattern="/*", full.names=FALSE)
-# for(i in 1:length(filenames)){
-#   files <- dir(filenames[i],full.names=TRUE)
-#   zip(zipfile = filenames[i],files=files)
-# }
+  filenames <- list.files(wd, pattern="/*", full.names=FALSE)
+  for(i in 1:length(filenames)){
+    files <- dir(filenames[i],full.names=TRUE)
+    zip(zipfile = filenames[i],files=files)
+  }
