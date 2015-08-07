@@ -10,8 +10,8 @@ library(httpuv)
 library(googlesheets)
 
 #Configuration
-startYear <- "2012"
-endYear <- "2012"
+startYear <- "2000"
+endYear <- "2015"
 includeEUinRecipientTotals <- TRUE
 
 #OECD Func####
@@ -209,57 +209,55 @@ recipBySector <- recipBySector[order(recipBySector$RECIPIENT),]
 names(recipBySector)[which(names(recipBySector)=="total")] <- timeVarName
 recipBySector[which(recipBySector$RECIPIENT=="Côte d'Ivoire"),]$RECIPIENT <- "Cote d'Ivoire"
 
-####Google Sheets####
-#E.g Japan
-#japan <- gs_key("18mrO3VKOBKeeF_fi-P87xFSN_oNoVTVOn5_ftrIMGOw")
-#update <- donorBySector[which(donorBySector$DONOR=="Japan"),][,c(2,3)]
-#gs_edit_cells(japan,ws="Graph 2", input=update, col_names=FALSE)
-#gs_edit_cells(japan,ws="Graph 2", input=paste0("Total official development assistance (ODA) expenditure type, ",startYear,"-",endYear," (US$m, constant 2012 prices)"),anchor="B8")
+#Let's save static files...
+setwd("C:/git/alexm-util/DevInit/R/GHA/Country_Profiles")
+write.csv(recipBySector,"recipBySector.csv",na="",row.names=FALSE)
+write.csv(donorBySector,"donorBySector.csv",na="",row.names=FALSE)
 
 #Automatic example
-uniqueDonors <- unique(donorBySector$DONOR)
-uniqueRecips <- unique(recipBySector$RECIPIENT)
-for(i in 1:length(uniqueDonors)){
-  uniqueDonor <- uniqueDonors[i]
-  update <- donorBySector[which(donorBySector$DONOR==uniqueDonor),][,c(2,3)]
-  sheet <- tryCatch({
-      attempt <- gs_title(uniqueDonor)
-    },warning = function(war){
-      message(war)
-      message("\n")
-    },error = function(err){
-      message(err)
-      message("\n")
-    })
-  if(!is.null(sheet)){
-    #It found the sheet, we can write it
-    gs_edit_cells(sheet,ws="Graph 2", input=update, col_names=FALSE)
-    gs_edit_cells(sheet,ws="Graph 2", input=paste0("Total official development assistance (ODA) expenditure type, ",startYear,"-",endYear," (US$m, constant 2012 prices)"),anchor="B8")
-    rm(sheet)
-    rm(attempt)
-  }else{
-    #We didn't find it. Create a new one?
-  }
-}
-for(i in 1:length(uniqueRecips)){
-  uniqueRecip <- uniqueRecips[i]
-  update <- recipBySector[which(recipBySector$RECIPIENT==uniqueRecip),][,c(2,3)]
-  sheet <- tryCatch({
-      attempt <- gs_title(uniqueRecip)
-    },warning = function(war){
-      message(war)
-      message("\n")
-    },error = function(err){
-      message(err)
-      message("\n")
-    })
-  if(!is.null(sheet)){
-    #It found the sheet, we can write it
-    gs_edit_cells(sheet,ws="Graph 2", input=update, col_names=FALSE)
-    gs_edit_cells(sheet,ws="Graph 2", input=paste0("Total official development assistance (ODA) expenditure type, ",startYear,"-",endYear," (US$m, constant 2012 prices)"),anchor="B9")
-    rm(sheet)
-    rm(attempt)
-  }else{
-    #We didn't find it. Create a new one?
-  }
-}
+# uniqueDonors <- unique(donorBySector$DONOR)
+# uniqueRecips <- unique(recipBySector$RECIPIENT)
+# for(i in 1:length(uniqueDonors)){
+#   uniqueDonor <- uniqueDonors[i]
+#   update <- donorBySector[which(donorBySector$DONOR==uniqueDonor),][,c(2,3)]
+#   sheet <- tryCatch({
+#       attempt <- gs_title(uniqueDonor)
+#     },warning = function(war){
+#       message(war)
+#       message("\n")
+#     },error = function(err){
+#       message(err)
+#       message("\n")
+#     })
+#   if(!is.null(sheet)){
+#     #It found the sheet, we can write it
+#     gs_edit_cells(sheet,ws="Graph 2", input=update, col_names=FALSE)
+#     gs_edit_cells(sheet,ws="Graph 2", input=paste0("Total official development assistance (ODA) expenditure type, ",startYear,"-",endYear," (US$m, constant 2012 prices)"),anchor="B8")
+#     rm(sheet)
+#     rm(attempt)
+#   }else{
+#     #We didn't find it. Create a new one?
+#   }
+# }
+# for(i in 1:length(uniqueRecips)){
+#   uniqueRecip <- uniqueRecips[i]
+#   update <- recipBySector[which(recipBySector$RECIPIENT==uniqueRecip),][,c(2,3)]
+#   sheet <- tryCatch({
+#       attempt <- gs_title(uniqueRecip)
+#     },warning = function(war){
+#       message(war)
+#       message("\n")
+#     },error = function(err){
+#       message(err)
+#       message("\n")
+#     })
+#   if(!is.null(sheet)){
+#     #It found the sheet, we can write it
+#     gs_edit_cells(sheet,ws="Graph 2", input=update, col_names=FALSE)
+#     gs_edit_cells(sheet,ws="Graph 2", input=paste0("Total official development assistance (ODA) expenditure type, ",startYear,"-",endYear," (US$m, constant 2012 prices)"),anchor="B9")
+#     rm(sheet)
+#     rm(attempt)
+#   }else{
+#     #We didn't find it. Create a new one?
+#   }
+# }

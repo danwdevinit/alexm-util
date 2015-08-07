@@ -145,8 +145,7 @@ for (i in 1:length(filenames))
     ,paste("Description:",concept$description)
     ,paste("Units of measure:",concept$uom)
     ,paste("Source:",concept[,"source"])
-    ,paste("Source-link:",concept[,"source-link"])
-    ,""
+    ,if(!is.na(concept[,"source-link"])) c(paste("Source-link:",concept[,"source-link"]),"") else ""
     ,"Notes:"
     ,if(!is.na(concept[,"calculation"])) c("",concept[,"calculation"],"") else ""
     )
@@ -179,8 +178,8 @@ for (i in 1:length(filenames))
   addWorksheet(wb,"Data")
   writeData(wb,sheet="Data",data,colNames=TRUE,rowNames=FALSE)    
   
-  #If we have an ID, a year to widen it b and it's simple, provide wide
-  if("id" %in% names & "year" %in% names & concept$type=="simple")  {
+  #If we have an ID, a year to widen it by and it's simple, provide wide
+  if("id" %in% names & "year" %in% names & "value" %in% names & concept$type=="simple")  {
     if("entity-name" %in% names){
       wdata <- reshape(data[c("id","entity-name","year","value")],idvar=c("id","entity-name"),timevar="year",direction="wide")
     }else{
@@ -195,12 +194,35 @@ for (i in 1:length(filenames))
     }
     notesList<-c(
       notesList
-      ,"On the 'Data-wide' sheet, we have provided the indicator in a wide format. The values you see listed there are only from the 'value' column."
+      ,"On the 'Data-wide-value' sheet, we have provided the indicator in a wide format. The values you see listed there are from the 'value' column."
       ,""
     )
-    addWorksheet(wb,"Data-wide")
-    writeData(wb,sheet="Data-wide",wdata,colNames=TRUE,rowNames=FALSE)  
-    write.csv(wdata,paste(cwd,"/",basename,"-wide",".csv",sep=""),row.names=FALSE,na="")
+    addWorksheet(wb,"Data-wide-value")
+    writeData(wb,sheet="Data-wide-value",wdata,colNames=TRUE,rowNames=FALSE)  
+    write.csv(wdata,paste(cwd,"/",basename,"-wide-value",".csv",sep=""),row.names=FALSE,na="")
+  }
+  #Wide for original-value
+  if("id" %in% names & "year" %in% names & "original-value" %in% names & concept$type=="simple")  {
+    if("entity-name" %in% names){
+      wdata <- reshape(data[c("id","entity-name","year","original-value")],idvar=c("id","entity-name"),timevar="year",direction="wide")
+    }else{
+      wdata <- reshape(data[c("id","year","original-value")],idvar=c("id"),timevar="year",direction="wide")
+    }
+    wnames <- names(wdata)
+    for(j in 1:length(wnames)){
+      wname = wnames[j]
+      if(substr(wname,1,14)=="original-value"){
+        names(wdata)[names(wdata) == wname] <- substr(wname,16,nchar(wname))
+      }
+    }
+    notesList<-c(
+      notesList
+      ,"On the 'Data-wide-original-value' sheet, we have provided the indicator in a wide format. The values you see listed there are from the 'original-value' column."
+      ,""
+    )
+    addWorksheet(wb,"Data-wide-original-value")
+    writeData(wb,sheet="Data-wide-original-value",wdata,colNames=TRUE,rowNames=FALSE)  
+    write.csv(wdata,paste(cwd,"/",basename,"-wide-original-value",".csv",sep=""),row.names=FALSE,na="")
   }
   
   #Reference
