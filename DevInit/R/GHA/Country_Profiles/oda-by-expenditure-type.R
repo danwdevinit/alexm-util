@@ -10,8 +10,8 @@ library(httpuv)
 library(googlesheets)
 
 #Configuration
-startYear <- "2000"
-endYear <- "2015"
+startYear <- "2012"
+endYear <- "2012"
 includeEUinRecipientTotals <- TRUE
 
 #OECD Func####
@@ -211,8 +211,8 @@ recipBySector[which(recipBySector$RECIPIENT=="Côte d'Ivoire"),]$RECIPIENT <- "C
 
 #Let's save static files...
 setwd("C:/git/alexm-util/DevInit/R/GHA/Country_Profiles")
-write.csv(recipBySector,"recipBySector.csv",na="",row.names=FALSE)
-write.csv(donorBySector,"donorBySector.csv",na="",row.names=FALSE)
+write.csv(recipBySector,paste0("recipBySector ",timeVarName,".csv"),na="",row.names=FALSE)
+write.csv(donorBySector,paste0("donorBySector ",timeVarName,".csv"),na="",row.names=FALSE)
 
 #Automatic example
 # uniqueDonors <- unique(donorBySector$DONOR)
