@@ -139,9 +139,9 @@ function analyze(){
                             arrowSum = arrowFlat.reduce(function(a,b){return a+b;});
                             if(arrowMin>=0 && arrowMax>0 && arrowMax<=1 && arrowSum<=1){
                                 var inducedProb = arrowFlat.map(function(num){return num/arrowSum;});
-                                probabilities[change].down.push(inducedProb[0]);
-                                probabilities[change].neutral.push(inducedProb[1]);
-                                probabilities[change].up.push(inducedProb[2]);
+                                probabilities[change].down.push({"prob":inducedProb[0],"downVal":val[0],"neutralVal":val[1],"upVal":val[2]});
+                                probabilities[change].neutral.push({"prob":inducedProb[1],"downVal":val[0],"neutralVal":val[1],"upVal":val[2]});
+                                probabilities[change].up.push({"prob":inducedProb[2],"downVal":val[0],"neutralVal":val[1],"upVal":val[2]});
                             };
                         };
                     }
@@ -152,7 +152,7 @@ function analyze(){
 };
 
 function print(){
-    console.log("date,change,state,value");
+    console.log("date,change,state,value,downPayoff,neutralPayoff,upPayoff");
     for(var i = 1; i<21; i++){
         var change = i/2,
         percent = probabilities[change];
@@ -160,8 +160,8 @@ function print(){
             for(var state in percent){
                 var results = percent[state];
                 for(var j = 0; j < results.length;j++){
-                    var value = results[j];
-                    console.log(Object.keys(data)[0]+","+change+","+state+","+value);
+                    var value = results[j].prob;
+                    console.log(Object.keys(data)[0]+","+change+","+state+","+value+","+results[j].downVal+","+results[j].neutralVal+","+results[j].upVal);
                 };
             };
         };

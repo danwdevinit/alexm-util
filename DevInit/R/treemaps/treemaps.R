@@ -61,79 +61,75 @@ treeMapRamp <- function(vector){
   return(colors)
 }
 
-depth <- read.csv("depth.csv",as.is=TRUE)
-depth[nrow(depth)+1,] <- c("Palestine",-1.0)
-depth$depth <- as.numeric(depth$depth)
+data <- read.csv("treemaps.csv",na.strings="")
 
-oda <- read.csv("oda.csv")
-oda <- reshape(oda,varying=list(2:length(oda)),idvar="country",v.names="value",times=c(2000:2014),direction="long")
-oda <- transform(oda,value=as.numeric(gsub(",","",value)))
-oda <- subset(oda,value>0 & time==2013)
+depth <- subset(data,flow=="depth")
+names(depth)[4] <- "depth"
+
+oda <- subset(data,flow=="oda")
+oda <- subset(oda,value>0)
 oda <- merge(oda
              ,depth
-             ,by=c("country")
+             ,by=c("country.id")
              ,all.x=TRUE)
 oda <- transform(oda,color=treeMapRamp(depth))
-fdi <- read.csv("fdi.csv")
-fdi <- reshape(fdi,varying=list(2:length(fdi)),idvar="country",v.names="value",times=c(2000:2013),direction="long")
-fdi <- transform(fdi,value=as.numeric(gsub(",","",value)))
-fdi <- subset(fdi,value>0 & time==2013)
+
+fdi <- subset(data,flow=="fdi")
+fdi <- subset(fdi,value>0)
 fdi <- merge(fdi
              ,depth
-             ,by=c("country")
+             ,by=c("country.id")
              ,all.x=TRUE)
 fdi <- transform(fdi,color=treeMapRamp(depth))
-remit <- read.csv("remit.csv")
-remit <- reshape(remit,varying=list(2:length(remit)),idvar="country",v.names="value",times=c(2000:2013),direction="long")
-remit <- transform(remit,value=as.numeric(gsub(",","",value)))
-remit <- subset(remit,value>0 & time==2013)
-remit <- merge(remit
-             ,depth
-             ,by=c("country")
-             ,all.x=TRUE)
-remit <- transform(remit,color=treeMapRamp(depth))
-longdebt <- read.csv("longdebt.csv")
-longdebt <- reshape(longdebt,varying=list(2:length(longdebt)),idvar="country",v.names="value",times=c(2000:2013),direction="long")
-longdebt <- transform(longdebt,value=as.numeric(gsub(",","",value)))
-longdebt <- subset(longdebt,value>0 & time==2013)
+
+longdebt <- subset(data,flow=="longdebt")
+longdebt <- subset(longdebt,value>0)
 longdebt <- merge(longdebt
              ,depth
-             ,by=c("country")
+             ,by=c("country.id")
              ,all.x=TRUE)
 longdebt <- transform(longdebt,color=treeMapRamp(depth))
 
+remittances <- subset(data,flow=="remittances")
+remittances <- subset(remittances,value>0)
+remittances <- merge(remittances
+             ,depth
+             ,by=c("country.id")
+             ,all.x=TRUE)
+remittances <- transform(remittances,color=treeMapRamp(depth))
+
 treemap(oda
-        ,index="country"
+        ,index="country.id"
         ,vSize="value"
         ,vColor="color"
         ,type="color"
         ,title="ODA 2013"
-        #,fontcolor.labels=rgb(0,0,0,0)
+        ,fontcolor.labels=rgb(0,0,0,0)
         )
 
 treemap(fdi
-        ,index="country"
+        ,index="country.id"
         ,vSize="value"
         ,vColor="color"
         ,type="color"
         ,title="FDI 2013"
-        #,fontcolor.labels=rgb(0,0,0,0)
+        ,fontcolor.labels=rgb(0,0,0,0)
         )
 
-treemap(remit
-        ,index="country"
+treemap(remittances
+        ,index="country.id"
         ,vSize="value"
         ,vColor="color"
         ,type="color"
         ,title="Remittances 2013"
-        #,fontcolor.labels=rgb(0,0,0,0)
+        ,fontcolor.labels=rgb(0,0,0,0)
         )
 
 treemap(longdebt
-        ,index="country"
+        ,index="country.id"
         ,vSize="value"
         ,vColor="color"
         ,type="color"
         ,title="Long-debt 2013"
-        #,fontcolor.labels=rgb(0,0,0,0)
+        ,fontcolor.labels=rgb(0,0,0,0)
         )
