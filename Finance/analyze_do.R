@@ -1,7 +1,7 @@
 #install.packages("ggplot2")
 # Visualizing Distributions
 
-wd <- "C:/git/alexm-util/Finance"
+wd <- "~/git/alexm-util/Finance"
 setwd(wd)
 
 df <- read.csv("aapl.csv")
@@ -20,19 +20,25 @@ upsub <- subset(df,state=="up")
 fit <- lm(prob ~ call+strike+(call*strike), data=upsub)
 print(summary(fit))
 
-sub <- subset(sub,change==3.0)
+downsub <- subset(df,state=="down" & change==2.0 & call==0)
+plot(downsub$strike,downsub$prob)
+
+downsub <- subset(df,state=="down" & change==2.0 & call==1)
+plot(downsub$strike,downsub$prob)
+
+sub <- subset(df,change==2.0)
 #Density
 par(mfrow=c(3, 1))
 states <- unique(sub$state)
 for (i in 1:length(states)) {
-  d <- density(sub[which(sub$state==states[i]),]$value)
+  d <- density(sub[which(sub$state==states[i]),]$prob)
   plot(d, type="n", main=states[i])
   polygon(d, col="#ba0c2f", border="#ba0c2f")
 }
 
 #Box Plot
 par(mfrow=c(1, 1))
-boxplot(value~state
+boxplot(prob~state
         ,data=sub
         ,ylab="probability"
         ,xlab="state")
@@ -41,25 +47,25 @@ boxplot(value~state
 require(plyr)
 set.seed(1234)
 bins <- 20
-probBin <- (range(sub$value)[2]-range(sub$value)[1])/bins
+probBin <- (range(sub$prob)[2]-range(sub$prob)[1])/bins
 binList <- numeric(nrow(sub))
 previousBin <- 0
 for(i in 1:bins){
   binMax = probBin*i
   for(j in 1:nrow(sub)){
-    if(sub$value[j]>previousBin & sub$value[j]<=binMax){
+    if(sub$prob[j]>previousBin & sub$prob[j]<=binMax){
       binList[j] <- round(binMax*100)
     }
   }
   previousBin <- binMax
 }
-sub$prob <- binList
-dat <- ddply(sub,.(state,prob),summarize,count=sum(!is.na(value)))
+sub$probCount <- binList
+dat <- ddply(sub,.(state,probCount),summarize,count=sum(!is.na(prob)))
 dat$state <- factor(dat$state, ordered=T)
-dat$prob <- factor(dat$prob)
+dat$probCount <- factor(dat$probCount)
 
 require(ggplot2)    
-p <- ggplot(data = dat, aes(x=prob)) 
+p <- ggplot(data = dat, aes(x=probCount)) 
 p <- p + geom_histogram(aes(weights=count, fill=state))
 p <- p + facet_wrap( ~ state, ncol=1)
 p
