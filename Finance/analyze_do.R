@@ -5,19 +5,19 @@ wd <- "C:/git/alexm-util/Finance"
 setwd(wd)
 
 df <- read.csv("aapl.csv")
-fit <- lm(value ~ downPayoff+neutralPayoff+upPayoff, data=df)
+fit <- lm(prob ~ call+strike+(call*strike), data=df)
 print(summary(fit))
 
 downsub <- subset(df,state=="down")
-fit <- lm(value ~ downPayoff+neutralPayoff+upPayoff, data=downsub)
+fit <- lm(prob ~ call+strike+(call*strike), data=downsub)
 print(summary(fit))
 
 neutralsub <- subset(df,state=="neutral")
-fit <- lm(value ~ downPayoff+neutralPayoff+upPayoff, data=neutralsub)
+fit <- lm(prob ~ call+strike+(call*strike), data=neutralsub)
 print(summary(fit))
 
 upsub <- subset(df,state=="up")
-fit <- lm(value ~ downPayoff+neutralPayoff+upPayoff, data=upsub)
+fit <- lm(prob ~ call+strike+(call*strike), data=upsub)
 print(summary(fit))
 
 sub <- subset(sub,change==3.0)

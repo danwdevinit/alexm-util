@@ -120,15 +120,15 @@ function analyze(){
                         neuVal = Math.max(strike-underlying,0),
                         downVal = Math.max(strike-downState,0);
                     };
-                    var row = [downVal,neuVal,upVal];
-                    Farr.push(row);
+                    var rowData = {"row":[downVal,neuVal,upVal],"call":call,"strike":strike};
+                    Farr.push(rowData);
                 };
                 var range = [];
                 for(var i = 0; i < Farr.length; i++){range.push(i);};
                 var com = new cmb(range,3);
                 com.each(
                     function(val){
-                        var F = $M([Farr[val[0]],Farr[val[1]],Farr[val[2]]]),
+                        var F = $M([Farr[val[0]].row,Farr[val[1]].row,Farr[val[2]].row]),
                         P = $M([Parr[val[0]],Parr[val[1]],Parr[val[2]]]);
                         if(F.inv()){
                             var arrowPrices = F.inv().x(P).toArray(),
@@ -139,9 +139,9 @@ function analyze(){
                             arrowSum = arrowFlat.reduce(function(a,b){return a+b;});
                             if(arrowMin>=0 && arrowMax>0 && arrowMax<=1 && arrowSum<=1){
                                 var inducedProb = arrowFlat.map(function(num){return num/arrowSum;});
-                                probabilities[change].down.push({"prob":inducedProb[0],"downVal":val[0],"neutralVal":val[1],"upVal":val[2]});
-                                probabilities[change].neutral.push({"prob":inducedProb[1],"downVal":val[0],"neutralVal":val[1],"upVal":val[2]});
-                                probabilities[change].up.push({"prob":inducedProb[2],"downVal":val[0],"neutralVal":val[1],"upVal":val[2]});
+                                probabilities[change].down.push({"prob":inducedProb[0],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
+                                probabilities[change].neutral.push({"prob":inducedProb[1],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
+                                probabilities[change].up.push({"prob":inducedProb[2],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
                             };
                         };
                     }
@@ -152,7 +152,7 @@ function analyze(){
 };
 
 function print(){
-    console.log("date,change,state,value,downPayoff,neutralPayoff,upPayoff");
+    console.log("date,change,state,prob,call,strike");
     for(var i = 1; i<21; i++){
         var change = i/2,
         percent = probabilities[change];
@@ -161,7 +161,9 @@ function print(){
                 var results = percent[state];
                 for(var j = 0; j < results.length;j++){
                     var value = results[j].prob;
-                    console.log(Object.keys(data)[0]+","+change+","+state+","+value+","+results[j].downVal+","+results[j].neutralVal+","+results[j].upVal);
+                    console.log(Object.keys(data)[0]+","+change+","+state+","+value+","+results[j].call1+","+results[j].strike1);
+                    console.log(Object.keys(data)[0]+","+change+","+state+","+value+","+results[j].call2+","+results[j].strike2);
+                    console.log(Object.keys(data)[0]+","+change+","+state+","+value+","+results[j].call3+","+results[j].strike3);
                 };
             };
         };
