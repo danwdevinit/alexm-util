@@ -9,6 +9,9 @@ library(rgdal)
 library(leaflet)
 library(plyr)
 
+windows <- TRUE
+if(windows){pathpre<-"C:"}else{pathpre<-"~"}
+
 ### Function to create a Leaflet interactive map.
 
 diRamp <- function(colorText1,colorText2=NA,colorText3=NA){
@@ -54,13 +57,13 @@ diRamp <- function(colorText1,colorText2=NA,colorText3=NA){
 
 ug_leaflet <- function(series,indicator, year = NA, value = "value", classes = 5, colors = "Blues") {
 
-  districts <- readOGR(dsn = "/home/alex/git/digital-platform/shape-files/uganda/uganda.shp", 
+  districts <- readOGR(dsn = paste0(pathpre,"/git/digital-platform/shape-files/uganda/uganda.shp"), 
                        layer = "uganda", 
                        encoding = "UTF-8",
                        verbose = FALSE)
   
   
-  datPath <- paste("/home/alex/git/digital-platform/",series,"/",indicator,".csv",sep="")
+  datPath <- paste(paste0(pathpre,"/git/digital-platform/"),series,"/",indicator,".csv",sep="")
   dat <- read.csv(datPath, header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE,row.names=NULL)
   if(!is.na(year)){
     dat <- dat[which(dat$year==year),]
@@ -93,7 +96,7 @@ ug_leaflet <- function(series,indicator, year = NA, value = "value", classes = 5
       pal <- colorBin(colors, c(indMin,indMax) , bins = levels)
     }
   }else{
-    conceptPath <- "/home/alex/git/digital-platform/concepts.csv"
+    conceptPath <- paste0(pathpre,"/git/digital-platform/concepts.csv")
     concepts <- read.csv(conceptPath, header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
     range <- concepts[which(concepts$id==indicator&concepts$series=="country-year"),]$range
     if(!is.na(range)){

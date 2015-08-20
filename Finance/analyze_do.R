@@ -1,7 +1,9 @@
 #install.packages("ggplot2")
 # Visualizing Distributions
 
-wd <- "~/git/alexm-util/Finance"
+windows <- TRUE
+if(windows){pathpre<-"C:"}else{pathpre<-"~"}
+wd <- paste0(pathpre,"/git/alexm-util/Finance")
 setwd(wd)
 
 df <- read.csv("aapl.csv")
@@ -69,3 +71,15 @@ p <- ggplot(data = dat, aes(x=probCount))
 p <- p + geom_histogram(aes(weights=count, fill=state))
 p <- p + facet_wrap( ~ state, ncol=1)
 p
+
+down2 <- subset(downsub,change==2.0)
+neutral2 <- subset(neutralsub,change==2.0)
+up2 <- subset(upsub,change==2.0)
+
+ggplot(downsub,aes(x=strike,y=prob)) + geom_bin2d()
+ggplot(neutralsub,aes(x=strike,y=prob)) + geom_bin2d()
+ggplot(upsub,aes(x=strike,y=prob)) + geom_bin2d()
+
+ggplot(down2,aes(x=strike,y=prob)) + geom_bin2d()
+ggplot(neutral2,aes(x=strike,y=prob)) + geom_bin2d()
+ggplot(up2,aes(x=strike,y=prob)) + geom_bin2d()
