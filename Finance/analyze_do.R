@@ -1,4 +1,5 @@
 #install.packages("ggplot2")
+library(ggplot2)
 # Visualizing Distributions
 
 windows <- TRUE
@@ -6,7 +7,13 @@ if(windows){pathpre<-"C:"}else{pathpre<-"~"}
 wd <- paste0(pathpre,"/git/alexm-util/Finance")
 setwd(wd)
 
-df <- read.csv("aapl.csv")
+df <- read.csv("aapl3.csv")
+
+averages <- ddply(df,.(change,state),summarize,avg=mean(prob))
+ggplot(data=averages,aes(x=change,y=avg,group=state,colour=state)) +
+  geom_line() +
+  geom_point()
+
 fit <- lm(prob ~ call+strike+(call*strike), data=df)
 print(summary(fit))
 
@@ -22,13 +29,13 @@ upsub <- subset(df,state=="up")
 fit <- lm(prob ~ call+strike+(call*strike), data=upsub)
 print(summary(fit))
 
-downsub <- subset(df,state=="down" & change==2.0 & call==0)
-plot(downsub$strike,downsub$prob)
+# downsub <- subset(df,state=="down" & change==2.0 & call==0)
+# plot(downsub$strike,downsub$prob)
+# 
+# downsub <- subset(df,state=="down" & change==2.0 & call==1)
+# plot(downsub$strike,downsub$prob)
 
-downsub <- subset(df,state=="down" & change==2.0 & call==1)
-plot(downsub$strike,downsub$prob)
-
-sub <- subset(df,change==2.0)
+sub <- subset(df,change==5.0)
 #Density
 par(mfrow=c(3, 1))
 states <- unique(sub$state)
@@ -66,15 +73,14 @@ dat <- ddply(sub,.(state,probCount),summarize,count=sum(!is.na(prob)))
 dat$state <- factor(dat$state, ordered=T)
 dat$probCount <- factor(dat$probCount)
 
-require(ggplot2)    
 p <- ggplot(data = dat, aes(x=probCount)) 
 p <- p + geom_histogram(aes(weights=count, fill=state))
 p <- p + facet_wrap( ~ state, ncol=1)
 p
 
-down2 <- subset(downsub,change==2.0)
-neutral2 <- subset(neutralsub,change==2.0)
-up2 <- subset(upsub,change==2.0)
+down2 <- subset(downsub,change==5.0)
+neutral2 <- subset(neutralsub,change==5.0)
+up2 <- subset(upsub,change==5.0)
 
 ggplot(downsub,aes(x=strike,y=prob)) + geom_bin2d()
 ggplot(neutralsub,aes(x=strike,y=prob)) + geom_bin2d()
@@ -83,3 +89,7 @@ ggplot(upsub,aes(x=strike,y=prob)) + geom_bin2d()
 ggplot(down2,aes(x=strike,y=prob)) + geom_bin2d()
 ggplot(neutral2,aes(x=strike,y=prob)) + geom_bin2d()
 ggplot(up2,aes(x=strike,y=prob)) + geom_bin2d()
+
+ggplot(downsub,aes(x=change,y=prob)) + geom_bin2d()
+ggplot(neutralsub,aes(x=change,y=prob)) + geom_bin2d()
+ggplot(upsub,aes(x=change,y=prob)) + geom_bin2d()
