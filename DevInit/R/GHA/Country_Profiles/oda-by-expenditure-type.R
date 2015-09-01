@@ -184,52 +184,44 @@ t1 <- transform(t1, metaSector = findMeta(SECTOR))
 t1 <- t1[t1$metaSector!="ERR",]
 
 #Final Transformations###
-donorIMO <- ddply(IMO,.(DONOR),summarize,total=sum(obsValue,na.rm=TRUE))
+donorIMO <- ddply(IMO,.(DONOR,obsTime),summarize,total=sum(obsValue,na.rm=TRUE))
 donorIMO$metaSector <- "Multilateral ODA"
 donorIMO <- donorIMO[,c(1,3,2)]
-donorBySector <- ddply(t1,.(DONOR,metaSector),summarize,total=sum(obsValue,na.rm=TRUE))
+donorBySector <- ddply(t1,.(DONOR,metaSector,obsTime),summarize,total=sum(obsValue,na.rm=TRUE))
 donorBySector <- rbind(donorBySector,donorIMO)
 donorBySector <- donorBySector[order(donorBySector$DONOR),]
 names(donorBySector)[which(names(donorBySector)=="total")] <- timeVarName
 
 ####OECD DAC RECIP####
 #Define DAC CRS URL, Constant price Gross Disbursements####
-recips <- "71+86+64+62+30+66+35+57+45+93+65+63+61+88+55+85+130+142+133+136+139+225+236+227+287+228+230+229+231+232+233+234+247+235+274+245+271+238+239+240+241+243+244+248+249+251+252+253+255+256+257+258+259+275+260+261+266+276+268+269+270+272+273+218+279+278+280+282+283+285+288+265+376+377+373+328+329+352+331+388+386+336+338+378+340+342+381+347+349+351+354+358+385+361+364+366+382+383+384+375+387+425+428+431+434+437+440+443+446+451+454+457+460+463+725+728+730+732+740+735+738+742+745+748+751+753+755+761+764+765+769+625+610+611+666+630+612+645+613+614+655+635+660+665+640+615+616+617+530+540+543+546+549+552+555+558+561+566+573+576+550+580+831+832+840+836+859+860+845+850+856+858+861+862+880+866+868+870+872+854+876+225+236+287+228+231+232+233+235+274+245+271+238+240+243+244+249+251+252+253+255+256+259+260+266+268+269+272+273+279+278+282+283+285+288+349+728+745+765+625+666+630+635+660+580+836+880+866+872+854+248+279+265+740+614+615+57+93+85+142+136+230+229+234+247+241+261+280+352+342+347+351+364+428+446+451+738+753+755+769+610+612+645+614+665+640+616+617+543+573+550+832+859+860+862+880+868+870+71+86+64+66+65+63+55+130+133+139+227+239+257+275+276+270+218+376+377+352+336+338+378+340+381+354+358+385+366+382+383+384+425+431+434+437+440+454+457+460+463+730+751+764+611+613+655+616+540+543+549+555+831+832+859+845+856+861+870+876+62+30+35+45+61+258+376+373+328+329+331+388+386+361+382+375+387+443+725+732+735+742+748+761+530+546+552+558+561+566+576+840+850+858+88+236+287+228+229+231+232+233+234+247+235+271+238+240+241+243+244+251+252+253+255+256+259+260+266+268+269+272+273+278+282+283+285+288+349+351+364+428+446+625+614+66+93+227+287+228+231+232+238+249+253+255+260+266+279+280+285+288+265+428+451+745+753+625+610+611+630+613+614+660+615+616+617+230+233+244+257+268+270+376+377+328+329+352+338+378+340+381+349+354+385+382+383+384+375+446+457+761+765+655+831+832+836+859+860+845+856+861+862+880+866+870+872+854+64+57+142+133+225+287+228+229+231+232+233+234+247+235+271+238+243+244+248+251+252+253+255+256+260+261+266+272+273+279+278+283+285+265+349+740+765+625+666+635+660+665+640+543+573+550+580+836+859+860+866+872+71+86+93+85+610+611+612+613+614+615+616+617+71+86+93+85+610+611+612+613+614+615+616+617+225+236+227+287+228+230+229+231+232+233+234+247+235+274+245+271+238+239+240+241+243+244+248+249+251+252+253+255+256+257+259+275+260+261+266+268+269+270+272+273+278+280+282+283+285+288+265+377+328+329+352+378+340+381+349+354+382+383+384+375+446+457+832+836+862+880+866+870+872+854+287+230+232+240+244+255+256+260+269"
+recips <- "625+130+666+287+228+247+231+232+437+740+235+238+243+349+738+543+549+248+555+251+255+635+660+260+261+665+755+272+273+279+640+278+573+285+85+550+580+265"
 recips <- strsplit(recips,"+",fixed=TRUE)[[1]]
-years <- c(as.integer(startYear):as.integer(endYear))
-recipBySector <- foreach(i=1:length(recips),.combine=rbind) %do% {
-recip <- recips[i]
-t1r <- foreach(j=1:length(years),.combine=rbind) %do% {
-  if(exists("t1r1")){rm(t1r1)}
-  year <- years[j]
-  message(paste(recip,year))
-  CRSUrl <- paste0("http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/CRS1/20001.",recip,".111+112+113+114+121+122+130+140+151+152+160+210+220+230+240+250+311+312+313+321+322+323+331+332+410+430+510+520+530+600+720+730+740+910+930+998.100.100.D.112.100/all?startTime=",year,"&endTime=",year)
-  CRSEUUrl <- paste0("http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/CRS1/918.",recip,".111+112+113+114+121+122+130+140+151+152+160+210+220+230+240+250+311+312+313+321+322+323+331+332+410+430+510+520+530+600+720+730+740+910+930+998.100.100.D.112.100/all?startTime=",year,"&endTime=",year)
+recipBySectorTotal <- foreach(i=1:length(recips),.packages=c("plyr","rsdmx")
+                              ,.combine=rbind) %do% 
+  {
+  recip <- recips[i]
+  message(recip)
+  CRSUrl <- paste0("http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/CRS1/20001+918.",recip,".1000+450+100+110+111+11110+11120+11130+11182+112+11220+11230+11240+113+11320+11330+114+11420+11430+120+121+12110+12181+12182+12191+122+12220+12230+12240+12250+12261+12262+12263+12281+130+13010+13020+13030+13040+13081+140+14010+14015+14020+14021+14022+14030+14031+14032+14040+14050+14081+150+151+15110+15111+15112+15113+15130+15150+15151+15152+15153+15160+15170+152+15210+15220+15230+15240+15250+15261+160+16010+16020+16030+16040+16050+16061+16062+16063+16064+200+210+21010+21020+21030+21040+21050+21061+21081+220+22010+22020+22030+22040+230+23010+23020+23030+23040+23050+23061+23062+23063+23064+23065+23066+23067+23068+23069+23070+23081+23082+240+24010+24020+24030+24040+24081+250+25010+25020+300+310+311+31110+31120+31130+31140+31150+31161+31162+31163+31164+31165+31166+31181+31182+31191+31192+31193+31194+31195+312+31210+31220+31261+31281+31282+31291+313+31310+31320+31381+31382+31391+320+321+32110+32120+32130+32140+32161+32162+32163+32164+32165+32166+32167+32168+32169+32170+32171+32172+32182+322+32210+32220+32261+32262+32263+32264+32265+32266+32267+32268+323+32310+331+33110+33120+33130+33140+33150+33181+332+33210+400+410+41010+41020+41030+41040+41050+41081+41082+430+43010+43030+43040+43050+43081+43082+500+510+51010+520+52010+530+53030+53040+600+60010+60020+60030+60040+60061+60062+60063+700+720+72010+72040+72050+730+73010+740+74010+910+91010+930+93010+998+99810+99820.100.100.D.112.100/all?startTime=",startYear,"&endTime=",endYear)
   
   #Download data####
-  t1r1 <- OECD(CRSUrl)
-  if(!exists("t1r1")){t1r1 <- t1[0,]}
-  if(includeEUinRecipientTotals){
-    t1r1 <- rbind(t1r1,OECD(CRSEUUrl)) 
+  t1r <-OECD(CRSUrl)
+  
+  #Add metaSector and remove Action Relating to Debt####
+  t1r <- transform(t1r, metaSector = findMeta(SECTOR))
+  t1r <- t1r[t1r$metaSector!="ERR",]
+  
+  #Final Transformations####
+  recipBySector <- ddply(t1r,.(RECIPIENT,metaSector,obsTime),summarize,total=sum(obsValue,na.rm=TRUE))
+  recipBySector <- recipBySector[order(recipBySector$RECIPIENT),]
+  names(recipBySector)[which(names(recipBySector)=="total")] <- timeVarName
+  if(nrow(recipBySector[which(recipBySector$RECIPIENT=="Côte d'Ivoire"),])>0){
+    recipBySector[which(recipBySector$RECIPIENT=="Côte d'Ivoire"),]$RECIPIENT <- "Cote d'Ivoire"
   }
-  t1r1
-}
-
-#Add metaSector and remove Action Relating to Debt####
-t1r <- transform(t1r, metaSector = findMeta(SECTOR))
-t1r <- t1r[t1r$metaSector!="ERR",]
-
-#Final Transformations####
-recipBySector <- ddply(t1r,.(RECIPIENT,metaSector),summarize,total=sum(obsValue,na.rm=TRUE))
-recipBySector <- recipBySector[order(recipBySector$RECIPIENT),]
-names(recipBySector)[which(names(recipBySector)=="total")] <- timeVarName
-if(nrow(recipBySector[which(recipBySector$RECIPIENT=="Côte d'Ivoire"),])>0){
-  recipBySector[which(recipBySector$RECIPIENT=="Côte d'Ivoire"),]$RECIPIENT <- "Cote d'Ivoire"
-}
-recipBySector}
+  recipBySector
+  }
 
 #Let's save static files...
-write.csv(recipBySector,paste0("recipBySector ",timeVarName,".csv"),na="",row.names=FALSE)
+write.csv(recipBySectorTotal,paste0("recipBySector ",timeVarName,".csv"),na="",row.names=FALSE)
 write.csv(donorBySector,paste0("donorBySector ",timeVarName,".csv"),na="",row.names=FALSE)
 
 #Automatic example

@@ -46,6 +46,7 @@ diRamp <- function(colorText1,colorText2=NA,colorText3=NA){
 
 treeMapRamp <- function(vector){
   vectorMax = max(vector)
+  message(vectorMax)
   colors <- c()
   for(i in 1:length(vector)){
     newVal <- vector[i]/vectorMax

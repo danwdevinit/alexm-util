@@ -41,5 +41,53 @@ OECDCode <- function(indicator){
 }
 
 #E.g.####
-codes <- OECDCode("TABLE2A")
-who_donor <- subset(codes,variable=="DONOR" & name=="WHO")
+codes <- OECDCode("CRS1")
+recips <- subset(codes,variable=="RECIPIENT")
+recipNames <- c(
+  'Afghanistan',
+  'Algeria',
+  'Bangladesh',
+  'Burkina Faso',
+  'Burundi',
+  'Central African Republic',
+  'Chad',
+  'Colombia',
+  "Côte d'Ivoire",
+  "Democratic People's Republic of Korea",
+  'Democratic Republic of the Congo',
+  'Ethiopia',
+  'Guinea',
+  'Haiti',
+  'Indonesia',
+  'Iraq',
+  'Jordan',
+  'Kenya',
+  'Lebanon',
+  'Liberia',
+  'Mali',
+  'Myanmar',
+  'Nepal',
+  'Niger',
+  'Nigeria',
+  'Pakistan',
+  'Philippines',
+  'Sierra Leone',
+  'Somalia',
+  'South Sudan',
+  'Sri Lanka',
+  'Sudan',
+  'Syrian Arab Republic',
+  'Uganda',
+  'Ukraine',
+  'West Bank and Gaza Strip',
+  'Yemen',
+  'Zimbabwe'
+  )
+mergeSet <- data.frame(recipNames,rep(1))
+recips <- merge(
+  recips,
+  mergeSet,
+  by.x=c("name"),
+  by.y=c("recipNames")
+  )
+recipStr <- paste(recips$id,collapse="+")

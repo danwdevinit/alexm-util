@@ -1,6 +1,2220 @@
-"RECIPIENT","metaSector","Total 2000-2015"
-"Senegal","Governance, peace and security",465.211876
-"Senegal","Humanitarian aid",111.004583
-"Senegal","Other country programmable aid",2937.394944
-"Senegal","Other non-country programmable aid",910.687897
-"Senegal","Public service provision",2744.992066
+"RECIPIENT","metaSector","obsTime","Total"
+"Afghanistan","Governance, peace and security","2002",217.010532
+"Afghanistan","Governance, peace and security","2003",412.906248
+"Afghanistan","Governance, peace and security","2004",412.433671
+"Afghanistan","Governance, peace and security","2005",572.396249
+"Afghanistan","Governance, peace and security","2006",927.058652
+"Afghanistan","Governance, peace and security","2007",919.446372
+"Afghanistan","Governance, peace and security","2008",1379.678481
+"Afghanistan","Governance, peace and security","2009",1941.459256
+"Afghanistan","Governance, peace and security","2010",2316.926776
+"Afghanistan","Governance, peace and security","2011",2446.648911
+"Afghanistan","Governance, peace and security","2012",2772.542615
+"Afghanistan","Governance, peace and security","2013",1950.237314
+"Afghanistan","Humanitarian aid","2002",749.127919
+"Afghanistan","Humanitarian aid","2003",490.503145
+"Afghanistan","Humanitarian aid","2004",326.297838
+"Afghanistan","Humanitarian aid","2005",363.984092
+"Afghanistan","Humanitarian aid","2006",416.177994
+"Afghanistan","Humanitarian aid","2007",336.077722
+"Afghanistan","Humanitarian aid","2008",882.403228
+"Afghanistan","Humanitarian aid","2009",646.02176
+"Afghanistan","Humanitarian aid","2010",601.816662
+"Afghanistan","Humanitarian aid","2011",706.659326
+"Afghanistan","Humanitarian aid","2012",454.815619
+"Afghanistan","Humanitarian aid","2013",405.039652
+"Afghanistan","Other country programmable aid","2002",133.881859
+"Afghanistan","Other country programmable aid","2003",294.769492
+"Afghanistan","Other country programmable aid","2004",661.339623
+"Afghanistan","Other country programmable aid","2005",1253.091698
+"Afghanistan","Other country programmable aid","2006",1178.750112
+"Afghanistan","Other country programmable aid","2007",1468.298046
+"Afghanistan","Other country programmable aid","2008",1630.052409
+"Afghanistan","Other country programmable aid","2009",1992.107256
+"Afghanistan","Other country programmable aid","2010",2155.937765
+"Afghanistan","Other country programmable aid","2011",1978.687947
+"Afghanistan","Other country programmable aid","2012",1656.157801
+"Afghanistan","Other country programmable aid","2013",1346.7992
+"Afghanistan","Other non-country programmable aid","2002",130.219849
+"Afghanistan","Other non-country programmable aid","2003",255.012262
+"Afghanistan","Other non-country programmable aid","2004",298.004369
+"Afghanistan","Other non-country programmable aid","2005",219.380404
+"Afghanistan","Other non-country programmable aid","2006",152.21544
+"Afghanistan","Other non-country programmable aid","2007",249.717299
+"Afghanistan","Other non-country programmable aid","2008",122.486037
+"Afghanistan","Other non-country programmable aid","2009",163.093488
+"Afghanistan","Other non-country programmable aid","2010",193.136674
+"Afghanistan","Other non-country programmable aid","2011",140.291492
+"Afghanistan","Other non-country programmable aid","2012",308.352432
+"Afghanistan","Other non-country programmable aid","2013",117.845396
+"Afghanistan","Public service provision","2002",54.4073
+"Afghanistan","Public service provision","2003",67.648351
+"Afghanistan","Public service provision","2004",177.071048
+"Afghanistan","Public service provision","2005",377.669268
+"Afghanistan","Public service provision","2006",256.247526
+"Afghanistan","Public service provision","2007",375.452273
+"Afghanistan","Public service provision","2008",462.624651
+"Afghanistan","Public service provision","2009",588.872693
+"Afghanistan","Public service provision","2010",690.7019
+"Afghanistan","Public service provision","2011",781.490088
+"Afghanistan","Public service provision","2012",655.93421
+"Afghanistan","Public service provision","2013",822.309649
+"Algeria","Governance, peace and security","2002",3.666556
+"Algeria","Governance, peace and security","2003",3.918902
+"Algeria","Governance, peace and security","2004",4.58145
+"Algeria","Governance, peace and security","2005",18.298375
+"Algeria","Governance, peace and security","2006",18.514553
+"Algeria","Governance, peace and security","2007",35.681113
+"Algeria","Governance, peace and security","2008",25.871265
+"Algeria","Governance, peace and security","2009",20.512093
+"Algeria","Governance, peace and security","2010",19.439286
+"Algeria","Governance, peace and security","2011",17.918041
+"Algeria","Governance, peace and security","2012",21.305029
+"Algeria","Governance, peace and security","2013",19.550809
+"Algeria","Humanitarian aid","2002",6.180827
+"Algeria","Humanitarian aid","2003",20.378694
+"Algeria","Humanitarian aid","2004",24.814171
+"Algeria","Humanitarian aid","2005",44.124303
+"Algeria","Humanitarian aid","2006",16.27281
+"Algeria","Humanitarian aid","2007",22.312507
+"Algeria","Humanitarian aid","2008",29.829838
+"Algeria","Humanitarian aid","2009",26.513773
+"Algeria","Humanitarian aid","2010",24.450374
+"Algeria","Humanitarian aid","2011",30.782625
+"Algeria","Humanitarian aid","2012",31.970671
+"Algeria","Humanitarian aid","2013",26.509607
+"Algeria","Other country programmable aid","2002",17.355419
+"Algeria","Other country programmable aid","2003",32.181869
+"Algeria","Other country programmable aid","2004",77.324063
+"Algeria","Other country programmable aid","2005",96.872409
+"Algeria","Other country programmable aid","2006",191.746123
+"Algeria","Other country programmable aid","2007",169.895894
+"Algeria","Other country programmable aid","2008",157.479838
+"Algeria","Other country programmable aid","2009",150.671279
+"Algeria","Other country programmable aid","2010",64.727578
+"Algeria","Other country programmable aid","2011",70.268704
+"Algeria","Other country programmable aid","2012",49.800688
+"Algeria","Other country programmable aid","2013",50.869845
+"Algeria","Other non-country programmable aid","2002",95.475988
+"Algeria","Other non-country programmable aid","2003",66.891782
+"Algeria","Other non-country programmable aid","2004",20.605324
+"Algeria","Other non-country programmable aid","2005",52.780758
+"Algeria","Other non-country programmable aid","2006",5.143113
+"Algeria","Other non-country programmable aid","2007",6.415102
+"Algeria","Other non-country programmable aid","2008",12.775254
+"Algeria","Other non-country programmable aid","2009",6.5713
+"Algeria","Other non-country programmable aid","2010",10.394875
+"Algeria","Other non-country programmable aid","2011",4.562365
+"Algeria","Other non-country programmable aid","2012",6.171515
+"Algeria","Other non-country programmable aid","2013",7.661484
+"Algeria","Public service provision","2002",120.331045
+"Algeria","Public service provision","2003",153.966936
+"Algeria","Public service provision","2004",186.929409
+"Algeria","Public service provision","2005",245.279905
+"Algeria","Public service provision","2006",199.975563
+"Algeria","Public service provision","2007",203.495039
+"Algeria","Public service provision","2008",157.802052
+"Algeria","Public service provision","2009",153.606445
+"Algeria","Public service provision","2010",165.053452
+"Algeria","Public service provision","2011",164.178793
+"Algeria","Public service provision","2012",142.340748
+"Algeria","Public service provision","2013",152.786551
+"Bangladesh","Governance, peace and security","2002",26.49165
+"Bangladesh","Governance, peace and security","2003",44.164855
+"Bangladesh","Governance, peace and security","2004",54.477649
+"Bangladesh","Governance, peace and security","2005",62.200983
+"Bangladesh","Governance, peace and security","2006",88.595897
+"Bangladesh","Governance, peace and security","2007",151.700645
+"Bangladesh","Governance, peace and security","2008",115.915115
+"Bangladesh","Governance, peace and security","2009",142.054161
+"Bangladesh","Governance, peace and security","2010",123.012138
+"Bangladesh","Governance, peace and security","2011",121.213534
+"Bangladesh","Governance, peace and security","2012",159.909376
+"Bangladesh","Governance, peace and security","2013",161.620388
+"Bangladesh","Humanitarian aid","2002",20.70795
+"Bangladesh","Humanitarian aid","2003",0.957964
+"Bangladesh","Humanitarian aid","2004",66.171402
+"Bangladesh","Humanitarian aid","2005",42.67401
+"Bangladesh","Humanitarian aid","2006",17.960779
+"Bangladesh","Humanitarian aid","2007",77.298023
+"Bangladesh","Humanitarian aid","2008",181.59423
+"Bangladesh","Humanitarian aid","2009",85.653524
+"Bangladesh","Humanitarian aid","2010",76.578022
+"Bangladesh","Humanitarian aid","2011",69.786617
+"Bangladesh","Humanitarian aid","2012",72.671505
+"Bangladesh","Humanitarian aid","2013",66.458132
+"Bangladesh","Other country programmable aid","2002",205.476314
+"Bangladesh","Other country programmable aid","2003",344.182505
+"Bangladesh","Other country programmable aid","2004",303.873598
+"Bangladesh","Other country programmable aid","2005",295.9904
+"Bangladesh","Other country programmable aid","2006",238.064079
+"Bangladesh","Other country programmable aid","2007",278.802204
+"Bangladesh","Other country programmable aid","2008",342.881064
+"Bangladesh","Other country programmable aid","2009",363.406404
+"Bangladesh","Other country programmable aid","2010",458.956236
+"Bangladesh","Other country programmable aid","2011",543.480118
+"Bangladesh","Other country programmable aid","2012",748.987706
+"Bangladesh","Other country programmable aid","2013",858.598078
+"Bangladesh","Other non-country programmable aid","2002",235.992809
+"Bangladesh","Other non-country programmable aid","2003",136.375113
+"Bangladesh","Other non-country programmable aid","2004",121.20261
+"Bangladesh","Other non-country programmable aid","2005",150.525499
+"Bangladesh","Other non-country programmable aid","2006",82.684463
+"Bangladesh","Other non-country programmable aid","2007",85.963975
+"Bangladesh","Other non-country programmable aid","2008",120.295814
+"Bangladesh","Other non-country programmable aid","2009",104.029103
+"Bangladesh","Other non-country programmable aid","2010",123.83802
+"Bangladesh","Other non-country programmable aid","2011",112.312375
+"Bangladesh","Other non-country programmable aid","2012",97.030624
+"Bangladesh","Other non-country programmable aid","2013",39.392372
+"Bangladesh","Public service provision","2002",201.795865
+"Bangladesh","Public service provision","2003",210.057478
+"Bangladesh","Public service provision","2004",234.970142
+"Bangladesh","Public service provision","2005",312.091186
+"Bangladesh","Public service provision","2006",376.25476
+"Bangladesh","Public service provision","2007",324.01881
+"Bangladesh","Public service provision","2008",415.659356
+"Bangladesh","Public service provision","2009",394.494353
+"Bangladesh","Public service provision","2010",492.733146
+"Bangladesh","Public service provision","2011",519.588097
+"Bangladesh","Public service provision","2012",477.173252
+"Bangladesh","Public service provision","2013",587.221892
+"Burkina Faso","Governance, peace and security","2002",21.472657
+"Burkina Faso","Governance, peace and security","2003",36.782673
+"Burkina Faso","Governance, peace and security","2004",43.493266
+"Burkina Faso","Governance, peace and security","2005",43.763415
+"Burkina Faso","Governance, peace and security","2006",31.964792
+"Burkina Faso","Governance, peace and security","2007",23.631038
+"Burkina Faso","Governance, peace and security","2008",38.46183
+"Burkina Faso","Governance, peace and security","2009",37.052985
+"Burkina Faso","Governance, peace and security","2010",46.002031
+"Burkina Faso","Governance, peace and security","2011",47.06008
+"Burkina Faso","Governance, peace and security","2012",56.837338
+"Burkina Faso","Governance, peace and security","2013",57.831136
+"Burkina Faso","Humanitarian aid","2002",1.704413
+"Burkina Faso","Humanitarian aid","2003",2.802435
+"Burkina Faso","Humanitarian aid","2004",1.438329
+"Burkina Faso","Humanitarian aid","2005",3.975302
+"Burkina Faso","Humanitarian aid","2006",4.0859
+"Burkina Faso","Humanitarian aid","2007",11.697569
+"Burkina Faso","Humanitarian aid","2008",17.393572
+"Burkina Faso","Humanitarian aid","2009",23.135304
+"Burkina Faso","Humanitarian aid","2010",37.50696
+"Burkina Faso","Humanitarian aid","2011",27.935829
+"Burkina Faso","Humanitarian aid","2012",74.101643
+"Burkina Faso","Humanitarian aid","2013",64.541627
+"Burkina Faso","Other country programmable aid","2002",133.886631
+"Burkina Faso","Other country programmable aid","2003",167.444744
+"Burkina Faso","Other country programmable aid","2004",129.813391
+"Burkina Faso","Other country programmable aid","2005",160.207531
+"Burkina Faso","Other country programmable aid","2006",195.208152
+"Burkina Faso","Other country programmable aid","2007",243.206804
+"Burkina Faso","Other country programmable aid","2008",183.847145
+"Burkina Faso","Other country programmable aid","2009",136.237359
+"Burkina Faso","Other country programmable aid","2010",149.788748
+"Burkina Faso","Other country programmable aid","2011",131.721374
+"Burkina Faso","Other country programmable aid","2012",196.294991
+"Burkina Faso","Other country programmable aid","2013",250.990743
+"Burkina Faso","Other non-country programmable aid","2002",145.502227
+"Burkina Faso","Other non-country programmable aid","2003",109.416174
+"Burkina Faso","Other non-country programmable aid","2004",136.971263
+"Burkina Faso","Other non-country programmable aid","2005",172.504951
+"Burkina Faso","Other non-country programmable aid","2006",172.742029
+"Burkina Faso","Other non-country programmable aid","2007",188.466265
+"Burkina Faso","Other non-country programmable aid","2008",175.659844
+"Burkina Faso","Other non-country programmable aid","2009",209.655988
+"Burkina Faso","Other non-country programmable aid","2010",223.872508
+"Burkina Faso","Other non-country programmable aid","2011",186.169723
+"Burkina Faso","Other non-country programmable aid","2012",189.223532
+"Burkina Faso","Other non-country programmable aid","2013",172.617406
+"Burkina Faso","Public service provision","2002",72.883814
+"Burkina Faso","Public service provision","2003",109.257676
+"Burkina Faso","Public service provision","2004",127.28863
+"Burkina Faso","Public service provision","2005",128.412971
+"Burkina Faso","Public service provision","2006",189.37083
+"Burkina Faso","Public service provision","2007",180.446291
+"Burkina Faso","Public service provision","2008",189.378006
+"Burkina Faso","Public service provision","2009",215.336193
+"Burkina Faso","Public service provision","2010",196.55458
+"Burkina Faso","Public service provision","2011",217.826649
+"Burkina Faso","Public service provision","2012",199.883826
+"Burkina Faso","Public service provision","2013",190.532629
+"Burundi","Governance, peace and security","2002",42.438863
+"Burundi","Governance, peace and security","2003",39.423626
+"Burundi","Governance, peace and security","2004",34.786502
+"Burundi","Governance, peace and security","2005",33.949094
+"Burundi","Governance, peace and security","2006",29.645531
+"Burundi","Governance, peace and security","2007",40.289993
+"Burundi","Governance, peace and security","2008",38.169541
+"Burundi","Governance, peace and security","2009",66.663929
+"Burundi","Governance, peace and security","2010",72.786217
+"Burundi","Governance, peace and security","2011",69.073206
+"Burundi","Governance, peace and security","2012",53.880271
+"Burundi","Governance, peace and security","2013",48.46658
+"Burundi","Humanitarian aid","2002",54.417772
+"Burundi","Humanitarian aid","2003",93.495581
+"Burundi","Humanitarian aid","2004",117.962506
+"Burundi","Humanitarian aid","2005",163.370201
+"Burundi","Humanitarian aid","2006",133.416758
+"Burundi","Humanitarian aid","2007",96.904736
+"Burundi","Humanitarian aid","2008",79.210966
+"Burundi","Humanitarian aid","2009",77.153035
+"Burundi","Humanitarian aid","2010",59.59634
+"Burundi","Humanitarian aid","2011",38.742209
+"Burundi","Humanitarian aid","2012",34.077685
+"Burundi","Humanitarian aid","2013",24.816337
+"Burundi","Other country programmable aid","2002",23.120227
+"Burundi","Other country programmable aid","2003",7.142307
+"Burundi","Other country programmable aid","2004",14.851678
+"Burundi","Other country programmable aid","2005",17.610344
+"Burundi","Other country programmable aid","2006",28.70992
+"Burundi","Other country programmable aid","2007",90.275329
+"Burundi","Other country programmable aid","2008",72.051474
+"Burundi","Other country programmable aid","2009",92.410593
+"Burundi","Other country programmable aid","2010",113.158201
+"Burundi","Other country programmable aid","2011",91.972957
+"Burundi","Other country programmable aid","2012",103.074903
+"Burundi","Other country programmable aid","2013",102.474382
+"Burundi","Other non-country programmable aid","2002",43.143206
+"Burundi","Other non-country programmable aid","2003",43.65924
+"Burundi","Other non-country programmable aid","2004",36.413576
+"Burundi","Other non-country programmable aid","2005",75.144105
+"Burundi","Other non-country programmable aid","2006",58.604411
+"Burundi","Other non-country programmable aid","2007",67.88688
+"Burundi","Other non-country programmable aid","2008",93.766005
+"Burundi","Other non-country programmable aid","2009",103.33666
+"Burundi","Other non-country programmable aid","2010",92.591188
+"Burundi","Other non-country programmable aid","2011",62.742737
+"Burundi","Other non-country programmable aid","2012",21.642595
+"Burundi","Other non-country programmable aid","2013",45.976171
+"Burundi","Public service provision","2002",8.439152
+"Burundi","Public service provision","2003",14.392861
+"Burundi","Public service provision","2004",15.423753
+"Burundi","Public service provision","2005",18.588552
+"Burundi","Public service provision","2006",49.755066
+"Burundi","Public service provision","2007",41.73532
+"Burundi","Public service provision","2008",59.151036
+"Burundi","Public service provision","2009",65.016655
+"Burundi","Public service provision","2010",96.240293
+"Burundi","Public service provision","2011",93.108486
+"Burundi","Public service provision","2012",78.14484
+"Burundi","Public service provision","2013",92.72164
+"Cote d'Ivoire","Governance, peace and security","2002",8.724856
+"Cote d'Ivoire","Governance, peace and security","2003",23.572907
+"Cote d'Ivoire","Governance, peace and security","2004",11.679666
+"Cote d'Ivoire","Governance, peace and security","2005",22.090391
+"Cote d'Ivoire","Governance, peace and security","2006",19.489167
+"Cote d'Ivoire","Governance, peace and security","2007",37.99035
+"Cote d'Ivoire","Governance, peace and security","2008",85.895831
+"Cote d'Ivoire","Governance, peace and security","2009",39.477458
+"Cote d'Ivoire","Governance, peace and security","2010",33.063915
+"Cote d'Ivoire","Governance, peace and security","2011",31.634852
+"Cote d'Ivoire","Governance, peace and security","2012",36.307572
+"Cote d'Ivoire","Governance, peace and security","2013",32.102203
+"Cote d'Ivoire","Humanitarian aid","2002",3.729068
+"Cote d'Ivoire","Humanitarian aid","2003",31.365932
+"Cote d'Ivoire","Humanitarian aid","2004",45.131043
+"Cote d'Ivoire","Humanitarian aid","2005",66.097435
+"Cote d'Ivoire","Humanitarian aid","2006",62.077328
+"Cote d'Ivoire","Humanitarian aid","2007",51.356677
+"Cote d'Ivoire","Humanitarian aid","2008",86.006822
+"Cote d'Ivoire","Humanitarian aid","2009",23.260572
+"Cote d'Ivoire","Humanitarian aid","2010",15.959531
+"Cote d'Ivoire","Humanitarian aid","2011",109.063166
+"Cote d'Ivoire","Humanitarian aid","2012",90.726438
+"Cote d'Ivoire","Humanitarian aid","2013",37.09998
+"Cote d'Ivoire","Other country programmable aid","2002",57.977144
+"Cote d'Ivoire","Other country programmable aid","2003",27.709781
+"Cote d'Ivoire","Other country programmable aid","2004",24.327675
+"Cote d'Ivoire","Other country programmable aid","2005",17.877475
+"Cote d'Ivoire","Other country programmable aid","2006",65.343844
+"Cote d'Ivoire","Other country programmable aid","2007",39.209581
+"Cote d'Ivoire","Other country programmable aid","2008",27.732692
+"Cote d'Ivoire","Other country programmable aid","2009",34.461616
+"Cote d'Ivoire","Other country programmable aid","2010",92.304992
+"Cote d'Ivoire","Other country programmable aid","2011",25.067458
+"Cote d'Ivoire","Other country programmable aid","2012",47.321381
+"Cote d'Ivoire","Other country programmable aid","2013",43.512106
+"Cote d'Ivoire","Other non-country programmable aid","2002",309.997082
+"Cote d'Ivoire","Other non-country programmable aid","2003",13.324334
+"Cote d'Ivoire","Other non-country programmable aid","2004",23.813637
+"Cote d'Ivoire","Other non-country programmable aid","2005",24.703956
+"Cote d'Ivoire","Other non-country programmable aid","2006",53.345485
+"Cote d'Ivoire","Other non-country programmable aid","2007",6.072602
+"Cote d'Ivoire","Other non-country programmable aid","2008",13.413555
+"Cote d'Ivoire","Other non-country programmable aid","2009",12.665373
+"Cote d'Ivoire","Other non-country programmable aid","2010",7.864688
+"Cote d'Ivoire","Other non-country programmable aid","2011",479.015546
+"Cote d'Ivoire","Other non-country programmable aid","2012",123.982779
+"Cote d'Ivoire","Other non-country programmable aid","2013",89.340019
+"Cote d'Ivoire","Public service provision","2002",74.919457
+"Cote d'Ivoire","Public service provision","2003",72.046545
+"Cote d'Ivoire","Public service provision","2004",78.484398
+"Cote d'Ivoire","Public service provision","2005",73.378922
+"Cote d'Ivoire","Public service provision","2006",96.898719
+"Cote d'Ivoire","Public service provision","2007",93.860788
+"Cote d'Ivoire","Public service provision","2008",133.826867
+"Cote d'Ivoire","Public service provision","2009",122.748352
+"Cote d'Ivoire","Public service provision","2010",139.866241
+"Cote d'Ivoire","Public service provision","2011",114.568748
+"Cote d'Ivoire","Public service provision","2012",125.910064
+"Cote d'Ivoire","Public service provision","2013",124.620606
+"Central African Republic","Governance, peace and security","2002",2.541737
+"Central African Republic","Governance, peace and security","2003",10.654517
+"Central African Republic","Governance, peace and security","2004",9.509347
+"Central African Republic","Governance, peace and security","2005",5.012378
+"Central African Republic","Governance, peace and security","2006",5.879797
+"Central African Republic","Governance, peace and security","2007",9.277457
+"Central African Republic","Governance, peace and security","2008",13.077431
+"Central African Republic","Governance, peace and security","2009",11.327374
+"Central African Republic","Governance, peace and security","2010",25.85452
+"Central African Republic","Governance, peace and security","2011",10.974073
+"Central African Republic","Governance, peace and security","2012",10.018104
+"Central African Republic","Governance, peace and security","2013",8.232247
+"Central African Republic","Humanitarian aid","2002",0.522877
+"Central African Republic","Humanitarian aid","2003",2.080182
+"Central African Republic","Humanitarian aid","2004",4.15376
+"Central African Republic","Humanitarian aid","2005",6.521838
+"Central African Republic","Humanitarian aid","2006",8.301624
+"Central African Republic","Humanitarian aid","2007",49.978352
+"Central African Republic","Humanitarian aid","2008",60.713262
+"Central African Republic","Humanitarian aid","2009",43.989763
+"Central African Republic","Humanitarian aid","2010",44.662797
+"Central African Republic","Humanitarian aid","2011",59.514666
+"Central African Republic","Humanitarian aid","2012",57.557029
+"Central African Republic","Humanitarian aid","2013",90.067815
+"Central African Republic","Other country programmable aid","2002",26.857076
+"Central African Republic","Other country programmable aid","2003",13.053368
+"Central African Republic","Other country programmable aid","2004",28.140363
+"Central African Republic","Other country programmable aid","2005",38.516584
+"Central African Republic","Other country programmable aid","2006",42.07885
+"Central African Republic","Other country programmable aid","2007",42.691355
+"Central African Republic","Other country programmable aid","2008",46.544181
+"Central African Republic","Other country programmable aid","2009",39.544512
+"Central African Republic","Other country programmable aid","2010",33.593221
+"Central African Republic","Other country programmable aid","2011",59.477268
+"Central African Republic","Other country programmable aid","2012",30.639718
+"Central African Republic","Other country programmable aid","2013",18.883111
+"Central African Republic","Other non-country programmable aid","2002",2.553542
+"Central African Republic","Other non-country programmable aid","2003",2.93409
+"Central African Republic","Other non-country programmable aid","2004",36.68037
+"Central African Republic","Other non-country programmable aid","2005",14.169053
+"Central African Republic","Other non-country programmable aid","2006",15.075373
+"Central African Republic","Other non-country programmable aid","2007",31.416987
+"Central African Republic","Other non-country programmable aid","2008",18.670495
+"Central African Republic","Other non-country programmable aid","2009",39.615057
+"Central African Republic","Other non-country programmable aid","2010",31.037407
+"Central African Republic","Other non-country programmable aid","2011",6.061454
+"Central African Republic","Other non-country programmable aid","2012",13.350589
+"Central African Republic","Other non-country programmable aid","2013",4.315476
+"Central African Republic","Public service provision","2002",20.821761
+"Central African Republic","Public service provision","2003",13.526074
+"Central African Republic","Public service provision","2004",20.959883
+"Central African Republic","Public service provision","2005",17.151037
+"Central African Republic","Public service provision","2006",10.89592
+"Central African Republic","Public service provision","2007",10.16958
+"Central African Republic","Public service provision","2008",10.947955
+"Central African Republic","Public service provision","2009",15.945043
+"Central African Republic","Public service provision","2010",21.642317
+"Central African Republic","Public service provision","2011",24.419867
+"Central African Republic","Public service provision","2012",20.595996
+"Central African Republic","Public service provision","2013",16.14579
+"Chad","Governance, peace and security","2002",5.707293
+"Chad","Governance, peace and security","2003",4.224916
+"Chad","Governance, peace and security","2004",9.711094
+"Chad","Governance, peace and security","2005",10.969453
+"Chad","Governance, peace and security","2006",11.259656
+"Chad","Governance, peace and security","2007",22.720949
+"Chad","Governance, peace and security","2008",30.116416
+"Chad","Governance, peace and security","2009",34.891909
+"Chad","Governance, peace and security","2010",35.788204
+"Chad","Governance, peace and security","2011",30.825558
+"Chad","Governance, peace and security","2012",25.706063
+"Chad","Governance, peace and security","2013",32.990599
+"Chad","Humanitarian aid","2002",1.18454
+"Chad","Humanitarian aid","2003",6.934319
+"Chad","Humanitarian aid","2004",83.890873
+"Chad","Humanitarian aid","2005",122.150352
+"Chad","Humanitarian aid","2006",96.539867
+"Chad","Humanitarian aid","2007",171.070469
+"Chad","Humanitarian aid","2008",232.715211
+"Chad","Humanitarian aid","2009",309.320447
+"Chad","Humanitarian aid","2010",246.961016
+"Chad","Humanitarian aid","2011",232.549552
+"Chad","Humanitarian aid","2012",239.833848
+"Chad","Humanitarian aid","2013",132.274404
+"Chad","Other country programmable aid","2002",67.173804
+"Chad","Other country programmable aid","2003",79.909794
+"Chad","Other country programmable aid","2004",85.872932
+"Chad","Other country programmable aid","2005",65.467904
+"Chad","Other country programmable aid","2006",64.364282
+"Chad","Other country programmable aid","2007",50.034865
+"Chad","Other country programmable aid","2008",89.652249
+"Chad","Other country programmable aid","2009",75.440537
+"Chad","Other country programmable aid","2010",35.482325
+"Chad","Other country programmable aid","2011",35.836032
+"Chad","Other country programmable aid","2012",37.966709
+"Chad","Other country programmable aid","2013",51.28766
+"Chad","Other non-country programmable aid","2002",58.251596
+"Chad","Other non-country programmable aid","2003",21.490528
+"Chad","Other non-country programmable aid","2004",24.176752
+"Chad","Other non-country programmable aid","2005",53.698013
+"Chad","Other non-country programmable aid","2006",21.06661
+"Chad","Other non-country programmable aid","2007",22.29522
+"Chad","Other non-country programmable aid","2008",23.843713
+"Chad","Other non-country programmable aid","2009",26.446337
+"Chad","Other non-country programmable aid","2010",29.428507
+"Chad","Other non-country programmable aid","2011",22.017228
+"Chad","Other non-country programmable aid","2012",22.94811
+"Chad","Other non-country programmable aid","2013",25.592699
+"Chad","Public service provision","2002",42.290752
+"Chad","Public service provision","2003",37.288643
+"Chad","Public service provision","2004",36.686766
+"Chad","Public service provision","2005",49.462031
+"Chad","Public service provision","2006",46.720822
+"Chad","Public service provision","2007",45.184371
+"Chad","Public service provision","2008",50.932831
+"Chad","Public service provision","2009",45.105961
+"Chad","Public service provision","2010",51.381059
+"Chad","Public service provision","2011",37.857258
+"Chad","Public service provision","2012",56.404652
+"Chad","Public service provision","2013",67.344063
+"Colombia","Governance, peace and security","2002",66.382958
+"Colombia","Governance, peace and security","2003",55.201282
+"Colombia","Governance, peace and security","2004",56.755592
+"Colombia","Governance, peace and security","2005",104.381941
+"Colombia","Governance, peace and security","2006",117.417617
+"Colombia","Governance, peace and security","2007",124.224642
+"Colombia","Governance, peace and security","2008",178.908974
+"Colombia","Governance, peace and security","2009",186.559299
+"Colombia","Governance, peace and security","2010",216.489784
+"Colombia","Governance, peace and security","2011",532.051108
+"Colombia","Governance, peace and security","2012",342.926392
+"Colombia","Governance, peace and security","2013",258.117379
+"Colombia","Humanitarian aid","2002",18.678554
+"Colombia","Humanitarian aid","2003",24.857523
+"Colombia","Humanitarian aid","2004",26.474395
+"Colombia","Humanitarian aid","2005",87.887246
+"Colombia","Humanitarian aid","2006",101.980098
+"Colombia","Humanitarian aid","2007",113.066643
+"Colombia","Humanitarian aid","2008",84.183391
+"Colombia","Humanitarian aid","2009",90.846273
+"Colombia","Humanitarian aid","2010",85.709786
+"Colombia","Humanitarian aid","2011",79.001436
+"Colombia","Humanitarian aid","2012",70.903449
+"Colombia","Humanitarian aid","2013",64.585732
+"Colombia","Other country programmable aid","2002",366.346958
+"Colombia","Other country programmable aid","2003",858.357193
+"Colombia","Other country programmable aid","2004",500.81163
+"Colombia","Other country programmable aid","2005",534.003044
+"Colombia","Other country programmable aid","2006",833.575392
+"Colombia","Other country programmable aid","2007",474.049582
+"Colombia","Other country programmable aid","2008",699.314703
+"Colombia","Other country programmable aid","2009",577.642883
+"Colombia","Other country programmable aid","2010",558.142708
+"Colombia","Other country programmable aid","2011",319.270834
+"Colombia","Other country programmable aid","2012",188.270111
+"Colombia","Other country programmable aid","2013",301.268033
+"Colombia","Other non-country programmable aid","2002",130.563455
+"Colombia","Other non-country programmable aid","2003",33.712983
+"Colombia","Other non-country programmable aid","2004",33.015382
+"Colombia","Other non-country programmable aid","2005",49.943268
+"Colombia","Other non-country programmable aid","2006",30.01447
+"Colombia","Other non-country programmable aid","2007",10.400941
+"Colombia","Other non-country programmable aid","2008",10.333164
+"Colombia","Other non-country programmable aid","2009",13.797573
+"Colombia","Other non-country programmable aid","2010",6.187048
+"Colombia","Other non-country programmable aid","2011",7.352597
+"Colombia","Other non-country programmable aid","2012",16.314831
+"Colombia","Other non-country programmable aid","2013",16.5469
+"Colombia","Public service provision","2002",30.659568
+"Colombia","Public service provision","2003",46.367932
+"Colombia","Public service provision","2004",42.735809
+"Colombia","Public service provision","2005",46.559254
+"Colombia","Public service provision","2006",58.634142
+"Colombia","Public service provision","2007",62.11571
+"Colombia","Public service provision","2008",66.617725
+"Colombia","Public service provision","2009",135.968405
+"Colombia","Public service provision","2010",77.298009
+"Colombia","Public service provision","2011",78.421134
+"Colombia","Public service provision","2012",174.957343
+"Colombia","Public service provision","2013",204.249484
+"Democratic People's Republic of Korea","Governance, peace and security","2002",0.313824
+"Democratic People's Republic of Korea","Governance, peace and security","2003",6.463275
+"Democratic People's Republic of Korea","Governance, peace and security","2004",0.896552
+"Democratic People's Republic of Korea","Governance, peace and security","2005",2.175563
+"Democratic People's Republic of Korea","Governance, peace and security","2006",1.62715
+"Democratic People's Republic of Korea","Governance, peace and security","2007",9.305047
+"Democratic People's Republic of Korea","Governance, peace and security","2008",1.619947
+"Democratic People's Republic of Korea","Governance, peace and security","2009",3.768987
+"Democratic People's Republic of Korea","Governance, peace and security","2010",2.299211
+"Democratic People's Republic of Korea","Governance, peace and security","2011",3.048884
+"Democratic People's Republic of Korea","Governance, peace and security","2012",2.06309
+"Democratic People's Republic of Korea","Governance, peace and security","2013",2.537826
+"Democratic People's Republic of Korea","Humanitarian aid","2002",122.181055
+"Democratic People's Republic of Korea","Humanitarian aid","2003",78.101609
+"Democratic People's Republic of Korea","Humanitarian aid","2004",93.825
+"Democratic People's Republic of Korea","Humanitarian aid","2005",50.123676
+"Democratic People's Republic of Korea","Humanitarian aid","2006",34.576386
+"Democratic People's Republic of Korea","Humanitarian aid","2007",47.502791
+"Democratic People's Republic of Korea","Humanitarian aid","2008",106.536979
+"Democratic People's Republic of Korea","Humanitarian aid","2009",32.079605
+"Democratic People's Republic of Korea","Humanitarian aid","2010",17.589496
+"Democratic People's Republic of Korea","Humanitarian aid","2011",38.669412
+"Democratic People's Republic of Korea","Humanitarian aid","2012",29.267323
+"Democratic People's Republic of Korea","Humanitarian aid","2013",21.650831
+"Democratic People's Republic of Korea","Other country programmable aid","2002",119.826549
+"Democratic People's Republic of Korea","Other country programmable aid","2003",7.364348
+"Democratic People's Republic of Korea","Other country programmable aid","2004",7.970344
+"Democratic People's Republic of Korea","Other country programmable aid","2005",10.640765
+"Democratic People's Republic of Korea","Other country programmable aid","2006",8.18656
+"Democratic People's Republic of Korea","Other country programmable aid","2007",32.735254
+"Democratic People's Republic of Korea","Other country programmable aid","2008",18.930167
+"Democratic People's Republic of Korea","Other country programmable aid","2009",6.374086
+"Democratic People's Republic of Korea","Other country programmable aid","2010",5.963833
+"Democratic People's Republic of Korea","Other country programmable aid","2011",3.236998
+"Democratic People's Republic of Korea","Other country programmable aid","2012",2.269129
+"Democratic People's Republic of Korea","Other country programmable aid","2013",3.01706
+"Democratic People's Republic of Korea","Other non-country programmable aid","2002",12.199125
+"Democratic People's Republic of Korea","Other non-country programmable aid","2003",15.773261
+"Democratic People's Republic of Korea","Other non-country programmable aid","2004",13.628308
+"Democratic People's Republic of Korea","Other non-country programmable aid","2005",4.714701
+"Democratic People's Republic of Korea","Other non-country programmable aid","2006",4.882374
+"Democratic People's Republic of Korea","Other non-country programmable aid","2007",6.802628
+"Democratic People's Republic of Korea","Other non-country programmable aid","2008",73.109805
+"Democratic People's Republic of Korea","Other non-country programmable aid","2009",4.805996
+"Democratic People's Republic of Korea","Other non-country programmable aid","2010",12.681574
+"Democratic People's Republic of Korea","Other non-country programmable aid","2011",7.320985
+"Democratic People's Republic of Korea","Other non-country programmable aid","2012",9.402056
+"Democratic People's Republic of Korea","Other non-country programmable aid","2013",11.844522
+"Democratic People's Republic of Korea","Public service provision","2002",4.229336
+"Democratic People's Republic of Korea","Public service provision","2003",2.862036
+"Democratic People's Republic of Korea","Public service provision","2004",5.62371
+"Democratic People's Republic of Korea","Public service provision","2005",5.511878
+"Democratic People's Republic of Korea","Public service provision","2006",2.235106
+"Democratic People's Republic of Korea","Public service provision","2007",3.218267
+"Democratic People's Republic of Korea","Public service provision","2008",6.199922
+"Democratic People's Republic of Korea","Public service provision","2009",5.384058
+"Democratic People's Republic of Korea","Public service provision","2010",4.71309
+"Democratic People's Republic of Korea","Public service provision","2011",3.546911
+"Democratic People's Republic of Korea","Public service provision","2012",3.630388
+"Democratic People's Republic of Korea","Public service provision","2013",3.925339
+"Democratic Republic of the Congo","Governance, peace and security","2002",65.110972
+"Democratic Republic of the Congo","Governance, peace and security","2003",94.212775
+"Democratic Republic of the Congo","Governance, peace and security","2004",108.308592
+"Democratic Republic of the Congo","Governance, peace and security","2005",313.775519
+"Democratic Republic of the Congo","Governance, peace and security","2006",278.927803
+"Democratic Republic of the Congo","Governance, peace and security","2007",144.753512
+"Democratic Republic of the Congo","Governance, peace and security","2008",217.11921
+"Democratic Republic of the Congo","Governance, peace and security","2009",252.956595
+"Democratic Republic of the Congo","Governance, peace and security","2010",259.503307
+"Democratic Republic of the Congo","Governance, peace and security","2011",356.827219
+"Democratic Republic of the Congo","Governance, peace and security","2012",234.087919
+"Democratic Republic of the Congo","Governance, peace and security","2013",260.857957
+"Democratic Republic of the Congo","Humanitarian aid","2002",149.263496
+"Democratic Republic of the Congo","Humanitarian aid","2003",181.248286
+"Democratic Republic of the Congo","Humanitarian aid","2004",206.175255
+"Democratic Republic of the Congo","Humanitarian aid","2005",325.276743
+"Democratic Republic of the Congo","Humanitarian aid","2006",406.52374
+"Democratic Republic of the Congo","Humanitarian aid","2007",372.375404
+"Democratic Republic of the Congo","Humanitarian aid","2008",513.792474
+"Democratic Republic of the Congo","Humanitarian aid","2009",556.619524
+"Democratic Republic of the Congo","Humanitarian aid","2010",457.415996
+"Democratic Republic of the Congo","Humanitarian aid","2011",395.538559
+"Democratic Republic of the Congo","Humanitarian aid","2012",407.126869
+"Democratic Republic of the Congo","Humanitarian aid","2013",410.564249
+"Democratic Republic of the Congo","Other country programmable aid","2002",31.390192
+"Democratic Republic of the Congo","Other country programmable aid","2003",35.891672
+"Democratic Republic of the Congo","Other country programmable aid","2004",65.588519
+"Democratic Republic of the Congo","Other country programmable aid","2005",101.118206
+"Democratic Republic of the Congo","Other country programmable aid","2006",112.354044
+"Democratic Republic of the Congo","Other country programmable aid","2007",160.380401
+"Democratic Republic of the Congo","Other country programmable aid","2008",191.060241
+"Democratic Republic of the Congo","Other country programmable aid","2009",215.376102
+"Democratic Republic of the Congo","Other country programmable aid","2010",254.310513
+"Democratic Republic of the Congo","Other country programmable aid","2011",242.429462
+"Democratic Republic of the Congo","Other country programmable aid","2012",316.063239
+"Democratic Republic of the Congo","Other country programmable aid","2013",307.233425
+"Democratic Republic of the Congo","Other non-country programmable aid","2002",51.470197
+"Democratic Republic of the Congo","Other non-country programmable aid","2003",47.262292
+"Democratic Republic of the Congo","Other non-country programmable aid","2004",59.167643
+"Democratic Republic of the Congo","Other non-country programmable aid","2005",97.28538
+"Democratic Republic of the Congo","Other non-country programmable aid","2006",29.153311
+"Democratic Republic of the Congo","Other non-country programmable aid","2007",30.272268
+"Democratic Republic of the Congo","Other non-country programmable aid","2008",47.233451
+"Democratic Republic of the Congo","Other non-country programmable aid","2009",61.952091
+"Democratic Republic of the Congo","Other non-country programmable aid","2010",177.231072
+"Democratic Republic of the Congo","Other non-country programmable aid","2011",94.270462
+"Democratic Republic of the Congo","Other non-country programmable aid","2012",83.935486
+"Democratic Republic of the Congo","Other non-country programmable aid","2013",30.894754
+"Democratic Republic of the Congo","Public service provision","2002",83.565766
+"Democratic Republic of the Congo","Public service provision","2003",88.551219
+"Democratic Republic of the Congo","Public service provision","2004",113.130221
+"Democratic Republic of the Congo","Public service provision","2005",116.260004
+"Democratic Republic of the Congo","Public service provision","2006",149.393608
+"Democratic Republic of the Congo","Public service provision","2007",149.635757
+"Democratic Republic of the Congo","Public service provision","2008",245.193096
+"Democratic Republic of the Congo","Public service provision","2009",290.640356
+"Democratic Republic of the Congo","Public service provision","2010",337.432336
+"Democratic Republic of the Congo","Public service provision","2011",367.413965
+"Democratic Republic of the Congo","Public service provision","2012",397.879661
+"Democratic Republic of the Congo","Public service provision","2013",483.494194
+"Ethiopia","Governance, peace and security","2002",40.041174
+"Ethiopia","Governance, peace and security","2003",38.327325
+"Ethiopia","Governance, peace and security","2004",51.249425
+"Ethiopia","Governance, peace and security","2005",65.997397
+"Ethiopia","Governance, peace and security","2006",64.029386
+"Ethiopia","Governance, peace and security","2007",94.674962
+"Ethiopia","Governance, peace and security","2008",98.93927
+"Ethiopia","Governance, peace and security","2009",90.659094
+"Ethiopia","Governance, peace and security","2010",93.793551
+"Ethiopia","Governance, peace and security","2011",78.860055
+"Ethiopia","Governance, peace and security","2012",87.63385
+"Ethiopia","Governance, peace and security","2013",69.665267
+"Ethiopia","Humanitarian aid","2002",137.800245
+"Ethiopia","Humanitarian aid","2003",691.541238
+"Ethiopia","Humanitarian aid","2004",416.273077
+"Ethiopia","Humanitarian aid","2005",660.332202
+"Ethiopia","Humanitarian aid","2006",270.036913
+"Ethiopia","Humanitarian aid","2007",289.094728
+"Ethiopia","Humanitarian aid","2008",826.374389
+"Ethiopia","Humanitarian aid","2009",686.027772
+"Ethiopia","Humanitarian aid","2010",642.353785
+"Ethiopia","Humanitarian aid","2011",561.636053
+"Ethiopia","Humanitarian aid","2012",420.250586
+"Ethiopia","Humanitarian aid","2013",404.173062
+"Ethiopia","Other country programmable aid","2002",163.391327
+"Ethiopia","Other country programmable aid","2003",194.55396
+"Ethiopia","Other country programmable aid","2004",147.481814
+"Ethiopia","Other country programmable aid","2005",305.577305
+"Ethiopia","Other country programmable aid","2006",425.766276
+"Ethiopia","Other country programmable aid","2007",547.755014
+"Ethiopia","Other country programmable aid","2008",535.617331
+"Ethiopia","Other country programmable aid","2009",362.951229
+"Ethiopia","Other country programmable aid","2010",432.066177
+"Ethiopia","Other country programmable aid","2011",398.940902
+"Ethiopia","Other country programmable aid","2012",456.066878
+"Ethiopia","Other country programmable aid","2013",437.755757
+"Ethiopia","Other non-country programmable aid","2002",264.221822
+"Ethiopia","Other non-country programmable aid","2003",222.342063
+"Ethiopia","Other non-country programmable aid","2004",298.060695
+"Ethiopia","Other non-country programmable aid","2005",272.266737
+"Ethiopia","Other non-country programmable aid","2006",169.288169
+"Ethiopia","Other non-country programmable aid","2007",196.839035
+"Ethiopia","Other non-country programmable aid","2008",330.969299
+"Ethiopia","Other non-country programmable aid","2009",238.577154
+"Ethiopia","Other non-country programmable aid","2010",356.502729
+"Ethiopia","Other non-country programmable aid","2011",286.964766
+"Ethiopia","Other non-country programmable aid","2012",283.314081
+"Ethiopia","Other non-country programmable aid","2013",194.491063
+"Ethiopia","Public service provision","2002",96.638756
+"Ethiopia","Public service provision","2003",202.490681
+"Ethiopia","Public service provision","2004",233.293031
+"Ethiopia","Public service provision","2005",221.050305
+"Ethiopia","Public service provision","2006",410.427959
+"Ethiopia","Public service provision","2007",532.788386
+"Ethiopia","Public service provision","2008",476.662522
+"Ethiopia","Public service provision","2009",733.389454
+"Ethiopia","Public service provision","2010",745.117937
+"Ethiopia","Public service provision","2011",863.186067
+"Ethiopia","Public service provision","2012",867.4891
+"Ethiopia","Public service provision","2013",917.623868
+"Guinea","Governance, peace and security","2002",7.594723
+"Guinea","Governance, peace and security","2003",11.338563
+"Guinea","Governance, peace and security","2004",11.261747
+"Guinea","Governance, peace and security","2005",10.345652
+"Guinea","Governance, peace and security","2006",9.142919
+"Guinea","Governance, peace and security","2007",20.488244
+"Guinea","Governance, peace and security","2008",20.786439
+"Guinea","Governance, peace and security","2009",21.961936
+"Guinea","Governance, peace and security","2010",31.065816
+"Guinea","Governance, peace and security","2011",21.820617
+"Guinea","Governance, peace and security","2012",17.76099
+"Guinea","Governance, peace and security","2013",31.219953
+"Guinea","Humanitarian aid","2002",19.2767
+"Guinea","Humanitarian aid","2003",19.437144
+"Guinea","Humanitarian aid","2004",18.535981
+"Guinea","Humanitarian aid","2005",24.742516
+"Guinea","Humanitarian aid","2006",16.435975
+"Guinea","Humanitarian aid","2007",16.153531
+"Guinea","Humanitarian aid","2008",6.488676
+"Guinea","Humanitarian aid","2009",7.231084
+"Guinea","Humanitarian aid","2010",5.960798
+"Guinea","Humanitarian aid","2011",6.870047
+"Guinea","Humanitarian aid","2012",8.884381
+"Guinea","Humanitarian aid","2013",11.938807
+"Guinea","Other country programmable aid","2002",114.1715
+"Guinea","Other country programmable aid","2003",97.535513
+"Guinea","Other country programmable aid","2004",68.192216
+"Guinea","Other country programmable aid","2005",33.999258
+"Guinea","Other country programmable aid","2006",34.534072
+"Guinea","Other country programmable aid","2007",43.474563
+"Guinea","Other country programmable aid","2008",57.865887
+"Guinea","Other country programmable aid","2009",57.592498
+"Guinea","Other country programmable aid","2010",62.646197
+"Guinea","Other country programmable aid","2011",38.234902
+"Guinea","Other country programmable aid","2012",30.87829
+"Guinea","Other country programmable aid","2013",29.547423
+"Guinea","Other non-country programmable aid","2002",39.730346
+"Guinea","Other non-country programmable aid","2003",27.974345
+"Guinea","Other non-country programmable aid","2004",23.6752
+"Guinea","Other non-country programmable aid","2005",21.872174
+"Guinea","Other non-country programmable aid","2006",12.502235
+"Guinea","Other non-country programmable aid","2007",17.974987
+"Guinea","Other non-country programmable aid","2008",14.610318
+"Guinea","Other non-country programmable aid","2009",17.733371
+"Guinea","Other non-country programmable aid","2010",8.909903
+"Guinea","Other non-country programmable aid","2011",8.849116
+"Guinea","Other non-country programmable aid","2012",24.394704
+"Guinea","Other non-country programmable aid","2013",6.153497
+"Guinea","Public service provision","2002",41.548068
+"Guinea","Public service provision","2003",66.18553
+"Guinea","Public service provision","2004",66.91201
+"Guinea","Public service provision","2005",68.911024
+"Guinea","Public service provision","2006",87.363084
+"Guinea","Public service provision","2007",60.901638
+"Guinea","Public service provision","2008",54.435463
+"Guinea","Public service provision","2009",67.333689
+"Guinea","Public service provision","2010",67.827706
+"Guinea","Public service provision","2011",60.699596
+"Guinea","Public service provision","2012",57.53471
+"Guinea","Public service provision","2013",50.044677
+"Haiti","Governance, peace and security","2002",16.490262
+"Haiti","Governance, peace and security","2003",22.292191
+"Haiti","Governance, peace and security","2004",29.19034
+"Haiti","Governance, peace and security","2005",137.120293
+"Haiti","Governance, peace and security","2006",115.92802
+"Haiti","Governance, peace and security","2007",78.945474
+"Haiti","Governance, peace and security","2008",130.929063
+"Haiti","Governance, peace and security","2009",150.784928
+"Haiti","Governance, peace and security","2010",186.767625
+"Haiti","Governance, peace and security","2011",196.737234
+"Haiti","Governance, peace and security","2012",168.183386
+"Haiti","Governance, peace and security","2013",148.797094
+"Haiti","Humanitarian aid","2002",0.100015
+"Haiti","Humanitarian aid","2003",6.676546
+"Haiti","Humanitarian aid","2004",56.228725
+"Haiti","Humanitarian aid","2005",136.133913
+"Haiti","Humanitarian aid","2006",74.808212
+"Haiti","Humanitarian aid","2007",41.351594
+"Haiti","Humanitarian aid","2008",189.51853
+"Haiti","Humanitarian aid","2009",145.16724
+"Haiti","Humanitarian aid","2010",1640.356128
+"Haiti","Humanitarian aid","2011",496.874511
+"Haiti","Humanitarian aid","2012",215.605631
+"Haiti","Humanitarian aid","2013",192.356164
+"Haiti","Other country programmable aid","2002",54.908141
+"Haiti","Other country programmable aid","2003",40.198521
+"Haiti","Other country programmable aid","2004",37.829525
+"Haiti","Other country programmable aid","2005",46.493021
+"Haiti","Other country programmable aid","2006",77.627117
+"Haiti","Other country programmable aid","2007",125.14073
+"Haiti","Other country programmable aid","2008",128.62292
+"Haiti","Other country programmable aid","2009",134.091928
+"Haiti","Other country programmable aid","2010",351.946454
+"Haiti","Other country programmable aid","2011",282.739349
+"Haiti","Other country programmable aid","2012",265.524542
+"Haiti","Other country programmable aid","2013",173.986243
+"Haiti","Other non-country programmable aid","2002",46.931896
+"Haiti","Other non-country programmable aid","2003",68.49452
+"Haiti","Other non-country programmable aid","2004",62.407114
+"Haiti","Other non-country programmable aid","2005",118.584578
+"Haiti","Other non-country programmable aid","2006",71.123558
+"Haiti","Other non-country programmable aid","2007",74.559759
+"Haiti","Other non-country programmable aid","2008",65.565123
+"Haiti","Other non-country programmable aid","2009",104.407001
+"Haiti","Other non-country programmable aid","2010",167.627539
+"Haiti","Other non-country programmable aid","2011",93.316952
+"Haiti","Other non-country programmable aid","2012",86.815503
+"Haiti","Other non-country programmable aid","2013",37.819896
+"Haiti","Public service provision","2002",47.354782
+"Haiti","Public service provision","2003",64.089085
+"Haiti","Public service provision","2004",84.79596
+"Haiti","Public service provision","2005",92.191323
+"Haiti","Public service provision","2006",146.460561
+"Haiti","Public service provision","2007",174.02949
+"Haiti","Public service provision","2008",182.330342
+"Haiti","Public service provision","2009",298.469256
+"Haiti","Public service provision","2010",243.463025
+"Haiti","Public service provision","2011",293.939619
+"Haiti","Public service provision","2012",234.029504
+"Haiti","Public service provision","2013",239.775398
+"Indonesia","Governance, peace and security","2002",146.620228
+"Indonesia","Governance, peace and security","2003",176.466872
+"Indonesia","Governance, peace and security","2004",188.974797
+"Indonesia","Governance, peace and security","2005",181.150085
+"Indonesia","Governance, peace and security","2006",281.093548
+"Indonesia","Governance, peace and security","2007",297.698966
+"Indonesia","Governance, peace and security","2008",269.586396
+"Indonesia","Governance, peace and security","2009",274.461834
+"Indonesia","Governance, peace and security","2010",175.433839
+"Indonesia","Governance, peace and security","2011",286.823754
+"Indonesia","Governance, peace and security","2012",208.785563
+"Indonesia","Governance, peace and security","2013",240.374473
+"Indonesia","Humanitarian aid","2002",54.715632
+"Indonesia","Humanitarian aid","2003",60.456861
+"Indonesia","Humanitarian aid","2004",28.397389
+"Indonesia","Humanitarian aid","2005",637.713623
+"Indonesia","Humanitarian aid","2006",443.724996
+"Indonesia","Humanitarian aid","2007",241.673747
+"Indonesia","Humanitarian aid","2008",144.400009
+"Indonesia","Humanitarian aid","2009",257.268584
+"Indonesia","Humanitarian aid","2010",127.375408
+"Indonesia","Humanitarian aid","2011",161.470046
+"Indonesia","Humanitarian aid","2012",44.744046
+"Indonesia","Humanitarian aid","2013",57.591454
+"Indonesia","Other country programmable aid","2002",382.959499
+"Indonesia","Other country programmable aid","2003",452.798365
+"Indonesia","Other country programmable aid","2004",513.786151
+"Indonesia","Other country programmable aid","2005",551.96712
+"Indonesia","Other country programmable aid","2006",984.997406
+"Indonesia","Other country programmable aid","2007",996.272066
+"Indonesia","Other country programmable aid","2008",1713.062308
+"Indonesia","Other country programmable aid","2009",1653.38769
+"Indonesia","Other country programmable aid","2010",1923.122101
+"Indonesia","Other country programmable aid","2011",1026.862322
+"Indonesia","Other country programmable aid","2012",946.598545
+"Indonesia","Other country programmable aid","2013",1000.112282
+"Indonesia","Other non-country programmable aid","2002",794.662713
+"Indonesia","Other non-country programmable aid","2003",551.748544
+"Indonesia","Other non-country programmable aid","2004",446.330244
+"Indonesia","Other non-country programmable aid","2005",717.716915
+"Indonesia","Other non-country programmable aid","2006",457.257609
+"Indonesia","Other non-country programmable aid","2007",620.171417
+"Indonesia","Other non-country programmable aid","2008",234.471695
+"Indonesia","Other non-country programmable aid","2009",199.920466
+"Indonesia","Other non-country programmable aid","2010",194.818526
+"Indonesia","Other non-country programmable aid","2011",-0.963241
+"Indonesia","Other non-country programmable aid","2012",8.245563
+"Indonesia","Other non-country programmable aid","2013",374.451233
+"Indonesia","Public service provision","2002",213.349805
+"Indonesia","Public service provision","2003",294.469236
+"Indonesia","Public service provision","2004",253.74421
+"Indonesia","Public service provision","2005",284.231042
+"Indonesia","Public service provision","2006",478.545413
+"Indonesia","Public service provision","2007",521.846013
+"Indonesia","Public service provision","2008",595.966726
+"Indonesia","Public service provision","2009",594.415023
+"Indonesia","Public service provision","2010",556.935441
+"Indonesia","Public service provision","2011",576.397991
+"Indonesia","Public service provision","2012",723.357433
+"Indonesia","Public service provision","2013",536.706699
+"Iraq","Governance, peace and security","2002",0.280334
+"Iraq","Governance, peace and security","2003",569.082569
+"Iraq","Governance, peace and security","2004",1123.407591
+"Iraq","Governance, peace and security","2005",3562.792926
+"Iraq","Governance, peace and security","2006",1239.146796
+"Iraq","Governance, peace and security","2007",1243.702802
+"Iraq","Governance, peace and security","2008",1064.576888
+"Iraq","Governance, peace and security","2009",1388.654934
+"Iraq","Governance, peace and security","2010",996.9517
+"Iraq","Governance, peace and security","2011",821.133534
+"Iraq","Governance, peace and security","2012",540.74631
+"Iraq","Governance, peace and security","2013",436.309725
+"Iraq","Humanitarian aid","2002",37.449384
+"Iraq","Humanitarian aid","2003",990.659754
+"Iraq","Humanitarian aid","2004",1010.808962
+"Iraq","Humanitarian aid","2005",605.918014
+"Iraq","Humanitarian aid","2006",413.273413
+"Iraq","Humanitarian aid","2007",353.810427
+"Iraq","Humanitarian aid","2008",379.32234
+"Iraq","Humanitarian aid","2009",500.174565
+"Iraq","Humanitarian aid","2010",185.76765
+"Iraq","Humanitarian aid","2011",303.508062
+"Iraq","Humanitarian aid","2012",94.530344
+"Iraq","Humanitarian aid","2013",147.842641
+"Iraq","Other country programmable aid","2002",6.329906
+"Iraq","Other country programmable aid","2003",888.449483
+"Iraq","Other country programmable aid","2004",2501.959852
+"Iraq","Other country programmable aid","2005",3267.871596
+"Iraq","Other country programmable aid","2006",3204.66346
+"Iraq","Other country programmable aid","2007",2209.4431
+"Iraq","Other country programmable aid","2008",1593.624754
+"Iraq","Other country programmable aid","2009",676.709145
+"Iraq","Other country programmable aid","2010",621.83897
+"Iraq","Other country programmable aid","2011",552.575967
+"Iraq","Other country programmable aid","2012",388.346837
+"Iraq","Other country programmable aid","2013",739.750893
+"Iraq","Other non-country programmable aid","2002",90.125447
+"Iraq","Other non-country programmable aid","2003",201.110861
+"Iraq","Other non-country programmable aid","2004",171.777534
+"Iraq","Other non-country programmable aid","2005",115.664536
+"Iraq","Other non-country programmable aid","2006",27.033765
+"Iraq","Other non-country programmable aid","2007",20.581948
+"Iraq","Other non-country programmable aid","2008",16.072902
+"Iraq","Other non-country programmable aid","2009",11.450279
+"Iraq","Other non-country programmable aid","2010",2.330757
+"Iraq","Other non-country programmable aid","2011",1.601248
+"Iraq","Other non-country programmable aid","2012",8.443011
+"Iraq","Other non-country programmable aid","2013",7.602009
+"Iraq","Public service provision","2002",5.6778
+"Iraq","Public service provision","2003",62.647457
+"Iraq","Public service provision","2004",226.274938
+"Iraq","Public service provision","2005",1642.624808
+"Iraq","Public service provision","2006",1150.498236
+"Iraq","Public service provision","2007",860.350527
+"Iraq","Public service provision","2008",330.191092
+"Iraq","Public service provision","2009",298.465427
+"Iraq","Public service provision","2010",318.742026
+"Iraq","Public service provision","2011",110.153176
+"Iraq","Public service provision","2012",133.631945
+"Iraq","Public service provision","2013",112.649398
+"Jordan","Governance, peace and security","2002",3.935723
+"Jordan","Governance, peace and security","2003",7.702465
+"Jordan","Governance, peace and security","2004",12.822353
+"Jordan","Governance, peace and security","2005",25.26221
+"Jordan","Governance, peace and security","2006",49.153873
+"Jordan","Governance, peace and security","2007",154.657967
+"Jordan","Governance, peace and security","2008",97.822378
+"Jordan","Governance, peace and security","2009",66.038173
+"Jordan","Governance, peace and security","2010",278.260375
+"Jordan","Governance, peace and security","2011",317.434489
+"Jordan","Governance, peace and security","2012",364.708627
+"Jordan","Governance, peace and security","2013",298.740114
+"Jordan","Humanitarian aid","2002",0.828824
+"Jordan","Humanitarian aid","2003",18.455524
+"Jordan","Humanitarian aid","2004",2.234029
+"Jordan","Humanitarian aid","2005",2.007723
+"Jordan","Humanitarian aid","2006",2.840978
+"Jordan","Humanitarian aid","2007",7.139567
+"Jordan","Humanitarian aid","2008",16.133935
+"Jordan","Humanitarian aid","2009",16.228228
+"Jordan","Humanitarian aid","2010",21.359743
+"Jordan","Humanitarian aid","2011",21.169045
+"Jordan","Humanitarian aid","2012",83.970982
+"Jordan","Humanitarian aid","2013",296.527608
+"Jordan","Other country programmable aid","2002",296.381697
+"Jordan","Other country programmable aid","2003",76.582279
+"Jordan","Other country programmable aid","2004",343.075425
+"Jordan","Other country programmable aid","2005",116.460318
+"Jordan","Other country programmable aid","2006",120.478448
+"Jordan","Other country programmable aid","2007",157.092603
+"Jordan","Other country programmable aid","2008",145.473804
+"Jordan","Other country programmable aid","2009",128.949676
+"Jordan","Other country programmable aid","2010",152.597495
+"Jordan","Other country programmable aid","2011",173.99004
+"Jordan","Other country programmable aid","2012",351.059555
+"Jordan","Other country programmable aid","2013",190.727908
+"Jordan","Other non-country programmable aid","2002",136.624481
+"Jordan","Other non-country programmable aid","2003",1109.529602
+"Jordan","Other non-country programmable aid","2004",44.194007
+"Jordan","Other non-country programmable aid","2005",294.290015
+"Jordan","Other non-country programmable aid","2006",222.438215
+"Jordan","Other non-country programmable aid","2007",10.140085
+"Jordan","Other non-country programmable aid","2008",273.457742
+"Jordan","Other non-country programmable aid","2009",267.545593
+"Jordan","Other non-country programmable aid","2010",16.05596
+"Jordan","Other non-country programmable aid","2011",22.41658
+"Jordan","Other non-country programmable aid","2012",55.176509
+"Jordan","Other non-country programmable aid","2013",49.75562
+"Jordan","Public service provision","2002",104.040975
+"Jordan","Public service provision","2003",159.91532
+"Jordan","Public service provision","2004",162.601386
+"Jordan","Public service provision","2005",200.0838
+"Jordan","Public service provision","2006",178.083144
+"Jordan","Public service provision","2007",175.394114
+"Jordan","Public service provision","2008",152.28462
+"Jordan","Public service provision","2009",268.634696
+"Jordan","Public service provision","2010",253.009686
+"Jordan","Public service provision","2011",255.423401
+"Jordan","Public service provision","2012",311.874618
+"Jordan","Public service provision","2013",289.766676
+"Kenya","Governance, peace and security","2002",35.168673
+"Kenya","Governance, peace and security","2003",36.554624
+"Kenya","Governance, peace and security","2004",48.807464
+"Kenya","Governance, peace and security","2005",48.399314
+"Kenya","Governance, peace and security","2006",96.665692
+"Kenya","Governance, peace and security","2007",127.292545
+"Kenya","Governance, peace and security","2008",81.179145
+"Kenya","Governance, peace and security","2009",97.838834
+"Kenya","Governance, peace and security","2010",124.866203
+"Kenya","Governance, peace and security","2011",116.11608
+"Kenya","Governance, peace and security","2012",166.845029
+"Kenya","Governance, peace and security","2013",155.254392
+"Kenya","Humanitarian aid","2002",51.805209
+"Kenya","Humanitarian aid","2003",36.552528
+"Kenya","Humanitarian aid","2004",65.981414
+"Kenya","Humanitarian aid","2005",58.551864
+"Kenya","Humanitarian aid","2006",206.386358
+"Kenya","Humanitarian aid","2007",166.503907
+"Kenya","Humanitarian aid","2008",260.751637
+"Kenya","Humanitarian aid","2009",369.563775
+"Kenya","Humanitarian aid","2010",268.555772
+"Kenya","Humanitarian aid","2011",433.371576
+"Kenya","Humanitarian aid","2012",360.442365
+"Kenya","Humanitarian aid","2013",282.793143
+"Kenya","Other country programmable aid","2002",103.317475
+"Kenya","Other country programmable aid","2003",151.566703
+"Kenya","Other country programmable aid","2004",175.340053
+"Kenya","Other country programmable aid","2005",191.548559
+"Kenya","Other country programmable aid","2006",227.180726
+"Kenya","Other country programmable aid","2007",272.087783
+"Kenya","Other country programmable aid","2008",266.604098
+"Kenya","Other country programmable aid","2009",279.422174
+"Kenya","Other country programmable aid","2010",336.220161
+"Kenya","Other country programmable aid","2011",428.981194
+"Kenya","Other country programmable aid","2012",618.107833
+"Kenya","Other country programmable aid","2013",987.269074
+"Kenya","Other non-country programmable aid","2002",97.149406
+"Kenya","Other non-country programmable aid","2003",79.324559
+"Kenya","Other non-country programmable aid","2004",60.567319
+"Kenya","Other non-country programmable aid","2005",151.265615
+"Kenya","Other non-country programmable aid","2006",58.799153
+"Kenya","Other non-country programmable aid","2007",99.296125
+"Kenya","Other non-country programmable aid","2008",51.400729
+"Kenya","Other non-country programmable aid","2009",59.168593
+"Kenya","Other non-country programmable aid","2010",44.479596
+"Kenya","Other non-country programmable aid","2011",56.896002
+"Kenya","Other non-country programmable aid","2012",67.410758
+"Kenya","Other non-country programmable aid","2013",50.944854
+"Kenya","Public service provision","2002",131.48206
+"Kenya","Public service provision","2003",215.869321
+"Kenya","Public service provision","2004",221.691631
+"Kenya","Public service provision","2005",282.254403
+"Kenya","Public service provision","2006",349.129837
+"Kenya","Public service provision","2007",453.934176
+"Kenya","Public service provision","2008",527.042168
+"Kenya","Public service provision","2009",663.511172
+"Kenya","Public service provision","2010",670.069681
+"Kenya","Public service provision","2011",746.683554
+"Kenya","Public service provision","2012",827.682863
+"Kenya","Public service provision","2013",867.115549
+"Lebanon","Governance, peace and security","2002",14.393752
+"Lebanon","Governance, peace and security","2003",17.458105
+"Lebanon","Governance, peace and security","2004",15.031292
+"Lebanon","Governance, peace and security","2005",24.094304
+"Lebanon","Governance, peace and security","2006",82.413954
+"Lebanon","Governance, peace and security","2007",69.414583
+"Lebanon","Governance, peace and security","2008",234.800508
+"Lebanon","Governance, peace and security","2009",181.479837
+"Lebanon","Governance, peace and security","2010",99.443305
+"Lebanon","Governance, peace and security","2011",94.911686
+"Lebanon","Governance, peace and security","2012",80.764499
+"Lebanon","Governance, peace and security","2013",105.140181
+"Lebanon","Humanitarian aid","2002",9.552334
+"Lebanon","Humanitarian aid","2003",8.032673
+"Lebanon","Humanitarian aid","2004",5.181664
+"Lebanon","Humanitarian aid","2005",37.340977
+"Lebanon","Humanitarian aid","2006",340.258033
+"Lebanon","Humanitarian aid","2007",254.874643
+"Lebanon","Humanitarian aid","2008",134.239086
+"Lebanon","Humanitarian aid","2009",70.751577
+"Lebanon","Humanitarian aid","2010",47.47706
+"Lebanon","Humanitarian aid","2011",53.299107
+"Lebanon","Humanitarian aid","2012",301.837785
+"Lebanon","Humanitarian aid","2013",206.124999
+"Lebanon","Other country programmable aid","2002",42.913457
+"Lebanon","Other country programmable aid","2003",31.554513
+"Lebanon","Other country programmable aid","2004",43.368724
+"Lebanon","Other country programmable aid","2005",35.009895
+"Lebanon","Other country programmable aid","2006",58.955386
+"Lebanon","Other country programmable aid","2007",111.907656
+"Lebanon","Other country programmable aid","2008",104.640354
+"Lebanon","Other country programmable aid","2009",111.801547
+"Lebanon","Other country programmable aid","2010",69.262723
+"Lebanon","Other country programmable aid","2011",119.330209
+"Lebanon","Other country programmable aid","2012",66.294336
+"Lebanon","Other country programmable aid","2013",74.521793
+"Lebanon","Other non-country programmable aid","2002",23.747238
+"Lebanon","Other non-country programmable aid","2003",25.850391
+"Lebanon","Other non-country programmable aid","2004",19.960238
+"Lebanon","Other non-country programmable aid","2005",22.546387
+"Lebanon","Other non-country programmable aid","2006",142.908475
+"Lebanon","Other non-country programmable aid","2007",28.592173
+"Lebanon","Other non-country programmable aid","2008",255.491757
+"Lebanon","Other non-country programmable aid","2009",9.139139
+"Lebanon","Other non-country programmable aid","2010",6.640357
+"Lebanon","Other non-country programmable aid","2011",3.35302
+"Lebanon","Other non-country programmable aid","2012",49.342794
+"Lebanon","Other non-country programmable aid","2013",19.068323
+"Lebanon","Public service provision","2002",38.309277
+"Lebanon","Public service provision","2003",59.841751
+"Lebanon","Public service provision","2004",65.866729
+"Lebanon","Public service provision","2005",85.290545
+"Lebanon","Public service provision","2006",109.022502
+"Lebanon","Public service provision","2007",109.777722
+"Lebanon","Public service provision","2008",158.849484
+"Lebanon","Public service provision","2009",120.047677
+"Lebanon","Public service provision","2010",123.642585
+"Lebanon","Public service provision","2011",126.887691
+"Lebanon","Public service provision","2012",171.890798
+"Lebanon","Public service provision","2013",173.775333
+"Liberia","Governance, peace and security","2002",1.567501
+"Liberia","Governance, peace and security","2003",11.225843
+"Liberia","Governance, peace and security","2004",24.99477
+"Liberia","Governance, peace and security","2005",91.428623
+"Liberia","Governance, peace and security","2006",90.633702
+"Liberia","Governance, peace and security","2007",88.477068
+"Liberia","Governance, peace and security","2008",88.414666
+"Liberia","Governance, peace and security","2009",76.806955
+"Liberia","Governance, peace and security","2010",123.337107
+"Liberia","Governance, peace and security","2011",85.574956
+"Liberia","Governance, peace and security","2012",74.357393
+"Liberia","Governance, peace and security","2013",60.39782
+"Liberia","Humanitarian aid","2002",27.987913
+"Liberia","Humanitarian aid","2003",68.38214
+"Liberia","Humanitarian aid","2004",182.996719
+"Liberia","Humanitarian aid","2005",131.114228
+"Liberia","Humanitarian aid","2006",150.097568
+"Liberia","Humanitarian aid","2007",107.506153
+"Liberia","Humanitarian aid","2008",73.595048
+"Liberia","Humanitarian aid","2009",37.941359
+"Liberia","Humanitarian aid","2010",28.533617
+"Liberia","Humanitarian aid","2011",88.808036
+"Liberia","Humanitarian aid","2012",58.015
+"Liberia","Humanitarian aid","2013",29.27679
+"Liberia","Other country programmable aid","2002",1.393722
+"Liberia","Other country programmable aid","2003",1.024508
+"Liberia","Other country programmable aid","2004",1.048349
+"Liberia","Other country programmable aid","2005",3.727764
+"Liberia","Other country programmable aid","2006",3.407287
+"Liberia","Other country programmable aid","2007",37.940139
+"Liberia","Other country programmable aid","2008",60.339833
+"Liberia","Other country programmable aid","2009",83.751985
+"Liberia","Other country programmable aid","2010",118.768157
+"Liberia","Other country programmable aid","2011",99.075747
+"Liberia","Other country programmable aid","2012",143.574689
+"Liberia","Other country programmable aid","2013",143.701555
+"Liberia","Other non-country programmable aid","2002",12.384214
+"Liberia","Other non-country programmable aid","2003",30.912022
+"Liberia","Other non-country programmable aid","2004",8.328973
+"Liberia","Other non-country programmable aid","2005",8.096844
+"Liberia","Other non-country programmable aid","2006",7.598179
+"Liberia","Other non-country programmable aid","2007",25.178139
+"Liberia","Other non-country programmable aid","2008",30.959245
+"Liberia","Other non-country programmable aid","2009",22.971457
+"Liberia","Other non-country programmable aid","2010",35.814531
+"Liberia","Other non-country programmable aid","2011",79.030514
+"Liberia","Other non-country programmable aid","2012",56.008002
+"Liberia","Other non-country programmable aid","2013",13.409024
+"Liberia","Public service provision","2002",6.06947
+"Liberia","Public service provision","2003",6.97412
+"Liberia","Public service provision","2004",12.37637
+"Liberia","Public service provision","2005",9.310831
+"Liberia","Public service provision","2006",11.394242
+"Liberia","Public service provision","2007",18.824629
+"Liberia","Public service provision","2008",56.733233
+"Liberia","Public service provision","2009",92.69762
+"Liberia","Public service provision","2010",109.236704
+"Liberia","Public service provision","2011",97.597255
+"Liberia","Public service provision","2012",115.276904
+"Liberia","Public service provision","2013",125.022166
+"Mali","Governance, peace and security","2002",53.424225
+"Mali","Governance, peace and security","2003",62.923119
+"Mali","Governance, peace and security","2004",56.688618
+"Mali","Governance, peace and security","2005",72.609061
+"Mali","Governance, peace and security","2006",107.346661
+"Mali","Governance, peace and security","2007",84.229091
+"Mali","Governance, peace and security","2008",88.738676
+"Mali","Governance, peace and security","2009",87.732906
+"Mali","Governance, peace and security","2010",80.307407
+"Mali","Governance, peace and security","2011",75.083631
+"Mali","Governance, peace and security","2012",52.048776
+"Mali","Governance, peace and security","2013",173.383742
+"Mali","Humanitarian aid","2002",2.367025
+"Mali","Humanitarian aid","2003",5.338467
+"Mali","Humanitarian aid","2004",1.199539
+"Mali","Humanitarian aid","2005",26.000375
+"Mali","Humanitarian aid","2006",14.27295
+"Mali","Humanitarian aid","2007",7.485418
+"Mali","Humanitarian aid","2008",6.386831
+"Mali","Humanitarian aid","2009",7.287373
+"Mali","Humanitarian aid","2010",19.658835
+"Mali","Humanitarian aid","2011",18.06151
+"Mali","Humanitarian aid","2012",235.260865
+"Mali","Humanitarian aid","2013",205.657703
+"Mali","Other country programmable aid","2002",186.978558
+"Mali","Other country programmable aid","2003",163.396926
+"Mali","Other country programmable aid","2004",160.773142
+"Mali","Other country programmable aid","2005",174.972343
+"Mali","Other country programmable aid","2006",172.568777
+"Mali","Other country programmable aid","2007",255.638932
+"Mali","Other country programmable aid","2008",214.259101
+"Mali","Other country programmable aid","2009",198.674524
+"Mali","Other country programmable aid","2010",313.011158
+"Mali","Other country programmable aid","2011",411.114517
+"Mali","Other country programmable aid","2012",290.931173
+"Mali","Other country programmable aid","2013",166.059159
+"Mali","Other non-country programmable aid","2002",114.88721
+"Mali","Other non-country programmable aid","2003",116.106639
+"Mali","Other non-country programmable aid","2004",143.189412
+"Mali","Other non-country programmable aid","2005",147.630634
+"Mali","Other non-country programmable aid","2006",119.380973
+"Mali","Other non-country programmable aid","2007",103.876824
+"Mali","Other non-country programmable aid","2008",84.477584
+"Mali","Other non-country programmable aid","2009",144.944731
+"Mali","Other non-country programmable aid","2010",146.815971
+"Mali","Other non-country programmable aid","2011",145.609405
+"Mali","Other non-country programmable aid","2012",63.786559
+"Mali","Other non-country programmable aid","2013",240.399348
+"Mali","Public service provision","2002",68.339357
+"Mali","Public service provision","2003",115.373926
+"Mali","Public service provision","2004",158.366399
+"Mali","Public service provision","2005",177.880647
+"Mali","Public service provision","2006",184.391432
+"Mali","Public service provision","2007",202.641855
+"Mali","Public service provision","2008",281.066979
+"Mali","Public service provision","2009",271.116453
+"Mali","Public service provision","2010",255.957374
+"Mali","Public service provision","2011",271.010093
+"Mali","Public service provision","2012",208.3288
+"Mali","Public service provision","2013",229.825956
+"Myanmar","Governance, peace and security","2002",4.370621
+"Myanmar","Governance, peace and security","2003",10.114299
+"Myanmar","Governance, peace and security","2004",13.092879
+"Myanmar","Governance, peace and security","2005",13.987611
+"Myanmar","Governance, peace and security","2006",22.837664
+"Myanmar","Governance, peace and security","2007",21.33967
+"Myanmar","Governance, peace and security","2008",24.547669
+"Myanmar","Governance, peace and security","2009",26.05471
+"Myanmar","Governance, peace and security","2010",33.267399
+"Myanmar","Governance, peace and security","2011",35.142238
+"Myanmar","Governance, peace and security","2012",51.911103
+"Myanmar","Governance, peace and security","2013",103.799228
+"Myanmar","Humanitarian aid","2002",14.295332
+"Myanmar","Humanitarian aid","2003",8.039054
+"Myanmar","Humanitarian aid","2004",19.302263
+"Myanmar","Humanitarian aid","2005",31.719198
+"Myanmar","Humanitarian aid","2006",34.165633
+"Myanmar","Humanitarian aid","2007",48.300763
+"Myanmar","Humanitarian aid","2008",351.078948
+"Myanmar","Humanitarian aid","2009",152.479948
+"Myanmar","Humanitarian aid","2010",97.247431
+"Myanmar","Humanitarian aid","2011",82.932663
+"Myanmar","Humanitarian aid","2012",103.418531
+"Myanmar","Humanitarian aid","2013",200.616028
+"Myanmar","Other country programmable aid","2002",10.475191
+"Myanmar","Other country programmable aid","2003",22.648084
+"Myanmar","Other country programmable aid","2004",13.020646
+"Myanmar","Other country programmable aid","2005",16.59456
+"Myanmar","Other country programmable aid","2006",26.715587
+"Myanmar","Other country programmable aid","2007",29.102778
+"Myanmar","Other country programmable aid","2008",32.914291
+"Myanmar","Other country programmable aid","2009",33.68606
+"Myanmar","Other country programmable aid","2010",56.132684
+"Myanmar","Other country programmable aid","2011",88.578082
+"Myanmar","Other country programmable aid","2012",54.222041
+"Myanmar","Other country programmable aid","2013",206.415769
+"Myanmar","Other non-country programmable aid","2002",17.982931
+"Myanmar","Other non-country programmable aid","2003",17.120554
+"Myanmar","Other non-country programmable aid","2004",20.842522
+"Myanmar","Other non-country programmable aid","2005",17.480679
+"Myanmar","Other non-country programmable aid","2006",12.416754
+"Myanmar","Other non-country programmable aid","2007",14.404997
+"Myanmar","Other non-country programmable aid","2008",20.421233
+"Myanmar","Other non-country programmable aid","2009",33.955302
+"Myanmar","Other non-country programmable aid","2010",30.389415
+"Myanmar","Other non-country programmable aid","2011",19.372702
+"Myanmar","Other non-country programmable aid","2012",36.718664
+"Myanmar","Other non-country programmable aid","2013",2059.021624
+"Myanmar","Public service provision","2002",17.416357
+"Myanmar","Public service provision","2003",45.397716
+"Myanmar","Public service provision","2004",31.629238
+"Myanmar","Public service provision","2005",36.243171
+"Myanmar","Public service provision","2006",33.681579
+"Myanmar","Public service provision","2007",60.057114
+"Myanmar","Public service provision","2008",74.788244
+"Myanmar","Public service provision","2009",83.589791
+"Myanmar","Public service provision","2010",94.551407
+"Myanmar","Public service provision","2011",87.376431
+"Myanmar","Public service provision","2012",131.185461
+"Myanmar","Public service provision","2013",150.505101
+"Nepal","Governance, peace and security","2002",11.635266
+"Nepal","Governance, peace and security","2003",29.697806
+"Nepal","Governance, peace and security","2004",23.997171
+"Nepal","Governance, peace and security","2005",41.511886
+"Nepal","Governance, peace and security","2006",59.550371
+"Nepal","Governance, peace and security","2007",108.486453
+"Nepal","Governance, peace and security","2008",112.228988
+"Nepal","Governance, peace and security","2009",114.25294
+"Nepal","Governance, peace and security","2010",129.902032
+"Nepal","Governance, peace and security","2011",122.448704
+"Nepal","Governance, peace and security","2012",123.457969
+"Nepal","Governance, peace and security","2013",151.05324
+"Nepal","Humanitarian aid","2002",12.661217
+"Nepal","Humanitarian aid","2003",9.282058
+"Nepal","Humanitarian aid","2004",16.093869
+"Nepal","Humanitarian aid","2005",26.988494
+"Nepal","Humanitarian aid","2006",36.667264
+"Nepal","Humanitarian aid","2007",50.829408
+"Nepal","Humanitarian aid","2008",66.396557
+"Nepal","Humanitarian aid","2009",65.211263
+"Nepal","Humanitarian aid","2010",18.357719
+"Nepal","Humanitarian aid","2011",35.66597
+"Nepal","Humanitarian aid","2012",34.971569
+"Nepal","Humanitarian aid","2013",11.879297
+"Nepal","Other country programmable aid","2002",159.013571
+"Nepal","Other country programmable aid","2003",202.384714
+"Nepal","Other country programmable aid","2004",176.097989
+"Nepal","Other country programmable aid","2005",162.632366
+"Nepal","Other country programmable aid","2006",143.343793
+"Nepal","Other country programmable aid","2007",137.498923
+"Nepal","Other country programmable aid","2008",147.47165
+"Nepal","Other country programmable aid","2009",182.95421
+"Nepal","Other country programmable aid","2010",221.337543
+"Nepal","Other country programmable aid","2011",186.481238
+"Nepal","Other country programmable aid","2012",206.26897
+"Nepal","Other country programmable aid","2013",213.334987
+"Nepal","Other non-country programmable aid","2002",53.386425
+"Nepal","Other non-country programmable aid","2003",34.33785
+"Nepal","Other non-country programmable aid","2004",23.427838
+"Nepal","Other non-country programmable aid","2005",41.978627
+"Nepal","Other non-country programmable aid","2006",20.53205
+"Nepal","Other non-country programmable aid","2007",17.280123
+"Nepal","Other non-country programmable aid","2008",12.196086
+"Nepal","Other non-country programmable aid","2009",19.95906
+"Nepal","Other non-country programmable aid","2010",19.203729
+"Nepal","Other non-country programmable aid","2011",22.301696
+"Nepal","Other non-country programmable aid","2012",14.274612
+"Nepal","Other non-country programmable aid","2013",11.082463
+"Nepal","Public service provision","2002",83.420562
+"Nepal","Public service provision","2003",125.503651
+"Nepal","Public service provision","2004",114.515821
+"Nepal","Public service provision","2005",101.220559
+"Nepal","Public service provision","2006",129.229936
+"Nepal","Public service provision","2007",98.687521
+"Nepal","Public service provision","2008",142.873388
+"Nepal","Public service provision","2009",202.423395
+"Nepal","Public service provision","2010",172.386793
+"Nepal","Public service provision","2011",162.217431
+"Nepal","Public service provision","2012",180.885933
+"Nepal","Public service provision","2013",168.23966
+"Niger","Governance, peace and security","2002",9.411297
+"Niger","Governance, peace and security","2003",8.698068
+"Niger","Governance, peace and security","2004",17.231384
+"Niger","Governance, peace and security","2005",14.166301
+"Niger","Governance, peace and security","2006",20.797195
+"Niger","Governance, peace and security","2007",24.518619
+"Niger","Governance, peace and security","2008",35.132219
+"Niger","Governance, peace and security","2009",27.940488
+"Niger","Governance, peace and security","2010",60.155757
+"Niger","Governance, peace and security","2011",25.489842
+"Niger","Governance, peace and security","2012",45.346188
+"Niger","Governance, peace and security","2013",39.237973
+"Niger","Humanitarian aid","2002",2.54456
+"Niger","Humanitarian aid","2003",1.699034
+"Niger","Humanitarian aid","2004",3.146831
+"Niger","Humanitarian aid","2005",68.771729
+"Niger","Humanitarian aid","2006",61.466936
+"Niger","Humanitarian aid","2007",26.688203
+"Niger","Humanitarian aid","2008",37.67511
+"Niger","Humanitarian aid","2009",36.408008
+"Niger","Humanitarian aid","2010",165.814557
+"Niger","Humanitarian aid","2011",158.654167
+"Niger","Humanitarian aid","2012",231.336539
+"Niger","Humanitarian aid","2013",174.315006
+"Niger","Other country programmable aid","2002",76.787686
+"Niger","Other country programmable aid","2003",86.70932
+"Niger","Other country programmable aid","2004",99.184134
+"Niger","Other country programmable aid","2005",117.662896
+"Niger","Other country programmable aid","2006",114.159714
+"Niger","Other country programmable aid","2007",123.413124
+"Niger","Other country programmable aid","2008",135.113483
+"Niger","Other country programmable aid","2009",90.225731
+"Niger","Other country programmable aid","2010",114.259043
+"Niger","Other country programmable aid","2011",63.437128
+"Niger","Other country programmable aid","2012",95.351892
+"Niger","Other country programmable aid","2013",129.03719
+"Niger","Other non-country programmable aid","2002",92.000498
+"Niger","Other non-country programmable aid","2003",81.072934
+"Niger","Other non-country programmable aid","2004",86.859792
+"Niger","Other non-country programmable aid","2005",96.504514
+"Niger","Other non-country programmable aid","2006",67.87156
+"Niger","Other non-country programmable aid","2007",95.862108
+"Niger","Other non-country programmable aid","2008",100.526566
+"Niger","Other non-country programmable aid","2009",60.998604
+"Niger","Other non-country programmable aid","2010",92.98547
+"Niger","Other non-country programmable aid","2011",109.890079
+"Niger","Other non-country programmable aid","2012",222.523627
+"Niger","Other non-country programmable aid","2013",73.037664
+"Niger","Public service provision","2002",29.019127
+"Niger","Public service provision","2003",44.611192
+"Niger","Public service provision","2004",61.427249
+"Niger","Public service provision","2005",68.130296
+"Niger","Public service provision","2006",96.524729
+"Niger","Public service provision","2007",86.859905
+"Niger","Public service provision","2008",101.874571
+"Niger","Public service provision","2009",103.497549
+"Niger","Public service provision","2010",119.664324
+"Niger","Public service provision","2011",76.488257
+"Niger","Public service provision","2012",75.441815
+"Niger","Public service provision","2013",90.783588
+"Nigeria","Governance, peace and security","2002",44.482925
+"Nigeria","Governance, peace and security","2003",59.582193
+"Nigeria","Governance, peace and security","2004",61.862147
+"Nigeria","Governance, peace and security","2005",75.473161
+"Nigeria","Governance, peace and security","2006",125.922404
+"Nigeria","Governance, peace and security","2007",102.913466
+"Nigeria","Governance, peace and security","2008",87.78131
+"Nigeria","Governance, peace and security","2009",115.741516
+"Nigeria","Governance, peace and security","2010",115.580292
+"Nigeria","Governance, peace and security","2011",146.579074
+"Nigeria","Governance, peace and security","2012",195.657129
+"Nigeria","Governance, peace and security","2013",151.594469
+"Nigeria","Humanitarian aid","2002",1.252046
+"Nigeria","Humanitarian aid","2003",0.310518
+"Nigeria","Humanitarian aid","2004",0.096482
+"Nigeria","Humanitarian aid","2005",16.395739
+"Nigeria","Humanitarian aid","2006",1.800778
+"Nigeria","Humanitarian aid","2007",1.406333
+"Nigeria","Humanitarian aid","2008",3.093299
+"Nigeria","Humanitarian aid","2009",4.520273
+"Nigeria","Humanitarian aid","2010",8.652209
+"Nigeria","Humanitarian aid","2011",17.387732
+"Nigeria","Humanitarian aid","2012",14.690945
+"Nigeria","Humanitarian aid","2013",14.628154
+"Nigeria","Other country programmable aid","2002",38.901443
+"Nigeria","Other country programmable aid","2003",49.683627
+"Nigeria","Other country programmable aid","2004",40.510278
+"Nigeria","Other country programmable aid","2005",92.581216
+"Nigeria","Other country programmable aid","2006",109.516268
+"Nigeria","Other country programmable aid","2007",235.563637
+"Nigeria","Other country programmable aid","2008",111.119659
+"Nigeria","Other country programmable aid","2009",102.722114
+"Nigeria","Other country programmable aid","2010",145.174002
+"Nigeria","Other country programmable aid","2011",170.717998
+"Nigeria","Other country programmable aid","2012",170.489333
+"Nigeria","Other country programmable aid","2013",248.227015
+"Nigeria","Other non-country programmable aid","2002",45.042387
+"Nigeria","Other non-country programmable aid","2003",35.892105
+"Nigeria","Other non-country programmable aid","2004",33.726658
+"Nigeria","Other non-country programmable aid","2005",143.028042
+"Nigeria","Other non-country programmable aid","2006",66.906172
+"Nigeria","Other non-country programmable aid","2007",6.470933
+"Nigeria","Other non-country programmable aid","2008",27.023773
+"Nigeria","Other non-country programmable aid","2009",4.594021
+"Nigeria","Other non-country programmable aid","2010",5.651031
+"Nigeria","Other non-country programmable aid","2011",3.927974
+"Nigeria","Other non-country programmable aid","2012",5.29217
+"Nigeria","Other non-country programmable aid","2013",15.299979
+"Nigeria","Public service provision","2002",119.019241
+"Nigeria","Public service provision","2003",130.171763
+"Nigeria","Public service provision","2004",250.25492
+"Nigeria","Public service provision","2005",274.147306
+"Nigeria","Public service provision","2006",304.34478
+"Nigeria","Public service provision","2007",416.095391
+"Nigeria","Public service provision","2008",587.112945
+"Nigeria","Public service provision","2009",571.200132
+"Nigeria","Public service provision","2010",679.73721
+"Nigeria","Public service provision","2011",646.799956
+"Nigeria","Public service provision","2012",688.373702
+"Nigeria","Public service provision","2013",878.551289
+"Pakistan","Governance, peace and security","2002",137.464391
+"Pakistan","Governance, peace and security","2003",23.280554
+"Pakistan","Governance, peace and security","2004",37.802763
+"Pakistan","Governance, peace and security","2005",53.781671
+"Pakistan","Governance, peace and security","2006",109.029396
+"Pakistan","Governance, peace and security","2007",130.036603
+"Pakistan","Governance, peace and security","2008",180.776564
+"Pakistan","Governance, peace and security","2009",182.610802
+"Pakistan","Governance, peace and security","2010",266.812585
+"Pakistan","Governance, peace and security","2011",190.041874
+"Pakistan","Governance, peace and security","2012",203.020555
+"Pakistan","Governance, peace and security","2013",270.900043
+"Pakistan","Humanitarian aid","2002",17.133774
+"Pakistan","Humanitarian aid","2003",17.738571
+"Pakistan","Humanitarian aid","2004",16.051831
+"Pakistan","Humanitarian aid","2005",373.302763
+"Pakistan","Humanitarian aid","2006",539.873048
+"Pakistan","Humanitarian aid","2007",280.741895
+"Pakistan","Humanitarian aid","2008",150.62591
+"Pakistan","Humanitarian aid","2009",463.460251
+"Pakistan","Humanitarian aid","2010",1308.568992
+"Pakistan","Humanitarian aid","2011",1279.988782
+"Pakistan","Humanitarian aid","2012",516.204368
+"Pakistan","Humanitarian aid","2013",339.602238
+"Pakistan","Other country programmable aid","2002",155.945187
+"Pakistan","Other country programmable aid","2003",148.822656
+"Pakistan","Other country programmable aid","2004",70.502228
+"Pakistan","Other country programmable aid","2005",106.823011
+"Pakistan","Other country programmable aid","2006",152.528919
+"Pakistan","Other country programmable aid","2007",243.769923
+"Pakistan","Other country programmable aid","2008",386.773665
+"Pakistan","Other country programmable aid","2009",317.324121
+"Pakistan","Other country programmable aid","2010",535.324837
+"Pakistan","Other country programmable aid","2011",812.139263
+"Pakistan","Other country programmable aid","2012",595.377943
+"Pakistan","Other country programmable aid","2013",724.635623
+"Pakistan","Other non-country programmable aid","2002",1681.903304
+"Pakistan","Other non-country programmable aid","2003",283.937548
+"Pakistan","Other non-country programmable aid","2004",130.479885
+"Pakistan","Other non-country programmable aid","2005",335.2794
+"Pakistan","Other non-country programmable aid","2006",367.310663
+"Pakistan","Other non-country programmable aid","2007",79.160966
+"Pakistan","Other non-country programmable aid","2008",42.114004
+"Pakistan","Other non-country programmable aid","2009",159.348842
+"Pakistan","Other non-country programmable aid","2010",121.773614
+"Pakistan","Other non-country programmable aid","2011",106.794349
+"Pakistan","Other non-country programmable aid","2012",20.610644
+"Pakistan","Other non-country programmable aid","2013",23.1018
+"Pakistan","Public service provision","2002",58.110629
+"Pakistan","Public service provision","2003",92.373036
+"Pakistan","Public service provision","2004",133.28471
+"Pakistan","Public service provision","2005",201.587559
+"Pakistan","Public service provision","2006",272.309602
+"Pakistan","Public service provision","2007",408.075603
+"Pakistan","Public service provision","2008",295.95148
+"Pakistan","Public service provision","2009",401.979321
+"Pakistan","Public service provision","2010",516.433165
+"Pakistan","Public service provision","2011",444.584608
+"Pakistan","Public service provision","2012",456.398235
+"Pakistan","Public service provision","2013",593.986408
+"Philippines","Governance, peace and security","2002",49.552193
+"Philippines","Governance, peace and security","2003",76.55317
+"Philippines","Governance, peace and security","2004",79.542438
+"Philippines","Governance, peace and security","2005",76.74052
+"Philippines","Governance, peace and security","2006",102.403353
+"Philippines","Governance, peace and security","2007",127.368597
+"Philippines","Governance, peace and security","2008",111.149573
+"Philippines","Governance, peace and security","2009",101.975573
+"Philippines","Governance, peace and security","2010",88.794801
+"Philippines","Governance, peace and security","2011",79.473549
+"Philippines","Governance, peace and security","2012",98.475352
+"Philippines","Governance, peace and security","2013",75.592753
+"Philippines","Humanitarian aid","2002",3.094455
+"Philippines","Humanitarian aid","2003",2.47456
+"Philippines","Humanitarian aid","2004",5.059041
+"Philippines","Humanitarian aid","2005",9.104131
+"Philippines","Humanitarian aid","2006",22.267598
+"Philippines","Humanitarian aid","2007",18.676759
+"Philippines","Humanitarian aid","2008",34.049865
+"Philippines","Humanitarian aid","2009",73.91921
+"Philippines","Humanitarian aid","2010",101.314235
+"Philippines","Humanitarian aid","2011",95.537641
+"Philippines","Humanitarian aid","2012",106.041519
+"Philippines","Humanitarian aid","2013",346.276974
+"Philippines","Other country programmable aid","2002",197.366482
+"Philippines","Other country programmable aid","2003",320.20977
+"Philippines","Other country programmable aid","2004",260.867272
+"Philippines","Other country programmable aid","2005",368.646594
+"Philippines","Other country programmable aid","2006",453.289268
+"Philippines","Other country programmable aid","2007",808.57092
+"Philippines","Other country programmable aid","2008",598.779338
+"Philippines","Other country programmable aid","2009",662.697408
+"Philippines","Other country programmable aid","2010",730.561133
+"Philippines","Other country programmable aid","2011",461.70964
+"Philippines","Other country programmable aid","2012",390.341649
+"Philippines","Other country programmable aid","2013",396.096859
+"Philippines","Other non-country programmable aid","2002",768.280805
+"Philippines","Other non-country programmable aid","2003",798.908494
+"Philippines","Other non-country programmable aid","2004",520.594438
+"Philippines","Other non-country programmable aid","2005",583.468133
+"Philippines","Other non-country programmable aid","2006",556.110886
+"Philippines","Other non-country programmable aid","2007",218.372331
+"Philippines","Other non-country programmable aid","2008",8.822733
+"Philippines","Other non-country programmable aid","2009",136.203638
+"Philippines","Other non-country programmable aid","2010",246.402294
+"Philippines","Other non-country programmable aid","2011",4.334322
+"Philippines","Other non-country programmable aid","2012",106.464219
+"Philippines","Other non-country programmable aid","2013",17.620217
+"Philippines","Public service provision","2002",77.010172
+"Philippines","Public service provision","2003",129.311797
+"Philippines","Public service provision","2004",157.672316
+"Philippines","Public service provision","2005",148.906444
+"Philippines","Public service provision","2006",126.361161
+"Philippines","Public service provision","2007",134.021726
+"Philippines","Public service provision","2008",164.320176
+"Philippines","Public service provision","2009",156.122775
+"Philippines","Public service provision","2010",155.018295
+"Philippines","Public service provision","2011",167.421702
+"Philippines","Public service provision","2012",174.004493
+"Philippines","Public service provision","2013",132.155169
+"Sierra Leone","Governance, peace and security","2002",76.047949
+"Sierra Leone","Governance, peace and security","2003",86.445102
+"Sierra Leone","Governance, peace and security","2004",49.067695
+"Sierra Leone","Governance, peace and security","2005",38.690751
+"Sierra Leone","Governance, peace and security","2006",70.18862
+"Sierra Leone","Governance, peace and security","2007",77.013883
+"Sierra Leone","Governance, peace and security","2008",70.061028
+"Sierra Leone","Governance, peace and security","2009",78.905675
+"Sierra Leone","Governance, peace and security","2010",66.977093
+"Sierra Leone","Governance, peace and security","2011",48.335743
+"Sierra Leone","Governance, peace and security","2012",65.923782
+"Sierra Leone","Governance, peace and security","2013",31.370533
+"Sierra Leone","Humanitarian aid","2002",119.049208
+"Sierra Leone","Humanitarian aid","2003",80.674711
+"Sierra Leone","Humanitarian aid","2004",49.298671
+"Sierra Leone","Humanitarian aid","2005",38.302271
+"Sierra Leone","Humanitarian aid","2006",40.326774
+"Sierra Leone","Humanitarian aid","2007",26.096229
+"Sierra Leone","Humanitarian aid","2008",13.27016
+"Sierra Leone","Humanitarian aid","2009",5.303188
+"Sierra Leone","Humanitarian aid","2010",6.73737
+"Sierra Leone","Humanitarian aid","2011",14.740175
+"Sierra Leone","Humanitarian aid","2012",16.157224
+"Sierra Leone","Humanitarian aid","2013",15.696257
+"Sierra Leone","Other country programmable aid","2002",17.201136
+"Sierra Leone","Other country programmable aid","2003",24.886637
+"Sierra Leone","Other country programmable aid","2004",55.44051
+"Sierra Leone","Other country programmable aid","2005",65.505165
+"Sierra Leone","Other country programmable aid","2006",33.147977
+"Sierra Leone","Other country programmable aid","2007",42.368127
+"Sierra Leone","Other country programmable aid","2008",49.529935
+"Sierra Leone","Other country programmable aid","2009",70.872996
+"Sierra Leone","Other country programmable aid","2010",89.084266
+"Sierra Leone","Other country programmable aid","2011",53.742812
+"Sierra Leone","Other country programmable aid","2012",53.73162
+"Sierra Leone","Other country programmable aid","2013",58.069499
+"Sierra Leone","Other non-country programmable aid","2002",92.887938
+"Sierra Leone","Other non-country programmable aid","2003",36.544498
+"Sierra Leone","Other non-country programmable aid","2004",73.47417
+"Sierra Leone","Other non-country programmable aid","2005",79.995695
+"Sierra Leone","Other non-country programmable aid","2006",51.326412
+"Sierra Leone","Other non-country programmable aid","2007",64.48328
+"Sierra Leone","Other non-country programmable aid","2008",65.661466
+"Sierra Leone","Other non-country programmable aid","2009",90.468893
+"Sierra Leone","Other non-country programmable aid","2010",62.014333
+"Sierra Leone","Other non-country programmable aid","2011",66.911059
+"Sierra Leone","Other non-country programmable aid","2012",60.280144
+"Sierra Leone","Other non-country programmable aid","2013",50.701952
+"Sierra Leone","Public service provision","2002",7.896877
+"Sierra Leone","Public service provision","2003",15.655464
+"Sierra Leone","Public service provision","2004",21.413375
+"Sierra Leone","Public service provision","2005",16.774998
+"Sierra Leone","Public service provision","2006",20.753818
+"Sierra Leone","Public service provision","2007",36.586685
+"Sierra Leone","Public service provision","2008",32.627042
+"Sierra Leone","Public service provision","2009",61.375124
+"Sierra Leone","Public service provision","2010",68.567354
+"Sierra Leone","Public service provision","2011",57.811401
+"Sierra Leone","Public service provision","2012",70.626343
+"Sierra Leone","Public service provision","2013",99.33221
+"Somalia","Governance, peace and security","2002",12.613373
+"Somalia","Governance, peace and security","2003",40.68274
+"Somalia","Governance, peace and security","2004",27.075797
+"Somalia","Governance, peace and security","2005",13.497312
+"Somalia","Governance, peace and security","2006",28.050527
+"Somalia","Governance, peace and security","2007",40.014675
+"Somalia","Governance, peace and security","2008",66.292081
+"Somalia","Governance, peace and security","2009",69.983039
+"Somalia","Governance, peace and security","2010",91.198203
+"Somalia","Governance, peace and security","2011",116.064924
+"Somalia","Governance, peace and security","2012",145.218382
+"Somalia","Governance, peace and security","2013",183.689741
+"Somalia","Humanitarian aid","2002",77.230512
+"Somalia","Humanitarian aid","2003",61.211907
+"Somalia","Humanitarian aid","2004",88.548314
+"Somalia","Humanitarian aid","2005",151.298126
+"Somalia","Humanitarian aid","2006",307.33429
+"Somalia","Humanitarian aid","2007",265.178105
+"Somalia","Humanitarian aid","2008",571.218722
+"Somalia","Humanitarian aid","2009",468.655537
+"Somalia","Humanitarian aid","2010",248.187417
+"Somalia","Humanitarian aid","2011",663.682844
+"Somalia","Humanitarian aid","2012",509.340617
+"Somalia","Humanitarian aid","2013",426.579496
+"Somalia","Other country programmable aid","2002",3.639715
+"Somalia","Other country programmable aid","2003",9.681953
+"Somalia","Other country programmable aid","2004",5.848467
+"Somalia","Other country programmable aid","2005",12.986926
+"Somalia","Other country programmable aid","2006",13.424954
+"Somalia","Other country programmable aid","2007",10.871725
+"Somalia","Other country programmable aid","2008",21.768773
+"Somalia","Other country programmable aid","2009",22.021861
+"Somalia","Other country programmable aid","2010",41.085035
+"Somalia","Other country programmable aid","2011",42.973718
+"Somalia","Other country programmable aid","2012",62.393463
+"Somalia","Other country programmable aid","2013",77.410049
+"Somalia","Other non-country programmable aid","2002",59.583242
+"Somalia","Other non-country programmable aid","2003",84.018466
+"Somalia","Other non-country programmable aid","2004",60.034304
+"Somalia","Other non-country programmable aid","2005",39.439818
+"Somalia","Other non-country programmable aid","2006",21.396555
+"Somalia","Other non-country programmable aid","2007",22.981964
+"Somalia","Other non-country programmable aid","2008",26.160706
+"Somalia","Other non-country programmable aid","2009",14.379743
+"Somalia","Other non-country programmable aid","2010",22.941985
+"Somalia","Other non-country programmable aid","2011",19.798843
+"Somalia","Other non-country programmable aid","2012",24.479516
+"Somalia","Other non-country programmable aid","2013",19.307727
+"Somalia","Public service provision","2002",11.42736
+"Somalia","Public service provision","2003",11.584901
+"Somalia","Public service provision","2004",30.226923
+"Somalia","Public service provision","2005",15.356923
+"Somalia","Public service provision","2006",29.333744
+"Somalia","Public service provision","2007",21.077384
+"Somalia","Public service provision","2008",29.790979
+"Somalia","Public service provision","2009",56.743072
+"Somalia","Public service provision","2010",55.767879
+"Somalia","Public service provision","2011",53.429879
+"Somalia","Public service provision","2012",106.21903
+"Somalia","Public service provision","2013",98.456888
+"South Sudan","Governance, peace and security","2011",236.385012
+"South Sudan","Governance, peace and security","2012",258.191438
+"South Sudan","Governance, peace and security","2013",246.079902
+"South Sudan","Humanitarian aid","2011",469.597918
+"South Sudan","Humanitarian aid","2012",797.750508
+"South Sudan","Humanitarian aid","2013",602.595718
+"South Sudan","Other country programmable aid","2011",200.508407
+"South Sudan","Other country programmable aid","2012",164.579703
+"South Sudan","Other country programmable aid","2013",218.410264
+"South Sudan","Other non-country programmable aid","2011",21.431844
+"South Sudan","Other non-country programmable aid","2012",30.975208
+"South Sudan","Other non-country programmable aid","2013",11.01433
+"South Sudan","Public service provision","2011",135.74452
+"South Sudan","Public service provision","2012",237.138959
+"South Sudan","Public service provision","2013",240.249956
+"Sri Lanka","Governance, peace and security","2002",31.377506
+"Sri Lanka","Governance, peace and security","2003",47.637151
+"Sri Lanka","Governance, peace and security","2004",71.601598
+"Sri Lanka","Governance, peace and security","2005",79.36697
+"Sri Lanka","Governance, peace and security","2006",102.091658
+"Sri Lanka","Governance, peace and security","2007",105.397507
+"Sri Lanka","Governance, peace and security","2008",64.069739
+"Sri Lanka","Governance, peace and security","2009",80.373137
+"Sri Lanka","Governance, peace and security","2010",78.951627
+"Sri Lanka","Governance, peace and security","2011",98.548384
+"Sri Lanka","Governance, peace and security","2012",64.728723
+"Sri Lanka","Governance, peace and security","2013",62.188337
+"Sri Lanka","Humanitarian aid","2002",23.555395
+"Sri Lanka","Humanitarian aid","2003",28.148858
+"Sri Lanka","Humanitarian aid","2004",38.704607
+"Sri Lanka","Humanitarian aid","2005",388.951517
+"Sri Lanka","Humanitarian aid","2006",159.828474
+"Sri Lanka","Humanitarian aid","2007",226.993001
+"Sri Lanka","Humanitarian aid","2008",248.334481
+"Sri Lanka","Humanitarian aid","2009",240.368789
+"Sri Lanka","Humanitarian aid","2010",210.413849
+"Sri Lanka","Humanitarian aid","2011",105.156741
+"Sri Lanka","Humanitarian aid","2012",74.726834
+"Sri Lanka","Humanitarian aid","2013",69.219501
+"Sri Lanka","Other country programmable aid","2002",84.436959
+"Sri Lanka","Other country programmable aid","2003",156.400751
+"Sri Lanka","Other country programmable aid","2004",220.97671
+"Sri Lanka","Other country programmable aid","2005",210.975396
+"Sri Lanka","Other country programmable aid","2006",314.009678
+"Sri Lanka","Other country programmable aid","2007",290.273258
+"Sri Lanka","Other country programmable aid","2008",395.98975
+"Sri Lanka","Other country programmable aid","2009",391.814198
+"Sri Lanka","Other country programmable aid","2010",309.648927
+"Sri Lanka","Other country programmable aid","2011",345.256559
+"Sri Lanka","Other country programmable aid","2012",373.675186
+"Sri Lanka","Other country programmable aid","2013",331.065654
+"Sri Lanka","Other non-country programmable aid","2002",231.7937
+"Sri Lanka","Other non-country programmable aid","2003",223.481143
+"Sri Lanka","Other non-country programmable aid","2004",183.495015
+"Sri Lanka","Other non-country programmable aid","2005",234.241656
+"Sri Lanka","Other non-country programmable aid","2006",137.918281
+"Sri Lanka","Other non-country programmable aid","2007",60.87979
+"Sri Lanka","Other non-country programmable aid","2008",39.50831
+"Sri Lanka","Other non-country programmable aid","2009",13.58962
+"Sri Lanka","Other non-country programmable aid","2010",2.254593
+"Sri Lanka","Other non-country programmable aid","2011",7.133569
+"Sri Lanka","Other non-country programmable aid","2012",9.323643
+"Sri Lanka","Other non-country programmable aid","2013",18.944289
+"Sri Lanka","Public service provision","2002",29.095197
+"Sri Lanka","Public service provision","2003",60.843689
+"Sri Lanka","Public service provision","2004",65.968277
+"Sri Lanka","Public service provision","2005",116.055097
+"Sri Lanka","Public service provision","2006",116.3453
+"Sri Lanka","Public service provision","2007",80.889489
+"Sri Lanka","Public service provision","2008",117.368788
+"Sri Lanka","Public service provision","2009",69.678849
+"Sri Lanka","Public service provision","2010",137.83781
+"Sri Lanka","Public service provision","2011",111.401113
+"Sri Lanka","Public service provision","2012",126.734698
+"Sri Lanka","Public service provision","2013",119.883194
+"Sudan","Governance, peace and security","2002",22.130676
+"Sudan","Governance, peace and security","2003",40.974762
+"Sudan","Governance, peace and security","2004",95.477151
+"Sudan","Governance, peace and security","2005",187.208307
+"Sudan","Governance, peace and security","2006",279.417575
+"Sudan","Governance, peace and security","2007",305.457142
+"Sudan","Governance, peace and security","2008",333.409759
+"Sudan","Governance, peace and security","2009",468.444149
+"Sudan","Governance, peace and security","2010",435.945118
+"Sudan","Governance, peace and security","2011",144.693604
+"Sudan","Governance, peace and security","2012",98.61264
+"Sudan","Governance, peace and security","2013",69.743603
+"Sudan","Humanitarian aid","2002",183.250094
+"Sudan","Humanitarian aid","2003",284.704756
+"Sudan","Humanitarian aid","2004",750.628124
+"Sudan","Humanitarian aid","2005",1317.382656
+"Sudan","Humanitarian aid","2006",1333.709792
+"Sudan","Humanitarian aid","2007",1335.765396
+"Sudan","Humanitarian aid","2008",1414.54999
+"Sudan","Humanitarian aid","2009",1347.226943
+"Sudan","Humanitarian aid","2010",933.962467
+"Sudan","Humanitarian aid","2011",508.912717
+"Sudan","Humanitarian aid","2012",398.166179
+"Sudan","Humanitarian aid","2013",648.921029
+"Sudan","Other country programmable aid","2002",21.092321
+"Sudan","Other country programmable aid","2003",18.092209
+"Sudan","Other country programmable aid","2004",41.734423
+"Sudan","Other country programmable aid","2005",160.150444
+"Sudan","Other country programmable aid","2006",131.544526
+"Sudan","Other country programmable aid","2007",191.381633
+"Sudan","Other country programmable aid","2008",206.352468
+"Sudan","Other country programmable aid","2009",202.251073
+"Sudan","Other country programmable aid","2010",256.765876
+"Sudan","Other country programmable aid","2011",44.492655
+"Sudan","Other country programmable aid","2012",41.804178
+"Sudan","Other country programmable aid","2013",39.200675
+"Sudan","Other non-country programmable aid","2002",50.164261
+"Sudan","Other non-country programmable aid","2003",97.923812
+"Sudan","Other non-country programmable aid","2004",52.41189
+"Sudan","Other non-country programmable aid","2005",160.353641
+"Sudan","Other non-country programmable aid","2006",204.162494
+"Sudan","Other non-country programmable aid","2007",79.448766
+"Sudan","Other non-country programmable aid","2008",59.256454
+"Sudan","Other non-country programmable aid","2009",42.679764
+"Sudan","Other non-country programmable aid","2010",74.725911
+"Sudan","Other non-country programmable aid","2011",25.668446
+"Sudan","Other non-country programmable aid","2012",48.435513
+"Sudan","Other non-country programmable aid","2013",25.503201
+"Sudan","Public service provision","2002",36.220288
+"Sudan","Public service provision","2003",43.812649
+"Sudan","Public service provision","2004",58.784061
+"Sudan","Public service provision","2005",123.385589
+"Sudan","Public service provision","2006",111.853619
+"Sudan","Public service provision","2007",131.556179
+"Sudan","Public service provision","2008",141.488773
+"Sudan","Public service provision","2009",212.681596
+"Sudan","Public service provision","2010",214.410407
+"Sudan","Public service provision","2011",86.557137
+"Sudan","Public service provision","2012",75.662782
+"Sudan","Public service provision","2013",71.97441
+"Syrian Arab Republic","Governance, peace and security","2002",0.260312
+"Syrian Arab Republic","Governance, peace and security","2003",1.630801
+"Syrian Arab Republic","Governance, peace and security","2004",3.44703
+"Syrian Arab Republic","Governance, peace and security","2005",11.882737
+"Syrian Arab Republic","Governance, peace and security","2006",17.367865
+"Syrian Arab Republic","Governance, peace and security","2007",20.675106
+"Syrian Arab Republic","Governance, peace and security","2008",20.294639
+"Syrian Arab Republic","Governance, peace and security","2009",14.131358
+"Syrian Arab Republic","Governance, peace and security","2010",17.444813
+"Syrian Arab Republic","Governance, peace and security","2011",8.28898
+"Syrian Arab Republic","Governance, peace and security","2012",19.241684
+"Syrian Arab Republic","Governance, peace and security","2013",147.325305
+"Syrian Arab Republic","Humanitarian aid","2002",0.090455
+"Syrian Arab Republic","Humanitarian aid","2003",1.685894
+"Syrian Arab Republic","Humanitarian aid","2004",3.104466
+"Syrian Arab Republic","Humanitarian aid","2005",4.008947
+"Syrian Arab Republic","Humanitarian aid","2006",4.728547
+"Syrian Arab Republic","Humanitarian aid","2007",8.896413
+"Syrian Arab Republic","Humanitarian aid","2008",39.890425
+"Syrian Arab Republic","Humanitarian aid","2009",44.972803
+"Syrian Arab Republic","Humanitarian aid","2010",27.046356
+"Syrian Arab Republic","Humanitarian aid","2011",45.250873
+"Syrian Arab Republic","Humanitarian aid","2012",445.181756
+"Syrian Arab Republic","Humanitarian aid","2013",1644.773618
+"Syrian Arab Republic","Other country programmable aid","2002",37.608611
+"Syrian Arab Republic","Other country programmable aid","2003",21.338615
+"Syrian Arab Republic","Other country programmable aid","2004",17.185686
+"Syrian Arab Republic","Other country programmable aid","2005",26.82421
+"Syrian Arab Republic","Other country programmable aid","2006",46.287594
+"Syrian Arab Republic","Other country programmable aid","2007",33.506722
+"Syrian Arab Republic","Other country programmable aid","2008",34.574588
+"Syrian Arab Republic","Other country programmable aid","2009",42.650174
+"Syrian Arab Republic","Other country programmable aid","2010",47.821707
+"Syrian Arab Republic","Other country programmable aid","2011",31.605258
+"Syrian Arab Republic","Other country programmable aid","2012",11.88442
+"Syrian Arab Republic","Other country programmable aid","2013",32.166292
+"Syrian Arab Republic","Other non-country programmable aid","2002",42.52022
+"Syrian Arab Republic","Other non-country programmable aid","2003",26.785596
+"Syrian Arab Republic","Other non-country programmable aid","2004",12.848142
+"Syrian Arab Republic","Other non-country programmable aid","2005",10.137225
+"Syrian Arab Republic","Other non-country programmable aid","2006",4.942853
+"Syrian Arab Republic","Other non-country programmable aid","2007",4.414973
+"Syrian Arab Republic","Other non-country programmable aid","2008",13.836665
+"Syrian Arab Republic","Other non-country programmable aid","2009",5.748793
+"Syrian Arab Republic","Other non-country programmable aid","2010",6.261081
+"Syrian Arab Republic","Other non-country programmable aid","2011",3.176598
+"Syrian Arab Republic","Other non-country programmable aid","2012",6.112975
+"Syrian Arab Republic","Other non-country programmable aid","2013",27.193858
+"Syrian Arab Republic","Public service provision","2002",21.722777
+"Syrian Arab Republic","Public service provision","2003",61.645964
+"Syrian Arab Republic","Public service provision","2004",61.874093
+"Syrian Arab Republic","Public service provision","2005",77.49292
+"Syrian Arab Republic","Public service provision","2006",90.246971
+"Syrian Arab Republic","Public service provision","2007",109.852296
+"Syrian Arab Republic","Public service provision","2008",101.106717
+"Syrian Arab Republic","Public service provision","2009",116.060556
+"Syrian Arab Republic","Public service provision","2010",107.504839
+"Syrian Arab Republic","Public service provision","2011",96.517776
+"Syrian Arab Republic","Public service provision","2012",65.693765
+"Syrian Arab Republic","Public service provision","2013",86.259972
+"Uganda","Governance, peace and security","2002",30.27706
+"Uganda","Governance, peace and security","2003",57.991286
+"Uganda","Governance, peace and security","2004",59.128143
+"Uganda","Governance, peace and security","2005",87.164582
+"Uganda","Governance, peace and security","2006",107.315543
+"Uganda","Governance, peace and security","2007",127.413634
+"Uganda","Governance, peace and security","2008",135.479454
+"Uganda","Governance, peace and security","2009",143.885892
+"Uganda","Governance, peace and security","2010",141.775636
+"Uganda","Governance, peace and security","2011",136.279098
+"Uganda","Governance, peace and security","2012",128.326106
+"Uganda","Governance, peace and security","2013",106.907152
+"Uganda","Humanitarian aid","2002",35.650524
+"Uganda","Humanitarian aid","2003",109.698836
+"Uganda","Humanitarian aid","2004",141.089417
+"Uganda","Humanitarian aid","2005",177.44138
+"Uganda","Humanitarian aid","2006",221.504715
+"Uganda","Humanitarian aid","2007",217.848257
+"Uganda","Humanitarian aid","2008",240.472386
+"Uganda","Humanitarian aid","2009",141.80965
+"Uganda","Humanitarian aid","2010",75.437168
+"Uganda","Humanitarian aid","2011",52.482246
+"Uganda","Humanitarian aid","2012",35.901324
+"Uganda","Humanitarian aid","2013",62.306887
+"Uganda","Other country programmable aid","2002",111.725384
+"Uganda","Other country programmable aid","2003",127.200097
+"Uganda","Other country programmable aid","2004",164.099285
+"Uganda","Other country programmable aid","2005",117.522696
+"Uganda","Other country programmable aid","2006",183.507638
+"Uganda","Other country programmable aid","2007",228.700108
+"Uganda","Other country programmable aid","2008",290.489132
+"Uganda","Other country programmable aid","2009",232.519987
+"Uganda","Other country programmable aid","2010",304.332641
+"Uganda","Other country programmable aid","2011",384.597838
+"Uganda","Other country programmable aid","2012",274.002966
+"Uganda","Other country programmable aid","2013",407.704735
+"Uganda","Other non-country programmable aid","2002",275.554639
+"Uganda","Other non-country programmable aid","2003",227.724538
+"Uganda","Other non-country programmable aid","2004",193.493563
+"Uganda","Other non-country programmable aid","2005",171.541707
+"Uganda","Other non-country programmable aid","2006",326.738502
+"Uganda","Other non-country programmable aid","2007",160.050681
+"Uganda","Other non-country programmable aid","2008",134.250827
+"Uganda","Other non-country programmable aid","2009",192.169592
+"Uganda","Other non-country programmable aid","2010",192.577289
+"Uganda","Other non-country programmable aid","2011",116.829328
+"Uganda","Other non-country programmable aid","2012",94.458916
+"Uganda","Other non-country programmable aid","2013",18.357227
+"Uganda","Public service provision","2002",173.686049
+"Uganda","Public service provision","2003",267.394724
+"Uganda","Public service provision","2004",273.937858
+"Uganda","Public service provision","2005",313.507122
+"Uganda","Public service provision","2006",360.522885
+"Uganda","Public service provision","2007",400.033044
+"Uganda","Public service provision","2008",455.891775
+"Uganda","Public service provision","2009",490.845354
+"Uganda","Public service provision","2010",517.726098
+"Uganda","Public service provision","2011",497.385415
+"Uganda","Public service provision","2012",564.677701
+"Uganda","Public service provision","2013",561.791718
+"Ukraine","Governance, peace and security","2005",98.456222
+"Ukraine","Governance, peace and security","2006",123.910852
+"Ukraine","Governance, peace and security","2007",103.930173
+"Ukraine","Governance, peace and security","2008",163.040588
+"Ukraine","Governance, peace and security","2009",142.215838
+"Ukraine","Governance, peace and security","2010",117.770821
+"Ukraine","Governance, peace and security","2011",100.044683
+"Ukraine","Governance, peace and security","2012",168.544717
+"Ukraine","Governance, peace and security","2013",151.468381
+"Ukraine","Humanitarian aid","2005",8.077631
+"Ukraine","Humanitarian aid","2006",1.560317
+"Ukraine","Humanitarian aid","2007",0.17327
+"Ukraine","Humanitarian aid","2008",0.994862
+"Ukraine","Humanitarian aid","2009",0.628913
+"Ukraine","Humanitarian aid","2010",0.24192
+"Ukraine","Humanitarian aid","2011",0.697809
+"Ukraine","Humanitarian aid","2012",1.947088
+"Ukraine","Humanitarian aid","2013",0.142063
+"Ukraine","Other country programmable aid","2005",202.933238
+"Ukraine","Other country programmable aid","2006",227.647837
+"Ukraine","Other country programmable aid","2007",167.606608
+"Ukraine","Other country programmable aid","2008",256.812681
+"Ukraine","Other country programmable aid","2009",336.914629
+"Ukraine","Other country programmable aid","2010",348.508261
+"Ukraine","Other country programmable aid","2011",476.647133
+"Ukraine","Other country programmable aid","2012",395.436335
+"Ukraine","Other country programmable aid","2013",419.534064
+"Ukraine","Other non-country programmable aid","2005",10.759731
+"Ukraine","Other non-country programmable aid","2006",6.926104
+"Ukraine","Other non-country programmable aid","2007",2.999544
+"Ukraine","Other non-country programmable aid","2008",7.698695
+"Ukraine","Other non-country programmable aid","2009",6.71883
+"Ukraine","Other non-country programmable aid","2010",8.561012
+"Ukraine","Other non-country programmable aid","2011",4.566772
+"Ukraine","Other non-country programmable aid","2012",7.549518
+"Ukraine","Other non-country programmable aid","2013",7.367945
+"Ukraine","Public service provision","2005",106.298094
+"Ukraine","Public service provision","2006",124.060265
+"Ukraine","Public service provision","2007",101.50364
+"Ukraine","Public service provision","2008",110.569715
+"Ukraine","Public service provision","2009",106.239129
+"Ukraine","Public service provision","2010",99.200229
+"Ukraine","Public service provision","2011",107.595242
+"Ukraine","Public service provision","2012",107.092799
+"Ukraine","Public service provision","2013",112.951123
+"West Bank and Gaza Strip","Governance, peace and security","2002",150.678357
+"West Bank and Gaza Strip","Governance, peace and security","2003",162.491025
+"West Bank and Gaza Strip","Governance, peace and security","2004",90.673794
+"West Bank and Gaza Strip","Governance, peace and security","2005",181.298713
+"West Bank and Gaza Strip","Governance, peace and security","2006",180.390822
+"West Bank and Gaza Strip","Governance, peace and security","2007",190.014757
+"West Bank and Gaza Strip","Governance, peace and security","2008",381.805202
+"West Bank and Gaza Strip","Governance, peace and security","2009",368.608798
+"West Bank and Gaza Strip","Governance, peace and security","2010",395.105193
+"West Bank and Gaza Strip","Governance, peace and security","2011",363.333566
+"West Bank and Gaza Strip","Governance, peace and security","2012",370.097933
+"West Bank and Gaza Strip","Governance, peace and security","2013",497.156382
+"West Bank and Gaza Strip","Humanitarian aid","2002",98.461097
+"West Bank and Gaza Strip","Humanitarian aid","2003",66.183506
+"West Bank and Gaza Strip","Humanitarian aid","2004",214.003621
+"West Bank and Gaza Strip","Humanitarian aid","2005",138.710713
+"West Bank and Gaza Strip","Humanitarian aid","2006",359.312547
+"West Bank and Gaza Strip","Humanitarian aid","2007",397.460745
+"West Bank and Gaza Strip","Humanitarian aid","2008",304.95164
+"West Bank and Gaza Strip","Humanitarian aid","2009",724.978633
+"West Bank and Gaza Strip","Humanitarian aid","2010",339.619123
+"West Bank and Gaza Strip","Humanitarian aid","2011",476.862426
+"West Bank and Gaza Strip","Humanitarian aid","2012",269.769276
+"West Bank and Gaza Strip","Humanitarian aid","2013",456.467908
+"West Bank and Gaza Strip","Other country programmable aid","2002",128.839005
+"West Bank and Gaza Strip","Other country programmable aid","2003",155.495824
+"West Bank and Gaza Strip","Other country programmable aid","2004",196.188532
+"West Bank and Gaza Strip","Other country programmable aid","2005",196.482484
+"West Bank and Gaza Strip","Other country programmable aid","2006",373.437907
+"West Bank and Gaza Strip","Other country programmable aid","2007",600.565868
+"West Bank and Gaza Strip","Other country programmable aid","2008",984.317725
+"West Bank and Gaza Strip","Other country programmable aid","2009",903.923775
+"West Bank and Gaza Strip","Other country programmable aid","2010",955.818702
+"West Bank and Gaza Strip","Other country programmable aid","2011",617.915749
+"West Bank and Gaza Strip","Other country programmable aid","2012",423.240782
+"West Bank and Gaza Strip","Other country programmable aid","2013",829.290461
+"West Bank and Gaza Strip","Other non-country programmable aid","2002",37.126377
+"West Bank and Gaza Strip","Other non-country programmable aid","2003",129.813277
+"West Bank and Gaza Strip","Other non-country programmable aid","2004",79.808613
+"West Bank and Gaza Strip","Other non-country programmable aid","2005",247.148585
+"West Bank and Gaza Strip","Other non-country programmable aid","2006",72.973797
+"West Bank and Gaza Strip","Other non-country programmable aid","2007",109.999636
+"West Bank and Gaza Strip","Other non-country programmable aid","2008",237.072599
+"West Bank and Gaza Strip","Other non-country programmable aid","2009",221.054368
+"West Bank and Gaza Strip","Other non-country programmable aid","2010",194.978503
+"West Bank and Gaza Strip","Other non-country programmable aid","2011",147.887882
+"West Bank and Gaza Strip","Other non-country programmable aid","2012",118.620811
+"West Bank and Gaza Strip","Other non-country programmable aid","2013",128.462738
+"West Bank and Gaza Strip","Public service provision","2002",157.583619
+"West Bank and Gaza Strip","Public service provision","2003",180.530883
+"West Bank and Gaza Strip","Public service provision","2004",168.259356
+"West Bank and Gaza Strip","Public service provision","2005",176.384748
+"West Bank and Gaza Strip","Public service provision","2006",205.746544
+"West Bank and Gaza Strip","Public service provision","2007",173.393536
+"West Bank and Gaza Strip","Public service provision","2008",173.258601
+"West Bank and Gaza Strip","Public service provision","2009",170.789219
+"West Bank and Gaza Strip","Public service provision","2010",288.829508
+"West Bank and Gaza Strip","Public service provision","2011",346.714169
+"West Bank and Gaza Strip","Public service provision","2012",265.828495
+"West Bank and Gaza Strip","Public service provision","2013",203.607476
+"Yemen","Governance, peace and security","2002",14.935193
+"Yemen","Governance, peace and security","2003",13.338806
+"Yemen","Governance, peace and security","2004",20.64747
+"Yemen","Governance, peace and security","2005",25.408115
+"Yemen","Governance, peace and security","2006",25.245586
+"Yemen","Governance, peace and security","2007",25.045483
+"Yemen","Governance, peace and security","2008",24.65161
+"Yemen","Governance, peace and security","2009",25.080157
+"Yemen","Governance, peace and security","2010",43.349589
+"Yemen","Governance, peace and security","2011",41.707781
+"Yemen","Governance, peace and security","2012",61.257347
+"Yemen","Governance, peace and security","2013",96.992267
+"Yemen","Humanitarian aid","2002",0.610073
+"Yemen","Humanitarian aid","2003",0.249828
+"Yemen","Humanitarian aid","2005",5.95301
+"Yemen","Humanitarian aid","2006",3.799302
+"Yemen","Humanitarian aid","2007",5.842549
+"Yemen","Humanitarian aid","2008",17.588318
+"Yemen","Humanitarian aid","2009",49.069353
+"Yemen","Humanitarian aid","2010",83.914494
+"Yemen","Humanitarian aid","2011",130.96419
+"Yemen","Humanitarian aid","2012",233.446471
+"Yemen","Humanitarian aid","2013",312.569476
+"Yemen","Other country programmable aid","2002",45.400108
+"Yemen","Other country programmable aid","2003",50.816634
+"Yemen","Other country programmable aid","2004",30.388129
+"Yemen","Other country programmable aid","2005",32.260255
+"Yemen","Other country programmable aid","2006",33.367872
+"Yemen","Other country programmable aid","2007",35.607361
+"Yemen","Other country programmable aid","2008",51.864935
+"Yemen","Other country programmable aid","2009",58.738105
+"Yemen","Other country programmable aid","2010",80.799928
+"Yemen","Other country programmable aid","2011",55.614782
+"Yemen","Other country programmable aid","2012",51.580925
+"Yemen","Other country programmable aid","2013",103.581897
+"Yemen","Other non-country programmable aid","2002",153.161
+"Yemen","Other non-country programmable aid","2003",42.605329
+"Yemen","Other non-country programmable aid","2004",53.972015
+"Yemen","Other non-country programmable aid","2005",13.498442
+"Yemen","Other non-country programmable aid","2006",28.563706
+"Yemen","Other non-country programmable aid","2007",11.406877
+"Yemen","Other non-country programmable aid","2008",27.734667
+"Yemen","Other non-country programmable aid","2009",24.422963
+"Yemen","Other non-country programmable aid","2010",12.400216
+"Yemen","Other non-country programmable aid","2011",36.688531
+"Yemen","Other non-country programmable aid","2012",11.431612
+"Yemen","Other non-country programmable aid","2013",9.682872
+"Yemen","Public service provision","2002",31.754228
+"Yemen","Public service provision","2003",47.170972
+"Yemen","Public service provision","2004",71.1643
+"Yemen","Public service provision","2005",105.860176
+"Yemen","Public service provision","2006",95.797171
+"Yemen","Public service provision","2007",115.146475
+"Yemen","Public service provision","2008",98.914593
+"Yemen","Public service provision","2009",124.642791
+"Yemen","Public service provision","2010",118.700493
+"Yemen","Public service provision","2011",101.903683
+"Yemen","Public service provision","2012",118.816477
+"Yemen","Public service provision","2013",171.553191
+"Zimbabwe","Governance, peace and security","2002",36.764221
+"Zimbabwe","Governance, peace and security","2003",31.469731
+"Zimbabwe","Governance, peace and security","2004",34.20986
+"Zimbabwe","Governance, peace and security","2005",35.310164
+"Zimbabwe","Governance, peace and security","2006",38.596458
+"Zimbabwe","Governance, peace and security","2007",51.273932
+"Zimbabwe","Governance, peace and security","2008",55.621795
+"Zimbabwe","Governance, peace and security","2009",68.111165
+"Zimbabwe","Governance, peace and security","2010",93.826494
+"Zimbabwe","Governance, peace and security","2011",122.242831
+"Zimbabwe","Governance, peace and security","2012",129.754963
+"Zimbabwe","Governance, peace and security","2013",122.046499
+"Zimbabwe","Humanitarian aid","2002",60.283089
+"Zimbabwe","Humanitarian aid","2003",41.910171
+"Zimbabwe","Humanitarian aid","2004",40.240358
+"Zimbabwe","Humanitarian aid","2005",73.266233
+"Zimbabwe","Humanitarian aid","2006",82.74424
+"Zimbabwe","Humanitarian aid","2007",157.974287
+"Zimbabwe","Humanitarian aid","2008",339.097954
+"Zimbabwe","Humanitarian aid","2009",384.466542
+"Zimbabwe","Humanitarian aid","2010",197.085486
+"Zimbabwe","Humanitarian aid","2011",137.539019
+"Zimbabwe","Humanitarian aid","2012",120.161539
+"Zimbabwe","Humanitarian aid","2013",73.765306
+"Zimbabwe","Other country programmable aid","2002",40.424776
+"Zimbabwe","Other country programmable aid","2003",28.885443
+"Zimbabwe","Other country programmable aid","2004",35.998754
+"Zimbabwe","Other country programmable aid","2005",24.362012
+"Zimbabwe","Other country programmable aid","2006",33.70649
+"Zimbabwe","Other country programmable aid","2007",47.709614
+"Zimbabwe","Other country programmable aid","2008",41.767315
+"Zimbabwe","Other country programmable aid","2009",93.952977
+"Zimbabwe","Other country programmable aid","2010",146.377003
+"Zimbabwe","Other country programmable aid","2011",161.551132
+"Zimbabwe","Other country programmable aid","2012",157.428175
+"Zimbabwe","Other country programmable aid","2013",148.383864
+"Zimbabwe","Other non-country programmable aid","2002",51.291908
+"Zimbabwe","Other non-country programmable aid","2003",55.006993
+"Zimbabwe","Other non-country programmable aid","2004",25.68932
+"Zimbabwe","Other non-country programmable aid","2005",18.258846
+"Zimbabwe","Other non-country programmable aid","2006",13.696667
+"Zimbabwe","Other non-country programmable aid","2007",48.041168
+"Zimbabwe","Other non-country programmable aid","2008",48.628472
+"Zimbabwe","Other non-country programmable aid","2009",27.688903
+"Zimbabwe","Other non-country programmable aid","2010",54.647702
+"Zimbabwe","Other non-country programmable aid","2011",22.383697
+"Zimbabwe","Other non-country programmable aid","2012",26.793479
+"Zimbabwe","Other non-country programmable aid","2013",18.957588
+"Zimbabwe","Public service provision","2002",58.135898
+"Zimbabwe","Public service provision","2003",68.844736
+"Zimbabwe","Public service provision","2004",75.288728
+"Zimbabwe","Public service provision","2005",114.251615
+"Zimbabwe","Public service provision","2006",121.298173
+"Zimbabwe","Public service provision","2007",133.538015
+"Zimbabwe","Public service provision","2008",125.875718
+"Zimbabwe","Public service provision","2009",180.131269
+"Zimbabwe","Public service provision","2010",182.26923
+"Zimbabwe","Public service provision","2011",182.770723
+"Zimbabwe","Public service provision","2012",347.482237
+"Zimbabwe","Public service provision","2013",276.362587
