@@ -3,10 +3,16 @@
 
 #Set working directory
 wd <- "C:/git/alexm-util/DevInit/R/GHA/presentation/tmp"
+root <- "C:/git/alexm-util/DevInit/R/GHA/presentation/"
 setwd(wd)
 
 #Delete everything in tmp
 unlink(dir(wd, full.names = TRUE),recursive=TRUE)
+toRemove <- list.files(root,pattern="*.jpg|*.xml",full.names=TRUE)
+for(i in 1:length(toRemove)){
+  fileToRemove <- toRemove[i]
+  file.remove(fileToRemove)
+}
 
 #Slide 4 - Writing####
 data <- read.csv('../donorBySector.csv')
@@ -98,6 +104,12 @@ d <- ggplot(afg,aes(x=factor(donorname),y=undisbursed_total_defl)) +
   theme(axis.text.x = element_text(angle=-90))
 d
 
+#Slide 9 - PDF scraping####
+setwd(root)
+system("python scrape_trends.py")
+setwd(wd)
+pdfData <- read.csv("global_trends.csv",check.names=FALSE,na.strings="-")
+
 #Slide 10 - Web scraping####
 
 #OECD Examples#
@@ -144,9 +156,6 @@ OECD <- function(url,concept=FALSE){
 #Grab url from https://stats.oecd.org/Index.aspx?DataSetCode=TABLE1
 url <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/TABLE1/12.1.1010.1140.A/all?startTime=2005&endTime=2014"
 table1 <- OECD(url)
-
-url <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/CRS1/801+1+2+301+68+3+18+4+5+40.225+236+227+287+228+230+229+231+232+233.1000.100.100.A.115.100/all?startTime=2012&endTime=2013"
-crs <- OECD(url)
 
 #World Bank Examples#
 library(WDI)
@@ -224,4 +233,6 @@ wbdeflator <- ddply(wbdeflator,.(country),function(x){
 
 #Slide 11 - ddply####
 library(plyr)
-pivot <- ddply(crs,.(DONOR),summarize,total=sum(obsValue,na.rm=TRUE))
+pivot <- ddply(data,.(donorname),summarize,total=sum(usd_disbursement_defl,na.rm=TRUE))
+
+#For more visuals, see GHA/scaled_pies.R, DevInit/UG_Choro.R
