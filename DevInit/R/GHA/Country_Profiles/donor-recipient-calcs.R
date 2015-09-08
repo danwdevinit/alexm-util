@@ -330,3 +330,14 @@ donorRecipientCalc <- donorRecipientCalc[keep]
 donorRecipientCalc$REFERENCEPERIOD <- ha$REFERENCEPERIOD[[1]]
 donorRecipientCalc <- donorRecipientCalc[complete.cases(donorRecipientCalc$DONOR,donorRecipientCalc$RECIPIENT,donorRecipientCalc$obsTime),]
 write.csv(donorRecipientCalc,"donor-recipient-calc.csv",na="",row.names=FALSE)
+write.csv(un,"fromUN.csv",na="",row.names=FALSE)
+write.csv(toun,"toUN.csv",na="",row.names=FALSE)
+write.csv(toeu,"toEU.csv",na="",row.names=FALSE)
+write.csv(fromeu,"fromEU.csv",na="",row.names=FALSE)
+write.csv(toCERF,"toCERF.csv",na="",row.names=FALSE)
+write.csv(fromCERF,"fromCERF.csv",na="",row.names=FALSE)
+write.csv(ha,"ha.csv",na="",row.names=FALSE)
+write.csv(allunfunding,"unImputed.csv",na="",row.names=FALSE)
+write.csv(eufunding,"euImputed.csv",na="",row.names=FALSE)
+write.csv(cerffunding,"cerfImputed.csv",na="",row.names=FALSE)
+write.csv(deflator,"deflator.csv",na="",row.names=FALSE)

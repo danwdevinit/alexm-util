@@ -105,7 +105,7 @@ treemap(oda
         ,vColor="color"
         ,type="color"
         ,title="ODA 2013"
-        ,fontcolor.labels=rgb(0,0,0,0)
+        #,fontcolor.labels=rgb(0,0,0,0)
         )
 
 treemap(fdi
@@ -114,7 +114,7 @@ treemap(fdi
         ,vColor="color"
         ,type="color"
         ,title="FDI 2013"
-        ,fontcolor.labels=rgb(0,0,0,0)
+        #,fontcolor.labels=rgb(0,0,0,0)
         )
 
 treemap(remittances
@@ -123,7 +123,7 @@ treemap(remittances
         ,vColor="color"
         ,type="color"
         ,title="Remittances 2013"
-        ,fontcolor.labels=rgb(0,0,0,0)
+        #,fontcolor.labels=rgb(0,0,0,0)
         )
 
 treemap(longdebt
@@ -132,5 +132,5 @@ treemap(longdebt
         ,vColor="color"
         ,type="color"
         ,title="Long-debt 2013"
-        ,fontcolor.labels=rgb(0,0,0,0)
+        #,fontcolor.labels=rgb(0,0,0,0)
         )
