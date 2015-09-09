@@ -63,9 +63,19 @@ treeMapRamp <- function(vector){
 }
 
 data <- read.csv("treemaps.csv",na.strings="")
+data <- data[,1:3]
+entities <- read.csv("C:/git/digital-platform/reference/entity.csv",na.strings="",as.is=TRUE)
+entities$name[44] <- "Cote d'Ivoire"
+entities$name[241] <- "Vietnam"
+data <- merge(
+  data
+  ,entities
+  ,by.x="country.id"
+  ,by.y="id"
+  )
 
 depth <- subset(data,flow=="depth")
-names(depth)[4] <- "depth"
+names(depth)[3] <- "depth"
 
 oda <- subset(data,flow=="oda")
 oda <- subset(oda,value>0)
@@ -100,37 +110,45 @@ remittances <- merge(remittances
 remittances <- transform(remittances,color=treeMapRamp(depth))
 
 treemap(oda
-        ,index="country.id"
+        ,index="name.y"
         ,vSize="value"
         ,vColor="color"
         ,type="color"
-        ,title="ODA 2013"
-        #,fontcolor.labels=rgb(0,0,0,0)
+        ,title=""
+        ,lowerbound.cex.labels=1
+        ,fontsize.labels=30
+        ,inflate.labels=TRUE
         )
 
 treemap(fdi
-        ,index="country.id"
+        ,index="name.y"
         ,vSize="value"
         ,vColor="color"
         ,type="color"
-        ,title="FDI 2013"
-        #,fontcolor.labels=rgb(0,0,0,0)
+        ,title=""
+        ,lowerbound.cex.labels=1
+        ,fontsize.labels=30
+        ,inflate.labels=TRUE
         )
 
 treemap(remittances
-        ,index="country.id"
+        ,index="name.y"
         ,vSize="value"
         ,vColor="color"
         ,type="color"
-        ,title="Remittances 2013"
-        #,fontcolor.labels=rgb(0,0,0,0)
+        ,title=""
+        ,lowerbound.cex.labels=1
+        ,fontsize.labels=30
+        ,inflate.labels=TRUE
         )
 
 treemap(longdebt
-        ,index="country.id"
+        ,index="name.y"
         ,vSize="value"
         ,vColor="color"
         ,type="color"
-        ,title="Long-debt 2013"
-        #,fontcolor.labels=rgb(0,0,0,0)
+        ,title=""
+        ,lowerbound.cex.labels=1
+        ,fontsize.labels=30
+        ,inflate.labels=TRUE
         )

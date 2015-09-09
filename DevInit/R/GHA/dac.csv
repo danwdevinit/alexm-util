@@ -1,30 +1,29 @@
-donorname
-Australia
-Austria
-Belgium
-Canada
-Czech Republic
-Denmark
-EU Institutions
-Finland
-France
-Germany
-Greece
-Iceland
-Ireland
-Italy
-Japan
-Korea
-Luxembourg
-Netherlands
-New Zealand
-Norway
-Poland
-Portugal
-Slovak Republic
-Slovenia
-Spain
-Sweden
-Switzerland
-United Kingdom
-United States
+donorname,id
+Australia,AU
+Austria,AT
+Belgium,BE
+Canada,CA
+Czech Republic,CZ
+Denmark,DK
+Finland,FI
+France,FR
+Germany,DE
+Greece,GR
+Iceland,IS
+Ireland,IE
+Italy,IT
+Japan,JP
+Korea,KR
+Luxembourg,LU
+Netherlands,NL
+New Zealand,NZ
+Norway,NO
+Poland,PL
+Portugal,PT
+Slovak Republic,SK
+Slovenia,SI
+Spain,ES
+Sweden,SE
+Switzerland,CH
+United Kingdom,GB
+United States,US

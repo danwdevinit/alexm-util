@@ -104,6 +104,11 @@ d <- ggplot(afg,aes(x=factor(donorname),y=undisbursed_total_defl)) +
   theme(axis.text.x = element_text(angle=-90))
 d
 
+#Define the purposecodes we want to filter by
+purposes <- c(72010,72040,72050,73010,74010)
+hum <- subset(data,purposecode %in% purposes)
+View(hum)
+
 #Slide 9 - PDF scraping####
 setwd(root)
 system("python scrape_trends.py")

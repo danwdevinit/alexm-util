@@ -1,0 +1,57 @@
+- ODA treemap for UK as a donor is much more red than overall, indicating the UK does a good job of targetting
+their ODA to the poorest. That being said, there are still some small, crimson squares, indicating that they 
+can do a better job, still.
+
+-Global inflows 2013 treemap: Surprising the volume of long-term debt!
+
+- DRM data is for 2011 from the OECD DAC CRS.
+
+-The following are were the UK ranks in the global context for different sectors
+For ODA in 2013:
+*Education: 2nd place
+*Environment: 2nd place
+*Health: 3rd, with Global fund as 2nd and GAVI as 4th
+*Humanitarian: 3rd place
+*Other Social Services: 4th place
+*Governance and Security: 5th place
+*Banking and business: 5th place
+*Other: 5th place
+*Industry and trade: 6th place
+*Agriculture and food security: 7th place
+*General budget support: 7th place
+*Debt relief: 8th place
+*WASH: 9th place
+*Infrastructure: 10th place
+
+-Interesting notes: The UK excels in many sectors, but doesn't lead the world in any particular sector,
+but that's not necessarily a bad thing. More sectors mean more avenues to spread UK influence.
+
+-The following are were the UK ranks in the global context for different aid types
+For ODA in 2013:
+*GPGs & NNGOs: 1st place
+*Mixed project aid: 2nd place
+*Cash Grant: 3rd place
+*Commodities & Food: 5th place
+*Technical cooperation: 5th place
+*Cash (loan/equity): 13th place
+*Non-transfer aid: 13th place
+
+-Interesting notes: The UK does a great job of utilizing partner organizations like GPGs and NNGOs to
+implement their ODA, and does better than many other large donors at avoiding non-transfer aid. (May not
+be indicative of actual low-levels of non-transfer aid, it may just mean that the UK chooses not to report
+it as ODA as often)
+
+-Geographically, top recipients are
+*Country not specified: 30%
+*Pakistan: 5%
+*Ethiopia: 5%
+*India: 4%
+*Bangladesh: 4%
+*Nigeria: 4%
+*Afghanistan: 3%
+*Middle east, regional: 3%
+*Tanzania: 3%
+*DRC: 2%
+*Kenya: 2%
+
+-Seems like pretty good dispersion across many recipients. Not too focused one one.
