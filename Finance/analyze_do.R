@@ -7,7 +7,7 @@ if(windows){pathpre<-"C:"}else{pathpre<-"~"}
 wd <- paste0(pathpre,"/git/alexm-util/Finance")
 setwd(wd)
 
-df <- read.csv("aapl3.csv")
+df <- read.csv("aapl.csv")
 
 averages <- ddply(df,.(change,state),summarize,avg=mean(prob))
 ggplot(data=averages,aes(x=change,y=avg,group=state,colour=state)) +

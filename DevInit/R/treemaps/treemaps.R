@@ -109,6 +109,10 @@ remittances <- merge(remittances
              ,all.x=TRUE)
 remittances <- transform(remittances,color=treeMapRamp(depth))
 
+#Remove missing
+oda <- subset(oda,depth>0)
+fdi <- subset(fdi,depth>0)
+
 treemap(oda
         ,index="name.y"
         ,vSize="value"
@@ -116,7 +120,7 @@ treemap(oda
         ,type="color"
         ,title=""
         ,lowerbound.cex.labels=1
-        ,fontsize.labels=30
+        ,fontsize.labels=25
         ,inflate.labels=TRUE
         )
 
@@ -127,7 +131,7 @@ treemap(fdi
         ,type="color"
         ,title=""
         ,lowerbound.cex.labels=1
-        ,fontsize.labels=30
+        ,fontsize.labels=25
         ,inflate.labels=TRUE
         )
 
@@ -138,7 +142,7 @@ treemap(remittances
         ,type="color"
         ,title=""
         ,lowerbound.cex.labels=1
-        ,fontsize.labels=30
+        ,fontsize.labels=25
         ,inflate.labels=TRUE
         )
 
@@ -149,6 +153,6 @@ treemap(longdebt
         ,type="color"
         ,title=""
         ,lowerbound.cex.labels=1
-        ,fontsize.labels=30
+        ,fontsize.labels=25
         ,inflate.labels=TRUE
         )

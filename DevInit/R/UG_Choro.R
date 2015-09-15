@@ -167,7 +167,11 @@ ug_leaflet <- function(series,indicator, year = NA, value = "value", classes = 5
 #Map appears in viewer, legend appears in plots along with count of data in those bins
 
 #DPR
-
+ug_leaflet("country-year","uganda-local-percent",2015,"value",c(1,2,3,4,10),diRamp("purple"))
+ug_leaflet("country-year","uganda-donor-percent",2015,"value",c(1,2,3,4,10),diRamp("purple"))
+ug_leaflet("country-year","uganda-educ-percent",2015,"value",c(30,40,50,60),diRamp("purple"))
+ug_leaflet("country-year","uganda-agri-percent",2015,"value",c(3,4,5,6),diRamp("purple"))
+ug_leaflet("country-year","uganda-health-percent",2015,"value",c(10,13,16,19),diRamp("purple"))
 
 #Pov
 ug_leaflet("country-year","uganda-poverty-headcount",NA,"value",c(30,50,70,90),diRamp("pink","red","darkred"))
