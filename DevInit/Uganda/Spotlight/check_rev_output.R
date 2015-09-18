@@ -1,0 +1,8 @@
+setwd("C:/git/alexm-util/DevInit/Uganda/Spotlight/")
+data <- read.csv("Revenue-12-16.csv",as.is=TRUE)
+rev16 <- subset(data,year=="2015/16 Proposed Budget")
+rev15 <- subset(data,year=="2014/15 Proposed Budget")
+rev14 <- subset(data,year=="2013/14 Proposed Budget")
+length(unique(rev16$District))
+length(unique(rev15$District))
+length(unique(rev14$District))

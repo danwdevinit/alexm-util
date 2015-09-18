@@ -152,8 +152,8 @@ ug_leaflet <- function(series,indicator, year = NA, value = "value", classes = 5
           text(bp, 0, round(legend$count, 1),cex=1,pos=3)
   
   leaflet(data = districts2) %>%
-    #addTiles(urlTemplate = stamen_tiles,  
-    #         attribution = stamen_attribution) %>%
+    addTiles(urlTemplate = stamen_tiles,  
+             attribution = stamen_attribution) %>%
     setView(32, 1, zoom = 6) %>%
     addPolygons(fillColor = ~pal(districts2[[indicator]]), 
                 fillOpacity = 0.8, 
@@ -167,6 +167,7 @@ ug_leaflet <- function(series,indicator, year = NA, value = "value", classes = 5
 #Map appears in viewer, legend appears in plots along with count of data in those bins
 
 #DPR
+ug_leaflet("country-year","uganda-gov-spend-pp",2014,"value",c(20,25,30,35),diRamp("purple"))
 ug_leaflet("country-year","uganda-local-percent",2015,"value",c(1,2,3,4,10),diRamp("purple"))
 ug_leaflet("country-year","uganda-donor-percent",2015,"value",c(1,2,3,4,10),diRamp("purple"))
 ug_leaflet("country-year","uganda-educ-percent",2015,"value",c(30,40,50,60),diRamp("purple"))

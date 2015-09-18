@@ -1,0 +1,1487 @@
+DISTRICT/MUNI,ITEM,Releases
+,,
+ ARUA ,1112-Health training," 190,593 "
+ GULU ,1112-Health training," 186,481 "
+ JINJA ,1112-Health training," 231,841 "
+ KABALE ,1112-Health training," 399,359 "
+ KABAROLE ,1112-Health training," 299,539 "
+ LIRA ,1112-Health training," 102,181 "
+ MASAKA ,1112-Health training," 154,975 "
+ MBALE ,1112-Health training," 221,393 "
+ SOROTI ,1112-Health training," 102,181 "
+,,
+ ADJUMANI ,6019-Urban Water," 46,624 "
+ ARUA ,6019-Urban Water, -   
+ BUGIRI ,6019-Urban Water," 18,650 "
+ BUNDIBUGYO ,6019-Urban Water," 37,299 "
+ BUSHENYI ,6019-Urban Water," 60,690 "
+ BUSIA ,6019-Urban Water," 18,650 "
+ HOIMA ,6019-Urban Water," 56,814 "
+ IGANGA ,6019-Urban Water," 46,624 "
+ KABERAMAIDO ,6019-Urban Water," 56,814 "
+ KALANGALA ,6019-Urban Water," 9,469 "
+ KAMULI ,6019-Urban Water," 46,624 "
+ KAPCHORWA ,6019-Urban Water," 37,974 "
+ KASESE ,6019-Urban Water," 37,299 "
+ KIBOGA ,6019-Urban Water," 18,650 "
+ KISORO ,6019-Urban Water," 37,299 "
+ KITGUM ,6019-Urban Water," 37,299 "
+ KOTIDO ,6019-Urban Water," 37,299 "
+ KUMI ,6019-Urban Water," 47,806 "
+ LIRA ,6019-Urban Water," 9,325 "
+ LUWERO ,6019-Urban Water," 37,299 "
+ MASINDI ,6019-Urban Water," 74,598 "
+ MBARARA ,6019-Urban Water," 37,299 "
+ MOROTO ,6019-Urban Water," 18,650 "
+ MOYO ,6019-Urban Water," 46,624 "
+ MUBENDE ,6019-Urban Water," 48,817 "
+ MUKONO ,6019-Urban Water," 26,578 "
+ NAKASONGOLA ,,
+ NTUNGAMO ,,
+ PALLISA ,6019-Urban Water," 37,299 "
+ RAKAI ,6019-Urban Water," 55,949 "
+RUKUNGIRI,,
+ SOROTI ,6019-Urban Water," 27,974 "
+ TORORO ,6019-Urban Water," 18,650 "
+ARUA M.C.,6019-Urban Water," 49,596 "
+MOROTO M.C.,6019-Urban Water," 46,624 "
+SOROTI M.C.,6019-Urban Water," 69,682 "
+,,   
+ ADJUMANI ,6020-Dist Uncond," 674,034 "
+ APAC ,6020-Dist Uncond," 1,831,476 "
+ ARUA ,6020-Dist Uncond," 2,107,455 "
+ BUGIRI ,6020-Dist Uncond," 1,103,186 "
+ BUNDIBUGYO ,6020-Dist Uncond," 698,491 "
+ BUSHENYI ,6020-Dist Uncond," 2,233,586 "
+ BUSIA ,6020-Dist Uncond," 688,019 "
+ GULU ,6020-Dist Uncond," 1,676,427 "
+ HOIMA ,6020-Dist Uncond," 987,070 "
+ IGANGA ,6020-Dist Uncond," 1,809,304 "
+ JINJA ,6020-Dist Uncond," 1,340,677 "
+ KABALE ,6020-Dist Uncond," 1,475,112 "
+ KABAROLE ,6020-Dist Uncond," 1,270,035 "
+ KABERAMAIDO ,6020-Dist Uncond," 582,235 "
+ KALANGALA ,6020-Dist Uncond," 556,758 "
+ KAMPALA ,6020-Dist Uncond," 2,416,118 "
+ KAMULI ,6020-Dist Uncond," 1,782,626 "
+ KAMWENGE ,6020-Dist Uncond," 866,629 "
+ KANUNGU ,6020-Dist Uncond," 763,222 "
+ KAPCHORWA ,6020-Dist Uncond," 746,352 "
+ KASESE ,6020-Dist Uncond," 1,526,522 "
+ KATAKWI ,6020-Dist Uncond," 801,030 "
+ KAYUNGA ,6020-Dist Uncond," 994,578 "
+ KIBALE ,6020-Dist Uncond," 1,012,359 "
+ KIBOGA ,6020-Dist Uncond," 775,069 "
+ KISORO ,6020-Dist Uncond," 769,492 "
+ KITGUM ,6020-Dist Uncond," 1,095,675 "
+ KOTIDO ,6020-Dist Uncond," 1,363,816 "
+ KUMI ,6020-Dist Uncond," 1,042,052 "
+ KYENJOJO ,6020-Dist Uncond," 1,217,759 "
+ LIRA ,6020-Dist Uncond," 2,027,927 "
+ LUWERO ,6020-Dist Uncond," 1,805,917 "
+ MASAKA ,6020-Dist Uncond," 2,363,104 "
+ MASINDI ,6020-Dist Uncond," 1,327,518 "
+ MAYUGE ,6020-Dist Uncond," 1,018,439 "
+ MBALE ,6020-Dist Uncond," 1,795,323 "
+ MBARARA ,6020-Dist Uncond," 2,785,455 "
+ MOROTO ,6020-Dist Uncond," 778,300 "
+ MOYO ,6020-Dist Uncond," 581,088 "
+ MPIGI ,6020-Dist Uncond," 1,422,323 "
+ MUBENDE ,6020-Dist Uncond," 1,963,985 "
+ MUKONO ,6020-Dist Uncond," 2,287,409 "
+ NAKAPIRIPIRIT ,6020-Dist Uncond," 707,753 "
+ NAKASONGOLA ,6020-Dist Uncond," 659,558 "
+ NEBBI ,6020-Dist Uncond," 1,242,300 "
+ NTUNGAMO ,6020-Dist Uncond," 1,162,714 "
+ PADER ,6020-Dist Uncond," 989,847 "
+ PALLISA ,6020-Dist Uncond," 1,390,071 "
+ RAKAI ,6020-Dist Uncond," 1,781,502 "
+ RUKUNGIRI ,6020-Dist Uncond," 960,466 "
+ SEMBABULE ,6020-Dist Uncond," 674,936 "
+ SIRONKO ,6020-Dist Uncond," 866,451 "
+ SOROTI ,6020-Dist Uncond," 1,252,074 "
+ TORORO ,6020-Dist Uncond," 1,749,171 "
+ WAKISO ,6020-Dist Uncond," 2,000,924 "
+ YUMBE ,6020-Dist Uncond," 571,934 "
+ARUA M.C.,6020-Dist Uncond,
+ENTEBBE M.C.,6020-Dist Uncond,
+FORT PORTAL M.C.,6020-Dist Uncond,
+GULU M.C.,6020-Dist Uncond,
+JINJA M.C.,6020-Dist Uncond,
+KABALE M.C.,6020-Dist Uncond,
+LIRA M.C.,6020-Dist Uncond,
+MASAKA M.C.,6020-Dist Uncond,
+MBALE M.C.,6020-Dist Uncond,
+MBARARA M.C.,6020-Dist Uncond,
+MOROTO M.C.,6020-Dist Uncond,
+SOROTI M.C.,6020-Dist Uncond,
+TORORO M.C.,6020-Dist Uncond,
+,,   
+ ADJUMANI ,6021- UPE," 161,578 "
+ APAC ,6021- UPE," 1,599,021 "
+ ARUA ,6021- UPE," 1,781,939 "
+ BUGIRI ,6021- UPE," 793,488 "
+ BUNDIBUGYO ,6021- UPE," 382,430 "
+ BUSHENYI ,6021- UPE," 1,460,731 "
+ BUSIA ,6021- UPE," 461,479 "
+ GULU ,6021- UPE," 726,877 "
+ HOIMA ,6021- UPE," 513,746 "
+ IGANGA ,6021- UPE," 1,522,619 "
+ JINJA ,6021- UPE," 475,463 "
+ KABALE ,6021- UPE," 832,748 "
+ KABAROLE ,6021- UPE," 489,049 "
+ KABERAMAIDO ,6021- UPE," 279,394 "
+ KALANGALA ,6021- UPE," 35,914 "
+ KAMPALA ,6021- UPE," 463,563 "
+ KAMULI ,6021- UPE," 1,323,965 "
+ KAMWENGE ,6021- UPE," 367,031 "
+ KANUNGU ,6021- UPE," 324,322 "
+ KAPCHORWA ,6021- UPE," 419,404 "
+ KASESE ,6021- UPE," 990,601 "
+ KATAKWI ,6021- UPE," 538,173 "
+ KAYUNGA ,6021- UPE," 539,960 "
+ KIBALE ,6021- UPE," 662,450 "
+ KIBOGA ,6021- UPE," 379,211 "
+ KISORO ,6021- UPE," 385,307 "
+ KITGUM ,6021- UPE," 519,501 "
+ KOTIDO ,6021- UPE," 349,606 "
+ KUMI ,6021- UPE," 807,199 "
+ KYENJOJO ,6021- UPE," 548,092 "
+ LIRA ,6021- UPE," 1,260,146 "
+ LUWERO ,6021- UPE," 796,790 "
+ MASAKA ,6021- UPE," 878,965 "
+ MASINDI ,6021- UPE," 641,109 "
+ MAYUGE ,6021- UPE," 619,637 "
+ MBALE ,6021- UPE," 1,398,006 "
+ MBARARA ,6021- UPE," 1,712,536 "
+ MOROTO ,6021- UPE," 100,758 "
+ MOYO ,6021- UPE," 190,700 "
+ MPIGI ,6021- UPE," 803,220 "
+ MUBENDE ,6021- UPE," 1,074,865 "
+ MUKONO ,6021- UPE," 930,045 "
+ NAKAPIRIPIRIT ,6021- UPE," 110,452 "
+ NAKASONGOLA ,6021- UPE," 204,061 "
+ NEBBI ,6021- UPE," 768,437 "
+ NTUNGAMO ,6021- UPE," 742,335 "
+ PADER ,6021- UPE," 743,539 "
+ PALLISA ,6021- UPE," 997,166 "
+ RAKAI ,6021- UPE," 700,925 "
+ RUKUNGIRI ,6021- UPE," 473,310 "
+ SEMBABULE ,6021- UPE," 304,132 "
+ SIRONKO ,6021- UPE," 656,577 "
+ SOROTI ,6021- UPE," 607,571 "
+ TORORO ,6021- UPE," 1,016,205 "
+ WAKISO ,6021- UPE," 792,129 "
+ YUMBE ,6021- UPE," 500,782 "
+ARUA M.C.,6021- UPE," 80,119 "
+ENTEBBE M.C.,6021- UPE," 58,954 "
+FORT PORTAL M.C.,6021- UPE," 76,267 "
+GULU M.C.,6021- UPE," 211,338 "
+JINJA M.C.,6021- UPE," 120,490 "
+KABALE M.C.,6021- UPE," 83,033 "
+LIRA M.C.,6021- UPE," 92,039 "
+MASAKA M.C.,6021- UPE," 42,710 "
+MBALE M.C.,6021- UPE," 130,443 "
+MBARARA M.C.,6021- UPE," 101,176 "
+MOROTO M.C.,6021- UPE," 13,024 "
+SOROTI M.C.,6021- UPE," 109,202 "
+TORORO M.C.,6021- UPE," 62,332 "
+,,
+ ADJUMANI ,6022-Rural Feeder Rds," 276,582 "
+ APAC ,6022-Rural Feeder Rds," 401,378 "
+ ARUA ,6022-Rural Feeder Rds," 412,618 "
+ BUGIRI ,6022-Rural Feeder Rds," 236,973 "
+ BUNDIBUGYO ,6022-Rural Feeder Rds," 270,790 "
+ BUSHENYI ,6022-Rural Feeder Rds," 546,096 "
+ BUSIA ,6022-Rural Feeder Rds," 332,190 "
+ GULU ,6022-Rural Feeder Rds," 161,200 "
+ HOIMA ,6022-Rural Feeder Rds," 471,101 "
+ IGANGA ,6022-Rural Feeder Rds," 273,468 "
+ JINJA ,6022-Rural Feeder Rds," 181,906 "
+ KABALE ,6022-Rural Feeder Rds," 308,546 "
+ KABAROLE ,6022-Rural Feeder Rds," 120,802 "
+ KABERAMAIDO ,6022-Rural Feeder Rds," 91,788 "
+ KALANGALA ,6022-Rural Feeder Rds," 110,480 "
+ KAMPALA ,6022-Rural Feeder Rds," 200,099 "
+ KAMULI ,6022-Rural Feeder Rds," 368,644 "
+ KAMWENGE ,6022-Rural Feeder Rds," 150,012 "
+ KANUNGU ,6022-Rural Feeder Rds," 299,586 "
+ KAPCHORWA ,6022-Rural Feeder Rds," 207,255 "
+ KASESE ,6022-Rural Feeder Rds," 347,415 "
+ KATAKWI ,6022-Rural Feeder Rds," 202,259 "
+ KAYUNGA ,6022-Rural Feeder Rds," 251,542 "
+ KIBALE ,6022-Rural Feeder Rds," 318,487 "
+ KIBOGA ,6022-Rural Feeder Rds," 307,514 "
+ KISORO ,6022-Rural Feeder Rds," 252,194 "
+ KITGUM ,6022-Rural Feeder Rds," 69,706 "
+ KOTIDO ,6022-Rural Feeder Rds," 143,790 "
+ KUMI ,6022-Rural Feeder Rds," 183,150 "
+ KYENJOJO ,6022-Rural Feeder Rds," 287,331 "
+ LIRA ,6022-Rural Feeder Rds," 231,614 "
+ LUWERO ,6022-Rural Feeder Rds," 442,706 "
+ MASAKA ,6022-Rural Feeder Rds," 341,080 "
+ MASINDI ,6022-Rural Feeder Rds," 516,975 "
+ MAYUGE ,6022-Rural Feeder Rds," 190,916 "
+ MBALE ,6022-Rural Feeder Rds," 130,144 "
+ MBARARA ,6022-Rural Feeder Rds," 446,395 "
+ MOROTO ,6022-Rural Feeder Rds," 144,293 "
+ MOYO ,6022-Rural Feeder Rds," 98,328 "
+ MPIGI ,6022-Rural Feeder Rds," 249,892 "
+ MUBENDE ,6022-Rural Feeder Rds," 553,616 "
+ MUKONO ,6022-Rural Feeder Rds," 468,733 "
+ NAKAPIRIPIRIT ,6022-Rural Feeder Rds," 225,548 "
+ NAKASONGOLA ,6022-Rural Feeder Rds," 276,372 "
+ NEBBI ,6022-Rural Feeder Rds," 274,200 "
+ NTUNGAMO ,6022-Rural Feeder Rds," 235,664 "
+ PADER ,6022-Rural Feeder Rds," 168,163 "
+ PALLISA ,6022-Rural Feeder Rds," 180,425 "
+ RAKAI ,6022-Rural Feeder Rds," 297,767 "
+ RUKUNGIRI ,6022-Rural Feeder Rds," 233,567 "
+ SEMBABULE ,6022-Rural Feeder Rds," 155,391 "
+ SIRONKO ,6022-Rural Feeder Rds," 100,065 "
+ SOROTI ,6022-Rural Feeder Rds," 111,624 "
+ TORORO ,6022-Rural Feeder Rds," 136,114 "
+ WAKISO ,6022-Rural Feeder Rds," 160,345 "
+ YUMBE ,6022-Rural Feeder Rds," 140,465 "
+ARUA M.C.,6022-Rural Feeder Rds," 92,140 "
+ENTEBBE M.C.,6022-Rural Feeder Rds," 92,140 "
+FORT PORTAL M.C.,6022-Rural Feeder Rds," 92,140 "
+GULU M.C.,6022-Rural Feeder Rds," 92,140 "
+JINJA M.C.,6022-Rural Feeder Rds," 92,140 "
+KABALE M.C.,6022-Rural Feeder Rds," 92,140 "
+LIRA M.C.,6022-Rural Feeder Rds," 92,140 "
+MASAKA M.C.,6022-Rural Feeder Rds," 92,140 "
+MBALE M.C.,6022-Rural Feeder Rds," 92,140 "
+MBARARA M.C.,6022-Rural Feeder Rds," 94,988 "
+MOROTO M.C.,6022-Rural Feeder Rds," 92,140 "
+SOROTI M.C.,6022-Rural Feeder Rds," 92,140 "
+TORORO M.C.,6022-Rural Feeder Rds," 92,140 "
+,,
+ ADJUMANI ,6023-PHC Non-wage," 106,938 "
+ APAC ,6023-PHC Non-wage," 463,652 "
+ ARUA ,6023-PHC Non-wage," 604,228 "
+ BUGIRI ,6023-PHC Non-wage," 279,534 "
+ BUNDIBUGYO ,6023-PHC Non-wage," 246,912 "
+ BUSHENYI ,6023-PHC Non-wage," 648,451 "
+ BUSIA ,6023-PHC Non-wage," 201,823 "
+ GULU ,6023-PHC Non-wage," 446,254 "
+ HOIMA ,6023-PHC Non-wage," 214,537 "
+ IGANGA ,6023-PHC Non-wage," 514,492 "
+ JINJA ,6023-PHC Non-wage," 349,431 "
+ KABALE ,6023-PHC Non-wage," 547,126 "
+ KABAROLE ,6023-PHC Non-wage," 308,645 "
+ KABERAMAIDO ,6023-PHC Non-wage," 137,648 "
+ KALANGALA ,6023-PHC Non-wage," 106,636 "
+ KAMPALA ,6023-PHC Non-wage," 547,900 "
+ KAMULI ,6023-PHC Non-wage," 508,728 "
+ KAMWENGE ,6023-PHC Non-wage," 237,304 "
+ KANUNGU ,6023-PHC Non-wage," 192,825 "
+ KAPCHORWA ,6023-PHC Non-wage," 187,036 "
+ KASESE ,6023-PHC Non-wage," 319,395 "
+ KATAKWI ,6023-PHC Non-wage," 264,374 "
+ KAYUNGA ,6023-PHC Non-wage," 267,680 "
+ KIBALE ,6023-PHC Non-wage," 246,518 "
+ KIBOGA ,6023-PHC Non-wage," 207,122 "
+ KISORO ,6023-PHC Non-wage," 224,940 "
+ KITGUM ,6023-PHC Non-wage," 220,576 "
+ KOTIDO ,6023-PHC Non-wage," 250,981 "
+ KUMI ,6023-PHC Non-wage," 273,076 "
+ KYENJOJO ,6023-PHC Non-wage," 307,993 "
+ LIRA ,6023-PHC Non-wage," 596,604 "
+ LUWERO ,6023-PHC Non-wage," 433,091 "
+ MASAKA ,6023-PHC Non-wage," 729,632 "
+ MASINDI ,6023-PHC Non-wage," 331,212 "
+ MAYUGE ,6023-PHC Non-wage," 254,856 "
+ MBALE ,6023-PHC Non-wage," 551,100 "
+ MBARARA ,6023-PHC Non-wage," 857,597 "
+ MOROTO ,6023-PHC Non-wage," 187,524 "
+ MOYO ,6023-PHC Non-wage," 128,709 "
+ MPIGI ,6023-PHC Non-wage," 335,326 "
+ MUBENDE ,6023-PHC Non-wage," 519,317 "
+ MUKONO ,6023-PHC Non-wage," 553,477 "
+ NAKAPIRIPIRIT ,6023-PHC Non-wage," 187,004 "
+ NAKASONGOLA ,6023-PHC Non-wage," 132,817 "
+ NEBBI ,6023-PHC Non-wage," 328,407 "
+ NTUNGAMO ,6023-PHC Non-wage," 358,156 "
+ PADER ,6023-PHC Non-wage," 219,590 "
+ PALLISA ,6023-PHC Non-wage," 390,640 "
+ RAKAI ,6023-PHC Non-wage," 342,287 "
+ RUKUNGIRI ,6023-PHC Non-wage," 223,392 "
+ SEMBABULE ,6023-PHC Non-wage," 188,927 "
+ SIRONKO ,6023-PHC Non-wage," 270,780 "
+ SOROTI ,6023-PHC Non-wage," 327,472 "
+ TORORO ,6023-PHC Non-wage," 456,467 "
+ WAKISO ,6023-PHC Non-wage," 602,749 "
+ YUMBE ,6023-PHC Non-wage," 113,280 "
+ARUA M.C.,,
+ENTEBBE M.C.,,
+FORT PORTAL M.C.,,
+GULU M.C.,,
+JINJA M.C.,,
+KABALE M.C.,,
+LIRA M.C.,,
+MASAKA M.C.,,
+MBALE M.C.,,
+MBARARA M.C.,,
+MOROTO M.C.,,
+SOROTI M.C.,,
+TORORO M.C.,,
+,,
+ ADJUMANI ,6024-Urban Uncon," 33,274 "
+ APAC ,6024-Urban Uncon," 48,772 "
+ ARUA ,6024-Urban Uncon," 39,202 "
+ BUGIRI ,6024-Urban Uncon," 98,288 "
+ BUNDIBUGYO ,6024-Urban Uncon," 30,626 "
+ BUSHENYI ,6024-Urban Uncon," 111,443 "
+ BUSIA ,6024-Urban Uncon," 35,728 "
+ HOIMA ,6024-Urban Uncon," 77,838 "
+ IGANGA ,6024-Urban Uncon," 74,760 "
+ JINJA ,6024-Urban Uncon," 44,198 "
+ KABERAMAIDO ,6024-Urban Uncon," 26,061 "
+ KALANGALA ,6024-Urban Uncon," 26,937 "
+ KAMULI ,6024-Urban Uncon," 43,396 "
+ KAMWENGE ,6024-Urban Uncon," 27,530 "
+ KANUNGU ,6024-Urban Uncon," 26,276 "
+ KAPCHORWA ,6024-Urban Uncon," 40,262 "
+ KASESE ,6024-Urban Uncon," 118,951 "
+ KATAKWI ,6024-Urban Uncon," 41,033 "
+ KAYUNGA ,6024-Urban Uncon," 25,365 "
+ KIBALE ,6024-Urban Uncon," 38,112 "
+ KIBOGA ,6024-Urban Uncon," 56,083 "
+ KISORO ,6024-Urban Uncon," 45,041 "
+ KITGUM ,6024-Urban Uncon," 57,472 "
+ KOTIDO ,6024-Urban Uncon," 51,511 "
+ KUMI ,6024-Urban Uncon," 52,109 "
+ KYENJOJO ,6024-Urban Uncon," 28,642 "
+ LUWERO ,6024-Urban Uncon," 150,455 "
+ MASAKA ,6024-Urban Uncon," 41,641 "
+ MASINDI ,6024-Urban Uncon," 40,439 "
+ MAYUGE ,6024-Urban Uncon," 35,577 "
+ MBARARA ,6024-Urban Uncon," 31,602 "
+ MOYO ,6024-Urban Uncon," 41,022 "
+ MPIGI ,6024-Urban Uncon," 45,701 "
+ MUBENDE ,6024-Urban Uncon," 137,351 "
+ MUKONO ,6024-Urban Uncon," 334,636 "
+ NAKAPIRIPIRIT ,6024-Urban Uncon," 47,818 "
+ NAKASONGOLA ,6024-Urban Uncon," 38,276 "
+ NEBBI ,6024-Urban Uncon," 138,632 "
+ NTUNGAMO ,6024-Urban Uncon," 36,407 "
+ PADER ,6024-Urban Uncon," 25,012 "
+ PALLISA ,6024-Urban Uncon," 51,097 "
+ RAKAI ,6024-Urban Uncon," 101,865 "
+ RUKUNGIRI ,6024-Urban Uncon," 28,802 "
+ SEMBABULE ,6024-Urban Uncon," 115,749 "
+ SIRONKO ,6024-Urban Uncon," 31,541 "
+ WAKISO ,6024-Urban Uncon," 58,172 "
+ YUMBE ,6024-Urban Uncon," 27,642 "
+ARUA M.C.,6024-Urban Uncon," 157,297 "
+ENTEBBE M.C.,6024-Urban Uncon," 177,882 "
+FORT PORTAL M.C.,6024-Urban Uncon," 117,169 "
+GULU M.C.,6024-Urban Uncon," 139,625 "
+JINJA M.C.,6024-Urban Uncon," 218,614 "
+KABALE M.C.,6024-Urban Uncon," 181,184 "
+LIRA M.C.,6024-Urban Uncon," 177,854 "
+MASAKA M.C.,6024-Urban Uncon," 194,050 "
+MBALE M.C.,6024-Urban Uncon," 170,935 "
+MBARARA M.C.,6024-Urban Uncon," 129,201 "
+MOROTO M.C.,6024-Urban Uncon," 28,335 "
+SOROTI M.C.,6024-Urban Uncon," 56,119 "
+TORORO M.C.,6024-Urban Uncon," 217,806 "
+,,
+ ARUA ,6026-Referral Hospt,0
+ GULU ,6026-Referral Hospt,0
+ HOIMA ,6026-Referral Hospt,0
+ JINJA ,6026-Referral Hospt,0
+ KABALE ,6026-Referral Hospt,0
+ KABAROLE ,6026-Referral Hospt,0
+ MASAKA ,6026-Referral Hospt,0
+ MBALE ,6026-Referral Hospt,0
+ MBARARA ,6026-Referral Hospt,0
+ SOROTI ,6026-Referral Hospt,0
+,,
+ ADJUMANI ,6027-Sec capitation," 38,386 "
+ APAC ,6027-Sec capitation," 161,897 "
+ ARUA ,6027-Sec capitation," 276,829 "
+ BUGIRI ,6027-Sec capitation," 76,457 "
+ BUNDIBUGYO ,6027-Sec capitation," 72,517 "
+ BUSHENYI ,6027-Sec capitation," 250,443 "
+ BUSIA ,6027-Sec capitation," 92,351 "
+ GULU ,6027-Sec capitation," 145,371 "
+ HOIMA ,6027-Sec capitation," 112,704 "
+ IGANGA ,6027-Sec capitation," 243,081 "
+ JINJA ,6027-Sec capitation," 234,211 "
+ KABALE ,6027-Sec capitation," 237,948 "
+ KABAROLE ,6027-Sec capitation," 157,551 "
+ KABERAMAIDO ,6027-Sec capitation," 26,904 "
+ KALANGALA ,6027-Sec capitation," 2,657 "
+ KAMPALA ,6027-Sec capitation," 636,735 "
+ KAMULI ,6027-Sec capitation," 188,553 "
+ KAMWENGE ,6027-Sec capitation," 39,061 "
+ KANUNGU ,6027-Sec capitation," 35,459 "
+ KAPCHORWA ,6027-Sec capitation," 113,559 "
+ KASESE ,6027-Sec capitation," 125,447 "
+ KATAKWI ,6027-Sec capitation," 30,776 "
+ KAYUNGA ,6027-Sec capitation," 66,686 "
+ KIBALE ,6027-Sec capitation," 98,655 "
+ KIBOGA ,6027-Sec capitation," 39,894 "
+ KISORO ,6027-Sec capitation," 50,521 "
+ KITGUM ,6027-Sec capitation," 87,646 "
+ KOTIDO ,6027-Sec capitation," 30,776 "
+ KUMI ,6027-Sec capitation," 66,821 "
+ KYENJOJO ,6027-Sec capitation," 49,058 "
+ LIRA ,6027-Sec capitation," 238,398 "
+ LUWERO ,6027-Sec capitation," 119,436 "
+ MASAKA ,6027-Sec capitation," 220,860 "
+ MASINDI ,6027-Sec capitation," 132,066 "
+ MAYUGE ,6027-Sec capitation," 18,867 "
+ MBALE ,6027-Sec capitation," 358,172 "
+ MBARARA ,6027-Sec capitation," 317,579 "
+ MOROTO ,6027-Sec capitation," 24,067 "
+ MOYO ,6027-Sec capitation," 7,542 "
+ MPIGI ,6027-Sec capitation," 533,689 "
+ MUBENDE ,6027-Sec capitation," 161,262 "
+ MUKONO ,6027-Sec capitation," 316,189 "
+ NAKAPIRIPIRIT ,6027-Sec capitation," 6,642 "
+ NAKASONGOLA ,6027-Sec capitation," 38,769 "
+ NEBBI ,6027-Sec capitation," 56,555 "
+ NTUNGAMO ,6027-Sec capitation," 122,835 "
+ PADER ,6027-Sec capitation," 37,238 "
+ PALLISA ,6027-Sec capitation," 169,529 "
+ RAKAI ,6027-Sec capitation," 119,931 "
+ RUKUNGIRI ,6027-Sec capitation," 160,388 "
+ SEMBABULE ,6027-Sec capitation," 21,005 "
+ SIRONKO ,6027-Sec capitation," 68,464 "
+ SOROTI ,6027-Sec capitation," 120,629 "
+ TORORO ,6027-Sec capitation," 269,760 "
+ WAKISO ,6027-Sec capitation," 133,462 "
+ YUMBE ,6027-Sec capitation," 21,501 "
+ARUA M.C.,,
+ENTEBBE M.C.,,
+FORT PORTAL M.C.,,
+GULU M.C.,,
+JINJA M.C.,,
+KABALE M.C.,,
+LIRA M.C.,,
+MASAKA M.C.,,
+MBALE M.C.,,
+MBARARA M.C.,,
+MOROTO M.C.,,
+SOROTI M.C.,,
+TORORO M.C.,,
+,,
+ ADJUMANI ,6028-Dist Hospitals," 207,947 "
+ APAC ,6028-Dist Hospitals," 199,254 "
+ ARUA ,6028-Dist Hospitals,0
+ BUGIRI ,6028-Dist Hospitals," 230,073 "
+ BUNDIBUGYO ,6028-Dist Hospitals," 215,164 "
+ BUSHENYI ,6028-Dist Hospitals," 257,135 "
+ GULU ,6028-Dist Hospitals," 207,947 "
+ IGANGA ,6028-Dist Hospitals," 207,947 "
+ KANUNGU ,," 207,947 "
+ KAPCHORWA ,6028-Dist Hospitals," 207,947 "
+ KASESE ,6028-Dist Hospitals," 215,492 "
+ KAYUNGA ,," 199,254 "
+ KIBALE ,6028-Dist Hospitals," 199,254 "
+ KIBOGA ,6028-Dist Hospitals," 230,073 "
+ KISORO ,6028-Dist Hospitals," 361,303 "
+ KITGUM ,6028-Dist Hospitals," 199,254 "
+ KOTIDO ,6028-Dist Hospitals," 189,904 "
+ KUMI ,6028-Dist Hospitals," 465,410 "
+ LIRA ,6028-Dist Hospitals," 505,817 "
+ LUWERO ,6028-Dist Hospitals," 207,947 "
+ MASINDI ,6028-Dist Hospitals," 415,893 "
+ MBALE ,6028-Dist Hospitals," 199,254 "
+ MBARARA ,6028-Dist Hospitals," 303,033 "
+ MOROTO ,6028-Dist Hospitals," 241,773 "
+ MOYO ,6028-Dist Hospitals," 421,800 "
+ MPIGI ,6028-Dist Hospitals," 199,254 "
+ MUBENDE ,6028-Dist Hospitals," 207,947 "
+ MUKONO ,6028-Dist Hospitals," 210,900 "
+ NEBBI ,6028-Dist Hospitals, -   
+NTUNGAMO,,
+ PALLISA ,6028-Dist Hospitals," 199,254 "
+ RAKAI ,6028-Dist Hospitals," 199,254 "
+ RUKUNGIRI ,6028-Dist Hospitals," 199,254 "
+ TORORO ,6028-Dist Hospitals," 620,983 "
+ WAKISO ,," 314,870 "
+ YUMBE ,," 207,947 "
+,,
+ ADJUMANI ,6029-Agric Extension," 29,333 "
+ APAC ,6029-Agric Extension," 79,693 "
+ ARUA ,6029-Agric Extension," 55,342 "
+ BUGIRI ,6029-Agric Extension," 52,815 "
+ BUNDIBUGYO ,6029-Agric Extension," 32,469 "
+ BUSHENYI ,6029-Agric Extension," 65,681 "
+ BUSIA ,6029-Agric Extension," 17,660 "
+ GULU ,6029-Agric Extension," 84,329 "
+ HOIMA ,6029-Agric Extension," 48,736 "
+ IGANGA ,6029-Agric Extension," 48,635 "
+ JINJA ,6029-Agric Extension," 39,307 "
+ KABALE ,6029-Agric Extension," 34,142 "
+ KABAROLE ,6029-Agric Extension," 27,152 "
+ KABERAMAIDO ,6029-Agric Extension," 67,990 "
+ KALANGALA ,6029-Agric Extension," 36,565 "
+ KAMPALA ,6029-Agric Extension," 17,476 "
+ KAMULI ,6029-Agric Extension," 79,177 "
+ KAMWENGE ,6029-Agric Extension," 38,483 "
+ KANUNGU ,6029-Agric Extension," 29,414 "
+ KAPCHORWA ,6029-Agric Extension," 8,560 "
+ KASESE ,6029-Agric Extension," 56,509 "
+ KATAKWI ,6029-Agric Extension," 50,386 "
+ KAYUNGA ,6029-Agric Extension," 39,716 "
+ KIBALE ,6029-Agric Extension," 21,143 "
+ KIBOGA ,6029-Agric Extension," 33,048 "
+ KISORO ,6029-Agric Extension," 36,274 "
+ KITGUM ,6029-Agric Extension," 28,014 "
+ KOTIDO ,6029-Agric Extension," 74,355 "
+ KUMI ,6029-Agric Extension," 52,057 "
+ KYENJOJO ,6029-Agric Extension," 47,527 "
+ LIRA ,6029-Agric Extension," 62,833 "
+ LUWERO ,6029-Agric Extension," 40,229 "
+ MASAKA ,6029-Agric Extension," 95,406 "
+ MASINDI ,6029-Agric Extension," 68,881 "
+ MAYUGE ,6029-Agric Extension," 45,954 "
+ MBALE ,6029-Agric Extension," 71,299 "
+ MBARARA ,6029-Agric Extension," 95,982 "
+ MOROTO ,6029-Agric Extension," 52,979 "
+ MOYO ,6029-Agric Extension," 26,451 "
+ MPIGI ,6029-Agric Extension," 73,537 "
+ MUBENDE ,6029-Agric Extension," 74,625 "
+ MUKONO ,6029-Agric Extension," 60,801 "
+ NAKAPIRIPIRIT ,6029-Agric Extension," 52,979 "
+ NAKASONGOLA ,6029-Agric Extension," 31,816 "
+ NEBBI ,6029-Agric Extension," 61,912 "
+ NTUNGAMO ,6029-Agric Extension," 41,811 "
+ PADER ,6029-Agric Extension," 55,658 "
+ PALLISA ,6029-Agric Extension," 56,288 "
+ RAKAI ,6029-Agric Extension," 62,274 "
+ RUKUNGIRI ,6029-Agric Extension," 67,097 "
+ SEMBABULE ,6029-Agric Extension," 23,677 "
+ SIRONKO ,6029-Agric Extension," 37,347 "
+ SOROTI ,6029-Agric Extension," 28,964 "
+ TORORO ,6029-Agric Extension," 30,480 "
+ WAKISO ,6029-Agric Extension," 42,538 "
+ YUMBE ,6029-Agric Extension," 31,850 "
+,,
+ ADJUMANI ,6045-PHC NGO," 149,668 "
+ APAC ,6045-PHC NGO," 412,305 "
+ ARUA ,6045-PHC NGO," 786,707 "
+ BUGIRI ,6045-PHC NGO," 34,924 "
+ BUNDIBUGYO ,6045-PHC NGO," 17,154 "
+ BUSHENYI ,6045-PHC NGO," 414,140 "
+ BUSIA ,6045-PHC NGO," 31,749 "
+ GULU ,6045-PHC NGO," 687,706 "
+ HOIMA ,6045-PHC NGO," 44,921 "
+ IGANGA ,6045-PHC NGO," 190,496 "
+ JINJA ,6045-PHC NGO," 142,223 "
+ KABALE ,6045-PHC NGO," 97,216 "
+ KABAROLE ,6045-PHC NGO," 408,329 "
+ KABERAMAIDO ,," 223,580 "
+ KALANGALA ,6045-PHC NGO," 6,245 "
+ KAMPALA ,6045-PHC NGO," 745,560 "
+ KAMULI ,6045-PHC NGO," 737,590 "
+ KAMWENGE ,6045-PHC NGO," 66,182 "
+ KANUNGU ,," 59,576 "
+ KAPCHORWA ,6045-PHC NGO," 34,537 "
+ KASESE ,6045-PHC NGO," 801,806 "
+ KATAKWI ,6045-PHC NGO," 105,744 "
+ KAYUNGA ,6045-PHC NGO," 31,605 "
+ KIBALE ,6045-PHC NGO," 62,817 "
+ KIBOGA ,6045-PHC NGO," 65,932 "
+ KISORO ,6045-PHC NGO," 338,135 "
+ KITGUM ,6045-PHC NGO," 432,590 "
+ KOTIDO ,6045-PHC NGO," 135,908 "
+ KUMI ,6045-PHC NGO," 780,374 "
+ KYENJOJO ,6045-PHC NGO," 107,981 "
+ LIRA ,6045-PHC NGO," 251,756 "
+ LUWERO ,6045-PHC NGO," 342,606 "
+ MASAKA ,6045-PHC NGO," 785,654 "
+ MASINDI ,6045-PHC NGO," 58,205 "
+ MAYUGE ,6045-PHC NGO," 206,001 "
+ MBALE ,6045-PHC NGO," 127,260 "
+ MBARARA ,6045-PHC NGO," 627,706 "
+ MOROTO ,6045-PHC NGO," 625,691 "
+ MOYO ,6045-PHC NGO," 71,580 "
+ MPIGI ,6045-PHC NGO," 308,240 "
+ MUBENDE ,6045-PHC NGO," 183,090 "
+ MUKONO ,6045-PHC NGO," 464,867 "
+ NAKAPIRIPIRIT ,," 247,215 "
+ NAKASONGOLA ,6045-PHC NGO," 28,797 "
+ NEBBI ,6045-PHC NGO," 795,919 "
+ NTUNGAMO ,6045-PHC NGO," 12,359 "
+ PADER ,6045-PHC NGO," 542,545 "
+ PALLISA ,6045-PHC NGO," 94,251 "
+ RAKAI ,6045-PHC NGO," 181,837 "
+ RUKUNGIRI ,6045-PHC NGO," 626,396 "
+ SEMBABULE ,6045-PHC NGO," 37,096 "
+ SIRONKO ,6045-PHC NGO," 43,268 "
+ SOROTI ,6045-PHC NGO," 92,099 "
+ TORORO ,6045-PHC NGO," 155,387 "
+ WAKISO ,6045-PHC NGO," 188,506 "
+ YUMBE ,6045-PHC NGO," 9,859 "
+,,
+ ADJUMANI ,6060-Equalisation," 138,170 "
+ APAC ,6060-Equalisation," 202,279 "
+ ARUA ,6060-Equalisation," 15,473 "
+ BUGIRI ,6060-Equalisation," 5,127 "
+ BUNDIBUGYO ,6060-Equalisation," 206,506 "
+ BUSHENYI ,6060-Equalisation," 48,206 "
+ BUSIA ,6060-Equalisation,
+ GULU ,6060-Equalisation," 244,747 "
+ HOIMA ,6060-Equalisation," 85,338 "
+ IGANGA ,6060-Equalisation,
+ JINJA ,6060-Equalisation," 16,000 "
+ KABALE ,6060-Equalisation,
+ KABAROLE ,6060-Equalisation," 157,615 "
+ KABERAMAIDO ,6060-Equalisation," 80,056 "
+ KALANGALA ,6060-Equalisation," 39,597 "
+ KAMPALA ,6060-Equalisation,
+ KAMULI ,6060-Equalisation," 33,631 "
+ KAMWENGE ,6060-Equalisation," 109,691 "
+ KANUNGU ,6060-Equalisation,
+ KAPCHORWA ,6060-Equalisation," 157,271 "
+ KASESE ,6060-Equalisation," 200,330 "
+ KATAKWI ,6060-Equalisation," 125,225 "
+ KAYUNGA ,6060-Equalisation,
+ KIBALE ,6060-Equalisation," 179,373 "
+ KIBOGA ,6060-Equalisation," 70,492 "
+ KISORO ,6060-Equalisation," 79,278 "
+ KITGUM ,6060-Equalisation," 169,032 "
+ KOTIDO ,6060-Equalisation,
+ KUMI ,6060-Equalisation," 161,897 "
+ KYENJOJO ,6060-Equalisation," 133,150 "
+ LIRA ,6060-Equalisation," 164,987 "
+ LUWERO ,6060-Equalisation," 10,801 "
+ MASAKA ,6060-Equalisation,
+ MASINDI ,6060-Equalisation," 25,712 "
+ MAYUGE ,6060-Equalisation,
+ MBALE ,6060-Equalisation," 37,709 "
+ MBARARA ,6060-Equalisation,
+ MOROTO ,6060-Equalisation," 170,449 "
+ MOYO ,6060-Equalisation," 85,743 "
+ MPIGI ,6060-Equalisation,
+ MUBENDE ,6060-Equalisation," 31,776 "
+ MUKONO ,6060-Equalisation," 11,460 "
+ NAKAPIRIPIRIT ,6060-Equalisation," 102,000 "
+ NAKASONGOLA ,6060-Equalisation," 5,718 "
+ NEBBI ,6060-Equalisation," 142,566 "
+ NTUNGAMO ,6060-Equalisation," 123,677 "
+ PADER ,6060-Equalisation," 160,538 "
+ PALLISA ,6060-Equalisation," 81,301 "
+ RAKAI ,6060-Equalisation," 62,106 "
+ RUKUNGIRI ,6060-Equalisation,
+ SEMBABULE ,6060-Equalisation," 5,890 "
+ SIRONKO ,6060-Equalisation,
+ SOROTI ,6060-Equalisation," 156,038 "
+ TORORO ,6060-Equalisation," 25,461 "
+ WAKISO ,6060-Equalisation," 6,491 "
+ YUMBE ,6060-Equalisation," 15,608 "
+ARUA M.C.,6060-Equalisation,
+ENTEBBE M.C.,6060-Equalisation,
+FORT PORTAL M.C.,6060-Equalisation," 9,604 "
+GULU M.C.,6060-Equalisation," 22,000 "
+JINJA M.C.,6060-Equalisation,
+KABALE M.C.,6060-Equalisation,
+LIRA M.C.,6060-Equalisation," 14,930 "
+MASAKA M.C.,6060-Equalisation,
+MBALE M.C.,6060-Equalisation,
+MBARARA M.C.,6060-Equalisation,
+MOROTO M.C.,6060-Equalisation," 8,680 "
+SOROTI M.C.,6060-Equalisation," 44,558 "
+TORORO M.C.,6060-Equalisation," 18,081 "
+,,
+ ADJUMANI ,6062-Mon & Acc," 39,561 "
+ APAC ,6062-Mon & Acc," 116,849 "
+ ARUA ,6062-Mon & Acc," 159,581 "
+ BUGIRI ,6062-Mon & Acc," 59,479 "
+ BUNDIBUGYO ,6062-Mon & Acc," 41,399 "
+ BUSHENYI ,6062-Mon & Acc," 136,349 "
+ BUSIA ,6062-Mon & Acc," 41,426 "
+ GULU ,6062-Mon & Acc," 95,214 "
+ HOIMA ,6062-Mon & Acc," 46,165 "
+ IGANGA ,6062-Mon & Acc," 106,684 "
+ JINJA ,6062-Mon & Acc," 73,083 "
+ KABALE ,6062-Mon & Acc," 96,283 "
+ KABAROLE ,6062-Mon & Acc," 149,750 "
+ KABERAMAIDO ,6062-Mon & Acc," 33,735 "
+ KALANGALA ,6062-Mon & Acc," 14,171 "
+ KAMPALA ,6062-Mon & Acc," 110,754 "
+ KAMULI ,6062-Mon & Acc," 100,301 "
+ KAMWENGE ,6062-Mon & Acc," 44,515 "
+ KANUNGU ,6062-Mon & Acc," 41,683 "
+ KAPCHORWA ,6062-Mon & Acc," 37,306 "
+ KASESE ,6062-Mon & Acc," 72,921 "
+ KATAKWI ,6062-Mon & Acc," 64,409 "
+ KAYUNGA ,6062-Mon & Acc," 55,307 "
+ KIBALE ,6062-Mon & Acc," 54,946 "
+ KIBOGA ,6062-Mon & Acc," 39,308 "
+ KISORO ,6062-Mon & Acc," 50,035 "
+ KITGUM ,6062-Mon & Acc," 68,866 "
+ KOTIDO ,6062-Mon & Acc," 55,814 "
+ KUMI ,6062-Mon & Acc," 63,373 "
+ KYENJOJO ,6062-Mon & Acc," 110,625 "
+ LIRA ,6062-Mon & Acc," 126,926 "
+ LUWERO ,6062-Mon & Acc," 166,114 "
+ MASAKA ,6062-Mon & Acc," 134,800 "
+ MASINDI ,6062-Mon & Acc," 68,822 "
+ MAYUGE ,6062-Mon & Acc," 53,086 "
+ MBALE ,6062-Mon & Acc," 100,159 "
+ MBARARA ,6062-Mon & Acc," 185,230 "
+ MOROTO ,6062-Mon & Acc," 84,524 "
+ MOYO ,6062-Mon & Acc," 37,398 "
+ MPIGI ,6062-Mon & Acc," 76,751 "
+ MUBENDE ,6062-Mon & Acc," 104,617 "
+ MUKONO ,6062-Mon & Acc," 122,295 "
+ NAKAPIRIPIRIT ,6062-Mon & Acc," 34,926 "
+ NAKASONGOLA ,6062-Mon & Acc," 32,919 "
+ NEBBI ,6062-Mon & Acc," 104,340 "
+ NTUNGAMO ,6062-Mon & Acc," 65,184 "
+ PADER ,6062-Mon & Acc," 78,148 "
+ PALLISA ,6062-Mon & Acc," 42,243 "
+ RAKAI ,6062-Mon & Acc," 65,969 "
+ RUKUNGIRI ,6062-Mon & Acc," 97,817 "
+ SEMBABULE ,6062-Mon & Acc," 34,387 "
+ SIRONKO ,6062-Mon & Acc," 43,556 "
+ SOROTI ,6062-Mon & Acc," 103,259 "
+ TORORO ,6062-Mon & Acc," 82,218 "
+ WAKISO ,6062-Mon & Acc," 94,857 "
+ YUMBE ,6062-Mon & Acc," 42,419 "
+ARUA M.C.,6062-Mon & Acc, -   
+ENTEBBE M.C.,6062-Mon & Acc," 20,065 "
+FORT PORTAL M.C.,6062-Mon & Acc," 19,525 "
+GULU M.C.,6062-Mon & Acc," 1,963 "
+JINJA M.C.,6062-Mon & Acc," 29,118 "
+KABALE M.C.,6062-Mon & Acc," 16,839 "
+LIRA M.C.,6062-Mon & Acc," 28,401 "
+MASAKA M.C.,6062-Mon & Acc," 23,275 "
+MBALE M.C.,6062-Mon & Acc," 22,316 "
+MBARARA M.C.,6062-Mon & Acc," 20,231 "
+MOROTO M.C.,6062-Mon & Acc," 10,149 "
+SOROTI M.C.,6062-Mon & Acc," 25,392 "
+TORORO M.C.,6062-Mon & Acc," 36,506 "
+,,
+ GULU ,6063-Roads W/shops," 509,250 "
+ JINJA ,6063-Roads W/shops," 1,164,000 "
+ MBARARA ,6063-Roads W/shops," 1,236,036 "
+,,
+ IGANGA ,,
+ KABERAMAIDO ,6064-Start up Costs,
+ KAMULI ,,
+ KAMWENGE ,6064-Start up Costs,
+ KANUNGU ,6064-Start up Costs,
+ KASESE ,,
+ KAYUNGA ,6064-Start up Costs,
+ KOTIDO ,,
+ KYENJOJO ,6064-Start up Costs,
+ MAYUGE ,6064-Start up Costs,
+ NAKAPIRIPIRIT ,6064-Start up Costs,
+ PADER ,6064-Start up Costs,
+ RAKAI ,,
+ SIRONKO ,6064-Start up Costs,
+ WAKISO ,6064-Start up Costs,
+ YUMBE ,6064-Start up Costs,
+PMA-Non Sectoral Cond Grant,,
+ APAC ,6065-PMA-Non Sectoral," 267,734 "
+ ARUA ,6065-PMA-Non Sectoral," 307,242 "
+ BUGIRI ,6065-PMA-Non Sectoral," 159,534 "
+ BUSHENYI ,6065-PMA-Non Sectoral," 335,580 "
+ JINJA ,6065-PMA-Non Sectoral," 132,474 "
+ KABALE ,6065-PMA-Non Sectoral," 247,773 "
+ KABAROLE ,6065-PMA-Non Sectoral," 146,363 "
+ KAMWENGE ,6065-PMA-Non Sectoral," 117,938 "
+ KAYUNGA ,6065-PMA-Non Sectoral," 130,621 "
+ KITGUM ,6065-PMA-Non Sectoral," 158,944 "
+ KOTIDO ,6065-PMA-Non Sectoral," 195,552 "
+ KYENJOJO ,6065-PMA-Non Sectoral," 155,636 "
+ MASAKA ,6065-PMA-Non Sectoral," 355,752 "
+ MBALE ,6065-PMA-Non Sectoral," 186,200 "
+ MPIGI ,6065-PMA-Non Sectoral," 199,572 "
+ MUBENDE ,6065-PMA-Non Sectoral," 272,632 "
+ MUKONO ,6065-PMA-Non Sectoral," 363,844 "
+ NEBBI ,6065-PMA-Non Sectoral," 190,294 "
+ NTUNGAMO ,6065-PMA-Non Sectoral," 172,798 "
+ PADER ,6065-PMA-Non Sectoral," 151,361 "
+ SIRONKO ,6065-PMA-Non Sectoral," 121,605 "
+ TORORO ,6065-PMA-Non Sectoral," 215,036 "
+ WAKISO ,6065-PMA-Non Sectoral," 283,973 "
+ YUMBE ,6065-PMA-Non Sectoral," 55,546 "
+"Transfers -DTB, DSC, PAC and Labd Board",,
+ ADJUMANI ,"6067-Trans DTB, DSC, PAC"," 112,831 "
+ APAC ,"6067-Trans DTB, DSC, PAC"," 140,122 "
+ ARUA ,"6067-Trans DTB, DSC, PAC"," 146,059 "
+ BUGIRI ,"6067-Trans DTB, DSC, PAC"," 122,313 "
+ BUNDIBUGYO ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ BUSHENYI ,"6067-Trans DTB, DSC, PAC"," 145,888 "
+ BUSIA ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ GULU ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ HOIMA ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ IGANGA ,"6067-Trans DTB, DSC, PAC"," 134,186 "
+ JINJA ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ KABALE ,"6067-Trans DTB, DSC, PAC"," 140,122 "
+ KABAROLE ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ KABERAMAIDO ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ KALANGALA ,"6067-Trans DTB, DSC, PAC"," 104,504 "
+ KAMPALA ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ KAMULI ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ KAMWENGE ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ KANUNGU ,"6067-Trans DTB, DSC, PAC"," 132,216 "
+ KAPCHORWA ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ KASESE ,"6067-Trans DTB, DSC, PAC"," 134,186 "
+ KATAKWI ,"6067-Trans DTB, DSC, PAC"," 122,313 "
+ KAYUNGA ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ KIBALE ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ KIBOGA ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ KISORO ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ KITGUM ,"6067-Trans DTB, DSC, PAC"," 122,313 "
+ KOTIDO ,"6067-Trans DTB, DSC, PAC"," 116,371 "
+ KUMI ,"6067-Trans DTB, DSC, PAC"," 122,313 "
+ KYENJOJO ,"6067-Trans DTB, DSC, PAC"," 132,216 "
+ LIRA ,"6067-Trans DTB, DSC, PAC"," 134,186 "
+ LUWERO ,"6067-Trans DTB, DSC, PAC"," 134,186 "
+ MASAKA ,"6067-Trans DTB, DSC, PAC"," 140,122 "
+ MASINDI ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ MAYUGE ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ MBALE ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ MBARARA ,"6067-Trans DTB, DSC, PAC"," 157,932 "
+ MOROTO ,"6067-Trans DTB, DSC, PAC"," 104,504 "
+ MOYO ,"6067-Trans DTB, DSC, PAC"," 110,440 "
+ MPIGI ,"6067-Trans DTB, DSC, PAC"," 116,558 "
+ MUBENDE ,"6067-Trans DTB, DSC, PAC"," 126,216 "
+ MUKONO ,"6067-Trans DTB, DSC, PAC"," 115,964 "
+ NAKAPIRIPIRIT ,"6067-Trans DTB, DSC, PAC"," 122,313 "
+ NAKASONGOLA ,"6067-Trans DTB, DSC, PAC"," 110,440 "
+ NEBBI ,"6067-Trans DTB, DSC, PAC"," 122,313 "
+ NTUNGAMO ,"6067-Trans DTB, DSC, PAC"," 122,313 "
+ PADER ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ PALLISA ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ RAKAI ,"6067-Trans DTB, DSC, PAC"," 134,186 "
+ RUKUNGIRI ,"6067-Trans DTB, DSC, PAC"," 122,313 "
+ SEMBABULE ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ SIRONKO ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ SOROTI ,"6067-Trans DTB, DSC, PAC"," 116,377 "
+ TORORO ,"6067-Trans DTB, DSC, PAC"," 128,250 "
+ WAKISO ,"6067-Trans DTB, DSC, PAC"," 144,456 "
+ YUMBE ,"6067-Trans DTB, DSC, PAC"," 124,526 "
+ARUA M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+ENTEBBE M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+FORT PORTAL M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+GULU M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+JINJA M.C.,"6067-Trans DTB, DSC, PAC"," 12,688 "
+KABALE M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+LIRA M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+MASAKA M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+MBALE M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+MBARARA M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+MOROTO M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+SOROTI M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+TORORO M.C.,"6067-Trans DTB, DSC, PAC"," 12,307 "
+Tran.to Comm. Dev't assistants, ,
+ ADJUMANI ,6068-Comm Devt Workers,
+ APAC ,6068-Comm Devt Workers," 17,601 "
+ ARUA ,6068-Comm Devt Workers," 27,201 "
+ BUGIRI ,6068-Comm Devt Workers," 18,000 "
+ BUNDIBUGYO ,6068-Comm Devt Workers,
+ BUSHENYI ,6068-Comm Devt Workers," 22,401 "
+ BUSIA ,6068-Comm Devt Workers,
+ GULU ,6068-Comm Devt Workers,
+ HOIMA ,6068-Comm Devt Workers,
+ IGANGA ,6068-Comm Devt Workers,
+ JINJA ,6068-Comm Devt Workers," 5,601 "
+ KABALE ,6068-Comm Devt Workers," 13,601 "
+ KABAROLE ,6068-Comm Devt Workers," 8,801 "
+ KABERAMAIDO ,6068-Comm Devt Workers,
+ KALANGALA ,6068-Comm Devt Workers,
+ KAMPALA ,6068-Comm Devt Workers,
+ KAMULI ,6068-Comm Devt Workers,
+ KAMWENGE ,6068-Comm Devt Workers," 10,800 "
+ KANUNGU ,6068-Comm Devt Workers,
+ KAPCHORWA ,6068-Comm Devt Workers,
+ KASESE ,6068-Comm Devt Workers,
+ KATAKWI ,6068-Comm Devt Workers,
+ KAYUNGA ,6068-Comm Devt Workers," 10,800 "
+ KIBALE ,6068-Comm Devt Workers,
+ KIBOGA ,6068-Comm Devt Workers,
+ KISORO ,6068-Comm Devt Workers,
+ KITGUM ,6068-Comm Devt Workers," 9,601 "
+ KOTIDO ,6068-Comm Devt Workers," 24,000 "
+ KUMI ,6068-Comm Devt Workers,
+ KYENJOJO ,6068-Comm Devt Workers," 15,600 "
+ LIRA ,6068-Comm Devt Workers,
+ LUWERO ,6068-Comm Devt Workers,
+ MASAKA ,6068-Comm Devt Workers," 15,201 "
+ MASINDI ,6068-Comm Devt Workers,
+ MAYUGE ,6068-Comm Devt Workers,
+ MBALE ,6068-Comm Devt Workers," 24,801 "
+ MBARARA ,6068-Comm Devt Workers,
+ MOROTO ,6068-Comm Devt Workers,
+ MOYO ,6068-Comm Devt Workers,
+ MPIGI ,6068-Comm Devt Workers," 13,601 "
+ MUBENDE ,6068-Comm Devt Workers," 14,401 "
+ MUKONO ,6068-Comm Devt Workers," 21,601 "
+ NAKAPIRIPIRIT ,6068-Comm Devt Workers,
+ NAKASONGOLA ,6068-Comm Devt Workers,
+ NEBBI ,6068-Comm Devt Workers," 12,801 "
+ NTUNGAMO ,6068-Comm Devt Workers," 16,800 "
+ PADER ,6068-Comm Devt Workers," 15,600 "
+ PALLISA ,6068-Comm Devt Workers,
+ RAKAI ,6068-Comm Devt Workers,
+ RUKUNGIRI ,6068-Comm Devt Workers,
+ SEMBABULE ,6068-Comm Devt Workers,
+ SIRONKO ,6068-Comm Devt Workers," 21,600 "
+ SOROTI ,6068-Comm Devt Workers,
+ TORORO ,6068-Comm Devt Workers," 15,201 "
+ WAKISO ,6068-Comm Devt Workers," 16,800 "
+ YUMBE ,6068-Comm Devt Workers," 9,600 "
+ARUA M.C.,6068-Comm Devt Workers,
+ENTEBBE M.C.,6068-Comm Devt Workers,
+FORT PORTAL M.C.,6068-Comm Devt Workers,
+GULU M.C.,6068-Comm Devt Workers,
+JINJA M.C.,6068-Comm Devt Workers,
+KABALE M.C.,6068-Comm Devt Workers,
+LIRA M.C.,6068-Comm Devt Workers,
+MASAKA M.C.,6068-Comm Devt Workers,
+MBALE M.C.,6068-Comm Devt Workers,
+MBARARA M.C.,6068-Comm Devt Workers,
+MOROTO M.C.,6068-Comm Devt Workers,
+SOROTI M.C.,6068-Comm Devt Workers,
+TORORO M.C.,6068-Comm Devt Workers,
+,,
+ APAC ,6071-NGO Doctors," 7,078 "
+ ARUA ,6071-NGO Doctors," 7,078 "
+ BUSHENYI ,6071-NGO Doctors," 21,235 "
+ GULU ,6071-NGO Doctors," 66,197 "
+ KABAROLE ,6071-NGO Doctors," 14,780 "
+ KABERAMAIDO ,6071-NGO Doctors," 7,078 "
+ KAMPALA ,6071-NGO Doctors," 398,074 "
+ KAMULI ,6071-NGO Doctors," 14,157 "
+ KASESE ,6071-NGO Doctors," 70,785 "
+ KISORO ,6071-NGO Doctors," 7,078 "
+ KUMI ,6071-NGO Doctors," 35,392 "
+ LIRA ,6071-NGO Doctors," 7,078 "
+ LUWERO ,6071-NGO Doctors," 7,078 "
+ MASAKA ,6071-NGO Doctors," 36,638 "
+ MAYUGE ,6071-NGO Doctors," 7,078 "
+ MBARARA ,6071-NGO Doctors," 49,570 "
+ MPIGI ,6071-NGO Doctors," 21,235 "
+ MUKONO ,6071-NGO Doctors," 19,466 "
+ NEBBI ,6071-NGO Doctors," 14,157 "
+ PADER ,6071-NGO Doctors," 7,078 "
+ RUKUNGIRI ,6071-NGO Doctors," 35,392 "
+ TORORO ,6071-NGO Doctors,
+Agricultural Development Centres,,
+ BUNDIBUGYO ,6072-Agric Devt Centre,
+ BUSHENYI ,6072-Agric Devt Centre," 11,111 "
+ GULU ,6072-Agric Devt Centre," 11,111 "
+ KABAROLE ,6072-Agric Devt Centre," 11,111 "
+ KAPCHORWA ,6072-Agric Devt Centre," 11,111 "
+ KOTIDO ,6072-Agric Devt Centre," 9,538 "
+ MASAKA ,6072-Agric Devt Centre," 11,111 "
+ MOYO ,6072-Agric Devt Centre," 11,111 "
+ MPIGI ,6072-Agric Devt Centre," 11,111 "
+ MUBENDE ,6072-Agric Devt Centre," 11,111 "
+ TORORO ,6072-Agric Devt Centre," 11,111 "
+Functional Adult Literacy,,
+ ADJUMANI ,6073 - Functional Adult Lit," 35,899 "
+ APAC ,6073 - Functional Adult Lit," 36,350 "
+ ARUA ,6073 - Funct'nal Adult Lit," 36,363 "
+ BUGIRI ,6073 - Functional Adult Lit," 26,763 "
+ BUNDIBUGYO ,6073 - Functional Adult Lit," 26,284 "
+ BUSHENYI ,6073 - Functional Adult Lit," 26,926 "
+ BUSIA ,6073 - Functional Adult Lit," 26,401 "
+ GULU ,6073 - Functional Adult Lit," 35,778 "
+ HOIMA ,6073 - Functional Adult Lit," 18,417 "
+ IGANGA ,6073 - Functional Adult Lit," 26,687 "
+ JINJA ,6073 - Functional Adult Lit," 26,151 "
+ KABALE ,6073 - Functional Adult Lit," 18,500 "
+ KABAROLE ,6073 - Functional Adult Lit," 18,500 "
+ KABERAMAIDO ,6073 - Functional Adult Lit," 26,517 "
+ KALANGALA ,6073 - Functional Adult Lit," 3,000 "
+ KAMPALA ,6073 - Functional Adult Lit," 12,828 "
+ KAMULI ,6073 - Functional Adult Lit," 26,763 "
+ KAMWENGE ,6073 - Functional Adult Lit," 18,500 "
+ KANUNGU ,6073 - Functional Adult Lit," 18,500 "
+ KAPCHORWA ,6073 - Functional Adult Lit," 26,297 "
+ KASESE ,6073 - Functional Adult Lit," 27,710 "
+ KATAKWI ,6073 - Functional Adult Lit," 27,710 "
+ KAYUNGA ,6073 - Functional Adult Lit," 12,802 "
+ KIBALE ,6073 - Functional Adult Lit," 26,660 "
+ KIBOGA ,6073 - Functional Adult Lit," 18,500 "
+ KISORO ,6073 - Functional Adult Lit," 18,500 "
+ KITGUM ,6073 - Functional Adult Lit," 37,256 "
+ KOTIDO ,6073 - Functional Adult Lit," 28,612 "
+ KUMI ,6073 - Functional Adult Lit," 26,413 "
+ KYENJOJO ,6073 - Functional Adult Lit," 18,500 "
+ LIRA ,6073 - Functional Adult Lit," 37,230 "
+ LUWERO ,6073 - Functional Adult Lit," 12,850 "
+ MASAKA ,6073 - Functional Adult Lit," 12,838 "
+ MASINDI ,6073 - Functional Adult Lit," 18,033 "
+ MAYUGE ,6073 - Functional Adult Lit," 27,074 "
+ MBALE ,6073 - Functional Adult Lit," 24,768 "
+ MBARARA ,6073 - Functional Adult Lit," 27,710 "
+ MOROTO ,6073 - Functional Adult Lit," 36,160 "
+ MOYO ,6073 - Functional Adult Lit," 35,766 "
+ MPIGI ,6073 - Functional Adult Lit," 18,500 "
+ MUBENDE ,6073 - Functional Adult Lit," 12,850 "
+ MUKONO ,6073 - Functional Adult Lit," 17,823 "
+ NAKAPIRIPIRIT ,6073 - Functional Adult Lit," 35,816 "
+ NAKASONGOLA ,6073 - Functional Adult Lit," 12,850 "
+ NEBBI ,6073 - Functional Adult Lit," 36,417 "
+ NTUNGAMO ,6073 - Functional Adult Lit," 18,500 "
+ PADER ,6073 - Functional Adult Lit," 36,048 "
+ PALLISA ,6073 - Functional Adult Lit," 36,366 "
+ RAKAI ,6073 - Functional Adult Lit," 12,850 "
+ RUKUNGIRI ,6073 - Functional Adult Lit," 18,500 "
+ SEMBABULE ,6073 - Functional Adult Lit," 17,825 "
+ SIRONKO ,6073 - Functional Adult Lit," 18,500 "
+ SOROTI ,6073 - Functional Adult Lit," 18,500 "
+ TORORO ,6073 - Functional Adult Lit," 36,457 "
+ WAKISO ,6073 - Functional Adult Lit," 17,589 "
+ YUMBE ,6073 - Functional Adult Lit," 35,289 "
+ARUA M.C.,6073 - Functional Adult Lit,
+ENTEBBE M.C.,6073 - Functional Adult Lit,
+FORT PORTAL M.C.,6073 - Functional Adult Lit,
+GULU M.C.,6073 - Functional Adult Lit,
+JINJA M.C.,6073 - Functional Adult Lit,
+KABALE M.C.,6073 - Functional Adult Lit,
+LIRA M.C.,6073 - Functional Adult Lit,
+MASAKA M.C.,6073 - Functional Adult Lit,
+MBALE M.C.,6073 - Functional Adult Lit,
+MBARARA M.C.,6073 - Functional Adult Lit,
+MOROTO M.C.,6073 - Functional Adult Lit,
+SOROTI M.C.,6073 - Functional Adult Lit,
+TORORO M.C.,6073 - Functional Adult Lit,
+PUBLIC LIBRARIES,,
+HOIMA,,
+KAMPALA,,
+MASINDI,,
+SOROTI,,
+ARUA M.C.,,
+ENTEBBE M.C.,,
+FORT PORTAL M.C.,,
+GULU M.C.,,
+JINJA M.C.,,
+KABALE M.C.,,
+LIRA M.C.,,
+MBALE M.C.,,
+MOROTO M.C.,,
+TORORO M.C.,,
+,,   
+ ADJUMANI ,R/Water," 354,828 "
+ APAC ,R/Water," 838,170 "
+ ARUA ,R/Water," 764,563 "
+ BUGIRI ,R/Water," 195,015 "
+ BUNDIBUGYO ,R/Water," 451,938 "
+ BUSHENYI ,R/Water," 873,072 "
+ BUSIA ,R/Water," 195,015 "
+ GULU ,R/Water," 515,042 "
+ HOIMA ,R/Water," 482,739 "
+ IGANGA ,R/Water," 195,015 "
+ JINJA ,R/Water," 332,928 "
+ KABALE ,R/Water," 578,547 "
+ KABAROLE ,R/Water," 458,038 "
+ KABERAMAIDO ,R/Water," 240,020 "
+ KALANGALA ,R/Water," 175,715 "
+ KAMPALA ,R/Water,
+ KAMULI ,R/Water," 581,048 "
+ KAMWENGE ,R/Water," 273,023 "
+ KANUNGU ,R/Water," 380,031 "
+ KAPCHORWA ,R/Water," 195,015 "
+ KASESE ,R/Water," 340,527 "
+ KATAKWI ,R/Water," 535,044 "
+ KAYUNGA ,R/Water," 255,021 "
+ KIBALE ,R/Water," 361,830 "
+ KIBOGA ,R/Water," 310,825 "
+ KISORO ,R/Water," 535,044 "
+ KITGUM ,R/Water," 338,928 "
+ KOTIDO ,R/Water," 378,731 "
+ KUMI ,R/Water," 561,746 "
+ KYENJOJO ,R/Water," 530,043 "
+ LIRA ,R/Water," 766,964 "
+ LUWERO ,R/Water," 654,654 "
+ MASAKA ,R/Water," 856,370 "
+ MASINDI ,R/Water," 535,044 "
+ MAYUGE ,R/Water," 195,015 "
+ MBALE ,R/Water," 300,024 "
+ MBARARA ,R/Water," 1,078,089 "
+ MOROTO ,R/Water," 275,723 "
+ MOYO ,R/Water," 282,223 "
+ MPIGI ,R/Water," 483,740 "
+ MUBENDE ,R/Water," 613,850 "
+ MUKONO ,R/Water," 681,756 "
+ NAKAPIRIPIRIT ,R/Water," 245,019 "
+ NAKASONGOLA ,R/Water," 465,539 "
+ NEBBI ,R/Water," 497,940 "
+ NTUNGAMO ,R/Water," 559,045 "
+ PADER ,R/Water," 345,028 "
+ PALLISA ,R/Water," 195,015 "
+ RAKAI ,R/Water," 717,860 "
+ RUKUNGIRI ,R/Water," 384,231 "
+ SEMBABULE ,R/Water," 410,233 "
+ SIRONKO ,R/Water," 195,015 "
+ SOROTI ,R/Water," 525,044 "
+ TORORO ,R/Water," 195,015 "
+ WAKISO ,R/Water," 590,049 "
+ YUMBE ,R/Water," 215,017 "
+ARUA M.C.,R/Water,
+ENTEBBE M.C.,R/Water,
+FORT PORTAL M.C.,R/Water,
+GULU M.C.,R/Water,
+JINJA M.C.,R/Water,
+KABALE M.C.,R/Water,
+LIRA M.C.,R/Water,
+MASAKA M.C.,R/Water,
+MBALE M.C.,R/Water,
+MBARARA M.C.,R/Water,
+MOROTO M.C.,R/Water,
+SOROTI M.C.,R/Water,
+TORORO M.C.,R/Water,
+,,
+ ADJUMANI ,PHCdevt," 61,041 "
+ APAC ,PHCdevt," 88,347 "
+ ARUA ,PHCdevt," 194,853 "
+ BUGIRI ,PHCdevt," 133,122 "
+ BUNDIBUGYO ,PHCdevt," 127,113 "
+ BUSHENYI ,PHCdevt," 275,745 "
+ BUSIA ,PHCdevt," 93,073 "
+ GULU ,PHCdevt," 138,354 "
+ HOIMA ,PHCdevt," 67,666 "
+ IGANGA ,PHCdevt," 205,595 "
+ JINJA ,PHCdevt," 57,432 "
+ KABALE ,PHCdevt," 470,732 "
+ KABAROLE ,PHCdevt," 50,000 "
+ KABERAMAIDO ,PHCdevt," 93,603 "
+ KALANGALA ,PHCdevt," 50,000 "
+ KAMPALA ,PHCdevt," 58,326 "
+ KAMULI ,PHCdevt," 16,074 "
+ KAMWENGE ,PHCdevt," 70,000 "
+ KANUNGU ,PHCdevt," 59,024 "
+ KAPCHORWA ,PHCdevt," 70,204 "
+ KASESE ,PHCdevt," 80,617 "
+ KATAKWI ,PHCdevt," 217,999 "
+ KAYUNGA ,PHCdevt," 74,109 "
+ KIBALE ,PHCdevt," 194,810 "
+ KIBOGA ,PHCdevt," 64,705 "
+ KISORO ,PHCdevt," 63,985 "
+ KITGUM ,PHCdevt," 235,585 "
+ KOTIDO ,PHCdevt," 74,059 "
+ KUMI ,PHCdevt," 59,434 "
+ KYENJOJO ,PHCdevt," 85,999 "
+ LIRA ,PHCdevt," 142,794 "
+ LUWERO ,PHCdevt," 112,897 "
+ MASAKA ,PHCdevt," 284,955 "
+ MASINDI ,PHCdevt," 74,305 "
+ MAYUGE ,PHCdevt," 76,899 "
+ MBALE ,PHCdevt," 215,580 "
+ MBARARA ,PHCdevt," 444,231 "
+ MOROTO ,PHCdevt," 58,814 "
+ MOYO ,PHCdevt," 69,968 "
+ MPIGI ,PHCdevt," 80,879 "
+ MUBENDE ,PHCdevt," 222,285 "
+ MUKONO ,PHCdevt," 112,350 "
+ NAKAPIRIPIRIT ,PHCdevt," 122,988 "
+ NAKASONGOLA ,PHCdevt," 95,797 "
+ NEBBI ,PHCdevt," 104,472 "
+ NTUNGAMO ,PHCdevt," 93,781 "
+ PADER ,PHCdevt," 62,244 "
+ PALLISA ,PHCdevt," 97,844 "
+ RAKAI ,PHCdevt," 128,879 "
+ RUKUNGIRI ,PHCdevt," 459,758 "
+ SEMBABULE ,PHCdevt," 50,000 "
+ SIRONKO ,PHCdevt," 234,153 "
+ SOROTI ,PHCdevt," 162,153 "
+ TORORO ,PHCdevt," 122,041 "
+ WAKISO ,PHCdevt," 352,194 "
+ YUMBE ,PHCdevt," 61,144 "
+ARUA M.C.,PHCdevt,
+ENTEBBE M.C.,PHCdevt,
+FORT PORTAL M.C.,PHCdevt,
+GULU M.C.,PHCdevt,
+JINJA M.C.,PHCdevt,
+KABALE M.C.,PHCdevt,
+LIRA M.C.,PHCdevt,
+MASAKA M.C.,PHCdevt,
+MBALE M.C.,PHCdevt,
+MBARARA M.C.,PHCdevt,
+MOROTO M.C.,PHCdevt,
+SOROTI M.C.,PHCdevt,
+TORORO M.C.,PHCdevt,
+,,
+ ADJUMANI ,LGDP," 193,794 "
+ APAC ,LGDP," 803,401 "
+ ARUA ,LGDP," 1,049,142 "
+ BUGIRI ,LGDP," 457,608 "
+ BUNDIBUGYO ,LGDP," 252,568 "
+ BUSHENYI ,LGDP," 1,323,440 "
+ BUSIA ,LGDP," 266,543 "
+ GULU ,LGDP," 830,911 "
+ HOIMA ,LGDP,
+ IGANGA ,LGDP," 992,710 "
+ JINJA ,LGDP," 423,743 "
+ KABALE ,LGDP," 1,102,940 "
+ KABAROLE ,LGDP," 661,805 "
+ KABERAMAIDO ,LGDP, -   
+ KALANGALA ,LGDP," 153,044 "
+ KAMPALA ,LGDP," 1,944,350 "
+ KAMULI ,LGDP," 903,540 "
+ KAMWENGE ,LGDP," 402,314 "
+ KANUNGU ,LGDP," 328,603 "
+ KAPCHORWA ,LGDP," 209,766 "
+ KASESE ,LGDP,
+ KATAKWI ,LGDP," 257,064 "
+ KAYUNGA ,LGDP," 474,111 "
+ KIBALE ,LGDP,
+ KIBOGA ,LGDP," 274,453 "
+ KISORO ,LGDP," 466,024 "
+ KITGUM ,LGDP," 543,386 "
+ KOTIDO ,LGDP," 501,333 "
+ KUMI ,LGDP,
+ KYENJOJO ,LGDP," 553,773 "
+ LIRA ,LGDP, -   
+ LUWERO ,LGDP," 1,070,324 "
+ MASAKA ,LGDP," 1,512,926 "
+ MASINDI ,LGDP," 614,921 "
+ MAYUGE ,LGDP," 467,867 "
+ MBALE ,LGDP," 906,685 "
+ MBARARA ,LGDP," 1,413,382 "
+ MOROTO ,LGDP," 520,962 "
+ MOYO ,LGDP," 200,036 "
+ MPIGI ,LGDP," 822,433 "
+ MUBENDE ,LGDP," 885,772 "
+ MUKONO ,LGDP," 1,308,827 "
+ NAKAPIRIPIRIT ,LGDP," 461,088 "
+ NAKASONGOLA ,LGDP," 229,317 "
+ NEBBI ,LGDP," 530,291 "
+ NTUNGAMO ,LGDP," 507,029 "
+ PADER ,LGDP," 1,367,275 "
+ PALLISA ,LGDP," 634,670 "
+ RAKAI ,LGDP,
+ RUKUNGIRI ,LGDP," 459,489 "
+ SEMBABULE ,LGDP," 308,109 "
+ SIRONKO ,LGDP," 317,432 "
+ SOROTI ,LGDP, -   
+ TORORO ,LGDP," 726,821 "
+ WAKISO ,LGDP," 1,223,561 "
+ YUMBE ,LGDP," 257,404 "
+ARUA M.C.,LGDP," 306,666 "
+ENTEBBE M.C.,LGDP," 407,191 "
+FORT PORTAL M.C.,LGDP," 444,242 "
+GULU M.C.,LGDP," 385,944 "
+JINJA M.C.,LGDP," 943,494 "
+KABALE M.C.,LGDP," 253,041 "
+LIRA M.C.,LGDP," 306,674 "
+MASAKA M.C.,LGDP," 723,314 "
+MBALE M.C.,LGDP," 600,567 "
+MBARARA M.C.,LGDP," 496,343 "
+MOROTO M.C.,LGDP," 90,995 "
+SOROTI M.C.,LGDP," 354,481 "
+TORORO M.C.,LGDP," 444,240 "
+,,
+ ADJUMANI ,Dutch," 338,982 "
+ APAC ,Dutch, -   
+ ARUA ,Dutch," 1,384,865 "
+ BUGIRI ,Dutch, -   
+ BUNDIBUGYO ,Dutch, -   
+ BUSHENYI ,Dutch, -   
+ BUSIA ,Dutch, -   
+ GULU ,Dutch, -   
+ HOIMA ,Dutch,
+ IGANGA ,Dutch, -   
+ JINJA ,Dutch, -   
+ KABALE ,Dutch, -   
+ KABAROLE ,Dutch, -   
+ KABERAMAIDO ,Dutch," 569,736 "
+ KALANGALA ,Dutch, -   
+ KAMPALA ,Dutch, -   
+ KAMULI ,Dutch, -   
+ KAMWENGE ,Dutch, -   
+ KANUNGU ,Dutch, -   
+ KAPCHORWA ,Dutch, -   
+ KASESE ,Dutch,
+ KATAKWI ,Dutch," 740,809 "
+ KAYUNGA ,Dutch, -   
+ KIBALE ,Dutch,
+ KIBOGA ,Dutch, -   
+ KISORO ,Dutch, -   
+ KITGUM ,Dutch, -   
+ KOTIDO ,Dutch, -   
+ KUMI ,Dutch,
+ KYENJOJO ,Dutch, -   
+ LIRA ,Dutch," 1,689,367 "
+ LUWERO ,Dutch, -   
+ MASAKA ,Dutch, -   
+ MASINDI ,Dutch, -   
+ MAYUGE ,Dutch, -   
+ MBALE ,Dutch, -   
+ MBARARA ,Dutch, -   
+ MOROTO ,Dutch, -   
+ MOYO ,Dutch," 303,902 "
+ MPIGI ,Dutch, -   
+ MUBENDE ,Dutch, -   
+ MUKONO ,Dutch, -   
+ NAKAPIRIPIRIT ,Dutch, -   
+ NAKASONGOLA ,Dutch, -   
+ NEBBI ,Dutch," 1,052,355 "
+ NTUNGAMO ,Dutch, -   
+ PADER ,Dutch, -   
+ PALLISA ,Dutch, -   
+ RAKAI ,Dutch,
+ RUKUNGIRI ,Dutch, -   
+ SEMBABULE ,Dutch, -   
+ SIRONKO ,Dutch, -   
+ SOROTI ,Dutch," 961,788 "
+ TORORO ,Dutch, -   
+ WAKISO ,Dutch, -   
+ YUMBE ,Dutch," 292,888 "
+ARUA M.C.,Dutch, -   
+ENTEBBE M.C.,Dutch, -   
+FORT PORTAL M.C.,Dutch, -   
+GULU M.C.,Dutch, -   
+JINJA M.C.,Dutch, -   
+KABALE M.C.,Dutch, -   
+LIRA M.C.,Dutch, -   
+MASAKA M.C.,Dutch, -   
+MBALE M.C.,Dutch, -   
+MBARARA M.C.,Dutch, -   
+MOROTO M.C.,Dutch, -   
+SOROTI M.C.,Dutch, -   
+TORORO M.C.,Dutch, -   
+Support to NAADs,,
+ ADJUMANI ,NAADs,
+ APAC ,NAADs,
+ ARUA ,NAADs," 425,000 "
+ BUGIRI ,NAADs,
+ BUNDIBUGYO ,NAADs,
+ BUSHENYI ,NAADs," 331,000 "
+ BUSIA ,NAADs," 231,000 "
+ GULU ,NAADs,
+ HOIMA ,NAADs,
+ IGANGA ,NAADs," 331,000 "
+ JINJA ,NAADs,
+ KABALE ,NAADs," 425,000 "
+ KABAROLE ,NAADs," 331,000 "
+ KABERAMAIDO ,NAADs,0
+ KALANGALA ,NAADs,
+ KAMPALA ,NAADs,
+ KAMULI ,NAADs,
+ KAMWENGE ,NAADs,0
+ KANUNGU ,NAADs,0
+ KAPCHORWA ,NAADs," 195,478 "
+ KASESE ,NAADs,
+ KATAKWI ,NAADs, -   
+ KAYUNGA ,NAADs,0
+ KIBALE ,NAADs," 425,000 "
+ KIBOGA ,NAADs,
+ KISORO ,NAADs,
+ KITGUM ,NAADs," 330,999 "
+ KOTIDO ,NAADs,
+ KUMI ,NAADs,
+ KYENJOJO ,NAADs,0
+ LIRA ,NAADs," 331,000 "
+ LUWERO ,NAADs," 331,000 "
+ MASAKA ,NAADs,
+ MASINDI ,NAADs,
+ MAYUGE ,NAADs,
+ MBALE ,NAADs,
+ MBARARA ,NAADs," 231,000 "
+ MOROTO ,NAADs,
+ MOYO ,NAADs,
+ MPIGI ,NAADs,
+ MUBENDE ,NAADs,
+ MUKONO ,NAADs," 425,000 "
+ NAKAPIRIPIRIT ,NAADs,0
+ NAKASONGOLA ,NAADs,
+ NEBBI ,NAADs,
+ NTUNGAMO ,NAADs,
+ PADER ,NAADs,0
+ PALLISA ,NAADs,
+ RAKAI ,NAADs,
+ RUKUNGIRI ,NAADs,
+ SEMBABULE ,NAADs,
+ SIRONKO ,NAADs,
+ SOROTI ,NAADs," 425,000 "
+ TORORO ,NAADs," 425,000 "
+ WAKISO ,NAADs," 331,000 "
+ YUMBE ,NAADs,
+ARUA M.C.,NAADs,
+ENTEBBE M.C.,NAADs,
+FORT PORTAL M.C.,NAADs,
+GULU M.C.,NAADs,
+JINJA M.C.,NAADs,
+KABALE M.C.,NAADs,
+LIRA M.C.,NAADs,
+MASAKA M.C.,NAADs,
+MBALE M.C.,NAADs,
+MBARARA M.C.,NAADs,
+MOROTO M.C.,NAADs,
+SOROTI M.C.,NAADs,
+TORORO M.C.,NAADs,
+SFG,,
+ ADJUMANI ,SFG," 784,707 "
+ APAC ,SFG," 941,648 "
+ ARUA ,SFG," 784,707 "
+ BUGIRI ,SFG," 1,082,111 "
+ BUNDIBUGYO ,SFG," 772,936 "
+ BUSHENYI ,SFG," 784,707 "
+ BUSIA ,SFG," 784,707 "
+ GULU ,SFG," 784,707 "
+ HOIMA ,SFG," 772,936 "
+ IGANGA ,SFG," 1,255,531 "
+ JINJA ,SFG," 784,706 "
+ KABALE ,SFG," 784,707 "
+ KABAROLE ,SFG," 1,098,590 "
+ KABERAMAIDO ,SFG," 618,349 "
+ KALANGALA ,SFG," 627,765 "
+ KAMPALA ,SFG," 784,706 "
+ KAMULI ,SFG," 784,706 "
+ KAMWENGE ,SFG," 941,648 "
+ KANUNGU ,SFG," 941,648 "
+ KAPCHORWA ,SFG," 784,707 "
+ KASESE ,SFG," 784,707 "
+ KATAKWI ,SFG," 784,707 "
+ KAYUNGA ,SFG," 941,648 "
+ KIBALE ,SFG," 784,707 "
+ KIBOGA ,SFG," 784,707 "
+ KISORO ,SFG," 784,707 "
+ KITGUM ,SFG," 772,936 "
+ KOTIDO ,SFG," 772,936 "
+ KUMI ,SFG," 784,706 "
+ KYENJOJO ,SFG," 1,098,590 "
+ LIRA ,SFG," 784,707 "
+ LUWERO ,SFG," 784,707 "
+ MASAKA ,SFG," 1,098,589 "
+ MASINDI ,SFG," 784,707 "
+ MAYUGE ,SFG," 1,098,590 "
+ MBALE ,SFG," 1,255,531 "
+ MBARARA ,SFG," 1,255,531 "
+ MOROTO ,SFG," 784,707 "
+ MOYO ,SFG," 784,707 "
+ MPIGI ,SFG," 941,648 "
+ MUBENDE ,SFG," 772,936 "
+ MUKONO ,SFG," 941,648 "
+ NAKAPIRIPIRIT ,SFG," 784,707 "
+ NAKASONGOLA ,SFG," 784,707 "
+ NEBBI ,SFG," 784,707 "
+ NTUNGAMO ,SFG," 772,936 "
+ PADER ,SFG," 784,707 "
+ PALLISA ,SFG," 941,648 "
+ RAKAI ,SFG," 774,569 "
+ RUKUNGIRI ,SFG," 627,765 "
+ SEMBABULE ,SFG," 784,707 "
+ SIRONKO ,SFG," 1,082,111 "
+ SOROTI ,SFG," 784,707 "
+ TORORO ,SFG," 784,707 "
+ WAKISO ,SFG," 941,648 "
+ YUMBE ,SFG," 1,255,531 "
+ARUA M.C.,SFG," 390,456 "
+ENTEBBE M.C.,SFG," 390,456 "
+FORT PORTAL M.C.,SFG," 390,456 "
+GULU M.C.,SFG," 468,549 "
+JINJA M.C.,SFG," 390,457 "
+KABALE M.C.,SFG," 390,457 "
+LIRA M.C.,SFG," 461,521 "
+MASAKA M.C.,SFG," 390,456 "
+MBALE M.C.,SFG," 390,457 "
+MBARARA M.C.,SFG," 390,456 "
+MOROTO M.C.,SFG," 312,366 "
+SOROTI M.C.,SFG," 624,733 "
+TORORO M.C.,SFG," 390,456 "
