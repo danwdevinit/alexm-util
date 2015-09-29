@@ -16,8 +16,7 @@ import pdb
 
 #Parse Options
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_originalnetlending.xlsx",
-#parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_zeronetlending.xlsx",
+parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA230715_original.xlsx",
                 help="Input file", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="./results.csv",
                 help="Output CSV file", metavar="FILE")
@@ -54,10 +53,13 @@ budgetDict["Estim"] = "actual"
 budgetDict["None"] = ""
 budgetDict["Prel"] = "actual"
 budgetDict["Prel Est"] = "actual"
+budgetDict["Prel."] = "actual"
 budgetDict["Proj"] = "proj"
 budgetDict["proj"] = "proj"
+budgetDict["Proj."] = "proj"
 budgetDict["Prov"] = "actual"
 budgetDict["Revised prog"] = "proj"
+budgetDict[""] = ""
 
 #Define hierarchy
 try:
@@ -79,23 +81,23 @@ for sheet in sheets:
     country = uni(sheet)
     print('Reading sheet: '+country)
     for row in ws.iter_rows():
-        names.append(uni(row[0].value))
-        oldNames.append(uni(row[1].value))
-        levels.append(uni(row[2].value))
+        names.append(uni(row[0].internal_value))
+        oldNames.append(uni(row[1].internal_value))
+        levels.append(uni(row[2].internal_value))
         colLen = len(row)
-        if uni(row[1].value).lower() == "year":
+        if uni(row[1].internal_value).lower() == "year":
             for i in range(3,colLen):
-                val = uni(row[i].value)
+                val = uni(row[i].internal_value)
                 if str(val).lower()!='none':
                     years.append(val)
-        if uni(row[1].value).lower() == "type":
+        if uni(row[1].internal_value).lower() == "type":
             for i in range(3,colLen):
-                val = uni(row[i].value)
+                val = uni(row[i].internal_value)
                 types.append(val)
         if rowIndex>=5:
             rowValues = []
             for i in range(3,colLen):
-                val = uni(row[i].value)
+                val = uni(row[i].internal_value)
                 rowValues.append(val)
             values.append(rowValues)
         rowIndex+=1
@@ -126,7 +128,8 @@ for sheet in sheets:
                 item['l5'] = ""
                 item['l6'] = ""
                 item['value'] = values[i][j] if str(values[i][j]).lower()!='none' else ""
-                flatData.append(item)
+                if budgetDict[yearType]!="":
+                    flatData.append(item)
         elif level!='none' and level!='None':
             for j in range(0,yearLen):
                 item = {}
@@ -186,276 +189,277 @@ for sheet in sheets:
                 item['l5'] = name if level.lower().find('l4')>-1 else levelDict['l5']
                 item['l6'] = name if level.lower().find('l5')>-1 else ""
                 item['value'] = values[i][j] if str(values[i][j]).lower()!='none' else ""
-                flatData.append(item)
+                if budgetDict[yearType]!="":
+                    flatData.append(item)
     
 #Build hierarchical data.
 #def similar(a,b):
 #    return SequenceMatcher(None,a,b).ratio()
-parentModel = []
-for item in flatData:
-    if item['l6']!="":
-        obja = {}
-        obja['name'] = item['l6']
-        obja['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']+"#"+item['l6']
-        obja['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
-        obja['value'] = item['value'] if str(item['value']).lower()!='none' else ""
-        parentModel.append(obja)
-        obj0 = {}
-        obj0['name'] = item['l5']
-        obj0['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
-        obj0['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
-        obj0['value'] = ""
-        parentModel.append(obj0)
-        obj1 = {}
-        obj1['name'] = item['l4']
-        obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
-        obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
-        obj1['value'] = ""
-        parentModel.append(obj1)
-        obj2 = {}
-        obj2['name'] = item['l3']
-        obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
-        obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj2['value'] = ""
-        parentModel.append(obj2)
-        obj3 = {}
-        obj3['name'] = item['l2']
-        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj3['value'] = ""
-        parentModel.append(obj3)
-        obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj4['parent'] = item['country']+"#"+str(int(item['year']))
-        obj4['value'] = ""
-        parentModel.append(obj4)
-        obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
-        obj5['parent'] = item['country']
-        obj5['value'] = ""
-        parentModel.append(obj5)
-        obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
-        obj6['parent'] = ""
-        obj6['value'] = ""
-        parentModel.append(obj6)
-    elif item['l5']!="":
-        obj0 = {}
-        obj0['name'] = item['l5']
-        obj0['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
-        obj0['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
-        obj0['value'] = item['value'] if str(item['value']).lower()!='none' else ""
-        parentModel.append(obj0)
-        obj1 = {}
-        obj1['name'] = item['l4']
-        obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
-        obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
-        obj1['value'] = ""
-        parentModel.append(obj1)
-        obj2 = {}
-        obj2['name'] = item['l3']
-        obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
-        obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj2['value'] = ""
-        parentModel.append(obj2)
-        obj3 = {}
-        obj3['name'] = item['l2']
-        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj3['value'] = ""
-        parentModel.append(obj3)
-        obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj4['parent'] = item['country']+"#"+str(int(item['year']))
-        obj4['value'] = ""
-        parentModel.append(obj4)
-        obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
-        obj5['parent'] = item['country']
-        obj5['value'] = ""
-        parentModel.append(obj5)
-        obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
-        obj6['parent'] = ""
-        obj6['value'] = ""
-        parentModel.append(obj6)
-    elif item['l4']!="":
-        obj1 = {}
-        obj1['name'] = item['l4']
-        obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
-        obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
-        obj1['value'] = item['value'] if str(item['value']).lower()!='none' else ""
-        parentModel.append(obj1)
-        obj2 = {}
-        obj2['name'] = item['l3']
-        obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
-        obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj2['value'] = ""
-        parentModel.append(obj2)
-        obj3 = {}
-        obj3['name'] = item['l2']
-        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj3['value'] = ""
-        parentModel.append(obj3)
-        obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj4['parent'] = item['country']+"#"+str(int(item['year']))
-        obj4['value'] = ""
-        parentModel.append(obj4)
-        obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
-        obj5['parent'] = item['country']
-        obj5['value'] = ""
-        parentModel.append(obj5)
-        obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
-        obj6['parent'] = ""
-        obj6['value'] = ""
-        parentModel.append(obj6)
-    elif item['l3']!="":
-        obj2 = {}
-        obj2['name'] = item['l3']
-        obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
-        obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj2['value'] = item['value'] if str(item['value']).lower()!='none' else ""
-        parentModel.append(obj2)
-        obj3 = {}
-        obj3['name'] = item['l2']
-        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj3['value'] = ""
-        parentModel.append(obj3)
-        obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj4['parent'] = item['country']+"#"+str(int(item['year']))
-        obj4['value'] = ""
-        parentModel.append(obj4)
-        obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
-        obj5['parent'] = item['country']
-        obj5['value'] = ""
-        parentModel.append(obj5)
-        obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
-        obj6['parent'] = ""
-        obj6['value'] = ""
-        parentModel.append(obj6)
-    elif item['l2']!="":
-        obj3 = {}
-        obj3['name'] = item['l2']
-        obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
-        obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj3['value'] = item['value'] if str(item['value']).lower()!='none' else ""
-        parentModel.append(obj3)
-        obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj4['parent'] = item['country']+"#"+str(int(item['year']))
-        obj4['value'] = ""
-        parentModel.append(obj4)
-        obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
-        obj5['parent'] = item['country']
-        obj5['value'] = ""
-        parentModel.append(obj5)
-        obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
-        obj6['parent'] = ""
-        obj6['value'] = ""
-        parentModel.append(obj6)
-    elif item['l1']!="":
-        obj4 = {}
-        obj4['name'] = item['l1']
-        obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
-        obj4['parent'] = item['country']+"#"+str(int(item['year']))
-        obj4['value'] = item['value'] if str(item['value']).lower()!='none' else ""
-        parentModel.append(obj4)
-        obj5 = {}
-        obj5['name'] = str(int(item['year']))
-        obj5['id'] = item['country']+"#"+str(int(item['year']))
-        obj5['parent'] = item['country']
-        obj5['value'] = ""
-        parentModel.append(obj5)
-        obj6 = {}
-        obj6['name'] = item['country']
-        obj6['id'] = item['country']
-        obj6['parent'] = ""
-        obj6['value'] = ""
-        parentModel.append(obj6)
-#Remove exact duplicates
-getvals = operator.itemgetter('id','parent')
-parentModel.sort(key=getvals)
-results = []
-groups = []
-for k, g in itertools.groupby(parentModel,getvals):
-    groups.append(list(g))
-for group in groups:
-    sum = 0
-    hasData = False
-    obj = group[0]
-    for item in group:
-        try:
-            sum+=float(item['value'])
-            hasData = True
-        except:
-            sum+=0
-    if hasData:
-        obj['value'] = sum
-    else:
-        obj['value'] = ''
-    results.append(obj)
-parentModel[:]=results
-#Remove near duplicates
-#seen = set()
-#result = []
-
-syms = ['\\', '|', '/', '-']
-bs = '\b'
-spinIndex = 0
-def spin():
-    global spinIndex
-    spinIndex = 0 if spinIndex>3 else spinIndex
-    sym = syms[spinIndex]
-    sys.stdout.write("\b%s" % sym)
-    sys.stdout.flush()
-    spinIndex+=1
-
-def buildTree(parent,arr):
-    spin()
-    children = [i for i in parentModel if i['parent']==parent]
-    arr[:] = children
-    for child in arr:
-        child['children'] = []
-        buildTree(child['id'],child['children'])
-        #Keep negatives?
-        #if child['value']<0:
-        #    child['value']=child['value']*-1
-        if len(child['children'])==0:
-            del child['children']
-            if child['value']=="":
-            #Give value to non-valued end nodes?
-            #    child['value']=1
-                child['value']=""
-        else:
-            if child['value']=="":
-                del child['value']
-    
-sys.stdout.write("Building tree... This can take a while....")
+# parentModel = []
+# for item in flatData:
+#     if item['l6']!="":
+#         obja = {}
+#         obja['name'] = item['l6']
+#         obja['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']+"#"+item['l6']
+#         obja['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
+#         obja['value'] = item['value'] if str(item['value']).lower()!='none' else ""
+#         parentModel.append(obja)
+#         obj0 = {}
+#         obj0['name'] = item['l5']
+#         obj0['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
+#         obj0['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+#         obj0['value'] = ""
+#         parentModel.append(obj0)
+#         obj1 = {}
+#         obj1['name'] = item['l4']
+#         obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+#         obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+#         obj1['value'] = ""
+#         parentModel.append(obj1)
+#         obj2 = {}
+#         obj2['name'] = item['l3']
+#         obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+#         obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj2['value'] = ""
+#         parentModel.append(obj2)
+#         obj3 = {}
+#         obj3['name'] = item['l2']
+#         obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj3['value'] = ""
+#         parentModel.append(obj3)
+#         obj4 = {}
+#         obj4['name'] = item['l1']
+#         obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj4['parent'] = item['country']+"#"+str(int(item['year']))
+#         obj4['value'] = ""
+#         parentModel.append(obj4)
+#         obj5 = {}
+#         obj5['name'] = str(int(item['year']))
+#         obj5['id'] = item['country']+"#"+str(int(item['year']))
+#         obj5['parent'] = item['country']
+#         obj5['value'] = ""
+#         parentModel.append(obj5)
+#         obj6 = {}
+#         obj6['name'] = item['country']
+#         obj6['id'] = item['country']
+#         obj6['parent'] = ""
+#         obj6['value'] = ""
+#         parentModel.append(obj6)
+#     elif item['l5']!="":
+#         obj0 = {}
+#         obj0['name'] = item['l5']
+#         obj0['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']+"#"+item['l5']
+#         obj0['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+#         obj0['value'] = item['value'] if str(item['value']).lower()!='none' else ""
+#         parentModel.append(obj0)
+#         obj1 = {}
+#         obj1['name'] = item['l4']
+#         obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+#         obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+#         obj1['value'] = ""
+#         parentModel.append(obj1)
+#         obj2 = {}
+#         obj2['name'] = item['l3']
+#         obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+#         obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj2['value'] = ""
+#         parentModel.append(obj2)
+#         obj3 = {}
+#         obj3['name'] = item['l2']
+#         obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj3['value'] = ""
+#         parentModel.append(obj3)
+#         obj4 = {}
+#         obj4['name'] = item['l1']
+#         obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj4['parent'] = item['country']+"#"+str(int(item['year']))
+#         obj4['value'] = ""
+#         parentModel.append(obj4)
+#         obj5 = {}
+#         obj5['name'] = str(int(item['year']))
+#         obj5['id'] = item['country']+"#"+str(int(item['year']))
+#         obj5['parent'] = item['country']
+#         obj5['value'] = ""
+#         parentModel.append(obj5)
+#         obj6 = {}
+#         obj6['name'] = item['country']
+#         obj6['id'] = item['country']
+#         obj6['parent'] = ""
+#         obj6['value'] = ""
+#         parentModel.append(obj6)
+#     elif item['l4']!="":
+#         obj1 = {}
+#         obj1['name'] = item['l4']
+#         obj1['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']+"#"+item['l4']
+#         obj1['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+#         obj1['value'] = item['value'] if str(item['value']).lower()!='none' else ""
+#         parentModel.append(obj1)
+#         obj2 = {}
+#         obj2['name'] = item['l3']
+#         obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+#         obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj2['value'] = ""
+#         parentModel.append(obj2)
+#         obj3 = {}
+#         obj3['name'] = item['l2']
+#         obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj3['value'] = ""
+#         parentModel.append(obj3)
+#         obj4 = {}
+#         obj4['name'] = item['l1']
+#         obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj4['parent'] = item['country']+"#"+str(int(item['year']))
+#         obj4['value'] = ""
+#         parentModel.append(obj4)
+#         obj5 = {}
+#         obj5['name'] = str(int(item['year']))
+#         obj5['id'] = item['country']+"#"+str(int(item['year']))
+#         obj5['parent'] = item['country']
+#         obj5['value'] = ""
+#         parentModel.append(obj5)
+#         obj6 = {}
+#         obj6['name'] = item['country']
+#         obj6['id'] = item['country']
+#         obj6['parent'] = ""
+#         obj6['value'] = ""
+#         parentModel.append(obj6)
+#     elif item['l3']!="":
+#         obj2 = {}
+#         obj2['name'] = item['l3']
+#         obj2['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']+"#"+item['l3']
+#         obj2['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj2['value'] = item['value'] if str(item['value']).lower()!='none' else ""
+#         parentModel.append(obj2)
+#         obj3 = {}
+#         obj3['name'] = item['l2']
+#         obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj3['value'] = ""
+#         parentModel.append(obj3)
+#         obj4 = {}
+#         obj4['name'] = item['l1']
+#         obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj4['parent'] = item['country']+"#"+str(int(item['year']))
+#         obj4['value'] = ""
+#         parentModel.append(obj4)
+#         obj5 = {}
+#         obj5['name'] = str(int(item['year']))
+#         obj5['id'] = item['country']+"#"+str(int(item['year']))
+#         obj5['parent'] = item['country']
+#         obj5['value'] = ""
+#         parentModel.append(obj5)
+#         obj6 = {}
+#         obj6['name'] = item['country']
+#         obj6['id'] = item['country']
+#         obj6['parent'] = ""
+#         obj6['value'] = ""
+#         parentModel.append(obj6)
+#     elif item['l2']!="":
+#         obj3 = {}
+#         obj3['name'] = item['l2']
+#         obj3['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']+"#"+item['l2']
+#         obj3['parent'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj3['value'] = item['value'] if str(item['value']).lower()!='none' else ""
+#         parentModel.append(obj3)
+#         obj4 = {}
+#         obj4['name'] = item['l1']
+#         obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj4['parent'] = item['country']+"#"+str(int(item['year']))
+#         obj4['value'] = ""
+#         parentModel.append(obj4)
+#         obj5 = {}
+#         obj5['name'] = str(int(item['year']))
+#         obj5['id'] = item['country']+"#"+str(int(item['year']))
+#         obj5['parent'] = item['country']
+#         obj5['value'] = ""
+#         parentModel.append(obj5)
+#         obj6 = {}
+#         obj6['name'] = item['country']
+#         obj6['id'] = item['country']
+#         obj6['parent'] = ""
+#         obj6['value'] = ""
+#         parentModel.append(obj6)
+#     elif item['l1']!="":
+#         obj4 = {}
+#         obj4['name'] = item['l1']
+#         obj4['id'] = item['country']+"#"+str(int(item['year']))+"#"+item['l1']
+#         obj4['parent'] = item['country']+"#"+str(int(item['year']))
+#         obj4['value'] = item['value'] if str(item['value']).lower()!='none' else ""
+#         parentModel.append(obj4)
+#         obj5 = {}
+#         obj5['name'] = str(int(item['year']))
+#         obj5['id'] = item['country']+"#"+str(int(item['year']))
+#         obj5['parent'] = item['country']
+#         obj5['value'] = ""
+#         parentModel.append(obj5)
+#         obj6 = {}
+#         obj6['name'] = item['country']
+#         obj6['id'] = item['country']
+#         obj6['parent'] = ""
+#         obj6['value'] = ""
+#         parentModel.append(obj6)
+# #Remove exact duplicates
+# getvals = operator.itemgetter('id','parent')
+# parentModel.sort(key=getvals)
+# results = []
+# groups = []
+# for k, g in itertools.groupby(parentModel,getvals):
+#     groups.append(list(g))
+# for group in groups:
+#     sum = 0
+#     hasData = False
+#     obj = group[0]
+#     for item in group:
+#         try:
+#             sum+=float(item['value'])
+#             hasData = True
+#         except:
+#             sum+=0
+#     if hasData:
+#         obj['value'] = sum
+#     else:
+#         obj['value'] = ''
+#     results.append(obj)
+# parentModel[:]=results
+# #Remove near duplicates
+# #seen = set()
+# #result = []
+# 
+# syms = ['\\', '|', '/', '-']
+# bs = '\b'
+# spinIndex = 0
+# def spin():
+#     global spinIndex
+#     spinIndex = 0 if spinIndex>3 else spinIndex
+#     sym = syms[spinIndex]
+#     sys.stdout.write("\b%s" % sym)
+#     sys.stdout.flush()
+#     spinIndex+=1
+# 
+# def buildTree(parent,arr):
+#     spin()
+#     children = [i for i in parentModel if i['parent']==parent]
+#     arr[:] = children
+#     for child in arr:
+#         child['children'] = []
+#         buildTree(child['id'],child['children'])
+#         #Keep negatives?
+#         #if child['value']<0:
+#         #    child['value']=child['value']*-1
+#         if len(child['children'])==0:
+#             del child['children']
+#             if child['value']=="":
+#             #Give value to non-valued end nodes?
+#             #    child['value']=1
+#                 child['value']=""
+#         else:
+#             if child['value']=="":
+#                 del child['value']
+#     
+# sys.stdout.write("Building tree... This can take a while....")
 #buildTree("",hierData['children'])
 sys.stdout.write('\nDone.\n')
 

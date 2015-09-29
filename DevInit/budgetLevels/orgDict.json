@@ -3341,6 +3341,20 @@
       "l3": "Non-Oil Revenue", 
       "l4": "Tax Revenue", 
       "l5": ""
+    }, 
+    "L5_domestic_tax": {
+      "l1": "Total Revenue and Grants", 
+      "l2": "Revenue", 
+      "l3": "Non-Oil Revenue", 
+      "l4": "Tax Revenue", 
+      "l5": "Domestic Taxes On Goods And Services"
+    }, 
+    "L5_trade_tax": {
+      "l1": "Total Revenue and Grants", 
+      "l2": "Revenue", 
+      "l3": "Non-Oil Revenue", 
+      "l4": "Tax Revenue", 
+      "l5": "Taxes on International Trade and Transactions"
     }
   }, 
   "Gambia": {
@@ -7343,6 +7357,13 @@
       "l3": "Federal Government Expenditure", 
       "l4": "Other Federal Expenditure", 
       "l5": ""
+    }, 
+    "L5_other_federal_expenditure": {
+      "l1": "Total Expenditure", 
+      "l2": "Recurrent Expenditure", 
+      "l3": "Federal Government Expenditure", 
+      "l4": "Supplementary Federal Expenditure", 
+      "l5": "Other"
     }
   }, 
   "Palau": {
@@ -9220,6 +9241,13 @@
       "l3": "Tax Revenue", 
       "l4": "International Trade and Operations Tax", 
       "l5": ""
+    }, 
+    "L5_excises": {
+      "l1": "Total Revenue and Grants", 
+      "l2": "Revenue", 
+      "l3": "Tax Revenue", 
+      "l4": "Taxes on Goods and Services", 
+      "l5": "Excises and Other Internal Indirect Taxes"
     }, 
     "l3_goods_services_expenditure": {
       "l1": "Total Expenditure", 

@@ -2,7 +2,7 @@ path<- "C:/git/digital-platform"
 setwd(path)
 
 df <- read.csv("./country-year/uganda-finance.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
-mult <- read.csv("./reference/current-ncu-to-constant-2012-usd-cy.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+mult <- read.csv("./reference/current-ncu-to-constant-2012-usd.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
 if("value-ncu" %in% colnames(df)){
   names(df)[names(df)=="value-ncu"] <- "value.ncu"
   df$value.ncu <- as.double(df$value.ncu)

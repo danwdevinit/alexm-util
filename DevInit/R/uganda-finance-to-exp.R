@@ -17,7 +17,6 @@ for(i in 1:length(districts)){
   id <- districts[i]
   for(j in 1:length(years)){
     year <- years[j]
-    print(year)
     for(k in 1:length(budgets)){
       budget <- budgets[k]
       matches <- df[which(df$id==id & df$year==year & df[,'budget-type']==budget & df$l1=="expenditure"),]

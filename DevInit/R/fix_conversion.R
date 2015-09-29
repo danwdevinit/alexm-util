@@ -1,12 +1,12 @@
 path<- "C:/git/digital-platform/reference/"
 setwd(path)
 
-deflator <- read.csv("gdp-deflator-constant-2012-cy.csv"
+deflator <- read.csv("gdp-deflator-constant-2012.csv"
                      ,header=T
                      ,as.is=T
                      ,na.strings="")
 
-rate <- read.csv("implied-usd-per-ncu-cy.csv"
+rate <- read.csv("exchange-rates.csv"
                      ,header=T
                      ,as.is=T
                      ,na.strings="")
@@ -20,4 +20,4 @@ dat$value <- dat$value.def*dat$value.fx
 
 dat <- dat[c("id","year","value")]
 
-write.csv(dat,"current-ncu-to-constant-2012-usd-cy.csv",na="",row.names=F)
+write.csv(dat,"current-ncu-to-constant-2012-usd.csv",na="",row.names=F)
