@@ -1,10 +1,10 @@
 #Import
-df <- read.csv("~/R_work/Snap Poll Data.csv")
+df <- read.csv("C:/git/alexm-util/Rscripts/Snap Poll Data.csv")
 View(df)
 
 #Change working directory
 getwd()
-WD <- "~/R_work"
+WD <- "C:/git/alexm-util/Rscripts/"
 setwd (WD)
 df <- read.csv("Snap Poll Data.csv")
 
