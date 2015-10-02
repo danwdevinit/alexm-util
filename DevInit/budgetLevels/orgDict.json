@@ -5139,7 +5139,7 @@
       "l5": ""
     }, 
     "L2_external_finance": {
-      "l1": "Exceptional Financing", 
+      "l1": "Financing", 
       "l2": "Net External Finance", 
       "l3": "", 
       "l4": "", 
@@ -9647,7 +9647,7 @@
   }, 
   "Tunisia": {
     "L1_expenditure": {
-      "l1": "Other Taxes", 
+      "l1": "Total Expenditure", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
