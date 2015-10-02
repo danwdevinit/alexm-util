@@ -80,7 +80,7 @@
       "l5": ""
     }, 
     "L1_financing": {
-      "l1": "Net Finance", 
+      "l1": "Financing", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -101,14 +101,14 @@
       "l5": ""
     }, 
     "L2_domestic_finance": {
-      "l1": "Net Finance", 
+      "l1": "Financing", 
       "l2": "Net Domestic Finance", 
       "l3": "", 
       "l4": "", 
       "l5": ""
     }, 
     "L2_external_finance": {
-      "l1": "Net Finance", 
+      "l1": "Financing", 
       "l2": "Net External Finance", 
       "l3": "", 
       "l4": "", 
@@ -5111,7 +5111,7 @@
       "l5": ""
     }, 
     "L1_revenue_and_grants": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -5153,7 +5153,7 @@
       "l5": ""
     }, 
     "L2_revenue": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "Revenue", 
       "l3": "", 
       "l4": "", 
@@ -5174,7 +5174,7 @@
       "l5": ""
     }, 
     "L3_tax": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "Revenue", 
       "l3": "Tax revenue", 
       "l4": "", 
@@ -5188,42 +5188,42 @@
       "l5": ""
     }, 
     "L4_taxes_goods": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "Revenue", 
       "l3": "Tax revenue", 
       "l4": "Taxes on Domestic Goods and Services", 
       "l5": ""
     }, 
     "L4_taxes_income": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "Revenue", 
       "l3": "Tax revenue", 
       "l4": "Taxes on Income and Profits", 
       "l5": ""
     }, 
     "L4_trade": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "Revenue", 
       "l3": "Tax revenue", 
       "l4": "Taxes on International Trade", 
       "l5": ""
     }, 
     "l3_nontax": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "Revenue", 
       "l3": "Nontax Revenue", 
       "l4": "", 
       "l5": ""
     }, 
     "l4_other_nontax": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "Revenue", 
       "l3": "Nontax Revenue", 
       "l4": "Other Nontax Revenue", 
       "l5": ""
     }, 
     "l4_property": {
-      "l1": "Revenue and grants", 
+      "l1": "Total Revenue and grants", 
       "l2": "Revenue", 
       "l3": "Nontax Revenue", 
       "l4": "Entrepreneurial and Property Income", 
@@ -5720,7 +5720,7 @@
       "l5": ""
     }, 
     "L1_financing": {
-      "l1": "Net Finance", 
+      "l1": "Financing", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -7728,7 +7728,7 @@
       "l5": ""
     }, 
     "L1_financing": {
-      "l1": "FIinancing", 
+      "l1": "Financing", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -9977,7 +9977,7 @@
       "l5": ""
     }, 
     "L1_financing": {
-      "l1": "General Government Financing", 
+      "l1": "Financing", 
       "l2": "", 
       "l3": "", 
       "l4": "", 
@@ -9991,14 +9991,14 @@
       "l5": ""
     }, 
     "L2_domestic_finance": {
-      "l1": "General Government Financing", 
+      "l1": "Financing", 
       "l2": "Net Domestic Finance", 
       "l3": "", 
       "l4": "", 
       "l5": ""
     }, 
     "L2_external_finance": {
-      "l1": "General Government Financing", 
+      "l1": "Financing", 
       "l2": "Net External Finance", 
       "l3": "", 
       "l4": "", 
