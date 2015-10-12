@@ -28,7 +28,7 @@ df <- transform(df,l3=gsub(" ","-",tolower(gsub("[^[:alnum:] ]", "", l3))))
 df <- transform(df,l4=gsub(" ","-",tolower(gsub("[^[:alnum:] ]", "", l4))))
 df <- transform(df,l5=gsub(" ","-",tolower(gsub("[^[:alnum:] ]", "", l5))))
 df <- transform(df,l6=gsub(" ","-",tolower(gsub("[^[:alnum:] ]", "", l6))))
-keep <- c(1,2,5,6,7,8,10,11,12,13)
+keep <- c(1,2,5,6,7,8,9,10,11,12,13)
 df <- df[keep]
 names(df)[names(df) == "value.ncu"] <- "value-ncu"
 names(df)[names(df) == "type"] <- "budget-type"

@@ -47,8 +47,10 @@ for (i in 1:length(filenames))
   
   #Add country names
   entities <- read.csv(paste(refPath,"entity.csv",sep="/"),as.is=TRUE,na.strings="")[c("id","name")]
-  districts <- read.csv(paste(refPath,"uganda-district-entity.csv",sep="/"),as.is=TRUE,na.strings="")[c("id","name")]
-  names(districts) <- c("id","entity-name")
+  udistricts <- read.csv(paste(refPath,"uganda-district-entity.csv",sep="/"),as.is=TRUE,na.strings="")[c("id","name")]
+  kdistricts <- read.csv(paste(refPath,"kenya-district-entity.csv",sep="/"),as.is=TRUE,na.strings="")[c("id","name")]
+  names(udistricts) <- c("id","entity-name")
+  names(kdistricts) <- c("id","entity-name")
   names(entities) <- c("id","entity-name")
   if("id" %in% names){
     data <- merge(
@@ -83,7 +85,19 @@ for (i in 1:length(filenames))
     data <- data[,-which(names(data) %in% c("entity-name"))]
     if("id" %in% names){
       data <- merge(
-        districts
+        udistricts
+        ,data
+        ,by=c("id")
+        ,all.y=TRUE
+      ) 
+    }
+  }
+  #Special Kenya-data case
+  if(substr(basename,1,6)=="kenya-"){
+    data <- data[,-which(names(data) %in% c("entity-name"))]
+    if("id" %in% names){
+      data <- merge(
+        kdistricts
         ,data
         ,by=c("id")
         ,all.y=TRUE
