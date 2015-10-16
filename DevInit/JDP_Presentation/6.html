@@ -1,0 +1,72 @@
+<html lang="en">
+    <head>
+        <title>Let's use math to have a little fun</title>
+        <style>
+            path {
+                stroke:black;
+                stroke-width:2px;
+                fill:none;
+            }
+            rect {
+                stroke:black;
+                stroke-width:1px;
+                fill:#ba0c2f;
+            }
+        </style>
+        <script src="./jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
+        <svg width="1000px" height="1000px">
+            <!--Some axes!-->
+            <path d="M 1,1 L 1,800 L 800,800"></path>
+            <!--Some bars!-->
+            <rect id="one" x="30" y="50" width="200" height="750"></rect>
+            <rect id="two" x="300" y="50" width="200" height="750"></rect>
+            <rect id="three" x="570" y="50" width="200" height="750"></rect>
+        </svg>
+        <script>
+            //Rather than a pre-defined move, let's make it random!
+            //Notice how y + height = 800
+            //This is because y is measured from the top of the svg element down
+            //Think of it like starting at a point, and growing down
+            //So we can start with a randomly defined height, and calculate y with
+            //y = 800 - height
+            //Let's define some variables that will help us calculate three random heights
+            //And their corresponding y's to keep them on the axis
+            var h = 800,
+            min = 100,
+            max = 800;
+            
+            function randBetween(min,max){
+                return Math.floor(Math.random()*(max-min+1)+min);
+            };
+            
+            $(document).ready(function(){
+                $(document).click(function(){
+                    
+                    var oneH = randBetween(min,max),
+                    twoH = randBetween(min,max),
+                    threeH = randBetween(min,max);
+                    
+                    console.log(oneH,twoH,threeH);
+                    
+                    var oneY = h-oneH,
+                    twoY = h-twoH,
+                    threeY = h-threeH;
+                    
+                    var $one = $("#one"),
+                    $two = $("#two"),
+                    $three = $("#three");
+                    
+                    $one.attr("y",oneY);
+                    $one.attr("height",oneH);
+                    $two.attr("y",twoY);
+                    $two.attr("height",twoH);
+                    $three.attr("y",threeY);
+                    $three.attr("height",threeH);
+                    
+                });
+            });
+        </script>
+    </body>
+</html>

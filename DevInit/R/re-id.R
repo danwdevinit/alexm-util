@@ -1,8 +1,8 @@
 reid <- function(indicator){
-  wd <- "C:/git/digital-platform/country-year/"
+  wd <- "C:/Users/alexm/Documents/Rwork/"
   path <- paste0(wd,indicator,".csv")
   setwd(wd)
-  entities <- read.csv("../reference/entity.csv",na.strings=c(""),check.names=FALSE)
+  entities <- read.csv("C:/git/digital-platform/reference/entity.csv",na.strings=c(""),check.names=FALSE)
   keep <- c("id","dac-id")
   entities <- entities[keep]
   names(entities) <- c("new-id","dac-id")

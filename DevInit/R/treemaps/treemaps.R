@@ -120,7 +120,7 @@ treemap(oda
         ,type="color"
         ,title=""
         ,lowerbound.cex.labels=1
-        ,fontsize.labels=25
+        ,fontsize.labels=0
         ,inflate.labels=TRUE
         )
 
@@ -131,7 +131,7 @@ treemap(fdi
         ,type="color"
         ,title=""
         ,lowerbound.cex.labels=1
-        ,fontsize.labels=25
+        ,fontsize.labels=0
         ,inflate.labels=TRUE
         )
 

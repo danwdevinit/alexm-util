@@ -1,0 +1,66 @@
+<html lang="en">
+    <head>
+        <title>We can use JQuery to simplify our code</title>
+        <style>
+            path {
+                stroke:black;
+                stroke-width:2px;
+                fill:none;
+            }
+            rect {
+                stroke:black;
+                stroke-width:1px;
+                fill:#ba0c2f;
+            }
+        </style>
+        <!--We add the reference to jquery here
+        A javascript "library" is just a collection of pre-defined functions-->
+        <script src="./jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
+        <svg width="1000px" height="1000px">
+            <!--Some axes!-->
+            <path d="M 1,1 L 1,800 L 800,800"></path>
+            <!--Some bars!-->
+            <rect id="one" x="30" y="50" width="200" height="750"></rect>
+            <rect id="two" x="300" y="50" width="200" height="750"></rect>
+            <rect id="three" x="570" y="50" width="200" height="750"></rect>
+        </svg>
+        <script>
+            //Here was our old code
+            //document.addEventListener("DOMContentLoaded", function(event) {
+            //    console.log("Ready:",event);
+            //    document.addEventListener("click",function(event2){
+            //        console.log("Click:",event2);
+            //        var two = document.getElementById("two"),
+            //        three = document.getElementById("three");
+            //        two.setAttribute("y","350");
+            //        two.setAttribute("height","450");
+            //        three.setAttribute("y","650");
+            //        three.setAttribute("height","150");
+            //    });
+            //});
+            
+            //Here is our new code
+            $(document).ready(function(e){
+                
+                console.log("Ready:",e);
+                
+                $(document).click(function(e2){
+                    
+                    console.log("Click:",e2);
+                    
+                    var $two = $("#two"),
+                    $three = $("#three");
+                    
+                    $two.attr("y","350");
+                    $two.attr("height","450");
+                    $three.attr("y","650");
+                    $three.attr("height","150");
+                    
+                });
+                
+            });
+        </script>
+    </body>
+</html>
