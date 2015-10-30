@@ -152,7 +152,7 @@ names(toFromUN)[which(names(toFromUN)=="to.RECIPIENT")] <- "AGENCY"
 names(toFromUN)[which(names(toFromUN)=="to.obsTime")] <- "obsTime"
 names(toFromUN)[which(names(toFromUN)=="from.RECIPIENT")] <- "RECIPIENT"
 toFromUN <- transform(toFromUN,share=sapply(AGENCY,function(x){return(shares[[x]])}))
-totalUN <- ddply(toun,.(to.RECIPIENT,to.obsTime),summarize,obsValue=sum(to.obsValue))
+totalUN <- ddply(toun,.(to.RECIPIENT,to.obsTime),summarize,obsValue=sum(to.obsValue,na.rm=TRUE))
 names(totalUN) <- c("AGENCY","obsTime","totalToUN")
 toFromUN <- merge(
   toFromUN
@@ -181,7 +181,7 @@ names(toFromEU)[which(names(toFromEU)=="to.DONOR")] <- "DONOR"
 names(toFromEU)[which(names(toFromEU)=="to.RECIPIENT")] <- "AGENCY"
 names(toFromEU)[which(names(toFromEU)=="to.obsTime")] <- "obsTime"
 names(toFromEU)[which(names(toFromEU)=="from.RECIPIENT")] <- "RECIPIENT"
-totalEU <- ddply(toeu,.(to.RECIPIENT,to.obsTime),summarize,obsValue=sum(to.obsValue))
+totalEU <- ddply(toeu,.(to.RECIPIENT,to.obsTime),summarize,obsValue=sum(to.obsValue,na.rm=TRUE))
 names(totalEU) <- c("AGENCY","obsTime","totalToEU")
 toFromEU <- merge(
   toFromEU
@@ -207,7 +207,7 @@ names(toFromCERF)[which(names(toFromCERF)=="to.DONOR")] <- "DONOR"
 names(toFromCERF)[which(names(toFromCERF)=="to.RECIPIENT")] <- "AGENCY"
 names(toFromCERF)[which(names(toFromCERF)=="to.obsTime")] <- "obsTime"
 names(toFromCERF)[which(names(toFromCERF)=="from.RECIPIENT")] <- "RECIPIENT"
-totalCERF <- ddply(toCERF,.(to.RECIPIENT,to.obsTime),summarize,obsValue=sum(to.obsValue))
+totalCERF <- ddply(toCERF,.(to.RECIPIENT,to.obsTime),summarize,obsValue=sum(to.obsValue,na.rm=TRUE))
 names(totalCERF) <- c("AGENCY","obsTime","totalToCERF")
 toFromCERF <- merge(
   toFromCERF
