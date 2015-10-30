@@ -1,0 +1,54 @@
+<html lang="en">
+    <head>
+        <title>We can use D3 to drive the whole thing</title>
+        <style>
+            path {
+                stroke:black;
+                stroke-width:2px;
+                fill:none;
+            }
+            rect {
+                stroke:black;
+                stroke-width:1px;
+                fill:#ba0c2f;
+            }
+        </style>
+        <!--We add the reference to D3 here
+        it stands for "data driven documents"
+        you'll see why-->
+        <script src="./d3.min.js"></script>
+        <script src="./jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
+        <script>
+            //Here is our new code
+            $(document).ready(function(e){
+                //Height and width
+                var h = 800,
+                w = 800;
+                //Select the body element, and add an SVG element with height and width
+                var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width",h)
+                    .attr("height",w);
+                    
+                //Append the path for the axes
+                svg.append("path")
+                .attr("d","M 1,1 L 1,799 L 799,799");
+                
+                //Define some data
+                var data = [790,400,125];
+                
+                //Draw the bars
+                svg.selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("x",function(d,i){return (i*270)+30})
+                .attr("width",200)
+                .attr("height",function(d){return d})
+                .attr("y",function(d){return h-d});   
+            });
+        </script>
+    </body>
+</html>

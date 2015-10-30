@@ -110,8 +110,8 @@ remittances <- merge(remittances
 remittances <- transform(remittances,color=treeMapRamp(depth))
 
 #Remove missing
-oda <- subset(oda,depth>0)
-fdi <- subset(fdi,depth>0)
+# oda <- subset(oda,depth>0)
+# fdi <- subset(fdi,depth>0)
 
 treemap(oda
         ,index="name.y"
