@@ -15,13 +15,16 @@ keep <- c("id","hasMapTheme")
 concepts <- concepts[keep]
 
 countryYear <- list.files("C:/git/digital-platform/country-year", pattern="*.csv")
-countryYear <- sapply(countryYear,trunc)
+countryYear <- data.frame(sapply(countryYear,trunc),stringsAsFactors=FALSE)
+names(countryYear) <- "id"
+countryYear$reference <- FALSE
 
 refs <- list.files("C:/git/digital-platform/reference", pattern="*.csv")
-refs <- sapply(refs,trunc)
+refs <- data.frame(sapply(refs,trunc),stringsAsFactors=FALSE)
+names(refs) <- "id"
+refs$reference <- TRUE
 
-id <- c(countryYear,refs)
-allFiles <- data.frame(id,stringsAsFactors=FALSE)
+allFiles <- rbind(countryYear,refs)
 
 code <- readLines("C:/git/di-website/wp/wp-content/themes/diConcept/dist/app.js")
 
@@ -43,13 +46,14 @@ final <- merge(
 
 final[which(is.na(final$used)),]$used <- 0
 final[which(is.na(final$hasMapTheme)),]$hasMapTheme <- FALSE
+final[which(is.na(final$reference)),]$reference <- FALSE
 
 final <- transform(
   final
   ,in_ddh=used | hasMapTheme
     )
 
-keep <- c("id","in_ddh")
+keep <- c("id","reference","in_ddh")
 final <- final[keep]
 
 #We know these are used, even if they're not in the code

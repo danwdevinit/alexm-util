@@ -5,7 +5,7 @@ wd <-"C:/Users/alexm/Documents/RWork/GDELT/"
 setwd(wd)
 colnames <- read.csv("CSV.header.dailyupdates.csv", header = FALSE,
                      sep="\t",colClasses="character")
-for(i in 1:5){
+for(i in 1:30){
   yesterday <- format(Sys.Date()-i, "%Y%m%d")
   yestwd <- paste(wd,yesterday,sep="/")
   message(yesterday)
@@ -112,7 +112,7 @@ d1$setTemplate(afterScript = "
     myChart.svg.append('text')
         .attr('x', 60)
         .attr('y', 15)
-        .text('News Reports on Burundi In the Past 80 Days')
+        .text('News Reports on Burundi over Time')
         .style('text-anchor','beginning')
         .style('font-size', '100%')
         .style('font-family','sans-serif')
