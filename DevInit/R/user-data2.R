@@ -59,8 +59,7 @@ for (i in 1:length(filenames))
       ,by=c("id")
       ,all.y=TRUE
     ) 
-  }
-  else{
+  }else{
     if("id-to" %in% names){
       names(entities) <- c("id-to","entity-to-name")
       data <- merge(
@@ -113,29 +112,25 @@ for (i in 1:length(filenames))
     }else{
       data <- data[order(data["entity-name"]),]
     }
-  }
-  else if("entity-to-name" %in% names){
+  }else if("entity-to-name" %in% names){
     if("year" %in% names){
       data <- data[order(data["entity-to-name"],data$year),]
     }else{
       data <- data[order(data["entity-to-name"]),]
     }
-  }
-  else if("entity-from-name" %in% names){
+  }else if("entity-from-name" %in% names){
     if("year" %in% names){
       data <- data[order(data["entity-from-name"],data$year),]
     }else{
       data <- data[order(data["entity-from-name"]),]
     }
-  }
-  else if("id" %in% names){
+  }else if("id" %in% names){
     if("year" %in% names){
       data <- data[order(data["id"],data$year),]
     }else{
       data <- data[order(data["id"]),]
     }
-  }
-  else{
+  }else{
     if("year" %in% names){
       data <- data[data$year,]
     }else{

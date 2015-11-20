@@ -1,4 +1,4 @@
-"RECIPIENT","DONOR","PART","AIDTYPE","DATATYPE","TIME_FORMAT","UNIT","POWERCODE","REFERENCEPERIOD","obsTime","obsValue"
+"to.RECIPIENT","to.DONOR","to.PART","to.AIDTYPE","to.DATATYPE","to.TIME_FORMAT","to.UNIT","to.POWERCODE","to.REFERENCEPERIOD","to.obsTime","to.obsValue"
 "UNICEF","Austria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",2.68
 "UNICEF","Austria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",2.72
 "UNICEF","Austria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",2.74
@@ -118,6 +118,7 @@
 "UNICEF","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",23.01
 "UNICEF","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",23.11
 "UNICEF","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",28.15
+"UNICEF","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",25.16
 "UNICEF","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",6.69
 "UNICEF","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",3.25
 "UNICEF","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",3.14
@@ -207,6 +208,7 @@
 "UNICEF","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",7.1
 "UNICEF","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",6.86
 "UNICEF","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",6.77
+"UNICEF","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",6.14
 "UNICEF","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",39.12
 "UNICEF","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",47.2
 "UNICEF","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",49.64
@@ -231,6 +233,7 @@
 "UNICEF","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",33.02
 "UNICEF","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",29.86
 "UNICEF","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",31.16
+"UNICEF","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",58.31
 "UNICEF","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2005",0.02
 "UNICEF","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2006",0.02
 "UNICEF","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.03
@@ -320,6 +323,7 @@
 "UNICEF","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.3
 "UNICEF","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2009",0.28
 "UNICEF","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.28
+"UNICEF","Malta","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.07
 "UNICEF","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",15.9
 "UNICEF","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",16.51
 "UNICEF","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",16.59
@@ -382,6 +386,7 @@
 "UNICEF","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.11
 "UNICEF","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.14
 "UNICEF","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.1
+"UNICEF","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.1
 "UNICEF","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2005",2.03
 "UNICEF","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2006",1.74
 "UNICEF","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2007",0.31
@@ -469,6 +474,7 @@
 "UNICEF","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",46.22
 "UNICEF","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",68.18
 "UNICEF","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",92.67
+"UNICEF","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",71.53
 "UNICEF","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",28.56
 "UNICEF","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",27.64
 "UNICEF","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",30.24
@@ -495,6 +501,7 @@
 "UNICEF","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",22.72
 "UNICEF","Bulgaria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.01
 "UNICEF","Bulgaria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.01
+"UNICEF","Bulgaria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.01
 "UNICEF","Korea","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",0.58
 "UNICEF","Korea","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",0.82
 "UNICEF","Korea","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",0.81
@@ -540,12 +547,12 @@
 "UNICEF","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2009",0.21
 "UNICEF","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.23
 "UNICEF","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.1
-"UNICEF","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.6
 "UNICEF","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.08
 "UNICEF","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2009",0.01
 "UNICEF","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.19
 "UNICEF","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.18
 "UNICEF","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.24
+"UNICEF","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.23
 "UNICEF","Romania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.06
 "UNICEF","Norway","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",94.89
 "UNICEF","Norway","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",107.46
@@ -629,6 +636,7 @@
 "UNICEF","New Zealand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",5.02
 "UNICEF","New Zealand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",5.05
 "UNICEF","New Zealand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",4.92
+"UNICEF","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.03
 "UNICEF","Russia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",1.15
 "UNICEF","Russia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",1.03
 "UNICEF","Russia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",1
@@ -779,6 +787,7 @@
 "UNRWA","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",6.28
 "UNRWA","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",6.12
 "UNRWA","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",5.97
+"UNRWA","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",5.9
 "UNRWA","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",0.98
 "UNRWA","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",1.01
 "UNRWA","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",0.87
@@ -847,6 +856,7 @@
 "UNRWA","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",3.23
 "UNRWA","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2009",4.17
 "UNRWA","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",4.98
+"UNRWA","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",4.62
 "UNRWA","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",7.8
 "UNRWA","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",11.05
 "UNRWA","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",10.52
@@ -871,6 +881,7 @@
 "UNRWA","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",12.98
 "UNRWA","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",16.29
 "UNRWA","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",16.02
+"UNRWA","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",15.9
 "UNRWA","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2005",0.04
 "UNRWA","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2006",0.08
 "UNRWA","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2007",0.08
@@ -944,6 +955,7 @@
 "UNRWA","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.03
 "UNRWA","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2009",0.03
 "UNRWA","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.05
+"UNRWA","Malta","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.2
 "UNRWA","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",2.81
 "UNRWA","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",3.67
 "UNRWA","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",3.49
@@ -1075,6 +1087,7 @@
 "UNRWA","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",20.42
 "UNRWA","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",20.13
 "UNRWA","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",17.26
+"UNRWA","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",17.09
 "UNRWA","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",32.51
 "UNRWA","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",31.22
 "UNRWA","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",19.4
@@ -1129,11 +1142,11 @@
 "UNRWA","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.13
 "UNRWA","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.21
 "UNRWA","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.21
-"UNRWA","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.16
 "UNRWA","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.03
 "UNRWA","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.03
 "UNRWA","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.03
 "UNRWA","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.04
+"UNRWA","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.04
 "UNRWA","Romania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.05
 "UNRWA","Romania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.03
 "UNRWA","Norway","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",25.87
@@ -1208,6 +1221,7 @@
 "UNRWA","New Zealand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.84
 "UNRWA","New Zealand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.82
 "UNRWA","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.02
+"UNRWA","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.09
 "UNRWA","Russia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",2
 "UNRWA","Portugal","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",0.06
 "UNRWA","Portugal","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",0.05
@@ -1358,6 +1372,7 @@
 "WFP","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",8.37
 "WFP","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",8.16
 "WFP","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",7.97
+"WFP","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",7.86
 "WFP","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",4.71
 "WFP","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",3.06
 "WFP","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",1.67
@@ -1408,6 +1423,7 @@
 "WFP","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.97
 "WFP","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.94
 "WFP","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.93
+"WFP","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.92
 "WFP","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",59.3
 "WFP","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",57.76
 "WFP","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",85.2
@@ -1432,6 +1448,7 @@
 "WFP","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",34.31
 "WFP","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",33.48
 "WFP","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",32.94
+"WFP","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",37.1
 "WFP","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2006",0.06
 "WFP","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2009",0.01
 "WFP","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.01
@@ -1539,6 +1556,7 @@
 "WFP","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.02
 "WFP","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.02
 "WFP","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.02
+"WFP","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.02
 "WFP","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2005",4.01
 "WFP","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2006",1.22
 "WFP","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2007",2.88
@@ -1617,6 +1635,7 @@
 "WFP","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",54.38
 "WFP","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",48.31
 "WFP","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",53.11
+"WFP","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",47.33
 "WFP","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",101.18
 "WFP","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",86.83
 "WFP","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",98.5
@@ -1671,6 +1690,7 @@
 "WFP","Hungary","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.07
 "WFP","Hungary","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.11
 "WFP","Hungary","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.02
+"WFP","Hungary","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.01
 "WFP","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1999",0.38
 "WFP","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2000",0.39
 "WFP","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2001",0.35
@@ -1684,7 +1704,6 @@
 "WFP","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2009",0.75
 "WFP","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.51
 "WFP","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.49
-"WFP","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.24
 "WFP","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.05
 "WFP","Norway","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",70.49
 "WFP","Norway","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",78.71
@@ -1752,6 +1771,7 @@
 "WFP","New Zealand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",4.92
 "WFP","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.02
 "WFP","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.03
+"WFP","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.04
 "WFP","Portugal","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1995",0.08
 "WFP","Portugal","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1997",0.09
 "WFP","Portugal","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1998",0.25
@@ -1901,6 +1921,7 @@
 "UNHCR","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",9.76
 "UNHCR","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",9.92
 "UNHCR","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",16.99
+"UNHCR","Finland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",13.11
 "UNHCR","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",1.29
 "UNHCR","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",5.03
 "UNHCR","Belgium","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",2.23
@@ -1985,6 +2006,7 @@
 "UNHCR","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",2.09
 "UNHCR","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",2.02
 "UNHCR","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",1.99
+"UNHCR","Luxembourg","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",1.98
 "UNHCR","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",44.34
 "UNHCR","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",61.18
 "UNHCR","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",61.2
@@ -2009,6 +2031,7 @@
 "UNHCR","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",24.11
 "UNHCR","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",28.96
 "UNHCR","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",28.49
+"UNHCR","Denmark","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",56.63
 "UNHCR","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2005",0.07
 "UNHCR","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2006",0.08
 "UNHCR","Cyprus","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2007",0.13
@@ -2093,6 +2116,7 @@
 "UNHCR","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2009",1.55
 "UNHCR","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.52
 "UNHCR","Greece","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.06
+"UNHCR","Malta","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.07
 "UNHCR","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",14.96
 "UNHCR","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",7.34
 "UNHCR","Germany","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",7.86
@@ -2155,6 +2179,7 @@
 "UNHCR","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.06
 "UNHCR","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.11
 "UNHCR","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.1
+"UNHCR","Israel","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.1
 "UNHCR","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1999",0.36
 "UNHCR","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2003",0.25
 "UNHCR","Turkey","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2004",0.29
@@ -2209,6 +2234,7 @@
 "UNHCR","Czech Republic","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.15
 "UNHCR","Czech Republic","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.01
 "UNHCR","Czech Republic","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.04
+"UNHCR","Czech Republic","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.04
 "UNHCR","Slovak Republic","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2003",0.02
 "UNHCR","Slovak Republic","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2004",0.03
 "UNHCR","Slovak Republic","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2005",0.02
@@ -2243,6 +2269,7 @@
 "UNHCR","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",57.1
 "UNHCR","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",51
 "UNHCR","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",50.45
+"UNHCR","Netherlands","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",43.39
 "UNHCR","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",91.25
 "UNHCR","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",96.29
 "UNHCR","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",161.74
@@ -2268,6 +2295,7 @@
 "UNHCR","Japan","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",22.75
 "UNHCR","Bulgaria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.01
 "UNHCR","Bulgaria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.01
+"UNHCR","Bulgaria","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.01
 "UNHCR","Korea","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1990",0.03
 "UNHCR","Korea","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1991",0.03
 "UNHCR","Korea","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1992",0.03
@@ -2300,6 +2328,7 @@
 "UNHCR","Hungary","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.79
 "UNHCR","Hungary","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.76
 "UNHCR","Hungary","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.77
+"UNHCR","Hungary","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.05
 "UNHCR","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1998",0.04
 "UNHCR","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","1999",0.1
 "UNHCR","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2000",0.08
@@ -2310,11 +2339,12 @@
 "UNHCR","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2006",0.25
 "UNHCR","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.35
 "UNHCR","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.79
-"UNHCR","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",1.12
+"UNHCR","Poland","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.09
 "UNHCR","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.02
 "UNHCR","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2010",0.02
 "UNHCR","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.02
 "UNHCR","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.02
+"UNHCR","Thailand","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.02
 "UNHCR","Romania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2008",0.19
 "UNHCR","Romania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.14
 "UNHCR","Romania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.13
@@ -2402,12 +2432,14 @@
 "UNHCR","Latvia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",0.01
 "UNHCR","Latvia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.02
 "UNHCR","Latvia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.02
+"UNHCR","Latvia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.15
 "UNHCR","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2001",0.02
 "UNHCR","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2002",0
 "UNHCR","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2003",0
 "UNHCR","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2004",0
 "UNHCR","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",0.02
 "UNHCR","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",0.03
+"UNHCR","Lithuania","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2014",0.07
 "UNHCR","Russia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2011",2.3
 "UNHCR","Russia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2012",2.06
 "UNHCR","Russia","1 : Part I - Developing Countries","ODA: Total Net","Constant Prices","Annual","US Dollar","millions","2013","2013",2
