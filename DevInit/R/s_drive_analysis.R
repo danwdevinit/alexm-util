@@ -23,7 +23,7 @@ for (i in 1:length(txts))
   filename <- txts[i]
   basename <- basename(filename)
   filetype <- substr(basename,nchar(basename)-3,nchar(basename))
-  if(filetype==".txt" & file.size(filename)<1000000){
+  if(filetype==".txt" & file.size(filename)<50000000){
     file.copy(filename,paste0(wd,basename))
   }
 }
