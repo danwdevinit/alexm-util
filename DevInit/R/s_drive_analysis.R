@@ -4,7 +4,7 @@ require(XML)
 
 #Setup
 wd <- "D:/Documents/Text Dump/"
-input <- "S:/@Engagement&Impact"
+input <- "S:/Projects"
 lastFolder <- tail(strsplit(input,"/")[[1]],1)
 wd <- paste0(wd,lastFolder,"/")
 dir.create(wd)
@@ -22,7 +22,10 @@ for (i in 1:length(txts))
 {
   filename <- txts[i]
   basename <- basename(filename)
-  file.copy(filename,paste0(wd,basename))
+  filetype <- substr(basename,nchar(basename)-3,nchar(basename))
+  if(filetype==".txt" & file.size(filename)<1000000){
+    file.copy(filename,paste0(wd,basename))
+  }
 }
 
 #pdfs
