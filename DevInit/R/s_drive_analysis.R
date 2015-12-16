@@ -34,7 +34,10 @@ for (i in 1:length(pdfs))
 {
   filename <- pdfs[i]
   basename <- substr(basename(filename), 1, nchar(basename(filename)) - 4)
-  system(paste0("pdftotext -layout \"",filename,"\" \"",paste0(wd,basename,".txt"),"\""))
+  filetype <- substr(basename(filename),nchar(basename(filename))-3,nchar(basename(filename)))
+  if(filetype==".pdf" & file.size(filename)<50000000){
+    system(paste0("pdftotext -layout \"",filename,"\" \"",paste0(wd,basename,".txt"),"\""))
+  }
 }
 
 #docs
@@ -42,8 +45,11 @@ for (i in 1:length(docs))
 {
   filename <- docs[i]
   basename <- substr(basename(filename), 1, nchar(basename(filename)) - 4)
-  doc <- readDOC()(list('uri'=filename),"en")
-  write(doc$content,paste0(wd,basename,".txt"))
+  filetype <- substr(basename(filename),nchar(basename(filename))-3,nchar(basename(filename)))
+  if(filetype==".doc" & file.size(filename)<50000000){
+    doc <- readDOC()(list('uri'=filename),"en")
+    write(doc$content,paste0(wd,basename,".txt"))
+  }
 }
 
 #docxs
@@ -51,8 +57,11 @@ for (i in 1:length(docxs))
 {
   filename <- docxs[i]
   basename <- substr(basename(filename), 1, nchar(basename(filename)) - 5)
-  unzip(filename, exdir = tempdir()) 
-  doc <- xmlParse(file.path(tempdir(), "word", "document.xml") )
-  docText <- paste(xpathSApply(doc,"//w:t",xmlValue),collapse=" ")
-  write(docText,paste0(wd,basename,".txt"))
+  filetype <- substr(basename(filename),nchar(basename(filename))-4,nchar(basename(filename)))
+  if(filetype==".docx" & file.size(filename)<50000000){
+    unzip(filename, exdir = tempdir()) 
+    doc <- xmlParse(file.path(tempdir(), "word", "document.xml") )
+    docText <- paste(xpathSApply(doc,"//w:t",xmlValue),collapse=" ")
+    write(docText,paste0(wd,basename,".txt"))
+  }
 }
