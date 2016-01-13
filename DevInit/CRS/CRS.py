@@ -10,16 +10,19 @@ import codecs
 import subprocess
 import csv
 import pdb
+import ia5
 
 
 #Parse Options
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default="S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/Other/Raw/",
+parser.add_option("-i", "--input", dest="input", default="D:/CRS/",
                 help="Input folder.", metavar="FOLDER")
-parser.add_option("-o", "--output", dest="output", default="S:/Projects/Programme resources/Data/GHA calcs and analyses/April 2015/Datasets - do not edit/CRS/Other/CRS CSV files April 2015/",
+parser.add_option("-o", "--output", dest="output", default="D:/CRS/",
                 help="Output folder.", metavar="FILE")
 parser.add_option("-d", "--download", dest="download", default=True,
                 help="Re-download?", metavar="BOOLEAN")
+parser.add_option("-u", "--unzip", dest="unzip", default=True,
+                help="Re-unzip?", metavar="BOOLEAN")
 (options, args) = parser.parse_args()
 
 reload(sys)
@@ -102,11 +105,12 @@ if options.download==True:
 paths = glob.glob(options.input+"/*.zip")
 
 #Iterate through paths and unzip
-for inPath in paths:
-    filename = os.path.basename(inPath)
-    print "Extracting "+filename
-    unzip(inPath,options.input)
-    #os.remove(inPath)
+if options.unzip==True:
+    for inPath in paths:
+        filename = os.path.basename(inPath)
+        print "Extracting "+filename
+        unzip(inPath,options.input)
+        #os.remove(inPath)
 
 #Find .txt in folder
 txtpaths = glob.glob(options.input+"/*.txt")
@@ -116,8 +120,13 @@ for inPath in txtpaths:
     filename = os.path.basename(inPath)
     name, extension = os.path.splitext(filename)
     print "Reading "+filename
+    utf16s = ["CRS 1973-94 data.txt","CRS 1995-99 data.txt"]
+    if filename in utf16s:
+        CRS_encoding = "utf-16"
+    else:
+        CRS_encoding = "latin1"
     with open(inPath,'rb') as fr:
-        sr = Recoder(fr, 'utf-16', 'utf-8')
+        sr = Recoder(fr, CRS_encoding, 'utf-8')
         outPath = options.output+name+".csv"
         with open(outPath, 'wb') as fw:
             writer = csv.writer(fw,delimiter=",",quotechar="\"")
@@ -126,3 +135,4 @@ for inPath in txtpaths:
                 row = line.replace("\x00","").replace("\x1a","'").split("|")[0:-1]
                 writer.writerow(map(uni,row))
     os.remove(inPath)
+    sys.stdout.write("\n")
