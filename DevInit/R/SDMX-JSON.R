@@ -1,53 +1,6 @@
 #Necessary libraries
 library(RCurl)
 library(rjson)
-#For testing####
-library(rsdmx)
-#OECD Func#
-OECD <- function(url,concept=FALSE){
-  #Separate out data URL components
-  dRoot <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/"
-  indicator <- strsplit(substr(url,nchar(dRoot)+1,nchar(url)),"/")[[1]][1]
-  filter <- substr(url,nchar(dRoot)+1+nchar(indicator),nchar(url))
-  #Structure URL
-  sRoot <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/"
-  t1sUrl <- paste(sRoot
-                  ,indicator
-                  ,sep = "")
-  #Fetch data
-  t1dsdmx <- readSDMX(url)
-  t1ssdmx <- readSDMX(t1sUrl)
-  #Convert to DF
-  t1 <- as.data.frame(t1dsdmx)
-  #get codelists
-  cls <- t1ssdmx@codelists
-  codelists <- sapply(cls@codelists, function(x) x@id)
-  #Recode
-  for(i in 1:length(codelists)){
-    suffix <- paste("CL_",indicator,"_",sep="")
-    clName <- substr(codelists[i],nchar(suffix)+1,nchar(codelists[i]))
-    codelist <- cls@codelists[i][[1]]@Code
-    for(j in 1:length(codelist)){
-      id <- codelist[j][[1]]@id
-      name <- codelist[j][[1]]@label$en
-      if(clName %in% colnames(t1)){
-        t1[clName][which(t1[clName]==id),] <- name
-      }
-    }
-  }
-  #get concepts
-  concepts <- as.data.frame(t1ssdmx@concepts)
-  if(concept){
-    return(concepts)
-  }else{
-    return(t1)
-  }
-}
-#Equivalent URL for SDMX-XML
-sdmxUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/TABLE1/20005+20001.1.5+1010+2102.1121+1122.A+D+N/all?startTime=2005&endTime=2014"
-
-sdmxData <- OECD(sdmxUrl)
-#end testing####
 
 #Arbitrary short test URL
 url <- "http://stats.oecd.org/SDMX-JSON/data/TABLE1/20005+20001.1.5+1010+2102.1121+1122.A+D+N/all?startTime=2005&endTime=2014&dimensionAtObservation=allDimensions"
