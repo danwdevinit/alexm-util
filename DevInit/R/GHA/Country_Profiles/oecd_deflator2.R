@@ -3,46 +3,69 @@
 #install.packages("dplyr")
 #install.packages("httpuv")
 #install.packages('WDI')
+#install.packages('rjson')
+#install.packages('RCurl')
 library(WDI)
-library(rsdmx)
 library(plyr)
 suppressPackageStartupMessages(library("dplyr"))
 library(httpuv)
+library(RCurl)
+library(rjson)
+library(rsdmx)
 
 #Configuration
 setwd("C:/git/alexm-util/DevInit/R/GHA/Country_Profiles")
 startYear <- "2000"
 endYear <- "2014"
 
-#OECD Developer API Function####
+
+####OECD SDMX-JSON function####
 OECD <- function(url){
-  #Fetch data
-  t1dsdmx <- readSDMX(url)
-  #Convert to DF
-  t1 <- as.data.frame(t1dsdmx)
-  #get codelists
-  cls <- t1ssdmx@codelists
-  codelists <- sapply(cls@codelists, function(x) x@id)
-  #Recode
-  for(i in 1:length(codelists)){
-    suffix <- paste("CL_",indicator,"_",sep="")
-    clName <- substr(codelists[i],nchar(suffix)+1,nchar(codelists[i]))
-    codelist <- cls@codelists[i][[1]]@Code
-    for(j in 1:length(codelist)){
-      id <- codelist[j][[1]]@id
-      name <- codelist[j][[1]]@label$en
-      if(clName %in% colnames(t1)){
-        t1[clName][which(t1[clName]==id),] <- name
+  content <- getURL(url, httpheader = list('User-Agent' = 'rsdmx-json/0.0.1'), ssl.verifypeer = FALSE, .encoding = "UTF-8")
+  BOM <- "\ufeff"
+  if(attr(regexpr(BOM, content), "match.length") != - 1){
+    content <- gsub(BOM, "", content)
+  }
+  rawJson <- fromJSON(content)
+  rawData <- rawJson$dataSets[[1]]$observations
+  rawStructure <- rawJson$structure
+  dimensions <- rawStructure$dimensions[[1]]
+  attributes <- rawStructure$attributes$observation
+  names <- c(sapply(dimensions, "[[", 2),"obsValue",sapply(attributes, "[[", 1))
+  ndim <- length(sapply(dimensions, "[[", 2))
+  natt <- 1+length(sapply(attributes, "[[", 1))
+  ncol <- ndim+natt
+  #data <- setNames(data.frame(matrix(ncol = ncol, nrow = 0)),names)
+  data <- matrix(ncol=ncol,nrow=length(rawData))
+  for(i in 1:length(rawData)){
+    row <- rawData[i]
+    rawDimensions <- names(row)
+    splitDimensions <- strsplit(rawDimensions,":")[[1]]
+    for(j in 1:length(splitDimensions)){
+      dimensionReference <- dimensions[[j]]$values
+      dimensionIndex <- as.integer(splitDimensions[j])+1
+      dimensionValue <- dimensionReference[[dimensionIndex]][[2]]
+      data[i,j] <- dimensionValue
+    }
+    for(j in 1:length(row[[1]])){
+      if(j>1){
+        attributeReference <- attributes[[j-1]]$values
+        rawAttIndex <- row[[1]][[j]]
+        if(is.null(rawAttIndex)){
+          attributeValue <- NA
+        }else{
+          attributeIndex <- as.integer(rawAttIndex)+1
+          attributeValue <- attributeReference[[attributeIndex]][[2]]
+        }
+      }else{
+        attributeValue <- as.double(row[[1]][[j]])
       }
+      data[i,ndim+j] <- attributeValue
     }
   }
-  #get concepts
-  concepts <- as.data.frame(t1ssdmx@concepts)
-  if(concept){
-    return(concepts)
-  }else{
-    return(t1)
-  }
+  data <- setNames(data.frame(data,stringsAsFactors=FALSE),names)
+  names(data)[which(names(data)=="Year")] <- "obsTime"
+  return(data)
 }
 
 #OECD Codelist Func####
@@ -79,11 +102,19 @@ OECDCode <- function(indicator){
 }
 
 #Data download####
-dataUrl <- paste0("http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/TABLE1/20005+20001+801+1+2+301+68+3+18+4+5+40+20+21+6+701+742+22+7+820+8+76+9+69+61+50+10+11+12+302+20002+918+20006+72+62+30+82+75+546+613+552+83+70+84+45+77+87+566+732+764+55+576+20007+20003+301+4+5+6+701+12+302+20011+1+2+68+3+18+4+5+40+21+6+22+7+76+9+69+61+50+10+12+20004+1+2+68+3+18+4+5+40+21+6+22+7+76+9+69+61+50+10+12+918.1.5+1010+1015+1100+1110+1120+1200+1210+1211+1212+1213+1214+1220+1230+1300+1310+1311+1320+1330+1301+1400+1410+1420+1500+1510+1520+1600+1610+1611+1612+1613+1614+1620+1621+1622+1623+1624+1630+1640+1700+1800+1810+1820+1900+1999+99999+1901+1902+1903+1904+1905+1906+60+70+2000+2100+2101+2102+2103+2104+547+2105+2106+2107+2108+2110+2901+2902+230+235+240+265+266+294+291+292+293+280+287+300+301+302+310+303+295+299+298+102+325+326+327+795+800+805+786+330+332+340+345+353+384+751+752+753+386+756+761+388+389+103+359+415+425+420+207+1+2+3+4.1121+1122+1120+1130+1140+1151+1152+1150.A+D+N/all?startTime=",startYear,"&endTime=",endYear)
+dataUrl <- paste0("http://stats.oecd.org/SDMX-JSON/data/TABLE2A/10200+10100+10010+71+86+64+62+30+66+35+57+45+93+65+63+61+88+55+85+89+10001+10002+130+142+133+136+139+189+10003+225+236+227+287+228+230+229+231+232+233+234+247+235+274+237+245+271+238+239+240+241+243+244+248+249+251+252+253+255+256+257+258+259+275+260+261+266+276+268+269+270+272+273+218+279+278+280+282+283+285+288+265+289+298+10004+10005+376+377+373+328+329+352+331+388+386+336+338+378+340+342+381+347+349+351+354+358+385+361+364+366+382+383+384+375+387+380+389+10006+425+428+431+434+437+440+446+451+454+457+460+463+489+498+10007+10008+725+728+730+740+735+738+742+745+748+751+752+753+755+761+732+764+765+769+789+10009+625+610+611+666+630+612+645+650+613+614+655+635+660+665+640+615+616+617+619+679+689+10011+530+540+543+546+549+552+555+558+561+566+573+576+550+580+589+798+10012+831+832+840+836+859+860+845+850+856+858+861+862+880+866+868+870+872+854+876+889+9998+10016+225+236+287+228+231+232+233+235+274+245+271+238+240+243+244+249+251+252+253+255+256+259+260+266+268+269+272+273+279+278+282+283+285+288+349+728+745+765+625+666+630+635+660+580+836+880+866+872+854+10017+248+279+265+740+614+615+10018+57+93+85+142+136+230+229+234+247+241+261+280+352+342+347+351+364+428+446+451+738+753+755+769+610+612+645+614+665+640+616+617+543+573+550+832+859+860+862+880+868+870+10019+71+86+64+66+65+63+55+130+133+139+227+239+257+275+276+270+218+376+377+352+336+338+378+340+381+354+358+385+366+382+383+384+425+431+434+437+440+454+457+460+463+730+751+764+611+613+655+616+540+543+549+555+831+832+859+845+856+861+870+876+10025+62+30+35+45+61+258+376+373+328+329+331+388+386+361+382+375+387+725+735+742+748+761+732+530+546+552+558+561+566+576+840+850+858+105+10024+88+89+189+237+289+298+380+389+489+498+752+789+650+619+679+689+589+798+889+9998+10030+236+287+228+229+231+232+233+234+247+235+271+238+240+241+243+244+251+252+253+255+256+259+260+266+268+269+272+273+278+282+283+285+288+349+351+364+428+446+625+614+10201+66+93+227+287+228+231+232+238+249+253+255+260+266+279+280+285+288+265+428+451+745+753+625+610+611+630+613+614+660+615+616+617+10202+230+233+244+257+268+270+376+377+328+329+352+338+378+340+381+349+354+385+382+383+384+375+446+457+761+765+655+831+832+836+859+860+845+856+861+862+880+866+870+872+854+10203+64+57+142+133+225+287+228+229+231+232+233+234+247+235+271+238+243+244+248+251+252+253+255+256+260+261+266+272+273+279+278+283+285+265+349+740+765+625+666+635+660+665+640+543+573+550+580+836+859+860+866+872+10150+913+914+916+915+910+906+917+918+919+901+905+904+909+912+988+903+907+902+927+989+816+975+900+959+974+967+963+964+966+10013+71+72+68+82+75+83+84+76+77+69+101+10014+86+93+85+610+611+612+613+614+615+616+617+87+102+10023+71+86+93+85+610+611+612+613+614+615+616+617+72+68+82+75+83+84+76+77+69+101+87+102+79+10040+225+236+227+287+228+230+229+231+232+233+234+247+235+274+245+271+238+239+240+241+243+244+248+249+251+252+253+255+256+257+259+275+260+261+266+268+269+270+272+273+278+280+282+283+285+288+265+377+328+329+352+378+340+381+349+354+382+383+384+375+446+457+832+836+862+880+866+870+872+854+10041+287+230+232+240+244+255+256+260+269+10152+990+996+98+878+1106+10026+10027.20005+20001+801+1+2+301+68+3+18+4+5+40+20+21+6+701+742+22+7+820+8+76+9+69+61+50+10+11+12+302+20002+1012+913+914+921+916+953+906+1011+1013+990+918+932+1311+811+1313+1312+944+901+905+912+988+903+958+976+812+104+951+978+971+959+948+974+967+963+923+964+960+966+928+20018+20006+72+62+30+82+75+546+613+552+83+70+84+45+77+87+566+732+764+55+576+20007+21600+1601+20003+301+4+5+6+701+12+302+20011+1+2+68+3+18+4+5+40+21+6+22+7+76+9+69+61+50+10+12+20004+1+2+68+3+18+4+5+40+21+6+22+7+76+9+69+61+50+10+12+918.1.216.A+D/all?dimensionAtObservation=allDimensions&pid=baa5e675-3487-422e-bb2a-4da97dbbfd4d&startTime=",startYear,"&endTime=",endYear)
 data <- OECD(dataUrl)
 
+#Sort out data type
+data$obsValue <- as.double(data$obsValue)
+data$obsTime <- as.integer(data$obsTime)
+data$REFERENCEPERIOD <- as.integer(data$REFERENCEPERIOD)
+
 #Split by data type####
-ncu <- subset(data,)
+current <- subset(data,DATATYPE=="Current Prices")
+constant <- subset(data,DATATYPE=="Constant Prices")
+current <- ddply(current,.(DONOR,obsTime),summarize,obsValue=sum(obsValue,na.rm=TRUE))
+constant <- ddply(constant,.(DONOR,obsTime,REFERENCEPERIOD),summarize,obsValue=sum(obsValue,na.rm=TRUE))
 
 #Implied deflator####
 deflator <- merge(current
@@ -156,4 +187,4 @@ deflator <- transform(deflator,obsValue=secondIfNotFirst(obsValue.x,obsValue.y))
 keep <- c("DONOR","obsTime","REFERENCEPERIOD","obsValue")
 deflator <- deflator[keep]
 deflator <- ddply(deflator,.(DONOR,obsTime,REFERENCEPERIOD),summarize,obsValue=obsValue[1])
-write.csv(deflator,"oecd_deflator.csv",na="",row.names=FALSE)
+write.csv(deflator,"oecd_deflator2.csv",na="",row.names=FALSE)

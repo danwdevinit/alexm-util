@@ -83,8 +83,8 @@ ndim <- length(sapply(dimensions, "[[", 2))
 natt <- 1+length(sapply(attributes, "[[", 1))
 ncol <- ndim+natt
 
-#Set column names. We've arbitrarily put dimensions first and attributes second
-data <- setNames(data.frame(matrix(ncol = ncol, nrow = 0)),names)
+#Initialize data. We've arbitrarily put dimensions first and attributes second
+data <- matrix(ncol=ncol,nrow=length(rawData))
 
 #Parse raw data
 for(i in 1:length(rawData)){
@@ -120,6 +120,9 @@ for(i in 1:length(rawData)){
     data[i,ndim+j] <- attributeValue
   }
 }
+
+#Make our matrix a data frame
+data <- setNames(data.frame(data,stringsAsFactors=FALSE),names)
 
 #Just to match the prior SDMX var names
 names(data)[which(names(data)=="Year")] <- "obsTime"

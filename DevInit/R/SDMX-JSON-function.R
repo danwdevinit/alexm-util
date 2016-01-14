@@ -2,6 +2,7 @@
 library(RCurl)
 library(rjson)
 
+####OECD SDMX-JSON function####
 OECD <- function(url){
   content <- getURL(url, httpheader = list('User-Agent' = 'rsdmx-json/0.0.1'), ssl.verifypeer = FALSE, .encoding = "UTF-8")
   BOM <- "\ufeff"
@@ -17,7 +18,8 @@ OECD <- function(url){
   ndim <- length(sapply(dimensions, "[[", 2))
   natt <- 1+length(sapply(attributes, "[[", 1))
   ncol <- ndim+natt
-  data <- setNames(data.frame(matrix(ncol = ncol, nrow = 0)),names)
+  #data <- setNames(data.frame(matrix(ncol = ncol, nrow = 0)),names)
+  data <- matrix(ncol=ncol,nrow=length(rawData))
   for(i in 1:length(rawData)){
     row <- rawData[i]
     rawDimensions <- names(row)
@@ -44,6 +46,11 @@ OECD <- function(url){
       data[i,ndim+j] <- attributeValue
     }
   }
+  data <- setNames(data.frame(data,stringsAsFactors=FALSE),names)
   names(data)[which(names(data)=="Year")] <- "obsTime"
   return(data)
 }
+
+####Example####
+url <- "http://stats.oecd.org/SDMX-JSON/data/TABLE1/20005+20001+801+1+2+301+68+3+18+4+5+40+20+21+6+701+742+22+7+820+8+76+9.1.5+1010+2102.1121+1122.A+D+N/all?startTime=2005&endTime=2014&dimensionAtObservation=allDimensions"
+data <- OECD(url) 
