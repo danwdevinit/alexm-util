@@ -7,29 +7,14 @@ csvFile = process.argv[2],
 underlying = 0,
 upState = 0,
 downState = 0,
-change = process.argv[3]?parseFloat(process.argv[3])/100:0.05,
+expiriesAhead = process.argv[3]?parseInt(process.argv[3]):0,
+date="",
 data = {},
-probabilities = {};
-
-function standardDev(values){
-    var avg = average(values);
-    var squareDiffs = values.map(function(value){
-        var diff = value - avg;
-        var sqrDiff = diff * diff;
-        return sqrDiff;
-    });
-    var avgSquareDiff = average(squareDiffs);
-    var stdDev = Math.sqrt(avgSquareDiff);
-    return stdDev;
-};
- 
-function average(data){
-    var sum = data.reduce(function(sum, value){
-        return sum + value;
-    }, 0);
-    var avg = sum / data.length;
-    return avg;
-};
+probabilities = {},
+changes = [];
+for(var i = 1; i<21; i++){
+    changes.push(i/2);
+}
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
@@ -54,8 +39,6 @@ function isCBOEdate(string){
 
 basicCSV.readCSV(csvFile, {dropHeader: true}, function (error, rows) {
     underlying = rows[2][0];
-    upState = underlying*(1+change);
-    downState = underlying*(1-change);
     var rawData = rows.slice(6,rows.length);
     var dateIndicies = [];
     for(var i = 0; i < rawData.length; i++){
@@ -96,11 +79,16 @@ basicCSV.readCSV(csvFile, {dropHeader: true}, function (error, rows) {
 });
 
 function analyze(){
-    for(var date in data){
-        var options = data[date],
+    var dates = Object.keys(data);
+    date = dates[expiriesAhead];
+    for(var j = 0; j<changes.length; j++){
+        var change = changes[j],
+        upState = underlying*(1+change),
+        downState = underlying*(1-change);
+        options = data[date],
         Farr = [],
         Parr = [];
-        probabilities[date] = {"down":[],"neutral":[],"up":[]};
+        probabilities[change] = {"down":[],"neutral":[],"up":[]};
         for(var i = 0; i < options.length; i++){
             var option = options[i],
             strike = option.strike,
@@ -135,9 +123,9 @@ function analyze(){
                     arrowSum = arrowFlat.reduce(function(a,b){return a+b;});
                     if(arrowMin>=0 && arrowMax>0 && arrowMax<=1 && arrowSum<=1){
                         var inducedProb = arrowFlat.map(function(num){return num/arrowSum;});
-                        probabilities[date].down.push({"prob":inducedProb[0],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
-                        probabilities[date].neutral.push({"prob":inducedProb[1],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
-                        probabilities[date].up.push({"prob":inducedProb[2],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
+                        probabilities[change].down.push({"prob":inducedProb[0],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
+                        probabilities[change].neutral.push({"prob":inducedProb[1],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
+                        probabilities[change].up.push({"prob":inducedProb[2],"call1":Farr[val[0]].call,"strike1":Farr[val[0]].strike,"call2":Farr[val[1]].call,"strike2":Farr[val[1]].strike,"call3":Farr[val[2]].call,"strike3":Farr[val[2]].strike});
                     };
                 };
             }
@@ -147,15 +135,18 @@ function analyze(){
 
 function print(){
     console.log("date,change,state,prob,call,strike");
-    for(var date in probabilities){
-        var percent = probabilities[date];
-        for(var state in percent){
-            var results = percent[state];
-            for(var j = 0; j < results.length;j++){
-                var value = results[j].prob;
-                console.log(date+","+change+","+state+","+value+","+results[j].call1+","+results[j].strike1);
-                console.log(date+","+change+","+state+","+value+","+results[j].call2+","+results[j].strike2);
-                console.log(date+","+change+","+state+","+value+","+results[j].call3+","+results[j].strike3);
+    for(var i = 1; i<21; i++){
+        var change = i/2,
+        percent = probabilities[change];
+        if(percent){
+            for(var state in percent){
+                var results = percent[state];
+                for(var j = 0; j < results.length;j++){
+                    var value = results[j].prob;
+                    console.log(date+","+change+","+state+","+value+","+results[j].call1+","+results[j].strike1);
+                    console.log(date+","+change+","+state+","+value+","+results[j].call2+","+results[j].strike2);
+                    console.log(date+","+change+","+state+","+value+","+results[j].call3+","+results[j].strike3);
+                };
             };
         };
     };

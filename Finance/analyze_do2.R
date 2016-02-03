@@ -9,7 +9,7 @@ if(windows){pathpre<-"C:"}else{pathpre<-"~"}
 wd <- paste0(pathpre,"/git/alexm-util/Finance/data")
 setwd(wd)
 
-df <- read.csv("amzn_mar2.csv")
+df <- read.csv("spx.csv")
 
 averages <- ddply(df,.(change,state),summarize,avg=mean(prob),sd=sd(prob),count=length(prob))
 p1 <- ggplot(data=averages,aes(x=change,y=avg,ymax=avg+sd,ymin=avg-sd,group=state,colour=state)) +
