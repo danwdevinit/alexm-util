@@ -11,6 +11,7 @@ dat <- merge(pov,
              by = c("id","year"),                    
              sort = FALSE
              ,suffixes=c(".pov",".pop"))
+dat <- transform(dat,value.pov=value.pov/100)
 dat$value <- dat$value.pov*dat$value.pop
 keep <- c("id","year","value")
 dat <- dat[keep]
