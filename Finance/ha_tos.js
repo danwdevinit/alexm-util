@@ -12,7 +12,7 @@ date="",
 data = {},
 probabilities = {},
 changes = [];
-for(var i = 1; i<21; i++){
+for(var i = 1; i<11; i++){
     changes.push(i/2);
 }
 
@@ -135,7 +135,7 @@ function analyze(){
 
 function print(){
     console.log("date,change,state,prob,call,strike");
-    for(var i = 1; i<21; i++){
+    for(var i = 1; i<11; i++){
         var change = i/2,
         percent = probabilities[change];
         if(percent){
