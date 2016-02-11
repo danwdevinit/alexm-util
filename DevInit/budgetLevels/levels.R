@@ -54,6 +54,7 @@ levels <- transform(levels,id=gsub(" ","-",tolower(gsub("[^[:alnum:] ]", "", nam
 levels$sectoral <- "FALSE"
 levels <- levels[c(3,4,1,2)]
 old.levels <- read.csv("C:/git/digital-platform/reference/domestic-budget-level.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+sectoral <- subset(old.levels,sectoral==TRUE)
 old.levels <- old.levels[c(1,2,3,5)]
 levels <- merge(
   levels
@@ -62,7 +63,6 @@ levels <- merge(
   ,all.x=TRUE
 )
 levels <- levels[order(levels$id)[!duplicated(sort(levels$id))],]
-write.csv(levels,"./results_levels.csv",row.names=FALSE,na="")
-#new.levels <- rbind(levels,old.levels)
-#new.levels <- unique(new.levels)
-#write.csv(new.levels,"./results_levels.csv",row.names=FALSE,na="")
+new.levels <- rbind(levels,sectoral)
+new.levels <- unique(new.levels)
+write.csv(new.levels,"./results_levels.csv",row.names=FALSE,na="")

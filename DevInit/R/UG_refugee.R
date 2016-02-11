@@ -3,7 +3,7 @@
 #install.packages("plyr")
 library(plyr)
 
-wd <- "C:/Users/alexm/Documents/Ugandan Budget Data/"
+wd <- "D:/Documents/external/Ugandan Budget Data/"
 setwd(wd)
 
 #Define the datasets we want to work with

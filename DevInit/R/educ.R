@@ -43,7 +43,7 @@ geocode.yahoo <- function(address, key) {
 
 ####Data####
 
-wd <- "C:/Users/alexm/Documents/Rwork"
+wd <- "D:/Documents/external/"
 setwd(wd)
 
 data <- read.csv("Uganda Primary Leaving Exam Results 2014.csv"
