@@ -32,3 +32,6 @@ data <- transform(data,contributedDeflated=USD.committed.contributed*deflator)
 #Example String transformations
 data <- transform(data,USAisDONOR = (Donor=="United States of America") )
 
+#Example write
+write.csv(data,"fts_transformed.csv",na="",row.names=FALSE)
+
