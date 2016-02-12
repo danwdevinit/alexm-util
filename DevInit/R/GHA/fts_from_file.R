@@ -35,3 +35,24 @@ data <- transform(data,USAisDONOR = (Donor=="United States of America") )
 #Example write
 write.csv(data,"fts_transformed.csv",na="",row.names=FALSE)
 
+#Merge example
+Recipient.Organization <- c("Common Humanitarian Fund","ACF - France","Danish Red Cross")
+channel <- c("Multilateral","Public Sector","RCRC")
+channels <- data.frame(Recipient.Organization,channel)
+
+data <- merge(
+  data
+  ,channels
+  ,by=c("Recipient.Organization")
+  ,all.x=TRUE
+  )
+
+#Alternatively
+channels <- list(
+  "Common Humanitarian Fund"="Multilateral",
+  "ACF - France"="Public Sector",
+  "Danish Red Cross"="RCRC"
+  )
+
+data <- transform(data,channel=channels[Recipient.Organization])
+
