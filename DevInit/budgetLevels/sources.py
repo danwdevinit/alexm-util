@@ -12,7 +12,7 @@ import pdb
 #Parse Options
 parser = OptionParser()
 #parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_originalnetlending.xlsx",
-parser.add_option("-i", "--input", dest="input", default = "S:/Projects/Programme resources/Data/Data sets/Domestic Government Expenditure/Government budgets/Final data government finance_VA100415_zeronetlending.xlsx",
+parser.add_option("-i", "--input", dest="input", default = "D:/Documents/Final data government finance_RW180216.xlsx",
                 help="Input file", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="./domestic-sources.csv",
                 help="Output CSV file", metavar="FILE")
@@ -25,7 +25,7 @@ def uni(input):
 
 #Import xlsx data
 inPath = options.input
-wb = load_workbook(filename = inPath)
+wb = load_workbook(filename = inPath, data_only=True)
 sheets = wb.get_sheet_names()
 
 sources = []
@@ -35,7 +35,7 @@ for sheet in sheets:
     iso = ""
     yearCols = {}
     print('Reading sheet: '+country)
-    for row in ws.iter_rows():
+    for row in ws.rows:
         colLen = len(row)
         if row[0].column=="A" and row[0].row==1:
             iso = uni(row[0].value)
@@ -55,18 +55,24 @@ for sheet in sheets:
                     if comment:
                         year = yearCols[cell.column]
                         obj = {}
-                        obj['Country']=country
-                        obj['ISO3']=iso
-                        obj['Year']=uni(year)
-                        obj['Comment']=uni(comment.text.replace("\n"," "))
+                        obj['id']=iso
+                        obj['year']=uni(year)
+                        obj['comment']=uni(comment.content.replace("\n"," "))
+                        obj['pub-date']=""
                         try:
-                            obj['URL']=obj['Comment'][obj['Comment'].lower().index("http"):].strip()
+                            obj['pub-url']=obj['comment'][obj['comment'].lower().index("http"):].strip()
                         except:
-                            obj['URL']=""
+                            obj['pub-url']=""
+                        if "Author:" in obj['comment']:
+                            obj['pub-title']=obj['comment'][8:]
+                        else:
+                            obj['pub-title']=obj['comment']
+                        if obj['pub-url']!="":
+                            obj['pub-title'] = obj['pub-title'][:obj['pub-title'].lower().index("http")].strip()
                         sources.append(obj)
 #Output results
 print('Writing CSV...')
-keys = sources[0].keys()
+keys = ['id','year','pub-date','pub-title','pub-url','comment']
 with open(options.output, 'wb') as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()

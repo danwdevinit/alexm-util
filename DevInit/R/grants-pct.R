@@ -6,9 +6,9 @@ df <- read.csv("./domestic.csv",colClasses=c("character","numeric","character","
 totalRevGrants <- subset(df,l1=="total-revenue-and-grants" & is.na(l2))
 grantPhrases <- c("grants","official-grants","total-grants")
 totalGrants <- subset(df,l1=="total-revenue-and-grants" & (l2 %in% grantPhrases) & is.na(l3))
-setdiff(unique(totalRevGrants$id),unique(totalGrants$id))
-jmGrants <- subset(df,id=="JM" & l3=="grants" & is.na(l4))
-totalGrants <- rbind(totalGrants,jmGrants)
+# setdiff(unique(totalRevGrants$id),unique(totalGrants$id))
+# jmGrants <- subset(df,id=="JM" & l3=="grants" & is.na(l4))
+# totalGrants <- rbind(totalGrants,jmGrants)
 keep <- c("id","year","value.ncu","budget.type")
 totalRevGrants <- totalRevGrants[keep]
 totalGrants <- totalGrants[keep]
