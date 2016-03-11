@@ -43,7 +43,10 @@ with open(options.concept,'rb') as inFile:
             obj = {}
             for i in range(0,headerLen):
                 var = header[i]
-                obj[var] = row[i]
+                try:
+                    obj[var] = row[i]
+                except:
+                    obj[var] = ""
             concepts["country-year"][obj['id']] = obj
         elif row[0]=="reference":
             obj = {}
