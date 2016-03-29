@@ -4,7 +4,7 @@ library(ggplot2)
 library(plyr)
 library(scales)
 
-input <- "tsla"
+input <- "aapl"
 
 windows <- TRUE
 if(windows){pathpre<-"C:"}else{pathpre<-"~"}
@@ -31,7 +31,6 @@ dates <- sapply(dates,splitdate)
 setClass("myDate")
 setAs("character","myDate", function(from) as.Date(from, format="%m/%d/%y"))
 
-if(exists("panelAverages")){rm(panelAverages)}
 if(exists("command")){rm(command)}
 for(i in 1:length(dates)){
   outfilename <- paste0(dateFolder,dates[i],input,".csv")
@@ -44,6 +43,7 @@ for(i in 1:length(dates)){
 print(command)
 ########################################################################################
 
+if(exists("panelAverages")){rm(panelAverages)}
 for(i in 1:length(dates)){
   outfilename <- paste0(dateFolder,dates[i],input,".csv")
   message(outfilename)
@@ -85,6 +85,24 @@ for(i in 1:length(dates)){
     geom_errorbar(width=0.2) +
     ggtitle(title)
   ggsave(paste0(dateFolder,"p2-",df[1,1],".jpg"),plot=p2,height=7,width=14)
+  
+  #Density
+  jpeg(
+    file=paste0(dateFolder,"p3-",df[1,1],".jpg")
+    ,width=14
+    ,height=7
+    ,res=300
+    ,units="in"
+      )
+  par(mfrow=c(3, 1))
+  states <- unique(df$state)
+  for (i in 1:length(states)) {
+    d <- density(df[which(df$state==states[i]),]$prob)
+    plot(d, type="n", main=paste("Kernal density",states[i],"states",timestamp))
+    polygon(d,  border="#ba0c2f", col="#ba0c2f")
+  }
+  dev.off()
+  par(mfrow=c(1, 1))
 }
 underlying <- 233.72
 percent <- 0.05
@@ -92,8 +110,8 @@ percent <- 0.05
 sub <- panelAverages
 limited_averages <- ddply(sub,.(date,state),summarize,avg=mean(avg),sd=mean(sd),count=sum(count))
 p3 <- ggplot(data=limited_averages,aes(x=date,y=avg,ymax=avg+sd,ymin=avg-sd,group=state,colour=state)) +
-  scale_x_date(date_breaks = "1 week") +
+  scale_x_date(date_breaks = "2 months") +
   geom_line(size=1) +
   geom_point(size=3) +
   geom_errorbar(width=0.2)
-ggsave(paste0(dateFolder,"p3.jpg"),plot=p3,height=7,width=14)
+ggsave(paste0(dateFolder,"p4.jpg"),plot=p3,height=7,width=14)

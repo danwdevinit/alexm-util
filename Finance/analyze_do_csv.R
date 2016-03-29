@@ -11,7 +11,7 @@ setwd(wd)
 setClass("myDate")
 setAs("character","myDate", function(from) as.Date(from, format="%m/%d/%y"))
 
-df <- read.csv("apr1_tsla.csv"
+df <- read.csv("tsla_2016-03-29/SEP_16_tsla.csv"
                ,header=TRUE
                ,colClasses=c("myDate","numeric","character","numeric","numeric","numeric"))
 timestamp <- paste0(

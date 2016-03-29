@@ -12,7 +12,7 @@ date="",
 data = {},
 probabilities = {},
 changes = [];
-for(var i = 1; i<11; i++){
+for(var i = 1; i<41; i++){
     changes.push(i/2);
 }
 
@@ -83,8 +83,8 @@ function analyze(){
     date = dates[expiriesAhead];
     for(var j = 0; j<changes.length; j++){
         var change = changes[j],
-        upState = underlying*(1+change),
-        downState = underlying*(1-change);
+        upState = underlying*(1+(change/100)),
+        downState = underlying*(1-(change/100));
         options = data[date],
         Farr = [],
         Parr = [];
@@ -135,7 +135,7 @@ function analyze(){
 
 function print(){
     console.log("date,change,state,prob,call,strike");
-    for(var i = 1; i<11; i++){
+    for(var i = 1; i<41; i++){
         var change = i/2,
         percent = probabilities[change];
         if(percent){
