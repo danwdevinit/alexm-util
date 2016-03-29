@@ -43,7 +43,7 @@ states <- unique(sub$state)
 for (i in 1:length(states)) {
   d <- density(sub[which(sub$state==states[i]),]$prob)
   plot(d, type="n", main=states[i])
-  polygon(d, col="#ba0c2f", border="#ba0c2f")
+  polygon(d,  border="#ba0c2f")
 }
 
 #Box Plot

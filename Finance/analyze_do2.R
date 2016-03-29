@@ -32,7 +32,7 @@ boxplot(prob~state
         ,xlab="state")
 
 #Vert hist?
-sub <- df
+sub <- subset(df,strike>=95 & strike<=115)
 set.seed(1234)
 bins <- 20
 probBin <- (range(sub$prob)[2]-range(sub$prob)[1])/bins
@@ -53,6 +53,6 @@ dat$state <- factor(dat$state, ordered=T)
 dat$probCount <- factor(dat$probCount)
 
 p <- ggplot(data = dat, aes(x=probCount)) 
-p <- p + geom_histogram(aes(weights=count, fill=state))
+p <- p + stat_count(aes(weights=count, fill=state))
 p <- p + facet_wrap( ~ state, ncol=1)
 p
