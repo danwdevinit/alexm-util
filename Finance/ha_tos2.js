@@ -12,8 +12,9 @@ expiriesAhead = process.argv[3]?parseInt(process.argv[3]):0,
 date="",
 data = {},
 wstream = fs.createWriteStream(process.argv[4]),
-changes = [];
-for(var i = 1; i<41; i++){
+changes = [],
+changeMax = process.argv[5]?parseInt(process.argv[5]):20;
+for(var i = 1; i<(changeMax*2+1); i++){
     changes.push(i/2);
 }
 

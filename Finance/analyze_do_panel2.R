@@ -34,7 +34,7 @@ setAs("character","myDate", function(from) as.Date(from, format="%m/%d/%y"))
 if(exists("panelAverages")){rm(panelAverages)}
 for(i in 1:length(dates)){
   outfilename <- paste0(dateFolder,dates[i],input,".csv")
-  command <- paste("node ha_tos2.js",infilename,(i-1),outfilename)
+  command <- paste("node ha_tos2.js",infilename,(i-1),outfilename,10)
   system(command)
   df <- read.csv(outfilename
                  ,header=TRUE
