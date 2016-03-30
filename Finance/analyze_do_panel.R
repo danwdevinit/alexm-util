@@ -1,3 +1,4 @@
+####Command####
 #install.packages("ggplot2")
 #install.packages("dplyr")
 library(ggplot2)
@@ -41,7 +42,7 @@ for(i in 1:length(dates)){
   }
 }
 print(command)
-########################################################################################
+####Generate visuals####
 
 if(exists("panelAverages")){rm(panelAverages)}
 for(i in 1:length(dates)){
