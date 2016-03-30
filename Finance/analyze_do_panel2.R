@@ -1,4 +1,3 @@
-####Command####
 #install.packages("ggplot2")
 #install.packages("dplyr")
 library(ggplot2)
@@ -41,8 +40,8 @@ for(i in 1:length(dates)){
     command <- paste(command,"& node ha_tos2.js",infilename,(i-1),outfilename)
   }
 }
-print(command)
-####Create visuals####
+
+system(command)
 
 if(exists("panelAverages")){rm(panelAverages)}
 for(i in 1:length(dates)){

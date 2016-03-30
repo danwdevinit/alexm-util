@@ -37,7 +37,7 @@ function isCBOEdate(string){
     date = moment(monthStr+" "+yearStr,"MMM YY");
     return date.isValid();
 };
-
+console.log("Beginning import from "+csvFile+" and export to "+process.argv[4]+"...");
 basicCSV.readCSV(csvFile, {dropHeader: true}, function (error, rows) {
     underlying = rows[2][0];
     var rawData = rows.slice(6,rows.length);
@@ -81,6 +81,7 @@ basicCSV.readCSV(csvFile, {dropHeader: true}, function (error, rows) {
 });
 
 function analyze(){
+    console.log("Beginning analysis...")
     var dates = Object.keys(data);
     date = dates[expiriesAhead];
     wstream.write("date,change,state,prob,call,strike\n");
@@ -112,6 +113,7 @@ function analyze(){
         var range = [];
         for(var i = 0; i < Farr.length; i++){range.push(i);};
         var com = new cmb(range,3);
+        var viable = 0;
         com.each(
             function(val){
                 var F = $M([Farr[val[0]].row,Farr[val[1]].row,Farr[val[2]].row]),
@@ -124,20 +126,22 @@ function analyze(){
                     arrowMin = Math.min.apply(Math, arrowFlat),
                     arrowSum = arrowFlat.reduce(function(a,b){return a+b;});
                     if(arrowMin>=0 && arrowMax>0 && arrowMax<=1 && arrowSum<=1){
+                        viable += 1
                         var inducedProb = arrowFlat.map(function(num){return num/arrowSum;});
-                        wstream.write(date+","+change+",down,"+inducedProb[0]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n");
-                        wstream.write(date+","+change+",down,"+inducedProb[0]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n");
-                        wstream.write(date+","+change+",down,"+inducedProb[0]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n");
-                        wstream.write(date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n");
-                        wstream.write(date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n");
-                        wstream.write(date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n");
-                        wstream.write(date+","+change+",up,"+inducedProb[2]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n");
-                        wstream.write(date+","+change+",up,"+inducedProb[2]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n");
-                        wstream.write(date+","+change+",up,"+inducedProb[2]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n");
+                        wstream.write(date+","+change+",down,"+inducedProb[0]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
+                        date+","+change+",down,"+inducedProb[0]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
+                        date+","+change+",down,"+inducedProb[0]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n"+
+                        date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
+                        date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
+                        date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n"+
+                        date+","+change+",up,"+inducedProb[2]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
+                        date+","+change+",up,"+inducedProb[2]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
+                        date+","+change+",up,"+inducedProb[2]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n");
                     };
                 };
             }
         );
+        console.log("Found "+viable+" viable solutions for "+change+"%...");
     };
     wstream.end();
 };
