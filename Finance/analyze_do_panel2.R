@@ -31,22 +31,11 @@ dates <- sapply(dates,splitdate)
 setClass("myDate")
 setAs("character","myDate", function(from) as.Date(from, format="%m/%d/%y"))
 
-if(exists("command")){rm(command)}
-for(i in 1:length(dates)){
-  outfilename <- paste0(dateFolder,dates[i],input,".csv")
-  if(!exists("command")){
-    command <- paste("node ha_tos2.js",infilename,(i-1),outfilename)
-  }else{
-    command <- paste(command,"& node ha_tos2.js",infilename,(i-1),outfilename)
-  }
-}
-
-system(command)
-
 if(exists("panelAverages")){rm(panelAverages)}
 for(i in 1:length(dates)){
   outfilename <- paste0(dateFolder,dates[i],input,".csv")
-  message(outfilename)
+  command <- paste("node ha_tos2.js",infilename,(i-1),outfilename)
+  system(command)
   df <- read.csv(outfilename
                  ,header=TRUE
                  ,colClasses=c("myDate","numeric","character","numeric","numeric","numeric"))
