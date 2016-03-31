@@ -59,4 +59,5 @@ thesaurusLookup("Caritas Dev Kalemie")
 data$Appealing.org <- sapply(data$Appealing.agency.top.org.,thesaurusLookup)
 
 #see the difference
-setdiff(data$Appealing.org,data)
+setdiff(data$Appealing.agency.top.org.,data$Appealing.org)
+setdiff(data$Appealing.org,data$Appealing.agency.top.org.)
