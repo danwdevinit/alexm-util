@@ -14,11 +14,25 @@ data <- transform(data,Item.ID=as.numeric(gsub(",","", Item.ID)))
 #Remove total row
 data <- subset(data,Donor!="Total:")
 
-categories = list(
-  "cashForFood" = c("cash for food","cash food","alternative matches"),
-  "cashTransfer" = c("cash transfer","transfer cash"),
-  "unconditionalCash" = c("unconditional","another word")
+thesaurus = list(
+  "Caritas" = c("Caritas","Caritas Dev Kalemie","Caritas Haiti","Caritas Kananga"),
+  "World Vision" = c("World Vision","World Vision Kenya","World Vision South Sudan","World Vision Sudan")
 )
+thesaurusLookup <- function(x){
+  result <- NA
+  for(i in 1:length(thesaurus)){
+    if(x %in% thesaurus[[i]]){
+      result <- names(thesaurus)[i]
+    }
+  }
+  if(is.na(result)){
+    return(x)
+  }
+  else{
+    return(result)
+  }
+}
+
 for(i in 1:length(categories)){
   categoryWords <- categories[[i]]
   category <- names(categories[i])

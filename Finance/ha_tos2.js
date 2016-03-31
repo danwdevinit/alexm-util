@@ -93,56 +93,60 @@ function analyze(){
         options = data[date],
         Farr = [],
         Parr = [];
-        for(var i = 0; i < options.length; i++){
-            var option = options[i],
-            strike = option.strike,
-            price = option.price,
-            call = option.call;
-            Parr.push(price);
-            if(call){
-                var upVal = Math.max(upState-strike,0),
-                neuVal = Math.max(underlying-strike,0),
-                downVal = Math.max(downState-strike,0);
-            }else{
-                var upVal = Math.max(strike-upState,0),
-                neuVal = Math.max(strike-underlying,0),
-                downVal = Math.max(strike-downState,0);
-            };
-            var rowData = {"row":[downVal,neuVal,upVal],"call":call,"strike":strike};
-            Farr.push(rowData);
-        };
-        var range = [];
-        for(var i = 0; i < Farr.length; i++){range.push(i);};
-        var com = new cmb(range,3);
-        var viable = 0;
-        com.each(
-            function(val){
-                var F = $M([Farr[val[0]].row,Farr[val[1]].row,Farr[val[2]].row]),
-                P = $M([Parr[val[0]],Parr[val[1]],Parr[val[2]]]);
-                if(F.inv()){
-                    var arrowPrices = F.inv().x(P).toArray(),
-                    arrowFlat = [];
-                    arrowFlat = arrowFlat.concat.apply(arrowFlat,arrowPrices);
-                    var arrowMax = Math.max.apply(Math, arrowFlat),
-                    arrowMin = Math.min.apply(Math, arrowFlat),
-                    arrowSum = arrowFlat.reduce(function(a,b){return a+b;});
-                    if(arrowMin>=0 && arrowMax>0 && arrowMax<=1 && arrowSum<=1){
-                        viable += 1
-                        var inducedProb = arrowFlat.map(function(num){return num/arrowSum;});
-                        wstream.write(date+","+change+",down,"+inducedProb[0]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
-                        date+","+change+",down,"+inducedProb[0]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
-                        date+","+change+",down,"+inducedProb[0]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n"+
-                        date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
-                        date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
-                        date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n"+
-                        date+","+change+",up,"+inducedProb[2]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
-                        date+","+change+",up,"+inducedProb[2]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
-                        date+","+change+",up,"+inducedProb[2]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n");
-                    };
+        if (options.length>0) {
+            for(var i = 0; i < options.length; i++){
+                var option = options[i],
+                strike = option.strike,
+                price = option.price,
+                call = option.call;
+                Parr.push(price);
+                if(call){
+                    var upVal = Math.max(upState-strike,0),
+                    neuVal = Math.max(underlying-strike,0),
+                    downVal = Math.max(downState-strike,0);
+                }else{
+                    var upVal = Math.max(strike-upState,0),
+                    neuVal = Math.max(strike-underlying,0),
+                    downVal = Math.max(strike-downState,0);
                 };
-            }
-        );
-        console.log("Found "+viable+" viable solutions for "+change+"%...");
+                var rowData = {"row":[downVal,neuVal,upVal],"call":call,"strike":strike};
+                Farr.push(rowData);
+            };
+            var range = [];
+            for(var i = 0; i < Farr.length; i++){range.push(i);};
+            var com = new cmb(range,3);
+            var viable = 0;
+            com.each(
+                function(val){
+                    var F = $M([Farr[val[0]].row,Farr[val[1]].row,Farr[val[2]].row]),
+                    P = $M([Parr[val[0]],Parr[val[1]],Parr[val[2]]]);
+                    if(F.inv()){
+                        var arrowPrices = F.inv().x(P).toArray(),
+                        arrowFlat = [];
+                        arrowFlat = arrowFlat.concat.apply(arrowFlat,arrowPrices);
+                        var arrowMax = Math.max.apply(Math, arrowFlat),
+                        arrowMin = Math.min.apply(Math, arrowFlat),
+                        arrowSum = arrowFlat.reduce(function(a,b){return a+b;});
+                        if(arrowMin>=0 && arrowMax>0 && arrowMax<=1 && arrowSum<=1){
+                            viable += 1
+                            var inducedProb = arrowFlat.map(function(num){return num/arrowSum;});
+                            wstream.write(date+","+change+",down,"+inducedProb[0]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
+                            date+","+change+",down,"+inducedProb[0]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
+                            date+","+change+",down,"+inducedProb[0]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n"+
+                            date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
+                            date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
+                            date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n"+
+                            date+","+change+",up,"+inducedProb[2]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
+                            date+","+change+",up,"+inducedProb[2]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
+                            date+","+change+",up,"+inducedProb[2]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n");
+                        };
+                    };
+                }
+            );
+            console.log("Found "+viable+" viable solutions for "+change+"%...");
+        }else{
+            console.log("No valid options found.")
+        };
     };
     wstream.end();
 };

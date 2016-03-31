@@ -5,6 +5,7 @@ library(plyr)
 library(scales)
 
 input <- "spx"
+percentMax <- 10
 
 windows <- TRUE
 if(windows){pathpre<-"C:"}else{pathpre<-"~"}
@@ -22,7 +23,7 @@ raw <- read.csv(
   ,as.is=TRUE
 )
 splitdate <- function(x){
-  return(gsub(" ","_",strsplit(x," (",fixed=TRUE)[[1]][1]))
+  return(gsub("___","_",gsub("[ ()]","_",strsplit(x,"100")[[1]][1]),fixed=TRUE))
 }
 dates <- unique(raw[,1])
 dates <- subset(dates,dates!="")
@@ -34,7 +35,7 @@ setAs("character","myDate", function(from) as.Date(from, format="%m/%d/%y"))
 if(exists("panelAverages")){rm(panelAverages)}
 for(i in 1:length(dates)){
   outfilename <- paste0(dateFolder,dates[i],input,".csv")
-  command <- paste("node ha_tos2.js",infilename,(i-1),outfilename,10)
+  command <- paste("node ha_tos2.js",infilename,(i-1),outfilename,percentMax)
   system(command)
   df <- read.csv(outfilename
                  ,header=TRUE
