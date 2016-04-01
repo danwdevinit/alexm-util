@@ -17,10 +17,6 @@ changeMax = process.argv[5]?parseInt(process.argv[5]):20;
 for(var i = 1; i<(changeMax*2+1); i++){
     changes.push(i/2);
 }
-var writable = true;
-var doWrite = function(data){
-    writeable = wstream.write(data);    
-};
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
@@ -134,7 +130,7 @@ function analyze(){
                         if(arrowMin>=0 && arrowMax>0 && arrowMax<=1 && arrowSum<=1){
                             viable += 1
                             var inducedProb = arrowFlat.map(function(num){return num/arrowSum;});
-                            var chunk = date+","+change+",down,"+inducedProb[0]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
+                            wstream.write(date+","+change+",down,"+inducedProb[0]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
                             date+","+change+",down,"+inducedProb[0]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
                             date+","+change+",down,"+inducedProb[0]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n"+
                             date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
@@ -142,13 +138,7 @@ function analyze(){
                             date+","+change+",neutral,"+inducedProb[1]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n"+
                             date+","+change+",up,"+inducedProb[2]+","+Farr[val[0]].call+","+Farr[val[0]].strike+"\n"+
                             date+","+change+",up,"+inducedProb[2]+","+Farr[val[1]].call+","+Farr[val[1]].strike+"\n"+
-                            date+","+change+",up,"+inducedProb[2]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n";
-                            if (writable) {
-                                doWrite(chunk)
-                            } else {
-                                wstream.removeAllListeners('drain');
-                                wstream.once('drain',doWrite(chunk));
-                            };
+                            date+","+change+",up,"+inducedProb[2]+","+Farr[val[2]].call+","+Farr[val[2]].strike+"\n");
                         };
                     };
                 }
