@@ -48,15 +48,24 @@ function parseCSV(e,r,b){
         var close = parseFloat(raw[row].split(",")[4]);
         data.push(close);
     };
-    var stdDev = standardDev(data);
-    console.log("The standard deviation for "+stock+
-                " from "+latest.format("MMMM Do, YYYY")+
+    var dailyChanges = data.map(function(value,index,values){
+        if (index+1<=data.length) {
+            return(values[index+1]-value);
+        } else {
+            return(null);
+        };
+    });
+    dailyChanges.pop();
+    var stdDev = standardDev(dailyChanges);
+    console.log("The standard deviation of daily changes for "+stock+
+                " for the last "+data.length+" trading days "+
+                " (from "+latest.format("MMMM Do, YYYY")+
                 " to "+then.format("MMMM Do, YYYY")+
-                " is "+decodeURI('%C2%B1')+stdDev.toFixed(2)+
-                ", or "+((stdDev/data[0])*100).toFixed(2)+"% of the latest close. Given the fact that "+
-                data.length+
-                " trading days occured during this time period, the average daily standard deviation is "+
-                decodeURI('%C2%B1')+(stdDev/data.length).toFixed(2)+
-                ", or "+(((stdDev/data.length)/data[0])*100).toFixed(2)+"% of the latest close."
-                )
+                ") is "+stdDev.toFixed(2)+
+                ", or "+decodeURI('%C2%B1')+((stdDev/data[0])*100).toFixed(2)+"% of the latest close."
+                );
+    console.log("");
+    console.log("Today's 68% confidence interval is from "+(data[0]-(1*stdDev)).toFixed(2)+" to "+(data[0]+(1*stdDev)).toFixed(2)+".")
+    console.log("");
+    console.log("Today's 95% confidence interval is from "+(data[0]-(2*stdDev)).toFixed(2)+" to "+(data[0]+(2*stdDev)).toFixed(2)+".")
 };

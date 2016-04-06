@@ -66,7 +66,15 @@ function parseCSV(e,r,b){
             var close = parseFloat(raw[row].split(",")[4]);
             data.push(close);
         };
-        var stdDev = standardDev(data),
+        var dailyChanges = data.map(function(value,index,values){
+            if (index+1<=data.length) {
+                return(values[index+1]-value);
+            } else {
+                return(null);
+            };
+        });
+        dailyChanges.pop();
+        var stdDev = standardDev(dailyChanges),
         obj = {"stock":stock,"sd":stdDev,"vol":(stdDev/data[0])*100};
         results.push(obj);
     };
