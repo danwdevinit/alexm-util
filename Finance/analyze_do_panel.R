@@ -4,7 +4,7 @@ library(ggplot2)
 library(plyr)
 library(scales)
 
-input <- "hrl"
+input <- "urbn"
 percentMax <- 40
 
 windows <- TRUE
@@ -96,10 +96,10 @@ for(i in 1:length(dates)){
     par(mfrow=c(1, 1))
   }
 }
-underlying <- 233.72
-percent <- 0.05
-# sub <- subset(averages,strike>=(underlying*(1-percent)) & strike<=(underlying*(1+percent)))
-sub <- panelAverages
+underlying <- 32.47
+percent <- 0.0286*2
+sub <- subset(panelAverages,strike>=(underlying*(1-percent)) & strike<=(underlying*(1+percent)))
+#sub <- panelAverages
 limited_averages <- ddply(sub,.(date,state),summarize,avg=mean(avg),sd=mean(sd),count=sum(count))
 p3 <- ggplot(data=limited_averages,aes(x=date,y=avg,ymax=avg+sd,ymin=avg-sd,group=state,colour=state)) +
 #   scale_x_date(date_breaks = "2 months") +
