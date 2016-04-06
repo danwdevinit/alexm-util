@@ -5,13 +5,20 @@ library(plyr)
 
 windows <- TRUE
 if(windows){pathpre<-"C:"}else{pathpre<-"~"}
-wd <- paste0(pathpre,"/git/alexm-util/Finance/data")
+wd <- paste0(pathpre,"/git/alexm-util/Finance/")
 setwd(wd)
+
+stock <- "AAPL"
+timespan <- "30"
+
+filename <- paste0("data/",stock,"_macd.csv")
+command <- paste("node","macd_direct.js",stock,timespan,filename)
+system(command)
 
 setClass("myDate")
 setAs("character","myDate", function(from) as.Date(from, format="%m/%d/%y"))
 
-df <- read.csv("ibm_macd.csv"
+df <- read.csv(filename
                ,header=FALSE
                ,col.names=c("Date","Stock","MACD","Signal")
                ,colClasses=c("myDate","numeric","numeric","numeric"))
