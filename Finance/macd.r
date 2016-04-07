@@ -8,7 +8,7 @@ if(windows){pathpre<-"C:"}else{pathpre<-"~"}
 wd <- paste0(pathpre,"/git/alexm-util/Finance/")
 setwd(wd)
 
-stock <- "AAPL"
+stock <- "MU"
 timespan <- "30"
 
 filename <- paste0("data/",stock,"_macd.csv")

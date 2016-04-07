@@ -1,11 +1,11 @@
 library(rCharts)
 library(plyr)
 
-wd <-"C:/Users/alexm/Documents/RWork/GDELT/"
+wd <-"D:/Documents/RWork/GDELT/"
 setwd(wd)
 colnames <- read.csv("CSV.header.dailyupdates.csv", header = FALSE,
                      sep="\t",colClasses="character")
-for(i in 1:30){
+for(i in 1:10){
   yesterday <- format(Sys.Date()-i, "%Y%m%d")
   yestwd <- paste(wd,yesterday,sep="/")
   message(yesterday)

@@ -3,7 +3,7 @@ library(plyr)
 
 ####Data####
 
-wd <- "C:/Users/alexm/Documents/Rwork"
+wd <- "D:/Documents/external"
 setwd(wd)
 
 #Import grades
