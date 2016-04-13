@@ -4,7 +4,7 @@ library(ggplot2)
 library(plyr)
 library(scales)
 
-input <- "aapl"
+input <- "tsla"
 percentMax <- 20
 
 windows <- TRUE
