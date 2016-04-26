@@ -92,7 +92,7 @@ browser.find_element_by_xpath('//*[@type="submit"]').click() #Click the submit b
 
 countries = browser.find_elements_by_xpath("//*[@name='Apr_Ctry_list_id']/option")
 
-for i in range(1,len(countries)-1):
+for i in range(1,len(countries)):
     countries = browser.find_elements_by_xpath("//*[@name='Apr_Ctry_list_id']/option")
     country = countries[i].text
     browser.find_element_by_xpath("//*[@name='Apr_Ctry_list_id']/option[{}]".format(i+1)).click() #Click on the country option in the drop down
