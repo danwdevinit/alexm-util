@@ -78,30 +78,36 @@ metaNames <- c(
 # Loop through every dir
 for(i in 2:length(dirs)){
   dir <- dirs[i]
-#   Pull some coded info out of the dir name
+  # Pull some coded info out of the dir name
   country <- tolower(substr(dir,1,2))
   recode <- tolower(substr(dir,3,4))
   phase <- as.integer(substr(dir,5,5))
-# For this analysis, we're only interested in household member recodes, or "pr"
+  # For this analysis, we're only interested in household member recodes, or "pr"
   if(recode=="pr"){
-#     Find the .dta and read it in
+  # Find the .dta and read it in
     dtaPath <- list.files(paste0(wd,dir), pattern="*.dta",ignore.case=TRUE)[1]
     pr <- read.dta(paste0(wd,dir,"/",dtaPath))
     names <- names(pr)
-#     Sanity check for a common variable, plus checking phase from filename
+  # Sanity check for a common variable, plus checking phase from filename
     if("hv000" %in% names & phase>=6){
-#       Message for a progress measure
+      # Message for a progress measure
       message(pr$hv000[1])
-#       Filter our set
+      # Filter our set
       pr <- pr[keep]
-# Rename the resultant vars
+      # Rename the resultant vars
       names(pr) <- metaNames
-# Some recoding work to standardize things
+      # Some recoding work to standardize things
       pr$urban <- tolower(pr$urban)
+      pr$urban <- factor(pr$urban
+                       ,levels = c("urban","rural")
+      )
       pr$sex[which(pr$sex==1)] <- "male"
       pr$sex[which(pr$sex==2)] <- "female"
       pr$sex[which(pr$sex==9)] <- NA
       pr$sex <- tolower(pr$sex)
+      pr$sex <- factor(pr$sex
+                        ,levels = c("male","female")
+      )
       pr$educ[which(pr$educ==0)] <- "no education, preschool"
       pr$educ[which(pr$educ==1)] <- "primary"
       pr$educ[which(pr$educ==2)] <- "secondary"
@@ -128,31 +134,46 @@ for(i in 2:length(dirs)){
                                           ,"65-69","70-74","75-79","80-84","85-89","90-94"
                                           ,"95+","missing")                          
       )
-#       Silly sample-weight recode here. Guide said divide by 1 million
+      # Silly sample-weight recode here. Guide said divide by 1 million
       pr$sample.weight <- pr$sample.weight/1000000
+
+      # Precautions against whole columns of NA
+      hasWeight <- length(pr$sample.weight[which(!is.na(pr$sample.weight))])>0
+      hasUrban <- length(pr$urban[which(!is.na(pr$urban))])>0
+      hasSex <- length(pr$sex[which(!is.na(pr$sex))])>0
+      hasAge <- length(pr$age[which(!is.na(pr$age))])>0
+      hasEduc <- length(pr$educ[which(!is.na(pr$educ))])>0
+      hasWealth <- length(pr$wealth[which(!is.na(pr$wealth))])>0
       
-#       Create some crosstabs here, and store their data in the previously empty lists
-      ageUrbanList[[dataIndex]] <- crosstab(pr$ageCategory,pr$urban,weight=pr$sample.weight)$tab
-      ageSexList[[dataIndex]] <- crosstab(pr$ageCategory,pr$sex,weight=pr$sample.weight)$tab
-      ageWealthList[[dataIndex]] <- crosstab(pr$ageCategory,pr$wealth,weight=pr$sample.weight)$tab
-#       Not all surveys contain education information, evidently
-#         This causes a problem for our script, so we need to stop it from running
-#         crosstabs on sets without education
-      if(length(pr$educ[which(!is.na(pr$educ))])>0){
-        ageEducList[[dataIndex]] <- crosstab(pr$ageCategory,pr$educ,weight=pr$sample.weight)$tab
-        sexEducList[[dataIndex]] <- crosstab(pr$sex,pr$educ,weight=pr$sample.weight)$tab
-        urbanEducList[[dataIndex]] <- crosstab(pr$urban,pr$educ,weight=pr$sample.weight)$tab
-        wealthEducList[[dataIndex]] <- crosstab(pr$wealth,pr$educ,weight=pr$sample.weight)$tab
+      # Create some crosstabs here, and store their data in the previously empty lists
+      ageSexList[[dataIndex]] <- crosstab(pr$ageCategory,pr$sex,weight=pr$sample.weight,drop.levels=FALSE)$tab
+      if(hasUrban){
+        sexUrbanList[[dataIndex]] <- crosstab(pr$sex,pr$urban,weight=pr$sample.weight,drop.levels=FALSE)$tab
+        ageUrbanList[[dataIndex]] <- crosstab(pr$ageCategory,pr$urban,weight=pr$sample.weight,drop.levels=FALSE)$tab
       }
-      sexUrbanList[[dataIndex]] <- crosstab(pr$sex,pr$urban,weight=pr$sample.weight)$tab
-      sexWealthList[[dataIndex]] <- crosstab(pr$sex,pr$wealth,weight=pr$sample.weight)$tab
-      urbanWealthList[[dataIndex]] <- crosstab(pr$urban,pr$wealth,weight=pr$sample.weight)$tab
+      if(hasEduc){
+        ageEducList[[dataIndex]] <- crosstab(pr$ageCategory,pr$educ,weight=pr$sample.weight,drop.levels=FALSE)$tab
+        sexEducList[[dataIndex]] <- crosstab(pr$sex,pr$educ,weight=pr$sample.weight,drop.levels=FALSE)$tab
+        if(hasUrban){
+          urbanEducList[[dataIndex]] <- crosstab(pr$urban,pr$educ,weight=pr$sample.weight,drop.levels=FALSE)$tab
+        }
+        if(hasWealth){
+          wealthEducList[[dataIndex]] <- crosstab(pr$wealth,pr$educ,weight=pr$sample.weight,drop.levels=FALSE)$tab
+        }
+      }
+      if(hasWealth){
+        ageWealthList[[dataIndex]] <- crosstab(pr$ageCategory,pr$wealth,weight=pr$sample.weight,drop.levels=FALSE)$tab
+        sexWealthList[[dataIndex]] <- crosstab(pr$sex,pr$wealth,weight=pr$sample.weight,drop.levels=FALSE)$tab
+        if(hasUrban){
+          urbanWealthList[[dataIndex]] <- crosstab(pr$urban,pr$wealth,weight=pr$sample.weight,drop.levels=FALSE)$tab
+        }
+      }
       dataIndex <- dataIndex + 1
     }
   }
 }
 
-#Combine crosstabs here, filtering out any null indexes due to skipping
+# Combine crosstabs here, filtering out any null indexes due to skipping
 crossTabs <- list()
 crossTabs[["ageUrban"]] <- Reduce("+",Filter(Negate(is.null),ageUrbanList))
 crossTabs[["ageSex"]] <- Reduce("+",Filter(Negate(is.null),ageSexList))
@@ -165,10 +186,11 @@ crossTabs[["urbanWealth"]] <- Reduce("+",Filter(Negate(is.null),urbanWealthList)
 crossTabs[["urbanEduc"]] <- Reduce("+",Filter(Negate(is.null),urbanEducList))
 crossTabs[["wealthEduc"]] <- Reduce("+",Filter(Negate(is.null),wealthEducList))
 
-#Write to XLSX
+# Write to XLSX
+setwd("D:/Documents/Data/")
 library(openxlsx)
 
-#Create workbook
+# Create workbook
 wb <- createWorkbook("DHS_crosstabs")
 
 crossNames <- names(crossTabs)
