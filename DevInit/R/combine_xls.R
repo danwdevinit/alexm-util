@@ -4,7 +4,15 @@ library(data.table)
 wd <- "D:/Documents/Data/WB_GHA/"
 setwd(wd)
 
-vocab <- c("emergency")
+vocab <- c("crisis"
+           ,"emergency"
+           ,"conflict"
+           ,"disaster"
+           ,"humanitarian"
+           ,"ebola"
+           ,"flood defence"
+           ,"flood defense"
+           )
 setNames <- c("Date","Financier","Transaction type","Amount USD","Project ID")
 
 for(i in 1:length(vocab)){
