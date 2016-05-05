@@ -1065,34 +1065,6 @@ locatList <- list(
         )
       )
     )
-    ,"Dhading" = list(
-      attrs = c(
-        ref="geoname_id"
-      )
-      ,"location-id" = list(
-        attrs = c(
-          code="1283472"
-          ,vocabulary="GEO"
-        )
-      )
-      ,name = "Dhading"
-      ,exactness = list(
-        attrs = c(
-          code="1"
-        )
-      )
-      ,"location-class" = list(
-        attrs = c(
-          code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.0"
-          ,longitude="84.91667"
-        )
-      )
-    )
 )
 
 listToXML <- function(node, sublist){
