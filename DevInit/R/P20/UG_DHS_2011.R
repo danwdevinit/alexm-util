@@ -5,7 +5,7 @@ library(foreign)
 library(Hmisc)
 library(hexbin)
 
-wd <- "~/Downloads/UGPR60DT"
+wd <- "D:/Documents/Data/DHSauto/UGPR60DT"
 setwd(wd)
 
 df <- read.dta("UGPR60FL.dta")

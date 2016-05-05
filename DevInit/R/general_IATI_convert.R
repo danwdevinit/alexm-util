@@ -1,7 +1,9 @@
 require(XML)
 
-wd <- "~/IATI"
+wd <- "D:/Documents/Data/Nepal/"
 setwd(wd)
+
+repOrg <- "XI-IATI-WHS-NEPAL"
 
 statusList <- list(
   "Pipeline/identification" = "1"
@@ -64,9 +66,10 @@ li <- list()
 for(i in 1:nrow(df)){
   activity <- df[i,]
   activityList <- list(attrs=activityAttrs)
-  activityList[['iati-identifier']] <- activity$Project.ID
+  activityList[['iati-identifier']] <- paste(repOrg,activity$Project.ID,sep="-")
   activityList[['reporting-org']] <- list(
-    narrative=list(
+    attrs=c(ref=repOrg,type="80")
+    ,narrative=list(
       attrs=c("xml:lang"="en")
       ,text=activity$Reporting.organisation
     )
@@ -83,61 +86,14 @@ for(i in 1:nrow(df)){
       ,text=activity$Project.description
     )
   )
+  activityList[['participating-org']] <- list(
+    attrs=c(ref="",role="3")
+    ,narrative=list(
+      attrs=c("xml:lang"="en")
+      ,text=activity$Reporting.organisation
+    )
+  )
   activityList[['activity-status']] <- list(attrs=c(code=statusList[[activity$Project.status]]))
-  activityList[['budget']] <- list(
-    attrs=c(type="")
-    ,"period-start"=list(attrs=c("iso-date"=activity$Budget.period.start))
-    ,"period-end"=list(attrs=c("iso-date"=activity$Budget.period.end))
-    ,"value"=list(
-      attrs=c(
-        "currency"=activity$Budget.currency
-        ,"value-date"=""
-      )
-      ,text=activity$Budget.amount
-    )
-  )
-  activityList[['location']] <- list(
-    attrs=c(ref="")
-    ,description = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Project.location
-      )  
-    )
-  )
-  activityList[['result']] <- list(
-    attrs=c(type="","aggregation-status"="false")
-    ,description = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Project.result
-      )  
-    )
-  )
-  activityList[['contact-info']] <- list(
-    attrs=c(type="")
-    ,organisation = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Contact.organisation
-      )  
-    )
-    ,telephone = list()
-    ,email = activity$Contact.email
-    ,website = list()
-    ,"mailing-address" = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=""
-      )
-    )
-  )
-  activityList[['related-activity']] <- list(
-    attrs=c(
-      ref=activity$Parent.project.ID
-      ,type="1"
-    )
-  )
   activityList <- c(activityList
     ,list(
       "activity-date" = list(
@@ -158,6 +114,51 @@ for(i in 1:nrow(df)){
       )
     )
   )
+  activityList[['contact-info']] <- list(
+    attrs=c(type="")
+    ,organisation = list(
+      narrative = list(
+        attrs=c("xml:lang"="en")
+        ,text=activity$Contact.organisation
+      )  
+    )
+    ,telephone = list()
+    ,email = activity$Contact.email
+    ,website = list()
+    ,"mailing-address" = list(
+      narrative = list(
+        attrs=c("xml:lang"="en")
+        ,text=""
+      )
+    )
+  )
+  activityList[['recipient-country']] <- list(
+    attrs=c(code="NP",percentage="100")
+  )
+  activityList[['location']] <- list(
+    attrs=c(ref="")
+    ,description = list(
+      narrative = list(
+        attrs=c("xml:lang"="en")
+        ,text=activity$Project.location
+      )  
+    )
+  )
+  activityList[['sector']] <- list(
+    attrs=c(vocabulary="",code="")  
+  )
+  activityList[['budget']] <- list(
+    attrs=c(type="")
+    ,"period-start"=list(attrs=c("iso-date"=activity$Budget.period.start))
+    ,"period-end"=list(attrs=c("iso-date"=activity$Budget.period.end))
+    ,"value"=list(
+      attrs=c(
+        "currency"=activity$Budget.currency
+         ,"value-date"=activity$Budget.period.start
+      )
+      ,text=activity$Budget.amount
+    )
+  )
   
   transactions <- dt[which(dt$Project.ID==activity$Project.ID),]
   
@@ -173,8 +174,8 @@ for(i in 1:nrow(df)){
     transactionList[['value']] <- list(
       attrs = c(
         "currency" = transaction$Currency
-        ,"value-date" = ""
-        )
+        ,"value-date" = transaction$Transaction.date
+      )
       ,text = transaction$Value
     )
     transactionList[['description']] <- list(
@@ -205,11 +206,27 @@ for(i in 1:nrow(df)){
       )
     )
     activityList <- c(activityList
-      ,list(
-      "transaction" = transactionList
-      )
+                      ,list(
+                        "transaction" = transactionList
+                      )
     )
   }
+  activityList[['related-activity']] <- list(
+    attrs=c(
+      ref=activity$Parent.project.ID
+      ,type="1"
+    )
+  )
+# Only UNICEF seems to have this and it's causing problems   
+#   activityList[['result']] <- list(
+#     attrs=c(type="","aggregation-status"="false")
+#     ,description = list(
+#       narrative = list(
+#         attrs=c("xml:lang"="en")
+#         ,text=activity$Project.result
+#       )  
+#     )
+#   )
   
   li <- c(li, list("iati-activity" = activityList))
 }
