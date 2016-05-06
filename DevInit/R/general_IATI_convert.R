@@ -1,6 +1,6 @@
 require(XML)
 
-wd <- "D:/Documents/Data/Nepal/R/Irish Aid"
+wd <- "D:/Documents/Data/Nepal/R/"
 setwd(wd)
 
 repOrg <- "XI-IATI-WHS-NEPAL"
@@ -225,12 +225,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.69882"
-          ,longitude="85.29704"
         )
       )
     )
@@ -926,12 +920,6 @@ locatList <- list(
           code="1"
         )
       )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.71434"
-          ,longitude="86.07367"
-        )
-      )
     )
     ,"Sunkhani" = list(
       attrs = c(
@@ -1263,6 +1251,204 @@ locatList <- list(
         )
       )
     )
+    ,"Laprak" = list(
+      attrs = c(
+        ref="geoname_id"
+      )
+      ,"location-id" = list(
+        attrs = c(
+          code="10328411"
+          ,vocabulary="G1"
+        )
+      )
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Laprak"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/10328411"
+        )
+        ,pos = "28.25424 84.78469"
+      )
+      ,exactness = list(
+        attrs = c(
+          code="1"
+        )
+      )
+      ,"location-class" = list(
+        attrs = c(
+          code="1"
+        )
+      )
+    )
+    ,"Makaising" = list(
+      attrs = c(
+        ref="geoname_id"
+      )
+      ,"location-id" = list(
+        attrs = c(
+          code="7801826"
+          ,vocabulary="G1"
+        )
+      )
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Makaising"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801826"
+        )
+        ,pos = "27.88021 84.6585"
+      )
+      ,exactness = list(
+        attrs = c(
+          code="1"
+        )
+      )
+      ,"location-class" = list(
+        attrs = c(
+          code="1"
+        )
+      )
+    )
+    ,"Finam" = list(
+      attrs = c(
+        ref="geoname_id"
+      )
+      ,"location-id" = list(
+        attrs = c(
+          code="7799037"
+          ,vocabulary="G1"
+        )
+      )
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Finam"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7799037"
+        )
+        ,pos = "28.004 84.6567"
+      )
+      ,exactness = list(
+        attrs = c(
+          code="1"
+        )
+      )
+      ,"location-class" = list(
+        attrs = c(
+          code="1"
+        )
+      )
+    )
+    ,"Takumajhalakuribot" = list(
+      attrs = c(
+        ref="geoname_id"
+      )
+      ,"location-id" = list(
+        attrs = c(
+          code="7799396"
+          ,vocabulary="G1"
+        )
+      )
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Takumajhalakuribot"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7799396"
+        )
+        ,pos = "28.1006 84.681"
+      )
+      ,exactness = list(
+        attrs = c(
+          code="1"
+        )
+      )
+      ,"location-class" = list(
+        attrs = c(
+          code="1"
+        )
+      )
+    )
+    ,"Bhedapu" = list(
+      attrs = c(
+        ref="geoname_id"
+      )
+      ,"location-id" = list(
+        attrs = c(
+          code="7801794"
+          ,vocabulary="G1"
+        )
+      )
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Bhedapu"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801794"
+        )
+        ,pos = "27.53521 86.05984"
+      )
+      ,exactness = list(
+        attrs = c(
+          code="1"
+        )
+      )
+      ,"location-class" = list(
+        attrs = c(
+          code="1"
+        )
+      )
+    )
+    ,"Bhusaphedi" = list(
+      attrs = c(
+        ref="geoname_id"
+      )
+      ,"location-id" = list(
+        attrs = c(
+          code="7800618"
+          ,vocabulary="G1"
+        )
+      )
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Bhusaphedi"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7800618"
+        )
+        ,pos = "27.64418 85.93448"
+      )
+      ,exactness = list(
+        attrs = c(
+          code="1"
+        )
+      )
+      ,"location-class" = list(
+        attrs = c(
+          code="1"
+        )
+      )
+    )
 )
 
 listToXML <- function(node, sublist){
@@ -1311,231 +1497,243 @@ splitLocat <- function(str){
   }else(return(""))
 }
 
+
+
 ####Generate IATI####
 now <- format(Sys.time(),"%Y-%m-%dT%TZ",tz="UTC")
 activityAttrs = c("last-updated-datetime"=now, "xml:lang"="en", "default-currency"="USD", "hierarchy"="1", "linked-data-uri"="")
 
-df <- read.csv("activities.csv",na.strings="",as.is=TRUE)
-dt <- read.csv("transactions.csv",na.strings="",as.is=TRUE)
+dirs <- list.dirs(wd,full.names=TRUE)
 
-li <- list()
+for(d in 2:length(dirs)){
+  setwd(dirs[d])
 
-for(i in 1:nrow(df)){
-  activity <- df[i,]
-  activityList <- list(attrs=activityAttrs)
-  activityList[['iati-identifier']] <- paste(repOrg,activity$Project.ID,sep="-")
-  activityList[['reporting-org']] <- list(
-    attrs=c(ref=repOrg,type="80","secondary-reporter"="1")
-    ,narrative=list(
-      attrs=c("xml:lang"="en")
-      ,text=repOrgName
-    )
-  )
-  activityList[['title']] <- list(
-    narrative=list(
-      attrs=c("xml:lang"="en")
-      ,text=activity$Project.title
-    )
-  )
-  activityList[['description']] <- list(
-    narrative=list(
-      attrs=c("xml:lang"="en")
-      ,text=activity$Project.description
-    )
-  )
-  activityList[['participating-org']] <- list(
-    attrs=c(ref=activity$Participating.organisation,role="3")
-    ,narrative=list(
-      attrs=c("xml:lang"="en")
-      ,text=activity$Participating.organisation
-    )
-  )
-  activityList[['activity-status']] <- list(attrs=c(code=statusList[[activity$Project.status]]))
-  activityList <- c(activityList
-    ,list(
-      "activity-date" = list(
-        attrs=c(type="2","iso-date"=activity$Start.date)
-        ,narrative=list(attrs=c("xml:lang"="en"))
-      )
-      ,"activity-date" = list(
-        attrs=c(type="4","iso-date"=activity$End.date)
-        ,narrative=list(attrs=c("xml:lang"="en"))
-      )
-    )
-  )
-  activityList[['contact-info']] <- list(
-    attrs=c(type=activity$Contact.type)
-    ,organisation = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Contact.organisation
-      )  
-    )
-    ,department = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Contact.department
-      )  
-    )
-    ,"person-name" = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Contact.name
-      )  
-    )
-    ,"job-title" = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Contact.title
-      )  
-    )
-    ,telephone = activity$Contact.telephone
-    ,email = activity$Contact.email
-    ,website = activity$Contact.website
-    ,"mailing-address" = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Contact.address
-      )
-    )
-  )
-  activityList[['recipient-country']] <- list(
-    attrs=c(code="NP",percentage="100")
-  )
-  splits <- unique(splitLocat(activity$Project.location))
-  for(k in 1:length(splits)){
-    split <- splits[k]
-    if(split!=""){
-      locat <- locatList[[split]]
-      activityList <- c(activityList
-        ,list(
-          "location" = locat
-        )
-      ) 
-    }
-  }
-  activityList[['sector']] <- list(
-    attrs=c(vocabulary="99",code="")
-    ,narrative = list(
-      attrs=c("xml:lang"="en")
-      ,text=activity$Cluster
-    )
-  )
-  activityList[['budget']] <- list(
-    attrs=c(type="")
-    ,"period-start"=list(attrs=c("iso-date"=activity$Budget.period.start))
-    ,"period-end"=list(attrs=c("iso-date"=activity$Budget.period.end))
-    ,"value"=list(
-      attrs=c(
-        "currency"=activity$Budget.currency
-         ,"value-date"=activity$Budget.period.start
-      )
-      ,text=activity$Budget.amount
-    )
-  )
+  df <- read.csv("activities.csv",na.strings="",as.is=TRUE)
+  dt <- read.csv("transactions.csv",na.strings="",as.is=TRUE)
   
-  transactions <- dt[which(dt$Project.ID==activity$Project.ID),]
+  df[is.na(df)] <- ""
+  dt[is.na(dt)] <- ""
   
-  for(j in 1:nrow(transactions)){
-    transaction <- transactions[j,]
-    transactionList <- list(attrs=c(ref=transaction$Transaction.type))
-    transactionList[['transaction-type']] <- list(
-      attrs = c(code = transTypeList[[transaction$Transaction.type]])
-    )
-    transactionList[['transaction-date']] <- list(
-      attrs = c("iso-date" = transaction$Transaction.date)
-    )
-    transactionList[['value']] <- list(
-      attrs = c(
-        "currency" = transaction$Currency
-        ,"value-date" = transaction$Transaction.date
+  li <- list()
+  
+  for(i in 1:nrow(df)){
+    activity <- df[i,]
+    activityList <- list(attrs=activityAttrs)
+    activityList[['iati-identifier']] <- paste(repOrg,activity$Project.ID,sep="-")
+    activityList[['reporting-org']] <- list(
+      attrs=c(ref=repOrg,type="80","secondary-reporter"="1")
+      ,narrative=list(
+        attrs=c("xml:lang"="en")
+        ,text=repOrgName
       )
-      ,text = transaction$Value
     )
-    transactionList[['description']] <- list(
+    activityList[['title']] <- list(
       narrative=list(
         attrs=c("xml:lang"="en")
-        ,text=transaction$Description
+        ,text=activity$Project.title
       )
     )
-    transactionList[['provider-org']] <- list(
-      attrs = c(ref="","provider-activity-id"="")
-      ,narrative = list(
+    activityList[['description']] <- list(
+      narrative=list(
         attrs=c("xml:lang"="en")
-        ,text=transaction$Provider
+        ,text=activity$Project.description
       )
     )
-    transactionList[['receiver-org']] <- list(
-      attrs = c(ref="","receiver-activity-id"="")
-      ,narrative = list(
+    activityList[['participating-org']] <- list(
+      attrs=c(ref=activity$Participating.organisation,role="3")
+      ,narrative=list(
         attrs=c("xml:lang"="en")
-        ,text=transaction$Receiver
+        ,text=activity$Participating.organisation
       )
     )
-    transactionList[['sector']] <- list(
+    activityList[['activity-status']] <- list(attrs=c(code=statusList[[activity$Project.status]]))
+    activityList <- c(activityList
+      ,list(
+        "activity-date" = list(
+          attrs=c(type="2","iso-date"=activity$Start.date)
+          ,narrative=list(attrs=c("xml:lang"="en"))
+        )
+        ,"activity-date" = list(
+          attrs=c(type="4","iso-date"=activity$End.date)
+          ,narrative=list(attrs=c("xml:lang"="en"))
+        )
+      )
+    )
+    activityList[['contact-info']] <- list(
+      attrs=c(type=activity$Contact.type)
+      ,organisation = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=activity$Contact.organisation
+        )  
+      )
+      ,department = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=activity$Contact.department
+        )  
+      )
+      ,"person-name" = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=activity$Contact.name
+        )  
+      )
+      ,"job-title" = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=activity$Contact.title
+        )  
+      )
+      ,telephone = activity$Contact.telephone
+      ,email = activity$Contact.email
+      ,website = activity$Contact.website
+      ,"mailing-address" = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=activity$Contact.address
+        )
+      )
+    )
+    activityList[['recipient-country']] <- list(
+      attrs=c(code="NP",percentage="100")
+    )
+    splits <- unique(splitLocat(activity$Project.location))
+    for(k in 1:length(splits)){
+      split <- splits[k]
+      if(split!=""){
+        locat <- locatList[[split]]
+        activityList <- c(activityList
+          ,list(
+            "location" = locat
+          )
+        ) 
+      }
+    }
+    activityList[['sector']] <- list(
       attrs=c(vocabulary="99",code="")
       ,narrative = list(
         attrs=c("xml:lang"="en")
-        ,text=transaction$Sector
+        ,text=activity$Cluster
       )
     )
-    transactionList[['finance-type']] <- list(
-      attrs=c(code=transaction$Finance.type)
-    )
-    activityList <- c(activityList
-                      ,list(
-                        "transaction" = transactionList
-                      )
-    )
-  }
-  activityList[['related-activity']] <- list(
-    attrs=c(
-      ref=activity$Parent.project.ID
-      ,type="1"
-    )
-  )
-  activityList[['result']] <- list(
-    attrs=c(type="","aggregation-status"="false")
-    ,title = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=""
-      )  
-    )
-    ,description = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Project.result
-      )  
-    )
-    ,indicator = list(
-      attrs = c(
-        measure=""
-        ,ascending="1"
+    activityList[['budget']] <- list(
+      attrs=c(type="")
+      ,"period-start"=list(attrs=c("iso-date"=activity$Budget.period.start))
+      ,"period-end"=list(attrs=c("iso-date"=activity$Budget.period.end))
+      ,"value"=list(
+        attrs=c(
+          "currency"=activity$Budget.currency
+           ,"value-date"=activity$Budget.period.start
+        )
+        ,text=activity$Budget.amount
       )
-      ,title= list(
+    )
+    
+    transactions <- dt[which(dt$Project.ID==activity$Project.ID),]
+    
+    for(j in 1:nrow(transactions)){
+      transaction <- transactions[j,]
+      transactionList <- list(attrs=c(ref=transaction$Transaction.type))
+      transactionList[['transaction-type']] <- list(
+        attrs = c(code = transTypeList[[transaction$Transaction.type]])
+      )
+      transactionList[['transaction-date']] <- list(
+        attrs = c("iso-date" = transaction$Transaction.date)
+      )
+      transactionList[['value']] <- list(
+        attrs = c(
+          "currency" = transaction$Currency
+          ,"value-date" = transaction$Transaction.date
+        )
+        ,text = transaction$Value
+      )
+      transactionList[['description']] <- list(
+        narrative=list(
+          attrs=c("xml:lang"="en")
+          ,text=transaction$Description
+        )
+      )
+      transactionList[['provider-org']] <- list(
+        attrs = c(ref="","provider-activity-id"="")
+        ,narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=transaction$Provider
+        )
+      )
+      transactionList[['receiver-org']] <- list(
+        attrs = c(ref="","receiver-activity-id"="")
+        ,narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=transaction$Receiver
+        )
+      )
+      transactionList[['sector']] <- list(
+        attrs=c(vocabulary="99",code="")
+        ,narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=transaction$Sector
+        )
+      )
+      transactionList[['finance-type']] <- list(
+        attrs=c(code=transaction$Finance.type)
+      )
+      activityList <- c(activityList
+                        ,list(
+                          "transaction" = transactionList
+                        )
+      )
+    }
+    activityList[['related-activity']] <- list(
+      attrs=c(
+        ref=paste(repOrg,activity$Parent.project.ID,sep="-")
+        ,type="1"
+      )
+    )
+    activityList[['result']] <- list(
+      attrs=c(type="","aggregation-status"="false")
+      ,title = list(
         narrative = list(
           attrs=c("xml:lang"="en")
           ,text=""
+        )  
+      )
+      ,description = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text=activity$Project.result
+        )  
+      )
+      ,indicator = list(
+        attrs = c(
+          measure=""
+          ,ascending="1"
+        )
+        ,title= list(
+          narrative = list(
+            attrs=c("xml:lang"="en")
+            ,text=""
+          )
         )
       )
     )
-  )
+    
+    li <- c(li, list("iati-activity" = activityList))
+  }
   
-  li <- c(li, list("iati-activity" = activityList))
+  root <- newXMLNode("iati-activities",attrs=c(version = "2.01","generated-datetime" = now))
+  #Suppress namespace warning due to multiple activities/transactions
+  options("suppressXMLNamespaceWarning" = TRUE)
+  listToXML(root, li)
+  saveXML(root
+          , file="gha_iati.xml"
+          , compression=0
+          , indent=TRUE
+  #         , prefix = '<?xml version="1.0"?>\n'
+          , encoding = getEncoding(root)
+#            , encoding = "utf8"
+          )
+  setwd(wd)
 }
-
-root <- newXMLNode("iati-activities",attrs=c(version = "2.01","generated-datetime" = now))
-#Suppress namespace warning due to multiple activities/transactions
-options("suppressXMLNamespaceWarning" = TRUE)
-listToXML(root, li)
-saveXML(root
-        , file="gha_iati.xml"
-        , compression=0
-        , indent=TRUE
-#         , prefix = '<?xml version="1.0"?>\n'
-        , encoding = getEncoding(root)
-#         , encoding = "utf8"
-        )
 
 
