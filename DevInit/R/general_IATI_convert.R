@@ -1,11 +1,12 @@
 require(XML)
 
-wd <- "D:/Documents/Data/Nepal/R/Christian Aid Ireland"
+wd <- "D:/Documents/Data/Nepal/R/Irish Aid"
 setwd(wd)
 
 repOrg <- "XI-IATI-WHS-NEPAL"
 repOrgName <- "Nepal data for WHS"
 
+####Define dictionaries and functions####
 statusList <- list(
   "Pipeline/identification" = "1"
   ,"Implementation" = "2"
@@ -36,10 +37,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
             code="1283379"
-            ,vocabulary="GEO"
+            ,vocabulary="G1"
           )
         )
-      ,name = "Gorkha"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Gorkha"
+          )
+        )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1283379"
+          )
+        ,pos = "28.33333 84.83333"
+        )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -48,12 +60,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-          )
-        )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.33333"
-          ,longitude="84.83333"
           )
         )
       )
@@ -64,10 +70,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7647006"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Sindhupalchok"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Sindhupalchok"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7647006"
+        )
+        ,pos = "27.82936 85.54504"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -76,12 +93,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.82936"
-          ,longitude="85.54504"
         )
       )
     )
@@ -92,10 +103,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1283431"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Dolakha"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Dolakha"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1283431"
+        )
+        ,pos = "27.83333 86.25"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -104,12 +126,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.83333"
-          ,longitude="86.25"
         )
       )
     )
@@ -120,10 +136,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1282776"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Sindhuli"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Sindhuli"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1282776"
+        )
+        ,pos = "27.25 86.0"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -132,12 +159,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.25"
-          ,longitude="86.0"
         )
       )
     )
@@ -148,10 +169,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1283618"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Bhaktapur"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Bhaktapur"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1283618"
+        )
+        ,pos = "27.66734 85.41673"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -162,12 +194,6 @@ locatList <- list(
           code="1"
         )
       )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.66734"
-          ,longitude="85.41673"
-        )
-      )
     )
     ,"Kalimati" = list(
       attrs = c(
@@ -176,10 +202,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="10276890"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Kalimati"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Kalimati"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/10276890"
+        )
+        ,pos = "27.69882 85.29704"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -204,10 +241,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1283151"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Lamjung"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Lamjung"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1283151"
+        )
+        ,pos = "28.25 84.41667"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -216,12 +264,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.25"
-          ,longitude="84.41667"
         )
       )
     )
@@ -232,10 +274,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7799402"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Tandrang"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Tandrang"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7799402"
+        )
+        ,pos = "28.0337 84.7752"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -244,12 +297,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.0337"
-          ,longitude="84.7752"
         )
       )
     )
@@ -260,10 +307,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7799474"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Thumi"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Thumi"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7799474"
+        )
+        ,pos = "28.1314 84.8216"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -272,12 +330,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.1314"
-          ,longitude="84.8216"
         )
       )
     )
@@ -288,10 +340,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7799245"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Manbu"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Manbu"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7799245"
+        )
+        ,pos = "28.1475 84.9167"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -300,12 +363,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.1475"
-          ,longitude="84.9167"
         )
       )
     )
@@ -316,10 +373,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7798888"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Aaruarbang"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Aaruarbang"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7798888"
+        )
+        ,pos = "28.0922 84.7985"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -328,12 +396,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.0922"
-          ,longitude="84.7985"
         )
       )
     )
@@ -344,10 +406,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7798900"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Aarupokhari"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Aarupokhari"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7798900"
+        )
+        ,pos = "28.0618 84.776"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -356,12 +429,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.0618"
-          ,longitude="84.776"
         )
       )
     )
@@ -372,10 +439,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7799009"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Dhawa"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Dhawa"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7799009"
+        )
+        ,pos = "28.0134 84.7823"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -384,12 +462,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.0134"
-          ,longitude="84.7823"
         )
       )
     )
@@ -400,10 +472,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7798892"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Aruchunaute"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Aaruchanuate"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7798892"
+        )
+        ,pos = "28.0689 84.8136"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -412,12 +495,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.0689"
-          ,longitude="84.8136"
         )
       )
     )
@@ -428,10 +505,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7801797"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Bocha"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Bocha"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801797"
+        )
+        ,pos = "27.69288 85.98859"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -440,12 +528,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.69288"
-          ,longitude="85.98859"
         )
       )
     )
@@ -456,10 +538,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7801801"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Dandakharka"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Dandakharka"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801801"
+        )
+        ,pos = "27.65941 84.91963"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -468,12 +561,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.65941"
-          ,longitude="84.91963"
         )
       )
     )
@@ -484,10 +571,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7801395"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Dudhpokhari"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Dudhpokhari"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801395"
+        )
+        ,pos = "27.61009 85.92159"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -496,12 +594,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.61009"
-          ,longitude="85.92159"
         )
       )
     )
@@ -512,10 +604,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7800623"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Ghangsukathokar"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Ghangsukathokar"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7800623"
+        )
+        ,pos = "27.55942 86.04689"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -524,12 +627,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.55942"
-          ,longitude="86.04689"
         )
       )
     )
@@ -540,10 +637,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7801804"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Katakuti"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Katakuti"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801804"
+        )
+        ,pos = "27.62756 85.9923"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -552,12 +660,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.62756"
-          ,longitude="85.9923"
         )
       )
     )
@@ -568,10 +670,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7801807"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Lakuridada"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Lakuridada"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801807"
+        )
+        ,pos = "27.68601 85.9619"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -580,12 +693,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.68601"
-          ,longitude="85.9619"
         )
       )
     )
@@ -596,10 +703,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7800633"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Lapilang"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Lapilang"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7800633"
+        )
+        ,pos = "27.74062 86.09881"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -608,12 +726,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.74062"
-          ,longitude="86.09881"
         )
       )
     )
@@ -624,10 +736,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7800634"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Magapauwa"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Magapauwa"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7800634"
+        )
+        ,pos = "27.65511 85.99366"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -636,12 +759,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.65511"
-          ,longitude="85.99366"
         )
       )
     )
@@ -652,10 +769,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="10323632"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Phasku"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Phasku"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/10323632"
+        )
+        ,pos = "27.61424 86.02946"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -664,12 +792,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.61424"
-          ,longitude="86.02946"
         )
       )
     )
@@ -680,10 +802,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7800639"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Pawati"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Pawati"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7800639"
+        )
+        ,pos = "27.59018 86.06369"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -692,12 +825,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.59018"
-          ,longitude="86.06369"
         )
       )
     )
@@ -708,10 +835,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7800640"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Sailungeswor"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Sailungeswor"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7800640"
+        )
+        ,pos = "27.58287 86.0206"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -720,12 +858,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.58287"
-          ,longitude="86.0206"
         )
       )
     )
@@ -736,10 +868,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7800641"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Susmachhemawati"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Susmachhemawati"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7800641"
+        )
+        ,pos = "27.70497 86.04809"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -750,12 +893,6 @@ locatList <- list(
           code="1"
         )
       )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.70497"
-          ,longitude="86.04809"
-        )
-      )
     )
     ,"Sundrawati" = list(
       attrs = c(
@@ -764,10 +901,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7801812"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Sundrawati"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Sundrawati"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801812"
+        )
+        ,pos = "27.71434 86.07367"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -792,10 +940,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7800249"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Sunkhani"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Sunkhani"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7800249"
+        )
+        ,pos = "27.70059 86.10729"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -804,12 +963,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.70059"
-          ,longitude="86.10729"
         )
       )
     )
@@ -820,10 +973,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1283282"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Kavre"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Kavre"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1283282"
+        )
+        ,pos = "27.58333 85.66667"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -832,12 +996,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.58333"
-          ,longitude="85.66667"
         )
       )
     )
@@ -848,10 +1006,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1282859"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Rasuwa"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Rasuwa"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1282859"
+        )
+        ,pos = "28.16667 85.33333"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -860,12 +1029,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.16667"
-          ,longitude="85.33333"
         )
       )
     )
@@ -876,10 +1039,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1282973"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Nuwakot"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Nuwakot"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1282973"
+        )
+        ,pos = "27.91667 85.25"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -888,12 +1062,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.91667"
-          ,longitude="85.25"
         )
       )
     )
@@ -904,10 +1072,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1282879"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Ramechhap"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Ramechhap"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1282879"
+        )
+        ,pos = "27.41667 86.08333"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -916,12 +1095,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.41667"
-          ,longitude="86.08333"
         )
       )
     )
@@ -932,10 +1105,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1283472"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Dhading"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Dhading"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1283472"
+        )
+        ,pos = "28.0 84.91667"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -944,12 +1128,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="28.0"
-          ,longitude="84.91667"
         )
       )
     )
@@ -960,10 +1138,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="10330199"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Makawanpur"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Makawanpur"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/10330199"
+        )
+        ,pos = "27.41429 85.17962"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -972,12 +1161,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.41429"
-          ,longitude="85.17962"
         )
       )
     )
@@ -988,10 +1171,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="7801037"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Okhaldhunga"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Okhaldhunga"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/7801037"
+        )
+        ,pos = "27.31643 86.50508"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -1000,12 +1194,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.31643"
-          ,longitude="86.50508"
         )
       )
     )
@@ -1016,10 +1204,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1283154"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Lalitpur"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Lalitpur"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1283154"
+        )
+        ,pos = "27.58333 85.33333"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -1028,12 +1227,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.58333"
-          ,longitude="85.33333"
         )
       )
     )
@@ -1044,10 +1237,21 @@ locatList <- list(
       ,"location-id" = list(
         attrs = c(
           code="1283241"
-          ,vocabulary="GEO"
+          ,vocabulary="G1"
         )
       )
-      ,name = "Kathmandu"
+      ,name = list(
+        narrative = list(
+          attrs=c("xml:lang"="en")
+          ,text="Kathmandu"
+        )
+      )
+      ,point = list(
+        attrs = c(
+          srsName="http://geonames.org/1283241"
+        )
+        ,pos = "27.70704 85.33218"
+      )
       ,exactness = list(
         attrs = c(
           code="1"
@@ -1056,12 +1260,6 @@ locatList <- list(
       ,"location-class" = list(
         attrs = c(
           code="1"
-        )
-      )
-      ,coordinates = list(
-        attrs = c(
-          latitude="27.70704"
-          ,longitude="85.33218"
         )
       )
     )
@@ -1099,6 +1297,21 @@ listToXML <- function(node, sublist){
   } 
 }
 
+splitLocat <- function(str){
+  if(!is.null(str)){
+    if(!is.na(str)){
+      if(grepl(",",str,fixed=TRUE)){
+        split <- strsplit(str,",",fixed=TRUE)[[1]]
+        split <- sapply(split,trimws)
+        return(split)
+      }else{
+        return(c(str))
+      }
+    }else{return("")}
+  }else(return(""))
+}
+
+####Generate IATI####
 now <- format(Sys.time(),"%Y-%m-%dT%TZ",tz="UTC")
 activityAttrs = c("last-updated-datetime"=now, "xml:lang"="en", "default-currency"="USD", "hierarchy"="1", "linked-data-uri"="")
 
@@ -1189,20 +1402,23 @@ for(i in 1:nrow(df)){
   activityList[['recipient-country']] <- list(
     attrs=c(code="NP",percentage="100")
   )
-  activityList[['location']] <- list(
-    attrs=c(ref="")
-    ,description = list(
-      narrative = list(
-        attrs=c("xml:lang"="en")
-        ,text=activity$Project.location
-      )  
-    )
-  )
+  splits <- unique(splitLocat(activity$Project.location))
+  for(k in 1:length(splits)){
+    split <- splits[k]
+    if(split!=""){
+      locat <- locatList[[split]]
+      activityList <- c(activityList
+        ,list(
+          "location" = locat
+        )
+      ) 
+    }
+  }
   activityList[['sector']] <- list(
     attrs=c(vocabulary="99",code="")
     ,narrative = list(
       attrs=c("xml:lang"="en")
-      ,text=transaction$Cluster
+      ,text=activity$Cluster
     )
   )
   activityList[['budget']] <- list(
