@@ -1,12 +1,21 @@
 require(XML)
 
-wd <- "D:/Documents/Data/Nepal/R/"
+#wd <- "D:/Documents/Data/Nepal/R/"
+wd <- "~/Nepal_IATI_data_work/R/"
 setwd(wd)
 
-repOrg <- "XI-IATI-WHS-NEPAL"
-repOrgName <- "Nepal data for WHS"
+repOrg <- "NP-CRO-45995/063/064"
+repOrgName <- "YoungInnovations Pvt. Ltd."
 
 ####Define dictionaries and functions####
+validIDs <- c(
+  "XM-"
+  ,"AU-"
+  ,"IE-"
+  ,"AID"
+  ,"411"
+)
+
 statusList <- list(
   "Pipeline/identification" = "1"
   ,"Implementation" = "2"
@@ -17,16 +26,16 @@ statusList <- list(
 )
 
 transTypeList <- list(
-  "Incoming Funds" = "1"
-  ,"Commitment" = "2"
-  ,"Disbursement" = "3"
-  ,"Expenditure" = "4"
-  ,"Interest Repayment" = "5"
-  ,"Loan Repayment" = "6"
-  ,"Reimbursement" = "7"
-  ,"Purchase of Equity" = "8"
-  ,"Sale of Equity" = "9"
-  ,"Credit Guarantee" = "10"
+  "incoming funds" = "1"
+  ,"commitment" = "2"
+  ,"disbursement" = "3"
+  ,"expenditure" = "4"
+  ,"interest repayment" = "5"
+  ,"loan repayment" = "6"
+  ,"reimbursement" = "7"
+  ,"purchase of equity" = "8"
+  ,"sale of equity" = "9"
+  ,"credit guarantee" = "10"
 )
 
 locatList <- list(
@@ -1519,9 +1528,13 @@ for(d in 2:length(dirs)){
   for(i in 1:nrow(df)){
     activity <- df[i,]
     activityList <- list(attrs=activityAttrs)
-    activityList[['iati-identifier']] <- paste(repOrg,activity$Project.ID,sep="-")
+    if(substr(activity$Project.ID,1,3) %in% validIDs){
+      activityList[['iati-identifier']] <- activity$Project.ID
+    }else{
+      activityList[['iati-identifier']] <- paste(repOrg,activity$Project.ID,sep="-")
+    }
     activityList[['reporting-org']] <- list(
-      attrs=c(ref=repOrg,type="80","secondary-reporter"="1")
+      attrs=c(ref=repOrg,type="70","secondary-reporter"="1")
       ,narrative=list(
         attrs=c("xml:lang"="en")
         ,text=repOrgName
@@ -1636,8 +1649,11 @@ for(d in 2:length(dirs)){
       transaction <- transactions[j,]
       transactionList <- list(attrs=c(ref=transaction$Transaction.type))
       transactionList[['transaction-type']] <- list(
-        attrs = c(code = transTypeList[[transaction$Transaction.type]])
+        attrs = c(code = transTypeList[[tolower(trimws(transaction$Transaction.type))]])
       )
+      if(is.null(transTypeList[[tolower(trimws(transaction$Transaction.type))]])){
+        message(transaction$Transaction.type)
+      }
       transactionList[['transaction-date']] <- list(
         attrs = c("iso-date" = transaction$Transaction.date)
       )
@@ -1651,7 +1667,7 @@ for(d in 2:length(dirs)){
       transactionList[['description']] <- list(
         narrative=list(
           attrs=c("xml:lang"="en")
-          ,text=transaction$Description
+          ,text=paste(transaction$Description,transaction$Transaction.date.narrative,sep="; ")
         )
       )
       transactionList[['provider-org']] <- list(
@@ -1684,12 +1700,21 @@ for(d in 2:length(dirs)){
                         )
       )
     }
-    activityList[['related-activity']] <- list(
-      attrs=c(
-        ref=paste(repOrg,activity$Parent.project.ID,sep="-")
-        ,type="1"
-      )
-    )
+    if(substr(activity$Parent.project.ID,1,3) %in% validIDs){
+      activityList[['related-activity']] <- list(
+        attrs=c(
+          ref=activity$Parent.project.ID
+          ,type="1"
+        )
+      ) 
+    }else{
+      activityList[['related-activity']] <- list(
+        attrs=c(
+          ref=paste(repOrg,activity$Parent.project.ID,sep="-")
+          ,type="1"
+        )
+      ) 
+    }
     activityList[['result']] <- list(
       attrs=c(type="","aggregation-status"="false")
       ,title = list(
