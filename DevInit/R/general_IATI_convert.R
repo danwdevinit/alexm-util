@@ -1,11 +1,11 @@
 require(XML)
 
-#wd <- "D:/Documents/Data/Nepal/R/"
-wd <- "~/Nepal_IATI_data_work/R/"
+wd <- "D:/Documents/Data/Nepal/R/"
+#wd <- "~/Nepal_IATI_data_work/R/"
 setwd(wd)
 
-repOrg <- "NP-CRO-45995/063/064"
-repOrgName <- "YoungInnovations Pvt. Ltd."
+repOrg <- "XI-IATI-WHS-NEPAL"
+repOrgName <- "Nepal Traceability Study 2016"
 
 ####Define dictionaries and functions####
 validIDs <- c(
@@ -1534,7 +1534,7 @@ for(d in 2:length(dirs)){
       activityList[['iati-identifier']] <- paste(repOrg,activity$Project.ID,sep="-")
     }
     activityList[['reporting-org']] <- list(
-      attrs=c(ref=repOrg,type="70","secondary-reporter"="1")
+      attrs=c(ref=repOrg,type="80","secondary-reporter"="1")
       ,narrative=list(
         attrs=c("xml:lang"="en")
         ,text=repOrgName
