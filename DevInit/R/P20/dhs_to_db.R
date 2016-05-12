@@ -83,10 +83,10 @@ setwd(wd)
 
 tableExists <- nrow(dbGetQuery(conn,"Select name FROM tables WHERE name like 'pr';"))>=1
 
-if(tableExists){
-  dbSendUpdate(conn,"DROP TABLE pr;")
-  tableExists <- FALSE
-}
+# if(tableExists){
+#   dbSendUpdate(conn,"DROP TABLE pr;")
+#   tableExists <- FALSE
+# }
 
 for(i in 2:length(dirs)){
   dir <- dirs[i]
@@ -139,7 +139,7 @@ for(i in 2:length(dirs)){
       
       message(paste("Writing",pr$hv000[1]))
       file <- "D:/Documents/Data/dhs_temp.csv"
-      write.table(pr,file,na="",sep=",",row.names=FALSE,col.names=FALSE)
+      write.table(pr,file,na="",sep=",",row.names=FALSE,col.names=FALSE,fileEncoding="utf8")
       dbSendUpdate(conn
         ,paste0(
           "COPY INTO pr FROM '"
