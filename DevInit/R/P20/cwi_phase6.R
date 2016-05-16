@@ -423,7 +423,7 @@ cwi <- function(hrwd){
     )
 }
 
-cwiList <- cwi(hrwd)
+system.time(cwiList <- cwi(hrwd))
 
 cuts <- cwiList[["cuts"]]
 data <- cwiList[["data"]] 
