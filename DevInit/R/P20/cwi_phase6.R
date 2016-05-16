@@ -406,10 +406,10 @@ cwi <- function(hrwd){
     ,fridge.pred.wealth
     ,phone.pred.wealth
     ,tv.pred.wealth
-    ,pred.wealth.4
-    ,pred.wealth.3
-    ,pred.wealth.2
     ,pred.wealth.1
+    ,pred.wealth.2
+    ,pred.wealth.3
+    ,pred.wealth.4
   )
   
   keep = c("household","cluster","wealth","inade.materials","crowded","inade.sani","hed","ubn","tv","phone","car","fridge")
