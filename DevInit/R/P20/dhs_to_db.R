@@ -83,10 +83,10 @@ setwd(wd)
 
 tableExists <- nrow(dbGetQuery(conn,"Select name FROM tables WHERE name like 'pr';"))>=1
 
-# if(tableExists){
-#   dbSendUpdate(conn,"DROP TABLE pr;")
-#   tableExists <- FALSE
-# }
+if(tableExists){
+  dbSendUpdate(conn,"DROP TABLE pr;")
+  tableExists <- FALSE
+}
 
 for(i in 2:length(dirs)){
   dir <- dirs[i]
