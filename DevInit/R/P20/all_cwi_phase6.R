@@ -459,17 +459,41 @@ cwi <- function(hrwd){
   )
 }
 ####Run function####
-hrwd <- "D:/Documents/Data/DHSauto/tlhr61dt/"
-cwiList <- cwi(hrwd)
-cuts <- cwiList[["cuts"]]
-data <- cwiList[["data"]]
-labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
-cut.df <- data.frame(labels,cuts)
-cut.df$labels <- factor(labels,levels=labels)
-library(ggplot2)
-p <- ggplot(cut.df,aes(x=labels,y=cuts)) +
-  geom_bar(stat="identity") +
-  ggtitle("Median/mean wealth given assets/unmet needs (East Timor 2010 DHS)") +
-  labs(x="Assets / unmet needs",y="Wealth")
-p
-cut.df
+# set our working directory, change this if using on another machine
+wd <- "D:/Documents/Data/DHSauto/"
+setwd(wd)
+
+# List out all the directories in our wd, this is where our data is contained
+dirs <- list.dirs(wd,full.names=TRUE)
+
+dataList <- list()
+dataIndex <- 1
+
+# Loop through every dir
+for(i in 2:length(dirs)){
+  dir <- dirs[i]
+  # Pull some coded info out of the dir name
+  country <- tolower(substr(basename(dir),1,2))
+  recode <- tolower(substr(basename(dir),3,4))
+  phase <- as.integer(substr(basename(dir),5,5))
+  # For this analysis, we're only interested in individual member recodes, or "hr"
+  if(recode=="hr" & phase==6){
+    message(basename(dir))
+    cwiList <- cwi(dir)
+    if(!is.na(cwiList)){
+      cuts <- cwiList[["cuts"]]
+      data <- cwiList[["data"]]
+      labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
+      cut.df <- data.frame(labels,cuts)
+      write.csv(cut.df,paste(dir,"cuts.csv",sep="/"),row.names=FALSE,na="")
+      write.csv(data,paste(dir,"wealth.csv",sep="/"),row.names=FALSE,na="")
+      dataList[[dataIndex]] <- data
+      dataIndex <- dataIndex + 1 
+    }
+  }
+}
+
+wd <- "D:/Documents/Data/DHSmeta"
+setwd(wd)
+metaData <- rbindlist(dataList,fill=TRUE)
+write.csv(metaData,"global_cwi.csv",row.names=FALSE,na="")
