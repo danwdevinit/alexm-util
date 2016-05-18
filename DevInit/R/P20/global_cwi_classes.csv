@@ -1,4 +1,42 @@
 value,type,iso2,filename,numerical,inadequate,urban.inadequate,rural.inadequate
+NAN,wall,EG,eghr61dt,FALSE,NAN,,
+cement tiles,floor,EG,eghr61dt,FALSE,0,,
+ceramic/marble tiles,floor,EG,eghr61dt,FALSE,0,,
+cement,floor,EG,eghr61dt,FALSE,0,,
+wall to wall carpet,floor,EG,eghr61dt,FALSE,0,,
+NAN,floor,EG,eghr61dt,FALSE,NAN,,
+wood planks,floor,EG,eghr61dt,FALSE,1,,
+parquet/polished wood,floor,EG,eghr61dt,FALSE,0,,
+earth/sand,floor,EG,eghr61dt,FALSE,1,,
+vinyl,floor,EG,eghr61dt,FALSE,0,,
+other,floor,EG,eghr61dt,FALSE,NAN,,
+piped into dwelling,water,EG,eghr61dt,FALSE,,0,0
+bottled water,water,EG,eghr61dt,FALSE,,0,0
+piped to yard/plot,water,EG,eghr61dt,FALSE,,0,0
+public tap/standpipe,water,EG,eghr61dt,FALSE,,1,0
+river/dam/lake/ponds/stream/canal/irrigation channel,water,EG,eghr61dt,FALSE,,1,1
+tanker truck,water,EG,eghr61dt,FALSE,,1,1
+cart with small tank,water,EG,eghr61dt,FALSE,,1,1
+tube well or borehole,water,EG,eghr61dt,FALSE,,1,0
+NAN,water,EG,eghr61dt,FALSE,,NAN,NAN
+other,water,EG,eghr61dt,FALSE,,NAN,NAN
+protected spring,water,EG,eghr61dt,FALSE,,1,0
+protected well,water,EG,eghr61dt,FALSE,,1,0
+unprotected well,water,EG,eghr61dt,FALSE,,1,1
+flush to piped sewer system,toilets,EG,eghr61dt,FALSE,0,,
+flush to septic tank,toilets,EG,eghr61dt,FALSE,0,,
+flush to vault (bayara),toilets,EG,eghr61dt,FALSE,0,,
+NAN,toilets,EG,eghr61dt,FALSE,NAN,,
+flust to pipe connected to canal,toilets,EG,eghr61dt,FALSE,1,,
+flush to somewhere else,toilets,EG,eghr61dt,FALSE,1,,
+"flush, don't know where",toilets,EG,eghr61dt,FALSE,1,,
+other,toilets,EG,eghr61dt,FALSE,NAN,,
+no facility/bush/field,toilets,EG,eghr61dt,FALSE,1,,
+pit latrine with slab,toilets,EG,eghr61dt,FALSE,0,,
+bucket toilet,toilets,EG,eghr61dt,FALSE,1,,
+flush to pipe connected to ground water,toilets,EG,eghr61dt,FALSE,1,,
+pit latrine without slab/open pit,toilets,EG,eghr61dt,FALSE,1,,
+ventilated improved pit latrine (vip),toilets,EG,eghr61dt,FALSE,0,,
 11,floor,AM,amhr61dt,TRUE,1,,
 21,floor,AM,amhr61dt,TRUE,1,,
 31,floor,AM,amhr61dt,TRUE,0,,

@@ -7,30 +7,43 @@ library(data.table)
 setwd("D:/Documents/Data/DHSmeta/")
 classes <- read.csv("global_cwi_classes.csv",na.strings=c("","NAN"),as.is=TRUE)
 
+# For replicating
 tl.cuts <- c(
-  3.3723003
-  ,2.1475738
-  ,6.1246518
-  ,0.6904688
-  ,-0.1459669
-  ,-0.3461398
+  3.3720311
+  ,2.1466088
+  ,6.1055916
+  ,0.6906175
+  ,-0.1460274
+  ,-0.3461362
   ,-0.5021508
   ,-0.6283835
 )
 
+# For when using all means
+# tl.cuts <- c(
+#   3.0041464
+#   ,2.6209717
+#   ,2.5378115
+#   ,1.5726417
+#   ,-0.1460274
+#   ,-0.3461362
+#   ,-0.5021508
+#   ,-0.6283835
+#   )
+
 cwi <- function(hrwd){
+  if(!file_test(op="-d", hrwd)){message("HR WD invalid");return(NA);}
+  
   hrBase <- basename(hrwd)
   iso2 <- toupper(substr(hrBase,1,2))
   phase <- substr(hrBase,5,6)
   
-  setwd(hrwd)
-  
-  hr <- read.dta(paste0(iso2,"HR",phase,"FL.dta"))
+  hr <- read.dta(paste0(hrwd,"/",iso2,"HR",phase,"FL.dta"))
   
   irwd <- paste0("D:/Documents/Data/DHSauto/",tolower(iso2),"ir",phase,"dt/")
-  setwd(irwd)
+  if(!file_test(op="-d", irwd)){message("IR WD invalid");return(NA);}
   
-  ir <- read.dta(paste0(iso2,"IR",phase,"FL.dta"))
+  ir <- read.dta(paste0(irwd,iso2,"IR",phase,"FL.dta"))
   
   #Rename wealth var
   names(hr)[which(names(hr)=="hv271")] <- "wealth"
@@ -71,6 +84,7 @@ cwi <- function(hrwd){
   
   #Rename sleeping rooms var
   names(hr)[which(names(hr)=="hv216")] <- "sleeping.rooms"
+  hr[which(hr$sleeping.rooms==99),] <- NA
   
   #Rename members var
   names(hr)[which(names(hr)=="hv009")] <- "members"
@@ -374,9 +388,20 @@ cwi <- function(hrwd){
   hr$inade.sani <- combine.sani(hr$inade.toilet,hr$inade.water)
   
   #Finally get to calc the UBN!
-  hr <- transform(hr,ubn = inade.materials+crowded+inade.sani+hed)
+  calc.ubn <- function(inade.materialsV,crowdedV,inade.saniV,hedV){
+    ubnV <- c()
+    for(i in 1:length(inade.materialsV)){
+      inade.materials <- inade.materialsV[i]
+      crowded <- crowdedV[i]
+      inade.sani <- inade.saniV[i]
+      hed <- hedV[i]
+      ubn <- sum(inade.materials,crowded,inade.sani,hed,na.rm=TRUE)
+      ubnV <- c(ubnV,ubn)
+    }
+    return(ubnV)
+  }
+  hr$ubn <- calc.ubn(hr$inade.materials,hr$crowded,hr$inade.sani,hr$hed)
   
-  #Calc wealth where half of households own tv
   recode.asset <- function(x){
     if(is.null(x)){return(NA)}
     else if(is.na(x) | x==9){return(NA)}
@@ -384,6 +409,9 @@ cwi <- function(hrwd){
     else if(x==0 | tolower(x)=="no"){return(0)}
     else{return(NA)}
   }
+  
+  ###Replication method
+  #Calc wealth where half of households own tv
   if(!(tv.missing)){
     hr$tv <- sapply(hr$tv,recode.asset)
     tv.glm <- glm(tv~wealth,data=hr,family="binomial")
@@ -424,6 +452,54 @@ cwi <- function(hrwd){
   pred.wealth.3 <- mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
   pred.wealth.2 <- mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
   pred.wealth.1 <- mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
+  
+  #   ###All means method
+  #   #Calc wealth where half of households own tv
+  #   if(!(tv.missing)){
+  #     hr$tv <- sapply(hr$tv,recode.asset)
+  #     tv.pred.wealth <- mean(hr[which(hr$tv==1),]$wealth,na.rm=TRUE)
+  #   }else{
+  #     tv.pred.wealth <- NA
+  #   }
+  #   
+  #   #Calc wealth where half of households own fridge
+  #   if(!(fridge.missing)){
+  #     hr$fridge <- sapply(hr$fridge,recode.asset)
+  #     fridge.pred.wealth <- mean(hr[which(hr$fridge==1),]$wealth,na.rm=TRUE)
+  #   }else{
+  #     fridge.pred.wealth <- NA
+  #   }
+  #   
+  #   #Calc wealth where half of households own car
+  #   if(!(car.missing)){
+  #     hr$car <- sapply(hr$car,recode.asset)
+  #     car.pred.wealth <- mean(hr[which(hr$car==1),]$wealth,na.rm=TRUE)
+  #   }else{
+  #     car.pred.wealth <- NA
+  #   }
+  #   
+  #   #Calc wealth where half of households own phone
+  #   if(!(phone.missing)){
+  #     hr$phone <- sapply(hr$phone,recode.asset)
+  #     phone.pred.wealth <- mean(hr[which(hr$phone==1),]$wealth,na.rm=TRUE)
+  #   }else{
+  #     phone.pred.wealth <- NA
+  #   }
+  #   
+  #   #Calc wealth where half of households have various UBNs
+  # #   hr <- transform(hr,ubn4 = (ubn>=4),ubn3 = (ubn>=3),ubn2 = (ubn>=2),ubn1 = (ubn>=1))
+  # #   ubn4.glm <- glm(ubn4~wealth,data=hr,family="binomial")
+  # #   pred.wealth.4 <- (-1*ubn4.glm$coefficients[[1]])/ubn4.glm$coefficients[[2]]
+  # #   ubn3.glm <- glm(ubn3~wealth,data=hr,family="binomial")
+  # #   pred.wealth.3 <- (-1*ubn3.glm$coefficients[[1]])/ubn3.glm$coefficients[[2]]
+  # #   ubn2.glm <- glm(ubn2~wealth,data=hr,family="binomial")
+  # #   pred.wealth.2 <- (-1*ubn2.glm$coefficients[[1]])/ubn2.glm$coefficients[[2]]
+  # #   ubn1.glm <- glm(ubn1~wealth,data=hr,family="binomial")
+  # #   pred.wealth.1 <- (-1*ubn1.glm$coefficients[[1]])/ubn1.glm$coefficients[[2]]
+  #   pred.wealth.4 <- mean(hr[which(hr$ubn>=4),]$wealth,na.rm=TRUE)
+  #   pred.wealth.3 <- mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
+  #   pred.wealth.2 <- mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
+  #   pred.wealth.1 <- mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
   
   #Generate cutpoint dfs
   cuts <- c(
@@ -471,6 +547,7 @@ dataIndex <- 1
 
 # Loop through every dir
 for(i in 2:length(dirs)){
+# for(i in 1209:length(dirs)){
   dir <- dirs[i]
   # Pull some coded info out of the dir name
   country <- tolower(substr(basename(dir),1,2))
@@ -485,8 +562,8 @@ for(i in 2:length(dirs)){
       data <- cwiList[["data"]]
       labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
       cut.df <- data.frame(labels,cuts)
-      write.csv(cut.df,paste(dir,"cuts.csv",sep="/"),row.names=FALSE,na="")
-      write.csv(data,paste(dir,"wealth.csv",sep="/"),row.names=FALSE,na="")
+      write.csv(cut.df,paste(dir,"cuts_replication.csv",sep="/"),row.names=FALSE,na="")
+      write.csv(data,paste(dir,"wealth_replication.csv",sep="/"),row.names=FALSE,na="")
       dataList[[dataIndex]] <- data
       dataIndex <- dataIndex + 1 
     }
@@ -496,4 +573,4 @@ for(i in 2:length(dirs)){
 wd <- "D:/Documents/Data/DHSmeta"
 setwd(wd)
 metaData <- rbindlist(dataList,fill=TRUE)
-write.csv(metaData,"global_cwi.csv",row.names=FALSE,na="")
+write.csv(metaData,"global_cwi_replication.csv",row.names=FALSE,na="")

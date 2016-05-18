@@ -4,17 +4,6 @@ library(plyr)
 library(foreign)
 library(data.table)
 
-tl.cuts <- c(
-  3.372300278
-  ,2.147573824
-  ,6.124651787
-  ,0.690468830
-  ,-0.004006668
-  ,-0.249262700
-  ,-0.428055249
-  ,-0.581524206
-)
-
 cwi.class <- function(hrwd){
   hrBase <- basename(hrwd)
   iso2 <- toupper(substr(hrBase,1,2))
