@@ -48,8 +48,8 @@ dirs <- list.dirs(wd,full.names=TRUE)
 
 for(i in 2:length(dirs)){
   dir <- dirs[i]
-  files <- list.files(dir, pattern="*.sav",full.names=FALSE)
-  if(sum(grepl("hh",files))!=0){
+  files <- list.files(dir, pattern="*.sav",full.names=FALSE,ignore.case=TRUE)
+  if(sum(grepl("hh",files))!=1){
     message(dir)
   }
 }
