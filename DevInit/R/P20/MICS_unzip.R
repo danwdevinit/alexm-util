@@ -41,3 +41,16 @@ for(i in 2:length(dirs)){
     unlink(dir,recursive=TRUE)
   }
 }
+
+###Test sav structure
+
+dirs <- list.dirs(wd,full.names=TRUE)
+
+for(i in 2:length(dirs)){
+  dir <- dirs[i]
+  files <- list.files(dir, pattern="*.sav",full.names=FALSE)
+  if(sum(grepl("hh",files))!=0){
+    message(dir)
+  }
+}
+
