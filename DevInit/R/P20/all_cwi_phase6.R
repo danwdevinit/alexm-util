@@ -53,6 +53,9 @@ cwi <- function(hrwd){
   #Rename survey year var
   names(hr)[which(names(hr)=="hv007")] <- "year"
   
+  #Rename sample.weights var
+  names(hr)[which(names(hr)=="hv005")] <- "sample.weights"
+  
   #Rename urban var
   names(hr)[which(names(hr)=="hv025")] <- "urban.rural"
   
@@ -513,7 +516,7 @@ cwi <- function(hrwd){
     ,pred.wealth.4
   )
   
-  keep = c("year","household","cluster","wealth","inade.materials","crowded","inade.sani","hed","ubn","tv","phone","car","fridge")
+  keep = c("year","sample.weights","household","cluster","wealth","inade.materials","crowded","inade.sani","hed","ubn","tv","phone","car","fridge")
   data <- hr[keep]
   data$iso2 <- iso2
   data$filename <- hrBase
@@ -524,7 +527,7 @@ cwi <- function(hrwd){
   beta <- cut.lm$coefficients[[2]]
   data$cwi <- alpha+(beta*data$wealth)
   
-  nameOrder = c("filename","iso2","year","household","cluster","cwi","wealth","ubn","inade.materials","crowded","inade.sani","hed","tv","phone","car","fridge")
+  nameOrder = c("filename","iso2","year","household","cluster","sample.weights","cwi","wealth","ubn","inade.materials","crowded","inade.sani","hed","tv","phone","car","fridge")
   data <- data[nameOrder]
   
   return(

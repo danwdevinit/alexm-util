@@ -3,8 +3,11 @@ library(foreign)
 library(data.table)
 library(plyr)
 
-setwd("D:/Documents/Data/DHSauto/johr6cdt")
-data <- read.dta("JOHR6CFL.dta")
+# setwd("D:/Documents/Data/DHSauto/johr6cdt")
+setwd("D:/Documents/Data/DHSauto/yehr61dt")
+
+# data <- read.dta("JOHR6CFL.dta")
+data <- read.dta("YEHR61FL.dta")
 cwi.df <- read.csv("wealth_replication.csv",na.strings="",as.is=TRUE)
 setnames(data,"hv001","cluster")
 setnames(data,"hv002","household")
@@ -14,11 +17,14 @@ data <- join(
   ,by=c("cluster","household")
 )
 
-poorest.family <- subset(data,household==16 & cluster==119)
+# poorest.family <- subset(data,household==16 & cluster==119)
+poorest.family <- subset(data,household==18 & cluster==286)
 poorest.family <- poorest.family[colSums(!is.na(poorest.family)) > 0]
 
-setwd("D:/Documents/Data/DHSauto/jopr6cdt")
-members <- read.dta("JOPR6CFL.dta")
+# setwd("D:/Documents/Data/DHSauto/jopr6cdt")
+# members <- read.dta("JOPR6CFL.dta")
+setwd("D:/Documents/Data/DHSauto/yepr61dt")
+members <- read.dta("YEPR61FL.dta")
 setnames(members,"hv001","cluster")
 setnames(members,"hv002","household")
 members <- join(
@@ -27,7 +33,8 @@ members <- join(
   ,by=c("cluster","household")
 )
 
-poorest.family.members <- subset(members,household==16 & cluster==119)
+# poorest.family.members <- subset(members,household==16 & cluster==119)
+poorest.family.members <- subset(members,household==18 & cluster==286)
 poorest.family.members <- poorest.family.members[colSums(!is.na(poorest.family.members)) > 0]
 
 setnames(poorest.family.members,"hv105","age")
@@ -80,8 +87,8 @@ setnames(poorest.family.members,"sh116a","rooms")
 setnames(poorest.family.members,"sh118","private.car")
 setnames(poorest.family.members,"sh123a","credit.card")
 setnames(poorest.family.members,"sh110a","computers")
-# setnames(poorest.family.members,"sh110d","internet")
-# setnames(poorest.family.members,"hv227","water.treated")
+setnames(poorest.family.members,"sh110d","internet")
+setnames(poorest.family.members,"hv227","water.treated")
 
 
 keep <- c(
@@ -141,18 +148,18 @@ keep <- c(
   ,"private.car"
   ,"credit.card"
   ,"computers"
-#   ,"water.treated"
-#   ,"internet"
+  ,"water.treated"
+  ,"internet"
   )
-
+good.keep <- c()
 for(i in 1:length(keep)){
   varname <- keep[i];
-  if(!(varname %in% names(poorest.family.members))){
-    message(varname)
+  if((varname %in% names(poorest.family.members))){
+    good.keep <- c(good.keep,varname)
   }
 }
 
-poorest.family.members <- poorest.family.members[keep]
+poorest.family.members <- poorest.family.members[good.keep]
 
 poorest <- t(poorest.family.members)
 
