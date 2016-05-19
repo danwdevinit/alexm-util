@@ -8,3 +8,4 @@ Finance/*.csv
 Finance/data/*
 DevInit/R/GHA/presentation/crs2000.csv
 DevInit/START/crisis_dummy.csv
+surveys.json 
