@@ -128,7 +128,7 @@ def main():
                         quarter = "" if prev2 is None else trytext(prev2)
                         vote = "" if prev3 is None else trytext(prev3)
                         ministry = "" if prev4 is None else trytext(prev4)
-                    if abs(right-288)<15:
+                    if abs(right-288)<20:
                         #Find row by going backwards and forwards...
                         row = []
                         elTop = int(el.attrib['top'])
@@ -192,7 +192,7 @@ def main():
                                 altRight = altRights[r]
                                 textMatch = False
                                 for element in row:
-                                    if abs(element['right']-right)<15 or abs(element['right']-altRight)<15:
+                                    if abs(element['right']-right)<20 or abs(element['right']-altRight)<20:
                                         textMatch = element['text']
                                 if textMatch:
                                     rowArr.append(textMatch)
