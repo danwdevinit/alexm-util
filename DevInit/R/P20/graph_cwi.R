@@ -54,6 +54,7 @@ cwi.collapse <- cwi.table[
 setnames(cwi.collapse,"iso2","iso2c")
 
 cwi.collapse[which(cwi.collapse$iso2c=="LB")]$iso2c <- "LR"
+cwi.collapse[which(cwi.collapse$iso2c=="NI")]$iso2c <- "NE"
 
 data <- join(
   cwi.collapse

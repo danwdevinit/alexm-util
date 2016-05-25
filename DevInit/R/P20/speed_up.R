@@ -17,11 +17,16 @@ for(i in 2:length(dirs)){
   hrBase <- basename(dir)
   message(hrBase)
   files <- list.files(dir,"*.dta",ignore.case=TRUE,full.names=TRUE)
-  for(j in 1:length(files)){
-    file <- files[j]
-    fileBase <- basename(file)
-    fileName <- substr(fileBase,1,nchar(fileBase)-4)
-    data <- read.dta(file)
-    write.csv(data,paste0(dir,"/",fileName,".csv"),row.names=FALSE,na="")
+  if(length(files)>0){
+    for(j in 1:length(files)){
+      file <- files[j]
+      fileBase <- basename(file)
+      fileName <- substr(fileBase,1,nchar(fileBase)-4)
+      csvs <- list.files(dir,"*.csv",ignore.case=TRUE)
+      if(!(paste0(fileName,".csv") %in% csvs)){
+        data <- read.dta(file)
+        write.csv(data,paste0(dir,"/",fileName,".csv"),row.names=FALSE,na="")  
+      }
+    }
   }
 }

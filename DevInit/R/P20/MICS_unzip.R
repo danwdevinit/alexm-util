@@ -49,8 +49,19 @@ dirs <- list.dirs(wd,full.names=TRUE)
 for(i in 2:length(dirs)){
   dir <- dirs[i]
   files <- list.files(dir, pattern="*.sav",full.names=FALSE,ignore.case=TRUE)
-  if(sum(grepl("hh",files))!=1){
-    message(dir)
-  }
+  message(files[grepl("hh",files,ignore.case=TRUE)])
+}
+
+###Let's write some CSVs
+
+library(foreign)
+
+dirs <- list.dirs(wd,full.names=TRUE)
+
+for(i in 2:length(dirs)){
+  dir <- dirs[i]
+  files <- list.files(dir, pattern="*.sav",full.names=FALSE,ignore.case=TRUE)
+  hhName <- files[grepl("hh",files,ignore.case=TRUE)]
+  hh <- read.spss(paste0)
 }
 

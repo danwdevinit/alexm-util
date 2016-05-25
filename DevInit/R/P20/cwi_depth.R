@@ -6,14 +6,11 @@ library(plyr)
 
 setwd("D:/Documents/Data/DHSmeta")
 
-cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
+# cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
 
-# cwi <- read.csv("global_ccwi2.csv",na.strings="",as.is=TRUE)
-# setnames(cwi,"cwi","cwi.urb.rur")
-# setnames(cwi,"ccwi","cwi")
-
-# cwi <- read.csv("global_ccwi.csv",na.strings="",as.is=TRUE)
-# setnames(cwi,"ccwi","cwi")
+cwi <- read.csv("global_ccwi2.csv",na.strings="",as.is=TRUE)
+setnames(cwi,"cwi","cwi.urb.rur")
+setnames(cwi,"ccwi","cwi")
 
 cwi <- cwi[order(cwi$cwi),]
 # fit <- lm(cwi~ubn+tv+phone+fridge+car,data=cwi)
@@ -48,34 +45,20 @@ weighted.percentile <- function(x,w,prob,na.rm=TRUE){
 
 cwi$phase <- substr(cwi$filename,5,5)
 
-cwi.table <- data.table(cwi)
-
-cwi.collapse <- cwi.table[
-  ,.(mean.cwi=weighted.mean(cwi,weights,na.rm=TRUE)
-     ,median.cwi=weighted.percentile(cwi,weights,.5)
-     ,filename=max(filename))
-  , by=.(iso2,phase)]
-
-isos <- unique(cwi.collapse$iso2)
-
-specials_to_avoid <- c(
-  "bfhr70dt"
-  ,"buhr6hdt"
+latest_surveys <- c(
+  "alhr50dt", "amhr61dt", "aohr61dt", "azhr52dt", "bdhr70dt", "bfhr70dt"
+  ,"bjhr61dt", "bohr51dt", "buhr61dt", "cdhr61dt", "cghr60dt"
+  ,"cihr61dt", "cmhr60dt", "cohr61dt", "drhr61dt", "eghr61dt"
+  ,"ethr61dt", "gahr60dt", "ghhr70dt", "gmhr60dt", "gnhr61dt", "gyhr5idt"
+  ,"hnhr62dt", "hthr61dt", "iahr52dt", "idhr63dt", "johr6cdt"
+  ,"kehr7hdt","khhr72dt", "kmhr61dt", "kyhr61dt", "lbhr6adt", "lshr61dt"
+  ,"mbhr53dt", "mdhr6hdt", "mlhr6hdt", "mvhr51dt", "mwhr71dt"
+  ,"mzhr62dt", "nghr6adt", "nihr61dt", "nmhr61dt", "nphr60dt"
+  ,"pehr6idt","phhr61dt","pkhr61dt"
+  ,"rwhr70dt","slhr61dt","snhr70dt", "sthr50dt", "szhr51dt"
+  ,"tghr61dt", "tjhr61dt", "tlhr61dt","tzhr6adt", "uahr51dt"
+  ,"ughr72dt", "vnhr52dt", "yehr61dt", "zmhr61dt", "zwhr62dt"
   )
-
-latest_surveys <- c()
-for(i in 1:length(isos)){
-  iso <- isos[i]
-  sub <- subset(cwi.collapse,iso2==iso)
-  sub <- sub[order(-sub$phase)]
-  latest <- sub$filename[1]
-  j <- 2
-  while(latest %in% specials_to_avoid){
-    latest <- sub$filename[j]
-    j <- j + 1
-  }
-  latest_surveys <- c(latest_surveys,latest)
-}
 
 cwi <- subset(cwi,filename %in% latest_surveys)
 
@@ -106,4 +89,4 @@ p20.collapse <- p20.table[
 data <- join(cwi.collapse,p20.collapse,by="iso2")
 
 setwd("D:/Documents/Data/DHSmeta")
-write.csv(data,"depth_of_cwi.csv",row.names=FALSE,na="")
+write.csv(data,"depth_of_ccwi.csv",row.names=FALSE,na="")

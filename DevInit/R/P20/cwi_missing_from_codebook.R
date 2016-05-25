@@ -50,9 +50,8 @@ for(i in 2:length(dirs)){
     #     files <- c()
     cwi.missing <- cwi(dir)
     if(!is.na(cwi.missing)){
-      dataList[[dataIndex]] <- cwi.missing
+      dataList <- c(dataList,cwi.missing)
     }
-    dataList <- c(dataList,cwi.missing)
     }
   }
 
