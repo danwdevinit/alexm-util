@@ -181,7 +181,7 @@ def main():
                                 nxtTop = 0
                         rowvals = operator.itemgetter('left')
                         row.sort(key=rowvals)
-                        if len(row)>=2:
+                        if len(row)>7 and row[0]['text']!="(i) Excluding Arrears, Taxes":
                             #Find missing pieces of data, replace them with blanks 
                             rowArr = []
                             rowArr.append(row[0]['text'])
