@@ -23,6 +23,8 @@ for(i in 2:length(dirs)){
       fileBase <- basename(file)
       fileName <- substr(fileBase,1,nchar(fileBase)-4)
       csvs <- list.files(dir,"*.csv",ignore.case=TRUE)
+      #Comment this out to avoid re-writing
+      csvs <- c()
       if(!(paste0(fileName,".csv") %in% csvs)){
         data <- read.dta(file)
         write.csv(data,paste0(dir,"/",fileName,".csv"),row.names=FALSE,na="")  
