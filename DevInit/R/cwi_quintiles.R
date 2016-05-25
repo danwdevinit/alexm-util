@@ -8,6 +8,10 @@ setwd("D:/Documents/Data/DHSmeta")
 
 cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
 
+# cwi <- read.csv("global_ccwi.csv",na.strings="",as.is=TRUE)
+
+# setnames(cwi,"ccwi","cwi")
+
 cwi$weights <- cwi$sample.weights/1000000
 
 weighted.percentile <- function(x,w,prob,na.rm=TRUE){
@@ -197,4 +201,4 @@ for(i in 1:length(crossNames)){
   writeData(wb,sheet=crossName,crossTab,colNames=TRUE,rowNames=TRUE)
 }
 
-saveWorkbook(wb, "DHS_CWI_crosstabs_weighted.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "DHS_CWI_crosstabs_weighted_ccwi.xlsx", overwrite = TRUE)

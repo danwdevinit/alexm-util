@@ -604,7 +604,6 @@ for(i in 2:length(dirs)){
   if(recode=="hr" & phase>=5){
     message(basename(dir))
     files <- list.files(dir)
-    files <- c()
     if("wealth_urban.csv" %in% files){
       dataList.urban[[dataIndex]] <- read.csv(paste0(dir,"/wealth_urban.csv"),na.strings="",as.is=TRUE)
       dataList.rural[[dataIndex]] <- read.csv(paste0(dir,"/wealth_rural.csv"),na.strings="",as.is=TRUE)
@@ -623,8 +622,8 @@ for(i in 2:length(dirs)){
         cut.df.rural <- data.frame(labels,cuts.rural)
         write.csv(cut.df.rural,paste(dir,"cuts_rural.csv",sep="/"),row.names=FALSE,na="")
         write.csv(data.rural,paste(dir,"wealth_rural.csv",sep="/"),row.names=FALSE,na="")
-        dataList.urban[[dataIndex]] <- data
-        dataList.rural[[dataIndex]] <- data
+        dataList.urban[[dataIndex]] <- data.urban
+        dataList.rural[[dataIndex]] <- data.rural
         dataIndex <- dataIndex + 1 
       }
     }

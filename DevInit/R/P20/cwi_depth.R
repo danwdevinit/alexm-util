@@ -8,6 +8,17 @@ setwd("D:/Documents/Data/DHSmeta")
 
 cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
 
+# cwi <- read.csv("global_ccwi2.csv",na.strings="",as.is=TRUE)
+# setnames(cwi,"cwi","cwi.urb.rur")
+# setnames(cwi,"ccwi","cwi")
+
+# cwi <- read.csv("global_ccwi.csv",na.strings="",as.is=TRUE)
+# setnames(cwi,"ccwi","cwi")
+
+cwi <- cwi[order(cwi$cwi),]
+# fit <- lm(cwi~ubn+tv+phone+fridge+car,data=cwi)
+# summary(fit)
+
 cwi$weights <- cwi$sample.weights/1000000
 
 weighted.percentile <- function(x,w,prob,na.rm=TRUE){
@@ -47,12 +58,22 @@ cwi.collapse <- cwi.table[
 
 isos <- unique(cwi.collapse$iso2)
 
+specials_to_avoid <- c(
+  "bfhr70dt"
+  ,"buhr6hdt"
+  )
+
 latest_surveys <- c()
 for(i in 1:length(isos)){
   iso <- isos[i]
   sub <- subset(cwi.collapse,iso2==iso)
   sub <- sub[order(-sub$phase)]
   latest <- sub$filename[1]
+  j <- 2
+  while(latest %in% specials_to_avoid){
+    latest <- sub$filename[j]
+    j <- j + 1
+  }
   latest_surveys <- c(latest_surveys,latest)
 }
 
