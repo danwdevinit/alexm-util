@@ -7,29 +7,7 @@ library(data.table)
 setwd("D:/Documents/Data/DHSmeta/")
 classes <- read.csv("global_cwi_classes.csv",na.strings=c("","NAN"),as.is=TRUE)
 
-# For replicating
-tl.cuts <- c(
-  3.3720311
-  ,2.1466088
-  ,6.1055916
-  ,0.6906175
-  ,-0.1460274
-  ,-0.3461362
-  ,-0.5021508
-  ,-0.6283835
-)
-
-# For when using all means
-# tl.cuts <- c(
-#   3.0041464
-#   ,2.6209717
-#   ,2.5378115
-#   ,1.5726417
-#   ,-0.1460274
-#   ,-0.3461362
-#   ,-0.5021508
-#   ,-0.6283835
-#   )
+tl.cuts <- read.csv("D:/Documents/Data/DHSauto/tlhr61dt/cuts.csv")$cuts
 
 cwi <- function(hrwd){
   if(!file_test(op="-d", hrwd)){message("HR WD invalid");return(NA);}
@@ -37,6 +15,15 @@ cwi <- function(hrwd){
   hrBase <- basename(hrwd)
   iso2 <- toupper(substr(hrBase,1,2))
   phase <- substr(hrBase,5,6)
+  
+  toilets.classes <- subset(classes,filename==hrBase & type=="toilets")
+  water.classes <- subset(classes,filename==hrBase & type=="water")
+  floor.classes <- subset(classes,filename==hrBase & type=="floor")
+  wall.classes <- subset(classes,filename==hrBase & type=="wall")
+  if(nrow(wall.classes)==0){stop("Missing from codebook!")}
+  if(nrow(water.classes)==0){stop("Missing from codebook!")}
+  if(nrow(floor.classes)==0){stop("Missing from codebook!")}
+  if(nrow(toilets.classes)==0){stop("Missing from codebook!")}
   
   hr <- read.dta(paste0(hrwd,"/",iso2,"HR",phase,"FL.dta"))
   
@@ -81,22 +68,35 @@ cwi <- function(hrwd){
   
   #Rename wall var
   names(hr)[which(names(hr)=="hv214")] <- "wall"
+  if(typeof(hr$wall)=="NULL"){message("Missing wall!");hr$wall<-NA}
   
   #Rename floor var
   names(hr)[which(names(hr)=="hv213")] <- "floor"
+  if(typeof(hr$floor)=="NULL"){message("Missing floor!");hr$floor<-NA}
   
   #Rename sleeping rooms var
-  names(hr)[which(names(hr)=="hv216")] <- "sleeping.rooms"
-  hr[which(hr$sleeping.rooms==99),] <- NA
+  if(typeof(hr$hv216)=="NULL" | typeof(hr$hv216)=="logical" | length(hr$hv216[which(!is.na(hr$hv216))])==0){
+    if(typeof(hr$sh40)=="NULL" | typeof(hr$sh40)=="logical" | length(hr$sh40[which(!is.na(hr$sh40))])==0){
+      hr$sleeping.rooms <- NA
+    }else{
+      names(hr)[which(names(hr)=="sh40")] <- "sleeping.rooms"
+      hr[which(hr$sleeping.rooms==99),] <- NA  
+    }
+  }else{
+    names(hr)[which(names(hr)=="hv216")] <- "sleeping.rooms"
+    hr[which(hr$sleeping.rooms==99),] <- NA 
+  }
   
   #Rename members var
   names(hr)[which(names(hr)=="hv009")] <- "members"
   
   #Rename drinking water var
   names(hr)[which(names(hr)=="hv201")] <- "water"
+  if(typeof(hr$water)=="NULL"){message("Missing water!");hr$water<-NA}
   
   #Rename toilets var
   names(hr)[which(names(hr)=="hv205")] <- "toilets"
+  if(typeof(hr$toilets)=="NULL"){message("Missing toilets!");hr$toilets<-NA}
   
   #Rename share toilets var
   names(hr)[which(names(hr)=="hv225")] <- "share.toilets"
@@ -278,7 +278,6 @@ cwi <- function(hrwd){
   }
   hr[which(is.na(hr$hed)),]$hed <- calc.hed.hr(hr[which(is.na(hr$hed)),])
   
-  wall.classes <- subset(classes,filename==hrBase & type=="wall")
   recode.wall <- function(x){
     item <- subset(wall.classes,value==tolower(x))
     if(nrow(item)==0){return(NA)}
@@ -286,7 +285,6 @@ cwi <- function(hrwd){
   }
   hr$inade.wall <- sapply(hr$wall,recode.wall)
   
-  floor.classes <- subset(classes,filename==hrBase & type=="floor")
   recode.floor <- function(x){
     item <- subset(floor.classes,value==tolower(x))
     if(nrow(item)==0){return(NA)}
@@ -324,8 +322,6 @@ cwi <- function(hrwd){
   }
   hr$urban <- sapply(hr$urban.rural,recode.urban.rural)
   
-  water.classes <- subset(classes,filename==hrBase & type=="water")
-  
   code.inade.water <- function(urbanV,waterV){
     inade.water <- c()
     for(i in 1:length(urbanV)){
@@ -348,8 +344,6 @@ cwi <- function(hrwd){
   }
   
   hr$inade.water <- code.inade.water(hr$urban,hr$water)
-  
-  toilets.classes <- subset(classes,filename==hrBase & type=="toilets")
   
   code.toilets <- function(toiletsV,share.toiletsV,share.toilets.missing){
     inade.toilets <- c()
@@ -456,54 +450,6 @@ cwi <- function(hrwd){
   pred.wealth.2 <- mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
   pred.wealth.1 <- mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
   
-  #   ###All means method
-  #   #Calc wealth where half of households own tv
-  #   if(!(tv.missing)){
-  #     hr$tv <- sapply(hr$tv,recode.asset)
-  #     tv.pred.wealth <- mean(hr[which(hr$tv==1),]$wealth,na.rm=TRUE)
-  #   }else{
-  #     tv.pred.wealth <- NA
-  #   }
-  #   
-  #   #Calc wealth where half of households own fridge
-  #   if(!(fridge.missing)){
-  #     hr$fridge <- sapply(hr$fridge,recode.asset)
-  #     fridge.pred.wealth <- mean(hr[which(hr$fridge==1),]$wealth,na.rm=TRUE)
-  #   }else{
-  #     fridge.pred.wealth <- NA
-  #   }
-  #   
-  #   #Calc wealth where half of households own car
-  #   if(!(car.missing)){
-  #     hr$car <- sapply(hr$car,recode.asset)
-  #     car.pred.wealth <- mean(hr[which(hr$car==1),]$wealth,na.rm=TRUE)
-  #   }else{
-  #     car.pred.wealth <- NA
-  #   }
-  #   
-  #   #Calc wealth where half of households own phone
-  #   if(!(phone.missing)){
-  #     hr$phone <- sapply(hr$phone,recode.asset)
-  #     phone.pred.wealth <- mean(hr[which(hr$phone==1),]$wealth,na.rm=TRUE)
-  #   }else{
-  #     phone.pred.wealth <- NA
-  #   }
-  #   
-  #   #Calc wealth where half of households have various UBNs
-  # #   hr <- transform(hr,ubn4 = (ubn>=4),ubn3 = (ubn>=3),ubn2 = (ubn>=2),ubn1 = (ubn>=1))
-  # #   ubn4.glm <- glm(ubn4~wealth,data=hr,family="binomial")
-  # #   pred.wealth.4 <- (-1*ubn4.glm$coefficients[[1]])/ubn4.glm$coefficients[[2]]
-  # #   ubn3.glm <- glm(ubn3~wealth,data=hr,family="binomial")
-  # #   pred.wealth.3 <- (-1*ubn3.glm$coefficients[[1]])/ubn3.glm$coefficients[[2]]
-  # #   ubn2.glm <- glm(ubn2~wealth,data=hr,family="binomial")
-  # #   pred.wealth.2 <- (-1*ubn2.glm$coefficients[[1]])/ubn2.glm$coefficients[[2]]
-  # #   ubn1.glm <- glm(ubn1~wealth,data=hr,family="binomial")
-  # #   pred.wealth.1 <- (-1*ubn1.glm$coefficients[[1]])/ubn1.glm$coefficients[[2]]
-  #   pred.wealth.4 <- mean(hr[which(hr$ubn>=4),]$wealth,na.rm=TRUE)
-  #   pred.wealth.3 <- mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
-  #   pred.wealth.2 <- mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
-  #   pred.wealth.1 <- mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
-  
   #Generate cutpoint dfs
   cuts <- c(
     car.pred.wealth
@@ -550,25 +496,32 @@ dataIndex <- 1
 
 # Loop through every dir
 for(i in 2:length(dirs)){
-# for(i in 1209:length(dirs)){
+  # for(i in 1209:length(dirs)){
   dir <- dirs[i]
   # Pull some coded info out of the dir name
   country <- tolower(substr(basename(dir),1,2))
   recode <- tolower(substr(basename(dir),3,4))
   phase <- as.integer(substr(basename(dir),5,5))
   # For this analysis, we're only interested in individual member recodes, or "hr"
-  if(recode=="hr" & phase==6){
+  if(recode=="hr" & phase>=5){
     message(basename(dir))
-    cwiList <- cwi(dir)
-    if(!is.na(cwiList)){
-      cuts <- cwiList[["cuts"]]
-      data <- cwiList[["data"]]
-      labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
-      cut.df <- data.frame(labels,cuts)
-      write.csv(cut.df,paste(dir,"cuts.csv",sep="/"),row.names=FALSE,na="")
-      write.csv(data,paste(dir,"wealth.csv",sep="/"),row.names=FALSE,na="")
-      dataList[[dataIndex]] <- data
+    files <- list.files(dir)
+#     files <- c()
+    if("wealth.csv" %in% files){
+      dataList[[dataIndex]] <- read.csv(paste0(dir,"/wealth.csv"),na.strings="",as.is=TRUE)
       dataIndex <- dataIndex + 1 
+    }else{
+      cwiList <- cwi(dir) 
+      if(!is.na(cwiList)){
+        cuts <- cwiList[["cuts"]]
+        data <- cwiList[["data"]]
+        labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
+        cut.df <- data.frame(labels,cuts)
+        write.csv(cut.df,paste(dir,"cuts.csv",sep="/"),row.names=FALSE,na="")
+        write.csv(data,paste(dir,"wealth.csv",sep="/"),row.names=FALSE,na="")
+        dataList[[dataIndex]] <- data
+        dataIndex <- dataIndex + 1 
+      }
     }
   }
 }

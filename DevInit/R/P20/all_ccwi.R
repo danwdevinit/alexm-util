@@ -7,29 +7,7 @@ library(data.table)
 setwd("D:/Documents/Data/DHSmeta/")
 classes <- read.csv("global_cwi_classes.csv",na.strings=c("","NAN"),as.is=TRUE)
 
-# For replicating
-tl.cuts <- c(
-  3.3720311
-  ,2.1466088
-  ,6.1055916
-  ,0.6906175
-  ,-0.1460274
-  ,-0.3461362
-  ,-0.5021508
-  ,-0.6283835
-)
-
-# For when using all means
-# tl.cuts <- c(
-#   3.0041464
-#   ,2.6209717
-#   ,2.5378115
-#   ,1.5726417
-#   ,-0.1460274
-#   ,-0.3461362
-#   ,-0.5021508
-#   ,-0.6283835
-#   )
+tl.cuts <- read.csv("D:/Documents/Data/DHSauto/tlhr61dt/cuts_ccwi.csv")$cuts
 
 cwi <- function(hrwd){
   if(!file_test(op="-d", hrwd)){message("HR WD invalid");return(NA);}
@@ -37,6 +15,15 @@ cwi <- function(hrwd){
   hrBase <- basename(hrwd)
   iso2 <- toupper(substr(hrBase,1,2))
   phase <- substr(hrBase,5,6)
+  
+  toilets.classes <- subset(classes,filename==hrBase & type=="toilets")
+  water.classes <- subset(classes,filename==hrBase & type=="water")
+  floor.classes <- subset(classes,filename==hrBase & type=="floor")
+  wall.classes <- subset(classes,filename==hrBase & type=="wall")
+  if(nrow(wall.classes)==0){stop("Missing from codebook!")}
+  if(nrow(water.classes)==0){stop("Missing from codebook!")}
+  if(nrow(floor.classes)==0){stop("Missing from codebook!")}
+  if(nrow(toilets.classes)==0){stop("Missing from codebook!")}
   
   hr <- read.dta(paste0(hrwd,"/",iso2,"HR",phase,"FL.dta"))
   
@@ -81,22 +68,35 @@ cwi <- function(hrwd){
   
   #Rename wall var
   names(hr)[which(names(hr)=="hv214")] <- "wall"
+  if(typeof(hr$wall)=="NULL"){message("Missing wall!");hr$wall<-NA}
   
   #Rename floor var
   names(hr)[which(names(hr)=="hv213")] <- "floor"
+  if(typeof(hr$floor)=="NULL"){message("Missing floor!");hr$floor<-NA}
   
   #Rename sleeping rooms var
-  names(hr)[which(names(hr)=="hv216")] <- "sleeping.rooms"
-  hr[which(hr$sleeping.rooms==99),] <- NA
+  if(typeof(hr$hv216)=="NULL" | typeof(hr$hv216)=="logical" | length(hr$hv216[which(!is.na(hr$hv216))])==0){
+    if(typeof(hr$sh40)=="NULL" | typeof(hr$sh40)=="logical" | length(hr$sh40[which(!is.na(hr$sh40))])==0){
+      hr$sleeping.rooms <- NA
+    }else{
+      names(hr)[which(names(hr)=="sh40")] <- "sleeping.rooms"
+      hr[which(hr$sleeping.rooms==99),] <- NA  
+    }
+  }else{
+    names(hr)[which(names(hr)=="hv216")] <- "sleeping.rooms"
+    hr[which(hr$sleeping.rooms==99),] <- NA 
+  }
   
   #Rename members var
   names(hr)[which(names(hr)=="hv009")] <- "members"
   
   #Rename drinking water var
   names(hr)[which(names(hr)=="hv201")] <- "water"
+  if(typeof(hr$water)=="NULL"){message("Missing water!");hr$water<-NA}
   
   #Rename toilets var
   names(hr)[which(names(hr)=="hv205")] <- "toilets"
+  if(typeof(hr$toilets)=="NULL"){message("Missing toilets!");hr$toilets<-NA}
   
   #Rename share toilets var
   names(hr)[which(names(hr)=="hv225")] <- "share.toilets"
@@ -278,7 +278,6 @@ cwi <- function(hrwd){
   }
   hr[which(is.na(hr$hed)),]$hed <- calc.hed.hr(hr[which(is.na(hr$hed)),])
   
-  wall.classes <- subset(classes,filename==hrBase & type=="wall")
   recode.wall <- function(x){
     item <- subset(wall.classes,value==tolower(x))
     if(nrow(item)==0){return(NA)}
@@ -286,7 +285,6 @@ cwi <- function(hrwd){
   }
   hr$inade.wall <- sapply(hr$wall,recode.wall)
   
-  floor.classes <- subset(classes,filename==hrBase & type=="floor")
   recode.floor <- function(x){
     item <- subset(floor.classes,value==tolower(x))
     if(nrow(item)==0){return(NA)}
@@ -324,8 +322,6 @@ cwi <- function(hrwd){
   }
   hr$urban <- sapply(hr$urban.rural,recode.urban.rural)
   
-  water.classes <- subset(classes,filename==hrBase & type=="water")
-  
   code.inade.water <- function(urbanV,waterV){
     inade.water <- c()
     for(i in 1:length(urbanV)){
@@ -348,8 +344,6 @@ cwi <- function(hrwd){
   }
   
   hr$inade.water <- code.inade.water(hr$urban,hr$water)
-  
-  toilets.classes <- subset(classes,filename==hrBase & type=="toilets")
   
   code.toilets <- function(toiletsV,share.toiletsV,share.toilets.missing){
     inade.toilets <- c()
@@ -413,10 +407,145 @@ cwi <- function(hrwd){
     else{return(NA)}
   }
   
-  ###Replication method
-  #Calc wealth where half of households own tv
+  ###Recode assets
   if(!(tv.missing)){
     hr$tv <- sapply(hr$tv,recode.asset)
+  }else{
+    hr$tv <- NA
+  }
+  
+  if(!(fridge.missing)){
+    hr$fridge <- sapply(hr$fridge,recode.asset)
+  }else{
+    hr$fridge <- NA
+  }
+  
+  if(!(car.missing)){
+    hr$car <- sapply(hr$car,recode.asset)
+  }else{
+    hr$car <- NA
+  }
+  
+  if(!(phone.missing)){
+    hr$phone <- sapply(hr$phone,recode.asset)
+  }else{
+    hr$phone <- NA
+  }
+  
+  hr.urban <- subset(hr,urban==1)
+  hr.rural <- subset(hr,urban==0)
+  
+  ###Cutpoints for urban
+  #Calc wealth where half of households own tv
+  if(!(tv.missing) & nrow(hr.urban)>0){
+    tv.glm.urban <- glm(tv~wealth,data=hr.urban,family="binomial")
+    tv.pred.wealth.urban <- (-1*tv.glm.urban$coefficients[[1]])/tv.glm.urban$coefficients[[2]]
+  }else{
+    tv.pred.wealth.urban <- NA
+  }
+  
+  #Calc wealth where half of households own fridge
+  if(!(fridge.missing) & nrow(hr.urban)>0){
+    fridge.glm.urban <- glm(fridge~wealth,data=hr.urban,family="binomial")
+    fridge.pred.wealth.urban <- (-1*fridge.glm.urban$coefficients[[1]])/fridge.glm.urban$coefficients[[2]]
+  }else{
+    fridge.pred.wealth.urban <- NA
+  }
+  
+  #Calc wealth where half of households own car
+  if(!(car.missing) & nrow(hr.urban)>0){
+    car.glm.urban <- glm(car~wealth,data=hr.urban,family="binomial")
+    car.pred.wealth.urban <- (-1*car.glm.urban$coefficients[[1]])/car.glm.urban$coefficients[[2]]
+  }else{
+    car.pred.wealth.urban <- NA
+  }
+  
+  #Calc wealth where half of households own phone
+  if(!(phone.missing) & nrow(hr.urban)>0){
+    phone.glm.urban <- glm(phone~wealth,data=hr.urban,family="binomial")
+    phone.pred.wealth.urban <- (-1*phone.glm.urban$coefficients[[1]])/phone.glm.urban$coefficients[[2]]
+  }else{
+    phone.pred.wealth.urban <- NA
+  }
+  
+  #Calc wealth where half of households have various UBNs
+  pred.wealth.4.urban <- mean(hr.urban[which(hr.urban$ubn>=4),]$wealth,na.rm=TRUE)
+  pred.wealth.3.urban <- mean(hr.urban[which(hr.urban$ubn>=3),]$wealth,na.rm=TRUE)
+  pred.wealth.2.urban <- mean(hr.urban[which(hr.urban$ubn>=2),]$wealth,na.rm=TRUE)
+  pred.wealth.1.urban <- mean(hr.urban[which(hr.urban$ubn>=1),]$wealth,na.rm=TRUE)
+  
+  ###Cutpoints for rural
+  #Calc wealth where half of households own tv
+  if(!(tv.missing) & nrow(hr.rural)>0){
+    tv.glm.rural <- glm(tv~wealth,data=hr.rural,family="binomial")
+    tv.pred.wealth.rural <- (-1*tv.glm.rural$coefficients[[1]])/tv.glm.rural$coefficients[[2]]
+  }else{
+    tv.pred.wealth.rural <- NA
+  }
+  
+  #Calc wealth where half of households own fridge
+  if(!(fridge.missing) & nrow(hr.rural)>0){
+    fridge.glm.rural <- glm(fridge~wealth,data=hr.rural,family="binomial")
+    fridge.pred.wealth.rural <- (-1*fridge.glm.rural$coefficients[[1]])/fridge.glm.rural$coefficients[[2]]
+  }else{
+    fridge.pred.wealth.rural <- NA
+  }
+  
+  #Calc wealth where half of households own car
+  if(!(car.missing) & nrow(hr.rural)>0){
+    car.glm.rural <- glm(car~wealth,data=hr.rural,family="binomial")
+    car.pred.wealth.rural <- (-1*car.glm.rural$coefficients[[1]])/car.glm.rural$coefficients[[2]]
+  }else{
+    car.pred.wealth.rural <- NA
+  }
+  
+  #Calc wealth where half of households own phone
+  if(!(phone.missing) & nrow(hr.rural)>0){
+    phone.glm.rural <- glm(phone~wealth,data=hr.rural,family="binomial")
+    phone.pred.wealth.rural <- (-1*phone.glm.rural$coefficients[[1]])/phone.glm.rural$coefficients[[2]]
+  }else{
+    phone.pred.wealth.rural <- NA
+  }
+  
+  #Calc wealth where half of households have various UBNs
+  pred.wealth.4.rural <- mean(hr.rural[which(hr.rural$ubn>=4),]$wealth,na.rm=TRUE)
+  pred.wealth.3.rural <- mean(hr.rural[which(hr.rural$ubn>=3),]$wealth,na.rm=TRUE)
+  pred.wealth.2.rural <- mean(hr.rural[which(hr.rural$ubn>=2),]$wealth,na.rm=TRUE)
+  pred.wealth.1.rural <- mean(hr.rural[which(hr.rural$ubn>=1),]$wealth,na.rm=TRUE)
+  
+  #Generate cutpoint dfs
+  cuts.urban <- c(
+    car.pred.wealth.urban
+    ,fridge.pred.wealth.urban
+    ,phone.pred.wealth.urban
+    ,tv.pred.wealth.urban
+    ,pred.wealth.1.urban
+    ,pred.wealth.2.urban
+    ,pred.wealth.3.urban
+    ,pred.wealth.4.urban
+  )
+  cuts.rural <- c(
+    car.pred.wealth.rural
+    ,fridge.pred.wealth.rural
+    ,phone.pred.wealth.rural
+    ,tv.pred.wealth.rural
+    ,pred.wealth.1.rural
+    ,pred.wealth.2.rural
+    ,pred.wealth.3.rural
+    ,pred.wealth.4.rural
+  )
+  
+  if(!is.na(sum(cuts.urban)) & !is.na(sum(cuts.rural))){
+    cut.lm.ur <- lm(cuts.urban~cuts.rural)
+    alpha.ur <- cut.lm.ur$coefficients[[1]]
+    beta.ur <- cut.lm.ur$coefficients[[2]]
+    hr.rural$wealth <- alpha.ur+(beta.ur*hr.rural$wealth)
+    hr <- rbind(hr.rural,hr.urban) 
+  }
+  
+  ###With those two pieces done, urban and rural on par, redo cwi as ccwi
+  #Calc wealth where half of households own tv
+  if(!(tv.missing)){
     tv.glm <- glm(tv~wealth,data=hr,family="binomial")
     tv.pred.wealth <- (-1*tv.glm$coefficients[[1]])/tv.glm$coefficients[[2]]
   }else{
@@ -425,7 +554,6 @@ cwi <- function(hrwd){
   
   #Calc wealth where half of households own fridge
   if(!(fridge.missing)){
-    hr$fridge <- sapply(hr$fridge,recode.asset)
     fridge.glm <- glm(fridge~wealth,data=hr,family="binomial")
     fridge.pred.wealth <- (-1*fridge.glm$coefficients[[1]])/fridge.glm$coefficients[[2]]
   }else{
@@ -434,7 +562,6 @@ cwi <- function(hrwd){
   
   #Calc wealth where half of households own car
   if(!(car.missing)){
-    hr$car <- sapply(hr$car,recode.asset)
     car.glm <- glm(car~wealth,data=hr,family="binomial")
     car.pred.wealth <- (-1*car.glm$coefficients[[1]])/car.glm$coefficients[[2]]
   }else{
@@ -443,7 +570,6 @@ cwi <- function(hrwd){
   
   #Calc wealth where half of households own phone
   if(!(phone.missing)){
-    hr$phone <- sapply(hr$phone,recode.asset)
     phone.glm <- glm(phone~wealth,data=hr,family="binomial")
     phone.pred.wealth <- (-1*phone.glm$coefficients[[1]])/phone.glm$coefficients[[2]]
   }else{
@@ -455,54 +581,6 @@ cwi <- function(hrwd){
   pred.wealth.3 <- mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
   pred.wealth.2 <- mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
   pred.wealth.1 <- mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
-  
-  #   ###All means method
-  #   #Calc wealth where half of households own tv
-  #   if(!(tv.missing)){
-  #     hr$tv <- sapply(hr$tv,recode.asset)
-  #     tv.pred.wealth <- mean(hr[which(hr$tv==1),]$wealth,na.rm=TRUE)
-  #   }else{
-  #     tv.pred.wealth <- NA
-  #   }
-  #   
-  #   #Calc wealth where half of households own fridge
-  #   if(!(fridge.missing)){
-  #     hr$fridge <- sapply(hr$fridge,recode.asset)
-  #     fridge.pred.wealth <- mean(hr[which(hr$fridge==1),]$wealth,na.rm=TRUE)
-  #   }else{
-  #     fridge.pred.wealth <- NA
-  #   }
-  #   
-  #   #Calc wealth where half of households own car
-  #   if(!(car.missing)){
-  #     hr$car <- sapply(hr$car,recode.asset)
-  #     car.pred.wealth <- mean(hr[which(hr$car==1),]$wealth,na.rm=TRUE)
-  #   }else{
-  #     car.pred.wealth <- NA
-  #   }
-  #   
-  #   #Calc wealth where half of households own phone
-  #   if(!(phone.missing)){
-  #     hr$phone <- sapply(hr$phone,recode.asset)
-  #     phone.pred.wealth <- mean(hr[which(hr$phone==1),]$wealth,na.rm=TRUE)
-  #   }else{
-  #     phone.pred.wealth <- NA
-  #   }
-  #   
-  #   #Calc wealth where half of households have various UBNs
-  # #   hr <- transform(hr,ubn4 = (ubn>=4),ubn3 = (ubn>=3),ubn2 = (ubn>=2),ubn1 = (ubn>=1))
-  # #   ubn4.glm <- glm(ubn4~wealth,data=hr,family="binomial")
-  # #   pred.wealth.4 <- (-1*ubn4.glm$coefficients[[1]])/ubn4.glm$coefficients[[2]]
-  # #   ubn3.glm <- glm(ubn3~wealth,data=hr,family="binomial")
-  # #   pred.wealth.3 <- (-1*ubn3.glm$coefficients[[1]])/ubn3.glm$coefficients[[2]]
-  # #   ubn2.glm <- glm(ubn2~wealth,data=hr,family="binomial")
-  # #   pred.wealth.2 <- (-1*ubn2.glm$coefficients[[1]])/ubn2.glm$coefficients[[2]]
-  # #   ubn1.glm <- glm(ubn1~wealth,data=hr,family="binomial")
-  # #   pred.wealth.1 <- (-1*ubn1.glm$coefficients[[1]])/ubn1.glm$coefficients[[2]]
-  #   pred.wealth.4 <- mean(hr[which(hr$ubn>=4),]$wealth,na.rm=TRUE)
-  #   pred.wealth.3 <- mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
-  #   pred.wealth.2 <- mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
-  #   pred.wealth.1 <- mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
   
   #Generate cutpoint dfs
   cuts <- c(
@@ -525,9 +603,9 @@ cwi <- function(hrwd){
   cut.lm <- lm(tl.cuts~cuts)
   alpha <- cut.lm$coefficients[[1]]
   beta <- cut.lm$coefficients[[2]]
-  data$cwi <- alpha+(beta*data$wealth)
+  data$ccwi <- alpha+(beta*data$wealth)
   
-  nameOrder = c("filename","iso2","year","household","cluster","sample.weights","cwi","wealth","ubn","inade.materials","crowded","inade.sani","hed","tv","phone","car","fridge")
+  nameOrder = c("filename","iso2","year","household","cluster","sample.weights","ccwi","wealth","ubn","inade.materials","crowded","inade.sani","hed","tv","phone","car","fridge")
   data <- data[nameOrder]
   
   return(
@@ -550,25 +628,30 @@ dataIndex <- 1
 
 # Loop through every dir
 for(i in 2:length(dirs)){
-# for(i in 1209:length(dirs)){
   dir <- dirs[i]
   # Pull some coded info out of the dir name
   country <- tolower(substr(basename(dir),1,2))
   recode <- tolower(substr(basename(dir),3,4))
   phase <- as.integer(substr(basename(dir),5,5))
   # For this analysis, we're only interested in individual member recodes, or "hr"
-  if(recode=="hr" & phase==6){
+  if(recode=="hr" & phase>=5){
     message(basename(dir))
-    cwiList <- cwi(dir)
-    if(!is.na(cwiList)){
-      cuts <- cwiList[["cuts"]]
-      data <- cwiList[["data"]]
-      labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
-      cut.df <- data.frame(labels,cuts)
-      write.csv(cut.df,paste(dir,"cuts.csv",sep="/"),row.names=FALSE,na="")
-      write.csv(data,paste(dir,"wealth.csv",sep="/"),row.names=FALSE,na="")
-      dataList[[dataIndex]] <- data
+    files <- list.files(dir)
+    if("wealth_ccwi.csv" %in% files){
+      dataList[[dataIndex]] <- read.csv(paste0(dir,"/wealth_ccwi.csv"),na.strings="",as.is=TRUE)
       dataIndex <- dataIndex + 1 
+    }else{
+      cwiList <- cwi(dir) 
+      if(!is.na(cwiList)){
+        cuts <- cwiList[["cuts"]]
+        data <- cwiList[["data"]]
+        labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
+        cut.df <- data.frame(labels,cuts)
+        write.csv(cut.df,paste(dir,"cuts_ccwi.csv",sep="/"),row.names=FALSE,na="")
+        write.csv(data,paste(dir,"wealth_ccwi.csv",sep="/"),row.names=FALSE,na="")
+        dataList[[dataIndex]] <- data
+        dataIndex <- dataIndex + 1 
+      }
     }
   }
 }
@@ -576,4 +659,4 @@ for(i in 2:length(dirs)){
 wd <- "D:/Documents/Data/DHSmeta"
 setwd(wd)
 metaData <- rbindlist(dataList,fill=TRUE)
-write.csv(metaData,"global_cwi.csv",row.names=FALSE,na="")
+write.csv(metaData,"global_ccwi.csv",row.names=FALSE,na="")

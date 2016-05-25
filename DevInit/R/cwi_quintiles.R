@@ -6,23 +6,72 @@ library(plyr)
 
 setwd("D:/Documents/Data/DHSmeta")
 
-cwi <- read.csv("global_cwi_replication.csv",na.strings="",as.is=TRUE)
+cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
 
 cwi$weights <- cwi$sample.weights/1000000
-cwi$weighted.cwi <- cwi$cwi*cwi$weights
 
-quints <- quantile(cwi$weighted.cwi, prob = seq(0, 1, length = 6), type = 5,na.rm=TRUE)
+weighted.percentile <- function(x,w,prob,na.rm=TRUE){
+  df <- data.frame(x,w)
+  if(na.rm){
+    df <- df[which(complete.cases(df)),]
+  }
+  #Sort
+  df <- df[order(df$x),]
+  sumw <- sum(df$w)
+  df$cumsumw <- cumsum(df$w)
+  #For each percentile
+  cutList <- c()
+  cutNames <-c()
+  for(i in 1:length(prob)){
+    p <- prob[i]
+    pStr <- paste0(round(p*100,digits=2),"%")
+    sumwp <- sumw*p
+    df$above.prob <- df$cumsumw>=sumwp
+    thisCut <- df$x[which(df$above.prob==TRUE)[1]]
+    cutList <- c(cutList,thisCut)
+    cutNames <- c(cutNames,pStr)
+  }
+  names(cutList) <- cutNames
+  return(cutList)
+}
+
+cwi$phase <- substr(cwi$filename,5,5)
+
+cwi.table <- data.table(cwi)
+
+cwi.collapse <- cwi.table[
+  ,.(mean.cwi=weighted.mean(cwi,weights,na.rm=TRUE)
+     ,median.cwi=weighted.percentile(cwi,weights,.5)
+     ,filename=max(filename))
+  , by=.(iso2,phase)]
+
+isos <- unique(cwi.collapse$iso2)
+
+latest_surveys <- c()
+for(i in 1:length(isos)){
+  iso <- isos[i]
+  sub <- subset(cwi.collapse,iso2==iso)
+  sub <- sub[order(-sub$phase)]
+  latest <- sub$filename[1]
+  latest_surveys <- c(latest_surveys,latest)
+}
+
+cwi <- subset(cwi,filename %in% latest_surveys)
+
+quints <- weighted.percentile(cwi$cwi,cwi$weights,prob=seq(0,1,length=6))
 
 for(i in 2:length(quints)){
   quint <- quints[i]
   quintName <- paste0("quint.",(i-1)*20)
-  cwi[[quintName]] <- (cwi$weighted.cwi <= quint)
+  cwi[[quintName]] <- (cwi$cwi <= quint)
 }
 
-decs <- quantile(cwi$weighted.cwi, prob = seq(0, 1, length = 11), type = 5,na.rm=TRUE)
-cwi$dec.50 <- (cwi$weighted.cwi <= decs[6])
+decs <- weighted.percentile(cwi$cwi,cwi$weights,prob=seq(0,1,length=11))
+cwi$dec.50 <- (cwi$cwi <= decs[6])
 
 write.csv(cwi,"cwi_percentiles.csv",na="",row.names=FALSE)
+
+latest_surveys_pr <- gsub("hr","pr",latest_surveys)
 
 wd <- "D:/Documents/Data/DHSauto/"
 setwd(wd)
@@ -56,27 +105,21 @@ metaNames <- c(
 
 for(i in 2:length(dirs)){
   dir <- dirs[i]
-  country <- tolower(substr(dir,1,2))
-  recode <- tolower(substr(dir,3,4))
-  phase <- as.integer(substr(dir,5,5))
-  if(recode=="pr" & phase==6){
+  if(dir %in% latest_surveys_pr){
     dtaPath <- list.files(paste0(wd,dir), pattern="*.dta",ignore.case=TRUE)[1]
     dta <- read.dta(paste0(wd,dir,"/",dtaPath))
-    names <- names(dta)
-    if("hv000" %in% names){
-      message(dta$hv000[1])
-      pr <- dta[keep]
-      names(pr) <- metaNames
-      filename <- paste0(substr(dir,1,2),"hr",substr(dir,5,6),"dt")
-      pr$filename <- filename
-      pr <- join(
-        pr
-        ,cwi
-        ,by=c("cluster","household","filename")
-      )
-      data[[dataIndex]] <- pr
-      dataIndex <- dataIndex + 1
-    }
+    message(dta$hv000[1])
+    pr <- dta[keep]
+    names(pr) <- metaNames
+    filename <- paste0(substr(dir,1,2),"hr",substr(dir,5,6),"dt")
+    pr$filename <- filename
+    pr <- join(
+      pr
+      ,cwi
+      ,by=c("cluster","household","filename")
+    )
+    data[[dataIndex]] <- pr
+    dataIndex <- dataIndex + 1
   }
 }
 
@@ -132,7 +175,7 @@ pr$sample.weight <- pr$sample.weight/1000000
 
 setwd("D:/Documents/Data/DHSmeta")
 write.csv(pr,"dhs_pr_cwi.csv",na="",row.names=FALSE)
-pr <- read.csv("dhs_pr_cwi.csv",na.strings="",as.is=TRUE)
+# pr <- read.csv("dhs_pr_cwi.csv",na.strings="",as.is=TRUE)
 # Stop crosstab from plotting everything
 options(descr.plot = FALSE)
 crossTabs <- list()
