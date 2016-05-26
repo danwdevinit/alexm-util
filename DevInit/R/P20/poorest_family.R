@@ -4,11 +4,12 @@ library(data.table)
 library(plyr)
 
 # setwd("D:/Documents/Data/DHSauto/johr6cdt")
-setwd("D:/Documents/Data/DHSauto/yehr61dt")
-
+# setwd("D:/Documents/Data/DHSauto/yehr61dt")
+setwd("D:/Documents/Data/DHSauto/gnhr61dt")
 # data <- read.dta("JOHR6CFL.dta")
-data <- read.dta("YEHR61FL.dta")
-cwi.df <- read.csv("wealth_replication.csv",na.strings="",as.is=TRUE)
+# data <- read.dta("YEHR61FL.dta")
+data <- read.csv("GNHR61FL.csv",as.is=TRUE,na.strings="",check.names=FALSE)
+cwi.df <- read.csv("wealth_rural.csv",na.strings="",as.is=TRUE)
 setnames(data,"hv001","cluster")
 setnames(data,"hv002","household")
 data <- join(
@@ -18,13 +19,16 @@ data <- join(
 )
 
 # poorest.family <- subset(data,household==16 & cluster==119)
-poorest.family <- subset(data,household==18 & cluster==286)
+# poorest.family <- subset(data,household==18 & cluster==286)
+poorest.family <- subset(data,household==7 & cluster==11)
 poorest.family <- poorest.family[colSums(!is.na(poorest.family)) > 0]
 
 # setwd("D:/Documents/Data/DHSauto/jopr6cdt")
 # members <- read.dta("JOPR6CFL.dta")
-setwd("D:/Documents/Data/DHSauto/yepr61dt")
-members <- read.dta("YEPR61FL.dta")
+# setwd("D:/Documents/Data/DHSauto/yepr61dt")
+# members <- read.dta("YEPR61FL.dta")
+setwd("D:/Documents/Data/DHSauto/gnpr61dt")
+members <- read.csv("GNPR61FL.csv",as.is=TRUE,na.strings="",check.names=FALSE)
 setnames(members,"hv001","cluster")
 setnames(members,"hv002","household")
 members <- join(
@@ -34,7 +38,8 @@ members <- join(
 )
 
 # poorest.family.members <- subset(members,household==16 & cluster==119)
-poorest.family.members <- subset(members,household==18 & cluster==286)
+# poorest.family.members <- subset(members,household==18 & cluster==286)
+poorest.family.members <- subset(members,household==7 & cluster==11)
 poorest.family.members <- poorest.family.members[colSums(!is.na(poorest.family.members)) > 0]
 
 setnames(poorest.family.members,"hv105","age")

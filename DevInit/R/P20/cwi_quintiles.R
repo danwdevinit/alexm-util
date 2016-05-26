@@ -6,11 +6,11 @@ library(plyr)
 
 setwd("D:/Documents/Data/DHSmeta")
 
-cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
+# cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
 
-# cwi <- read.csv("global_ccwi.csv",na.strings="",as.is=TRUE)
+cwi <- read.csv("global_ccwi.csv",na.strings="",as.is=TRUE)
 
-# setnames(cwi,"ccwi","cwi")
+setnames(cwi,"ccwi","cwi")
 
 cwi$weights <- cwi$sample.weights/1000000
 
@@ -107,7 +107,8 @@ for(i in 2:length(dirs)){
   dir <- dirs[i]
   if(dir %in% latest_surveys_pr){
     dtaPath <- list.files(paste0(wd,dir), pattern="*.dta",ignore.case=TRUE)[1]
-    dta <- read.dta(paste0(wd,dir,"/",dtaPath))
+    fileName <- paste0(substr(dtaPath,1,nchar(dtaPath)-4),".csv")
+    dta <- read.csv(paste0(wd,dir,"/",fileName),na.strings="",as.is=TRUE,check.names=FALSE)
     message(dta$hv000[1])
     pr <- dta[keep]
     names(pr) <- metaNames
@@ -197,4 +198,4 @@ for(i in 1:length(crossNames)){
   writeData(wb,sheet=crossName,crossTab,colNames=TRUE,rowNames=TRUE)
 }
 
-saveWorkbook(wb, "DHS_CWI_crosstabs_weighted_cwi.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "DHS_CWI_crosstabs_weighted_ccwi.xlsx", overwrite = TRUE)

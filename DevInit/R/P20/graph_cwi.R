@@ -53,7 +53,14 @@ cwi.collapse <- cwi.table[
 
 setnames(cwi.collapse,"iso2","iso2c")
 
+cwi.collapse[which(cwi.collapse$iso2c=="BU")]$iso2c <- "BI"
+cwi.collapse[which(cwi.collapse$iso2c=="DR")]$iso2c <- "DO"
+cwi.collapse[which(cwi.collapse$iso2c=="IA")]$iso2c <- "IN"
+cwi.collapse[which(cwi.collapse$iso2c=="KY")]$iso2c <- "KG"
 cwi.collapse[which(cwi.collapse$iso2c=="LB")]$iso2c <- "LR"
+cwi.collapse[which(cwi.collapse$iso2c=="MD")]$iso2c <- "MG"
+cwi.collapse[which(cwi.collapse$iso2c=="MB")]$iso2c <- "MD"
+cwi.collapse[which(cwi.collapse$iso2c=="NM")]$iso2c <- "NA"
 cwi.collapse[which(cwi.collapse$iso2c=="NI")]$iso2c <- "NE"
 
 data <- join(
@@ -124,9 +131,6 @@ summary(fit)
 fit <- lm(log.gni~mean.cwi,data=data.no.na)
 summary(fit)
 
-cwi$monetized.log <- fit$coefficients[[1]]+(fit$coefficients[[2]]*cwi$cwi)
-cwi$monetized <- exp(cwi$monetized.log)
-
 fit <- lm(median.cwi~log.gni,data=data.no.na)
 summary(fit)
 
@@ -138,9 +142,79 @@ abline(lm(mean.cwi~log.gni,data=data.no.na))
 
 d$save("gni_interactive.html", cdn = TRUE)
 
-mon.quints <- weighted.percentile(cwi$monetized,cwi$weights,seq(0,1,length=6))
+###Tomfoolery below this line
 
-mon.quints[2]
-mon.quints[3]-mon.quints[2]
-mon.quints[4]-mon.quints[3]
-mon.quints[5]-mon.quints[4]
+# #Monetize CWI? Or reverse monetize cutpoint?
+# fit <- lm(log.gni~mean.cwi,data=data.no.na)
+# summary(fit)
+# 
+# cwi$monetized.log <- fit$coefficients[[1]]+(fit$coefficients[[2]]*cwi$cwi)
+# cwi$monetized <- exp(cwi$monetized.log)/365
+# 
+# monetary.cut <- 2.38
+# 
+# cwi$monetary.p20 <- cwi$monetized<=monetary.cut
+
+fit <- lm(mean.cwi~NY.GNP.PCAP.PP.KD,data=data.no.na)
+summary(fit)
+
+monetary.cut <- 2.38
+
+cwi.cut <- fit$coefficients[[1]]+(fit$coefficients[[2]]*(monetary.cut*365))
+
+cwi$monetary.p20 <- cwi$cwi<=cwi.cut
+
+cwi$phase <- substr(cwi$filename,5,5)
+
+latest_surveys <- c(
+  "alhr50dt", "amhr61dt", "aohr61dt", "azhr52dt", "bdhr70dt", "bfhr70dt"
+  ,"bjhr61dt", "bohr51dt", "buhr61dt", "cdhr61dt", "cghr60dt"
+  ,"cihr61dt", "cmhr60dt", "cohr61dt", "drhr61dt", "eghr61dt"
+  ,"ethr61dt", "gahr60dt", "ghhr70dt", "gmhr60dt", "gnhr61dt", "gyhr5idt"
+  ,"hnhr62dt", "hthr61dt", "iahr52dt", "idhr63dt", "johr6cdt"
+  ,"kehr7hdt","khhr72dt", "kmhr61dt", "kyhr61dt", "lbhr6adt", "lshr61dt"
+  ,"mbhr53dt", "mdhr6hdt", "mlhr6hdt", "mvhr51dt", "mwhr71dt"
+  ,"mzhr62dt", "nghr6adt", "nihr61dt", "nmhr61dt", "nphr60dt"
+  ,"pehr6idt","phhr61dt","pkhr61dt"
+  ,"rwhr70dt","slhr61dt","snhr70dt", "sthr50dt", "szhr51dt"
+  ,"tghr61dt", "tjhr61dt", "tlhr61dt","tzhr6adt", "uahr51dt"
+  ,"ughr72dt", "vnhr52dt", "yehr61dt", "zmhr61dt", "zwhr62dt"
+)
+
+cwi <- subset(cwi,filename %in% latest_surveys)
+cwi <- cwi[order(cwi$cwi),]
+
+cwi.table <- data.table(cwi)
+
+cwi.collapse <- cwi.table[
+  ,.(p20=weighted.mean(monetary.p20,weights,na.rm=TRUE))
+  , by=.(iso2,phase)]
+
+p20.table <- data.table(subset(cwi,monetary.p20==TRUE))
+
+# p20.collapse <- p20.table[
+#   ,.(pov.gap=weighted.mean((monetary.cut-monetized),weights,na.rm=TRUE)
+#      ,pov.gap.sqr=weighted.mean((monetary.cut-monetized)*(monetary.cut-monetized),weights,na.rm=TRUE))
+#   ,by=.(iso2)]
+
+p20.collapse <- p20.table[
+  ,.(pov.gap=weighted.mean((cwi.cut-cwi),weights,na.rm=TRUE)
+     ,pov.gap.sqr=weighted.mean((cwi.cut-cwi)*(cwi.cut-cwi),weights,na.rm=TRUE))
+  ,by=.(iso2)]
+
+data <- join(cwi.collapse,p20.collapse,by="iso2")
+
+data[which(data$iso2=="BU")]$iso2 <- "BI"
+data[which(data$iso2=="DR")]$iso2 <- "DO"
+data[which(data$iso2=="IA")]$iso2 <- "IN"
+data[which(data$iso2=="KY")]$iso2 <- "KG"
+data[which(data$iso2=="LB")]$iso2 <- "LR"
+data[which(data$iso2=="MD")]$iso2 <- "MG"
+data[which(data$iso2=="MB")]$iso2 <- "MD"
+data[which(data$iso2=="NM")]$iso2 <- "NA"
+data[which(data$iso2=="NI")]$iso2 <- "NE"
+
+setwd("D:/Documents/Data/DHSmeta")
+# write.csv(data,"cwi_monetized_pov_depth.csv",row.names=FALSE,na="")
+write.csv(data,"cwi_238_pov_depth.csv",row.names=FALSE,na="")
+

@@ -26,12 +26,14 @@ cwi <- function(hrwd){
   if(nrow(floor.classes)==0){stop("Missing from codebook!")}
   if(nrow(toilets.classes)==0){stop("Missing from codebook!")}
   
-  hr <- read.dta(paste0(hrwd,"/",iso2,"HR",phase,"FL.dta"))
+  hr <- read.csv(paste0(hrwd,"/",iso2,"HR",phase,"FL.csv")
+                 ,na.strings="",as.is=TRUE,check.names=FALSE)
   
   irwd <- paste0("D:/Documents/Data/DHSauto/",tolower(iso2),"ir",phase,"dt/")
   if(!file_test(op="-d", irwd)){message("IR WD invalid");return(NA);}
   
-  ir <- read.dta(paste0(irwd,iso2,"IR",phase,"FL.dta"))
+  ir <- read.csv(paste0(irwd,iso2,"IR",phase,"FL.csv")
+                 ,na.strings="",as.is=TRUE,check.names=FALSE)
   
   #Rename wealth var
   names(hr)[which(names(hr)=="hv271")] <- "wealth"

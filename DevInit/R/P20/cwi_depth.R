@@ -6,13 +6,14 @@ library(plyr)
 
 setwd("D:/Documents/Data/DHSmeta")
 
-# cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
+cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)
+fileName <- "depth_of_cwi.csv"
 
-cwi <- read.csv("global_ccwi2.csv",na.strings="",as.is=TRUE)
-setnames(cwi,"cwi","cwi.urb.rur")
-setnames(cwi,"ccwi","cwi")
+# cwi <- read.csv("global_ccwi2.csv",na.strings="",as.is=TRUE)
+# setnames(cwi,"cwi","cwi.urb.rur")
+# setnames(cwi,"ccwi","cwi")
+# fileName <- "depth_of_ccwi.csv"
 
-cwi <- cwi[order(cwi$cwi),]
 # fit <- lm(cwi~ubn+tv+phone+fridge+car,data=cwi)
 # summary(fit)
 
@@ -61,6 +62,7 @@ latest_surveys <- c(
   )
 
 cwi <- subset(cwi,filename %in% latest_surveys)
+cwi <- cwi[order(cwi$cwi),]
 
 quints <- weighted.percentile(cwi$cwi,cwi$weights,prob=seq(0,1,length=6))
 
@@ -89,4 +91,4 @@ p20.collapse <- p20.table[
 data <- join(cwi.collapse,p20.collapse,by="iso2")
 
 setwd("D:/Documents/Data/DHSmeta")
-write.csv(data,"depth_of_ccwi.csv",row.names=FALSE,na="")
+write.csv(data,fileName,row.names=FALSE,na="")
