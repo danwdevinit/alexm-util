@@ -12,7 +12,7 @@ cwi.class <- function(hrwd){
   
   toiletVar <- subset(varNames,filename==hrBase)$toiletsVar
     
-  hh <- read.csv(paste0(dir,"/hh.csv"),as.is=TRUE,na.strings="",check.names=FALSE)
+  hh <- read.csv(paste0(hrwd,"/hh.csv"),as.is=TRUE,na.strings="",check.names=FALSE)
   
   #Exit function if really low MICS phase
   if(typeof(hh$hh1)=="NULL"){
