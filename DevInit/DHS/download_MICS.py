@@ -66,7 +66,7 @@ profile.set_preference("browser.download.folderList", 2)
 profile.set_preference('browser.download.manager.showWhenStarting', False)
 profile.set_preference("browser.download.dir", options.output)
 profile.set_preference("browser.helperApps.alwaysAsk.force", False)
-profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/x-zip-compressed")
+profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/x-zip-compressed,application/zip,application/octet-stream")
 
 browser = webdriver.Firefox(firefox_profile=profile) # Create a session of Firefox
 browser.maximize_window()
