@@ -298,24 +298,25 @@ cwi <- function(hh,hl){
   )
   
   ###One worker assumption for households outside of IR
-  calc.hed.hr <- function(df){
-    hedV <- c()
-    for(i in 1:nrow(df)){
-      members <- df$members[i]
-      head.educ <- tolower(df$helevel[i])
-      workers <- 1
-      adults.completed.primary <- 0
-      
-      if(
-        head.educ %in% secondary.level | head.educ %in% higher.level
-         ){adults.completed.primary <- 1}
-      
-      hed = ((members/workers)>3 & adults.completed.primary==0)
-      hedV <- c(hedV,hed)
-    }
-    return(hedV)
-  }
-  hr[which(is.na(hr$hed)),]$hed <- calc.hed.hr(hr[which(is.na(hr$hed)),])
+  ###Skipping for MICS now, since helevel/hhlevel can vary   
+#   calc.hed.hr <- function(df){
+#     hedV <- c()
+#     for(i in 1:nrow(df)){
+#       members <- df$members[i]
+#       head.educ <- tolower(df$helevel[i])
+#       workers <- 1
+#       adults.completed.primary <- 0
+#       
+#       if(
+#         head.educ %in% secondary.level | head.educ %in% higher.level
+#          ){adults.completed.primary <- 1}
+#       
+#       hed = ((members/workers)>3 & adults.completed.primary==0)
+#       hedV <- c(hedV,hed)
+#     }
+#     return(hedV)
+#   }
+#   hr[which(is.na(hr$hed)),]$hed <- calc.hed.hr(hr[which(is.na(hr$hed)),])
   
   recode.wall <- function(x){
     item <- subset(wall.classes,value==tolower(x))
