@@ -4,62 +4,70 @@ library(plyr)
 library(foreign)
 library(data.table)
 
-setwd("D:/Documents/Data/MICSmeta/")
-classes <- read.csv("global_mics_classes.csv",na.strings=c("","NAN"),as.is=TRUE)
-varNames <- read.csv("toiletsVars.csv",as.is=TRUE,na.strings="")
-assetVars <- read.csv("assetVars.csv",as.is=TRUE,na.strings="NAN")
-
-hrwd <- "D:/Documents/Data/MICSauto/Ukraine_MICS4_Datasets"
+setwd("D:/Documents/Data/MICSmeta")
+varNames <- read.csv("mics_meta_vars_complete.csv",as.is=TRUE,na.strings="")
+classes <- read.csv("global_mics_classes.csv",as.is=TRUE,na.strings="NAN")
 
 tl.cuts <- read.csv("D:/Documents/Data/DHSauto/tlhr61dt/cuts.csv")$cuts
+###need to make a decision about phones###
 
-yes <- c("yes",1,"qui","si","sin")
-no <- c("no",0,2,"non")
-missing <-c(NA,"missing","dk")
-preschool <- c("presc","pre-sc")
-primary <- c("prim")
-secondary <- c("second")
-higher <- c("voca","univ","colle","high")
-urban <- c("urban")
-rural <- c("rural")
-
-cwi <- function(hrwd){
-  if(!file_test(op="-d", hrwd)){message("HR WD invalid");return(NA);}
+cwi <- function(hh,hl){
+  hr <- data.frame(hh,as.is=TRUE,check.names=FALSE)
+  ir <- data.frame(hl,as.is=TRUE,check.names=FALSE)
+  hrBase <- hh$filename
   
-  hrBase <- basename(hrwd)
+  file.varName <- subset(varNames,filename==hrBase)
   
-  toiletVar <- subset(varNames,filename==hrBase)$toiletsVar
-  if(is.na(toiletVar)){
-    share.toilet.var=NA
-  }else if(toiletVar=="ws8"){
-    share.toilet.var="ws9"
-  }else if(toiletVar=="ws7"){
-    share.toilet.var="ws8"
-  }else{
-    share.toilet.var=NA
+  attendedVar <- subset(file.varName,match=="attended")$varName
+  gradeVar <- subset(file.varName,match=="grade")$varName
+  schoolVar <- subset(file.varName,match=="school")$varName
+  
+  share.toiletsVar <- subset(file.varName,match=="share.toilets")$varName
+  toiletsVar <- subset(file.varName,match=="toilets")$varName
+  
+  carVar <- subset(file.varName,match=="car")$varName
+  fridgeVar <- subset(file.varName,match=="fridge")$varName
+  phoneVar <- subset(file.varName,match=="phone")$varName
+  tvVar <- subset(file.varName,match=="tv")$varName
+  
+  #Exit function if really low MICS phase
+  if(typeof(hr$hh1)=="NULL"){
+    return(NA)
   }
   
   toilets.classes <- subset(classes,filename==hrBase & type=="toilets")
   water.classes <- subset(classes,filename==hrBase & type=="water")
   floor.classes <- subset(classes,filename==hrBase & type=="floor")
   wall.classes <- subset(classes,filename==hrBase & type=="wall")
+  ynm.classes <- subset(classes,filename==hrBase & type=="ynm")
+  attended.classes <- subset(classes,filename==hrBase & type=="attended")
+  urban.rural.classes <- subset(classes,filename==hrBase & type=="urban.rural")
+  school.classes <- subset(classes,filename==hrBase & type=="school")
   if(nrow(wall.classes)==0){stop("Missing from codebook!")}
   if(nrow(water.classes)==0){stop("Missing from codebook!")}
   if(nrow(floor.classes)==0){stop("Missing from codebook!")}
   if(nrow(toilets.classes)==0){stop("Missing from codebook!")}
+  missing.vals <- subset(ynm.classes,is.na(ynm))$value
+  no.vals <- subset(ynm.classes,ynm==0)$value
+  yes.vals <- subset(ynm.classes,ynm==1)$value
   
-  hr <- read.csv(paste0(hrwd,"/hh.csv"),
-                 as.is=TRUE,
-                 na.strings="",check.names=FALSE)
+  missing.attended <- subset(attended.classes,is.na(attended))$value
+  no.attended <- subset(attended.classes,attended==0)$value
+  yes.attended <- subset(attended.classes,attended==1)$value
+  
+  missing.level <- subset(school.classes,is.na(level))$value
+  none.level <- subset(school.classes,level=="none")$value
+  preschool.level <- subset(school.classes,level=="preschool")$value
+  primary.level <- subset(school.classes,level=="primary")$value
+  secondary.level <- subset(school.classes,level=="secondary")$value
+  higher.level <- subset(school.classes,level=="higher")$value
+  
   
   #Exit function if really low MICS phase
-  insufficient <- c("Trinidad and Tobago MICS 2006 SPSS Datasets","Madagascar (South)_ MICS4_Datasets")
-  if(typeof(hr$hh1)=="NULL" | hrBase %in% insufficient){
+  if(typeof(hr$hh1)=="NULL"){
     return(NA)
   }
-  
-  ir <- read.csv(paste0(hrwd,"/hl.csv"),as.is=TRUE,na.strings="",check.names=FALSE)
-  
+    
   #Rename wealth var
   if(typeof(hr$wlthscor)=="NULL" | typeof(hr$wlthscor)=="logical" | length(hr$wlthscor[which(!is.na(hr$wlthscor))])==0){
     if(typeof(hr$wscore)=="NULL" | typeof(hr$wscore)=="logical" | length(hr$wscore[which(!is.na(hr$wscore))])==0){
@@ -81,43 +89,17 @@ cwi <- function(hrwd){
   #Rename urban var
   names(hr)[which(names(hr)=="hh6")] <- "urban.rural"
   
-  #Rename car/truck var
-  if(typeof(hr$hc10e)=="NULL"){
-    carVar <- "hc9f"
-    fridgeVar <- "hc8e"
-    phoneVar <- "hc8d"
-    tvVar <- "hc8c"
-  }else{
-    carVar <- "hc10e"
-    fridgeVar <- "hc9f"
-    phoneVar <- "hc9e"
-    tvVar <- "hc9c"
-  }
+  #check car/truck var
+  if(length(carVar)<=0){message("Car missing!");car.missing<-TRUE}else{car.missing<-FALSE}
   
-  if(hrBase %in% assetVars$filename){
-    this.name <- subset(assetVars,filename==hrBase)[1,]
-    #Ignore subvariants like trucks, color tv and freezers for now
-    carVar <- this.name$carVar
-    fridgeVar <- this.name$fridgeVar
-    phoneVar <- this.name$phoneVar
-    tvVar <- this.name$tvVar
-  }
+  #check fridge var
+  if(length(fridgeVar)<=0){message("Fridge missing!");fridge.missing<-TRUE}else{fridge.missing<-FALSE}
   
-  #Rename car/truck var
-  names(hr)[which(names(hr)==carVar)] <- "car"
-  if(typeof(hr$car)=="NULL" | typeof(hr$car)=="logical" | length(hr$car[which(!is.na(hr$car))])==0){message("Car missing!");car.missing<-TRUE}else{car.missing<-FALSE}
+  #check phone var
+  if(length(phoneVar)<=0){message("Phone missing!");phone.missing<-TRUE}else{phone.missing<-FALSE}
   
-  #Rename fridge var
-  names(hr)[which(names(hr)==fridgeVar)] <- "fridge"
-  if(typeof(hr$fridge)=="NULL" | typeof(hr$fridge)=="logical" | length(hr$fridge[which(!is.na(hr$fridge))])==0){message("Fridge missing!");fridge.missing<-TRUE}else{fridge.missing<-FALSE}
-  
-  #Rename phone var
-  names(hr)[which(names(hr)==phoneVar)] <- "phone"
-  if(typeof(hr$phone)=="NULL" | typeof(hr$phone)=="logical" | length(hr$phone[which(!is.na(hr$phone))])==0){message("Phone missing!");phone.missing<-TRUE}else{phone.missing<-FALSE}
-  
-  #Rename tv var
-  names(hr)[which(names(hr)==tvVar)] <- "tv"
-  if(typeof(hr$tv)=="NULL" | typeof(hr$tv)=="logical" | length(hr$tv[which(!is.na(hr$tv))])==0){message("TV missing!");tv.missing<-TRUE}else{tv.missing<-FALSE}
+  #check tv var
+  if(length(tvVar)<=0){message("TV missing!");tv.missing<-TRUE}else{tv.missing<-FALSE}
   
   if(sum(car.missing,fridge.missing,phone.missing,tv.missing)>1){
     return(NA)
@@ -136,11 +118,11 @@ cwi <- function(hrwd){
   if(typeof(hr$water)=="NULL"){message("No water!");hr$water<-NA}
   
   #Rename toilets var
-  names(hr)[which(names(hr)==toiletVar)] <- "toilets"
+  names(hr)[which(names(hr)==toiletsVar)] <- "toilets"
   if(typeof(hr$toilets)=="NULL"){message("No toilets!");hr$toilets<-NA}
 
   #Rename share toilets var
-  names(hr)[which(names(hr)==share.toilet.var)] <- "share.toilets"
+  names(hr)[which(names(hr)==share.toiletsVar)] <- "share.toilets"
   if(typeof(hr$share.toilets)=="NULL" | typeof(hr$share.toilets)=="logical" | length(hr$share.toilets[which(!is.na(hr$share.toilets))])==0){share.toilets.missing<-TRUE}else{share.toilets.missing<-FALSE}
 
   #Rename sleeping rooms var
@@ -151,34 +133,9 @@ cwi <- function(hrwd){
   names(hr)[which(names(hr)=="hh11")] <- "members"
   
   #Rename educ var
-  nepals <- c("Nepal_MICS5_Datasets","Nepal (Mid-and Far-Western Regions)_MICS4_Datasets")
-  if(hrBase %in% nepals){
-    names(ir)[which(names(ir)=="ed3")] <- "attended"
-    ir$school <- NA
-    names(ir)[which(names(ir)=="ed4b")] <- "grade"
-  }else if(hrBase=="Mongolia_MICS4_Datasets"){
-    names(ir)[which(names(ir)=="ed3")] <- "attended"
-    names(ir)[which(names(ir)=="ed4_a")] <- "school"
-    names(ir)[which(names(ir)=="ed4_b")] <- "grade"
-  }else if(hrBase=="Thailand MICS 2005-2006 SPSS Datasets"){
-    names(ir)[which(names(ir)=="ed2")] <- "attended"
-    names(ir)[which(names(ir)=="ed3a")] <- "school"
-    names(ir)[which(names(ir)=="ed3b")] <- "grade"
-  }else{
-    if(typeof(ir$ed4a)=="NULL" | typeof(ir$ed4a)=="logical" | length(ir$ed4a[which(!is.na(ir$ed4a))])==0){
-      if(typeof(ir$ed3a)=="NULL" | typeof(ir$ed3a)=="logical" | length(ir$ed3b[which(!is.na(ir$ed3a))])==0){
-        message("Educ missing!");educ.missing <- TRUE
-      }else{
-        names(ir)[which(names(ir)=="ed2")] <- "attended"
-        names(ir)[which(names(ir)=="ed3a")] <- "school"
-        names(ir)[which(names(ir)=="ed3b")] <- "grade"
-      }
-    }else{
-      names(ir)[which(names(ir)=="ed3")] <- "attended"
-      names(ir)[which(names(ir)=="ed4a")] <- "school"
-      names(ir)[which(names(ir)=="ed4b")] <- "grade"
-    } 
-  }
+  names(ir)[which(names(ir)==attendedVar)] <- "attended"
+  names(ir)[which(names(ir)==schoolVar)] <- "school"
+  names(ir)[which(names(ir)==gradeVar)] <- "grade"
   
   #Rename age var
   names(ir)[which(names(ir)=="hl5")] <- "age"
@@ -201,42 +158,86 @@ cwi <- function(hrwd){
       attended <- tolower(attendedV[i])
       school <- tolower(schoolV[i])
       grade <- gradeV[i]
-      if(is.na(attended)){
-        educ <- NA
-      }else if(attended %in% no){
+      if(!is.na(grade)){
+        if(grade>90){grade<-NA}
+      }
+      if(attended %in% missing.attended){
+        if(school %in% missing.level){
+          if(is.na(grade)){
+            #missing all three
+            educ <- NA
+          }else{
+            #missing attended and level, but not grade
+            if(grade>=5){
+              educ <- 1
+            }else{
+              educ <- 0
+            }
+          }
+        }else{
+          #missing attended, but not level
+          if(is.na(grade)){
+            #has level, but not grade
+            if(school %in% secondary.level | school %in% higher.level){
+              educ <- 1
+            }else if(school %in% preschool.level | school %in% none.level){
+              educ <- 0
+            }else{
+              educ <- NA
+            }
+          }else{
+            #missing attended and level, but not grade
+            if(grade>=5){
+              educ <- 1
+            }else{
+              educ <- 0
+            }
+          }
+        }
+      }else if(attended %in% no.attended){
         #No education
         educ <- 0
       }else{
-        if(school %in% missing){
-          educ <- NA
-        } else if(sum(sapply(preschool,grepl,x=school),na.rm=TRUE)>0){
+        if(school %in% missing.level){
+          if(is.na(grade)){
+            #has attended, but has no level or grade
+            educ <- NA
+          }else{
+            #has attended, missing level, but not missing grade
+            if(grade>=5){
+              educ <- 1
+            }else{
+              educ <- 0
+            }
+          }
+        }else if(school %in% preschool.level | school %in% none.level){
           if(is.na(grade)){
             educ <- 0
-          }else if(grade>=5 & grade<98){
+          }else if(grade>=5){
             #Complete primary
             educ <- 1
           }else{
             educ <- 0
           }
-        } else if(sum(sapply(primary,grepl,x=school),na.rm=TRUE)>0){
+        } else if(school %in% primary.level){
           if(is.na(grade)){
             educ <- NA
           }else if(grade<5){
             #Incomplete primary
             educ <- 0
-          }else if(grade>=5 & grade<98){
+          }else if(grade>=5){
             #Complete primary
             educ <- 1
           }else{
             educ <- NA
           }
-        } else if(sum(sapply(secondary,grepl,x=school),na.rm=TRUE)>0){
+        } else if(school %in% secondary.level){
           #(in)complete secondary
           educ <- 1
-        } else if(sum(sapply(higher,grepl,x=school),na.rm=TRUE)>0){
+        } else if(school %in% higher.level){
           #(in)complete higher
           educ <- 1
-        }else if(grade>=5 & grade<98){
+        }else if(grade>=5){
           #at least 5 years of some other schooling
           educ <- 1
         }else if(grade<5){
@@ -306,7 +307,7 @@ cwi <- function(hrwd){
       adults.completed.primary <- 0
       
       if(
-        sum(sapply(c(primary,secondary,higher),grepl,x=head.educ),na.rm=TRUE)>0
+        head.educ %in% secondary.level | head.educ %in% higher.level
          ){adults.completed.primary <- 1}
       
       hed = ((members/workers)>3 & adults.completed.primary==0)
@@ -352,12 +353,9 @@ cwi <- function(hrwd){
   )
   
   recode.urban.rural <- function(x){
-    if(is.null(x)){return(NA)}
-    else if(is.na(x)){return(NA)}
-    else if(tolower(x) %in% missing){return(NA)}
-    else if(tolower(x) %in% urban){return(1)}
-    else if(tolower(x) %in% rural){return(0)}
-    else{return(NA)}
+    item <- subset(urban.rural.classes,value==tolower(x))
+    if(nrow(item)==0){return(NA)}
+    else{item$urban[1]}
   }
   hr$urban <- sapply(hr$urban.rural,recode.urban.rural)
   
@@ -396,7 +394,10 @@ cwi <- function(hrwd){
       if(is.na(share.toilets)){
         share.toilets = 0
       }
-      if(share.toilets %in% yes){
+      if(share.toilets %in% missing.vals){
+        share.toilets = 0
+      }
+      if(share.toilets %in% yes.vals){
         inade.toilet = 1
       }else{
         inade.toilet = item$inadequate[1]
@@ -438,19 +439,28 @@ cwi <- function(hrwd){
   }
   hr$ubn <- calc.ubn(hr$inade.materials,hr$crowded,hr$inade.sani,hr$hed)
   
-  recode.asset <- function(x){
-    if(is.null(x)){return(NA)}
-    else if(is.na(x) | x==9){return(NA)}
-    else if(tolower(x) %in% missing){return(NA)}
-    else if(tolower(x) %in% yes){return(1)}
-    else if(tolower(x) %in% no){return(0)}
-    else{return(NA)}
+  recode.asset <- function(xV,x1V=rep(NA),x2V=rep(NA)){
+    result <- c()
+    for(i in 1:length(xV)){
+      x <- tolower(xV[i])
+      x1 <- tolower(x1V[i])
+      if(length(x1)<=0){x1 = rep(NA)}
+      x2 <- tolower(x2V[i])
+      if(length(x2)<=0){x2 = rep(NA)}
+      
+      if(x %in% missing.vals & x1 %in% missing.vals & x2 %in% missing.vals){
+        result <- c(result,NA)
+      }else{
+        result <- c(result,min(sum(x %in% yes.vals,x1 %in% yes.vals,x2 %in% yes.vals,na.rm=TRUE),1))
+      }
+    }
+    return(result)
   }
   
   ###Replication method
   #Calc wealth where half of households own tv
   if(!(tv.missing)){
-    hr$tv <- sapply(hr$tv,recode.asset)
+    hr$tv <- recode.asset(hr[[tvVar[1]]],hr[[tvVar[2]]],hr[[tvVar[3]]])
     tv.glm <- glm(tv~wealth,data=hr,family="binomial")
     tv.pred.wealth <- (-1*tv.glm$coefficients[[1]])/tv.glm$coefficients[[2]]
   }else{
@@ -459,7 +469,7 @@ cwi <- function(hrwd){
   
   #Calc wealth where half of households own fridge
   if(!(fridge.missing)){
-    hr$fridge <- sapply(hr$fridge,recode.asset)
+    hr$fridge <- recode.asset(hr[[fridgeVar[1]]],hr[[fridgeVar[2]]],hr[[fridgeVar[3]]])
     fridge.glm <- glm(fridge~wealth,data=hr,family="binomial")
     fridge.pred.wealth <- (-1*fridge.glm$coefficients[[1]])/fridge.glm$coefficients[[2]]
   }else{
@@ -468,7 +478,7 @@ cwi <- function(hrwd){
   
   #Calc wealth where half of households own car
   if(!(car.missing)){
-    hr$car <- sapply(hr$car,recode.asset)
+    hr$car <- recode.asset(hr[[carVar[1]]],hr[[carVar[2]]],hr[[carVar[3]]])
     car.glm <- glm(car~wealth,data=hr,family="binomial")
     car.pred.wealth <- (-1*car.glm$coefficients[[1]])/car.glm$coefficients[[2]]
   }else{
@@ -477,7 +487,7 @@ cwi <- function(hrwd){
   
   #Calc wealth where half of households own phone
   if(!(phone.missing)){
-    hr$phone <- sapply(hr$phone,recode.asset)
+    hr$phone <- recode.asset(hr[[phoneVar[1]]],hr[[phoneVar[2]]],hr[[phoneVar[3]]])
     phone.glm <- glm(phone~wealth,data=hr,family="binomial")
     phone.pred.wealth <- (-1*phone.glm$coefficients[[1]])/phone.glm$coefficients[[2]]
   }else{
@@ -541,25 +551,34 @@ dirs <- list.dirs(wd,full.names=TRUE)
 dataList <- list()
 dataIndex <- 1
 
-# Loop through every dir
 for(i in 2:length(dirs)){
   dir <- dirs[i]
-  message(basename(dir))
-  files <- list.files(dir)
-  if("wealth.csv" %in% files){
-    dataList[[dataIndex]] <- read.csv(paste0(dir,"/wealth.csv"),na.strings="",as.is=TRUE)
+  if(file.exists(paste0(dir,"/cwi.RData"))){
+    message(basename(dir))
+    if(exists("data")){rm(data)}
+    if(exists("cut.df")){rm(cut.df)}
+    load(paste0(dir,"/cwi.RData"))
+    dataList[[dataIndex]] <- data
     dataIndex <- dataIndex + 1 
   }else{
-    cwiList <- cwi(dir) 
-    if(!is.na(cwiList)){
-      cuts <- cwiList[["cuts"]]
-      data <- cwiList[["data"]]
-      labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
-      cut.df <- data.frame(labels,cuts)
-      write.csv(cut.df,paste(dir,"cuts.csv",sep="/"),row.names=FALSE,na="")
-      write.csv(data,paste(dir,"wealth.csv",sep="/"),row.names=FALSE,na="")
-      dataList[[dataIndex]] <- data
-      dataIndex <- dataIndex + 1 
+    if(exists("hh")){rm(hh)}
+    if(exists("hl")){rm(hl)}
+    load(paste0(dir,"/","hh.RData"))
+    load(paste0(dir,"/","hl.RData"))
+    names(hh) <- tolower(names(hh))
+    names(hl) <- tolower(names(hl))
+    if(typeof(hh$hh1)!="NULL"){
+      message(basename(dir))
+      cwiList <- cwi(hh,hl)
+      if(!is.na(cwiList)){
+        cuts <- cwiList[["cuts"]]
+        data <- cwiList[["data"]]
+        labels <- c("Own car","Own fridge","Own telephone","Own TV","1 or more UBN","2 or more UBN","3 or more UBN","4 or more UBN")
+        cut.df <- data.frame(labels,cuts)
+        save(data,cut.df,file=paste0(dir,"/cwi.RData"))
+        dataList[[dataIndex]] <- data
+        dataIndex <- dataIndex + 1 
+      }
     }
   }
 }
@@ -567,4 +586,6 @@ for(i in 2:length(dirs)){
 wd <- "D:/Documents/Data/MICSmeta"
 setwd(wd)
 metaData <- rbindlist(dataList,fill=TRUE)
-write.csv(metaData,"global_cwi.csv",row.names=FALSE,na="")
+write.csv(metaData,"global_mics_cwi.csv",row.names=FALSE,na="")
+mics.cwi <- metaData
+save(mics.cwi,file="global_mics_cwi.RData")
