@@ -180,6 +180,13 @@ for (i in 1:length(filenames))
       ,""
     )
   }
+#   if(basename=="population-total"){
+#     notesList<-c(
+#       notesList
+#       ,"World Bank population data for Sudan and South Sudan is reported separately for all years."
+#       ,""
+#     )
+#   }
   addWorksheet(wb,"Notes")
   
   #Copy the data
@@ -265,7 +272,7 @@ for (i in 1:length(filenames))
     ,"It is licensed under a Creative Commons Attribution 4.0 International license."
     ,"More information on licensing is available here: https://creativecommons.org/licenses/by/4.0/"
     ,"For concerns, questions, or corrections: please email info@devinit.org"
-    ,"Copyright Development Initiatives Poverty Research Ltd. 2015"
+    ,"Copyright Development Initiatives Poverty Research Ltd. 2016"
   )
   notesDf <- data.frame(notesList)
   writeData(wb,sheet="Notes",notesDf,colNames=FALSE,rowNames=FALSE)  

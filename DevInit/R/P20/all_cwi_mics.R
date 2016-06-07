@@ -88,6 +88,7 @@ cwi <- function(hh,hl){
   
   #Rename urban var
   names(hr)[which(names(hr)=="hh6")] <- "urban.rural"
+  if(typeof(hr$urban.rural)=="NULL"){message("No urban.rural!");hr$urban.rural<-NA;urban.missing<-TRUE}else{urban.missing<-FALSE}
   
   #check car/truck var
   if(length(carVar)<=0){message("Car missing!");car.missing<-TRUE}else{car.missing<-FALSE}
@@ -157,7 +158,14 @@ cwi <- function(hh,hl){
     for(i in 1:length(attendedV)){
       attended <- tolower(attendedV[i])
       school <- tolower(schoolV[i])
+      if(length(school)<=0){
+        school <- NA
+      }
       grade <- gradeV[i]
+      ###Ignore factor grades for now... We need to code these out in the metavars
+      if(is.factor(grade)){
+        grade <- NA
+      }
       if(!is.na(grade)){
         if(grade>90){grade<-NA}
       }
@@ -369,7 +377,10 @@ cwi <- function(hh,hl){
       if(nrow(item)==0){
         inade.water <- c(inade.water,NA)
       }else{
-        if(urban==1){
+        if(is.na(urban)){
+          #Assume stricter codebook?
+          inade.water <- c(inade.water,item$urban.inadequate[1])
+        }else if(urban==1){
           inade.water <- c(inade.water,item$urban.inadequate[1])
         }else if(urban==0){
           inade.water <- c(inade.water,item$rural.inadequate[1])
@@ -590,3 +601,19 @@ metaData <- rbindlist(dataList,fill=TRUE)
 write.csv(metaData,"global_mics_cwi.csv",row.names=FALSE,na="")
 mics.cwi <- metaData
 save(mics.cwi,file="global_mics_cwi.RData")
+
+###Debug
+# cwi.tab <- data.table(mics.cwi)
+# cwi.collapse <- cwi.tab[
+#   ,.(mean.cwi=weighted.mean(cwi,sample.weights,na.rm=TRUE)
+#       ,mean.ubn=weighted.mean(ubn,sample.weights,na.rm=TRUE)
+#       ,mean.mat=weighted.mean(inade.materials,sample.weights,na.rm=TRUE)
+#       ,mean.crowd=weighted.mean(crowded,sample.weights,na.rm=TRUE)
+#       ,mean.sani=weighted.mean(inade.sani,sample.weights,na.rm=TRUE)
+#       ,mean.hed=weighted.mean(hed,sample.weights,na.rm=TRUE)
+#       ,mean.tv=weighted.mean(tv,sample.weights,na.rm=TRUE)
+#       ,mean.phone=weighted.mean(phone,sample.weights,na.rm=TRUE)
+#       ,mean.car=weighted.mean(car,sample.weights,na.rm=TRUE)
+#       ,mean.fridge=weighted.mean(fridge,sample.weights,na.rm=TRUE)
+#      )
+#   , by=.(filename)]
