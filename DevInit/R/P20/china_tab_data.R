@@ -79,15 +79,50 @@ names(ir)[which(names(ir)=="tb2_a_p")] <- "sex"
 ir$sex[which(ir$sex=="NA")] <- NA
 
 #Weight and height
+famros.birthdays <- famros[c("pid","fid12","tb1y_a_p","tb1m_a_p")]
 ch <- data.frame(child,as.is=TRUE,check.names=FALSE)
+ch <- join(
+  ch
+  ,famros.birthdays
+  ,by=c("pid","fid12")
+  )
+
+code.age.months <- function(cyearV,cmonthV,byearV,bmonthV,ageV){
+  age.monthsV <- c()
+  for(i in 1:length(cyearV)){
+    cyear <- cyearV[i]
+    cmonth <- cmonthV[i]
+    byear <- byearV[i]
+    bmonth <- bmonthV[i]
+    age <- ageV[i]
+    if(is.na(bmonth)){
+      age.months <- age*12
+    }
+    else if(cmonth==bmonth){
+      age.months <- (cyear - byear)*12
+    }else if(cmonth>bmonth){
+      age.months <- (cyear - byear)*12 + (cmonth-bmonth)
+    }else if(cmonth<bmonth){
+      age.months <- ((cyear - byear) - 1)*12 + (12 - (bmonth-cmonth))
+    }
+    if(!is.na(age.months)){
+      if(age.months<0){
+        age.months <- 0
+      } 
+    }
+    age.monthsV <- c(age.monthsV,age.months)
+  }
+  return(age.monthsV)
+}
+ch$tb1m_a_p[which(ch$tb1m_a_p<0)] <- NA
+ch$cfps2012_age[which(ch$cfps2012_age<0)] <- NA
+ch$age.months <- code.age.months(ch$cyear,ch$cmonth,ch$cfps2012_birthy_best,ch$tb1m_a_p,ch$cfps2012_age)
+
 names(ch)[which(names(ch)=="wa103")] <- "weight.kg"
 ch$weight.kg[which(ch$weight.kg<0)] <- NA
 ch$weight.kg <- ch$weight.kg/2
 names(ch)[which(names(ch)=="wa104")] <- "height.cm"
 ch$height.cm[which(ch$height.cm<0)] <- NA
-names(ch)[which(names(ch)=="cfps2012_age")] <- "age.months"
-ch$age.months[which(ch$age.months<0)] <- NA
-ch$age.months <- ch$age.months*12
 ch <- subset(ch,age.months<=60)
 names(ch)[which(names(ch)=="cfps2012_gender")] <- "gender"
 ch$gender <- unfactor(ch$gender)
