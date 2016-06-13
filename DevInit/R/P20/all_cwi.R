@@ -413,55 +413,33 @@ cwi <- function(hrwd){
   #Calc wealth where half of households own tv
   if(!(tv.missing)){
     hr$tv <- sapply(hr$tv,recode.asset)
-    tv.glm <- glm(tv~wealth,data=hr,family="binomial")
-    tv.pred.wealth <- (-1*tv.glm$coefficients[[1]])/tv.glm$coefficients[[2]]
-  }else{
-    tv.pred.wealth <- NA
   }
   
   #Calc wealth where half of households own fridge
   if(!(fridge.missing)){
     hr$fridge <- sapply(hr$fridge,recode.asset)
-    fridge.glm <- glm(fridge~wealth,data=hr,family="binomial")
-    fridge.pred.wealth <- (-1*fridge.glm$coefficients[[1]])/fridge.glm$coefficients[[2]]
-  }else{
-    fridge.pred.wealth <- NA
   }
   
   #Calc wealth where half of households own car
   if(!(car.missing)){
     hr$car <- sapply(hr$car,recode.asset)
-    car.glm <- glm(car~wealth,data=hr,family="binomial")
-    car.pred.wealth <- (-1*car.glm$coefficients[[1]])/car.glm$coefficients[[2]]
-  }else{
-    car.pred.wealth <- NA
   }
   
   #Calc wealth where half of households own phone
   if(!(phone.missing)){
     hr$phone <- sapply(hr$phone,recode.asset)
-    phone.glm <- glm(phone~wealth,data=hr,family="binomial")
-    phone.pred.wealth <- (-1*phone.glm$coefficients[[1]])/phone.glm$coefficients[[2]]
-  }else{
-    phone.pred.wealth <- NA
   }
-  
-  #Calc wealth where half of households have various UBNs
-  pred.wealth.4 <- mean(hr[which(hr$ubn>=4),]$wealth,na.rm=TRUE)
-  pred.wealth.3 <- mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
-  pred.wealth.2 <- mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
-  pred.wealth.1 <- mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
   
   #Generate cutpoint dfs
   cuts <- c(
-    car.pred.wealth
-    ,fridge.pred.wealth
-    ,phone.pred.wealth
-    ,tv.pred.wealth
-    ,pred.wealth.1
-    ,pred.wealth.2
-    ,pred.wealth.3
-    ,pred.wealth.4
+    mean(hr[which(hr$car==1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$fridge==1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$phone==1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$tv==1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$ubn>=4),]$wealth,na.rm=TRUE)
   )
   
   keep = c("year","sample.weights","household","cluster","wealth","inade.materials","crowded","inade.sani","hed","ubn","tv","phone","car","fridge")
@@ -498,7 +476,6 @@ dataIndex <- 1
 
 # Loop through every dir
 for(i in 2:length(dirs)){
-  # for(i in 1209:length(dirs)){
   dir <- dirs[i]
   # Pull some coded info out of the dir name
   country <- tolower(substr(basename(dir),1,2))
@@ -508,7 +485,7 @@ for(i in 2:length(dirs)){
   if(recode=="hr" & phase>=5){
     message(basename(dir))
     files <- list.files(dir)
-#     files <- c()
+    files <- c()
     if("wealth.csv" %in% files){
       dataList[[dataIndex]] <- read.csv(paste0(dir,"/wealth.csv"),na.strings="",as.is=TRUE)
       dataIndex <- dataIndex + 1 
@@ -531,4 +508,5 @@ for(i in 2:length(dirs)){
 wd <- "D:/Documents/Data/DHSmeta"
 setwd(wd)
 metaData <- rbindlist(dataList,fill=TRUE)
-write.csv(metaData,"global_cwi.csv",row.names=FALSE,na="")
+cwi <- metaData
+save(cwi,file="DHS_cwi.RData")

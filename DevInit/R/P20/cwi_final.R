@@ -17,6 +17,10 @@ tl.cuts[1] <- mean(tl.data[which(tl.data$car==1),]$wealth,na.rm=TRUE)
 tl.cuts[2] <- mean(tl.data[which(tl.data$fridge==1),]$wealth,na.rm=TRUE)
 tl.cuts[3] <- mean(tl.data[which(tl.data$phone==1),]$wealth,na.rm=TRUE)
 tl.cuts[4] <- mean(tl.data[which(tl.data$tv==1),]$wealth,na.rm=TRUE)
+tl.cuts[5] <- mean(tl.data[which(tl.data$ubn>=1),]$wealth,na.rm=TRUE)
+tl.cuts[6] <- mean(tl.data[which(tl.data$ubn>=2),]$wealth,na.rm=TRUE)
+tl.cuts[7] <- mean(tl.data[which(tl.data$ubn>=3),]$wealth,na.rm=TRUE)
+tl.cuts[8] <- mean(tl.data[which(tl.data$ubn>=4),]$wealth,na.rm=TRUE)
 
 wd <- "D:/Documents/Data/DHSauto/"
 setwd(wd)
@@ -46,6 +50,10 @@ for(i in 2:length(dirs)){
       cuts[2] <- mean(data[which(data$fridge==1),]$wealth,na.rm=TRUE)
       cuts[3] <- mean(data[which(data$phone==1),]$wealth,na.rm=TRUE)
       cuts[4] <- mean(data[which(data$tv==1),]$wealth,na.rm=TRUE)
+      cuts[5] <- mean(data[which(data$ubn>=1),]$wealth,na.rm=TRUE)
+      cuts[6] <- mean(data[which(data$ubn>=2),]$wealth,na.rm=TRUE)
+      cuts[7] <- mean(data[which(data$ubn>=3),]$wealth,na.rm=TRUE)
+      cuts[8] <- mean(data[which(data$ubn>=4),]$wealth,na.rm=TRUE)      
       cut.lm <- lm(tl.cuts~cuts)
       pvals <- c(pvals,summary(cut.lm)$coefficients[,4][[2]])
       filenames <- c(filenames,basename(dir))
@@ -84,6 +92,10 @@ for(i in 2:length(dirs)){
     cuts[2] <- mean(data[which(data$fridge==1),]$wealth,na.rm=TRUE)
     cuts[3] <- mean(data[which(data$phone==1),]$wealth,na.rm=TRUE)
     cuts[4] <- mean(data[which(data$tv==1),]$wealth,na.rm=TRUE)
+    cuts[5] <- mean(data[which(data$ubn>=1),]$wealth,na.rm=TRUE)
+    cuts[6] <- mean(data[which(data$ubn>=2),]$wealth,na.rm=TRUE)
+    cuts[7] <- mean(data[which(data$ubn>=3),]$wealth,na.rm=TRUE)
+    cuts[8] <- mean(data[which(data$ubn>=4),]$wealth,na.rm=TRUE)    
     cut.lm <- lm(tl.cuts~cuts)
     pvals <- c(pvals,summary(cut.lm)$coefficients[,4][[2]])
     filenames <- c(filenames,basename(dir))
@@ -100,7 +112,7 @@ setwd(wd)
 mics.cwi <- rbindlist(dataList,fill=TRUE)
 cwi <- metaData
 
-# save(mics.cwi,cwi,file="cwi_means.RData")
+save(mics.cwi,cwi,file="cwi_final.RData")
 pval.df <- data.frame(filenames,pvals)
 pval.df <- pval.df[order(pval.df$pvals),]
 write.csv(pval.df,"pvals_mean_mean.csv",row.names=FALSE,na="")
@@ -157,7 +169,7 @@ latest_surveys <- c(
   ,"kehr7hdt","khhr72dt", "kmhr61dt"
   #   , "kyhr61dt"
   , "lbhr6adt", "lshr61dt"
-#   ,"mbhr53dt"
+  #   ,"mbhr53dt"
   , "mdhr6hdt", "mlhr6hdt", "mvhr51dt", "mwhr71dt"
   ,"mzhr62dt", "nghr6adt", "nihr61dt", "nmhr61dt"
   # , "nphr60dt"
@@ -222,7 +234,3 @@ data <- join(cwi.collapse,p20.collapse,by="filename")
 
 setwd("D:/Documents/Data/DHSmeta")
 write.csv(data,"cwi_depth_means_and_238.csv",row.names=FALSE,na="")
-
-# pval.df <- data.frame(filenames,pvals)
-# pval.df <- pval.df[order(pval.df$pvals),]
-# write.csv(pval.df,"pvals_means.csv",row.names=FALSE,na="")

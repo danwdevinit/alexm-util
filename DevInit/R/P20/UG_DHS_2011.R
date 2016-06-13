@@ -78,6 +78,9 @@ codeAgeCat <- function(x){
     }
     startAge <- endAge + 1
   }
+  if(x>=95){
+    return("95+")
+  }
   return("missing")
 }
 

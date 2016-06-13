@@ -13,10 +13,25 @@ classes <- read.csv("global_cwi_classes.csv",na.strings=c("","NAN"),as.is=TRUE)
 tl.cuts <- read.csv("D:/Documents/Data/DHSauto/tlhr61dt/cuts.csv")$cuts
 
 tl.data <- read.csv("D:/Documents/Data/DHSauto/tlhr61dt/wealth.csv")
-tl.cuts[1] <- mean(tl.data[which(tl.data$car==1),]$wealth,na.rm=TRUE)
-tl.cuts[2] <- mean(tl.data[which(tl.data$fridge==1),]$wealth,na.rm=TRUE)
-tl.cuts[3] <- mean(tl.data[which(tl.data$phone==1),]$wealth,na.rm=TRUE)
-tl.cuts[4] <- mean(tl.data[which(tl.data$tv==1),]$wealth,na.rm=TRUE)
+# tl.cuts[1] <- mean(tl.data[which(tl.data$car==1),]$wealth,na.rm=TRUE)
+# tl.cuts[2] <- mean(tl.data[which(tl.data$fridge==1),]$wealth,na.rm=TRUE)
+# tl.cuts[3] <- mean(tl.data[which(tl.data$phone==1),]$wealth,na.rm=TRUE)
+# tl.cuts[4] <- mean(tl.data[which(tl.data$tv==1),]$wealth,na.rm=TRUE)
+# tl.cuts[5] <- mean(tl.data[which(tl.data$ubn>=4),]$wealth,na.rm=TRUE)
+# tl.cuts[6] <- mean(tl.data[which(tl.data$ubn>=3),]$wealth,na.rm=TRUE)
+# tl.cuts[7] <- mean(tl.data[which(tl.data$ubn>=2),]$wealth,na.rm=TRUE)
+# tl.cuts[8] <- mean(tl.data[which(tl.data$ubn>=1),]$wealth,na.rm=TRUE)
+tl.percents <- prop.table(table(tl.data$ubn))
+tl.cum.percents <- c(
+  sum(tl.percents[5:2],na.rm=TRUE)
+  ,sum(tl.percents[5:3],na.rm=TRUE)
+  ,sum(tl.percents[5:4],na.rm=TRUE)
+  ,sum(tl.percents[5],na.rm=TRUE)
+)
+tl.cum.percents[which(tl.cum.percents==0)] <- NA
+
+tl.cuts[5:8] <- quantile(tl.data$wealth,tl.cum.percents,na.rm=TRUE)
+
 
 wd <- "D:/Documents/Data/DHSauto/"
 setwd(wd)
@@ -42,10 +57,23 @@ for(i in 2:length(dirs)){
     if("wealth.csv" %in% files){
       data <- read.csv(paste0(dir,"/wealth.csv"),na.strings="",as.is=TRUE)
       cuts <- read.csv(paste0(dir,"/cuts.csv"),na.strings="",as.is=TRUE)$cuts
-      cuts[1] <- mean(data[which(data$car==1),]$wealth,na.rm=TRUE)
-      cuts[2] <- mean(data[which(data$fridge==1),]$wealth,na.rm=TRUE)
-      cuts[3] <- mean(data[which(data$phone==1),]$wealth,na.rm=TRUE)
-      cuts[4] <- mean(data[which(data$tv==1),]$wealth,na.rm=TRUE)
+#       cuts[1] <- mean(data[which(data$car==1),]$wealth,na.rm=TRUE)
+#       cuts[2] <- mean(data[which(data$fridge==1),]$wealth,na.rm=TRUE)
+#       cuts[3] <- mean(data[which(data$phone==1),]$wealth,na.rm=TRUE)
+#       cuts[4] <- mean(data[which(data$tv==1),]$wealth,na.rm=TRUE)
+#       cuts[5] <- mean(data[which(data$ubn>=4),]$wealth,na.rm=TRUE)
+#       cuts[6] <- mean(data[which(data$ubn>=3),]$wealth,na.rm=TRUE)
+#       cuts[7] <- mean(data[which(data$ubn>=2),]$wealth,na.rm=TRUE)
+#       cuts[8] <- mean(data[which(data$ubn>=1),]$wealth,na.rm=TRUE)
+      percents <- prop.table(table(data$ubn))
+      cum.percents <- c(
+        sum(percents[5:2],na.rm=TRUE)
+        ,sum(percents[5:3],na.rm=TRUE)
+        ,sum(percents[5:4],na.rm=TRUE)
+        ,sum(percents[5],na.rm=TRUE)
+      )
+      cum.percents[which(cum.percents==0)] <- NA
+      cuts[5:8] <- quantile(data$wealth,cum.percents,na.rm=TRUE)
       cut.lm <- lm(tl.cuts~cuts)
       pvals <- c(pvals,summary(cut.lm)$coefficients[,4][[2]])
       filenames <- c(filenames,basename(dir))
@@ -80,10 +108,23 @@ for(i in 2:length(dirs)){
     if(exists("cut.df")){rm(cut.df)}
     load(paste0(dir,"/cwi.RData"))
     cuts <- cut.df$cuts
-    cuts[1] <- mean(data[which(data$car==1),]$wealth,na.rm=TRUE)
-    cuts[2] <- mean(data[which(data$fridge==1),]$wealth,na.rm=TRUE)
-    cuts[3] <- mean(data[which(data$phone==1),]$wealth,na.rm=TRUE)
-    cuts[4] <- mean(data[which(data$tv==1),]$wealth,na.rm=TRUE)
+#     cuts[1] <- mean(data[which(data$car==1),]$wealth,na.rm=TRUE)
+#     cuts[2] <- mean(data[which(data$fridge==1),]$wealth,na.rm=TRUE)
+#     cuts[3] <- mean(data[which(data$phone==1),]$wealth,na.rm=TRUE)
+#     cuts[4] <- mean(data[which(data$tv==1),]$wealth,na.rm=TRUE)
+#     cuts[5] <- mean(data[which(data$ubn>=4),]$wealth,na.rm=TRUE)
+#     cuts[6] <- mean(data[which(data$ubn>=3),]$wealth,na.rm=TRUE)
+#     cuts[7] <- mean(data[which(data$ubn>=2),]$wealth,na.rm=TRUE)
+#     cuts[8] <- mean(data[which(data$ubn>=1),]$wealth,na.rm=TRUE)
+    percents <- prop.table(table(data$ubn))
+    cum.percents <- c(
+      sum(percents[5:2],na.rm=TRUE)
+      ,sum(percents[5:3],na.rm=TRUE)
+      ,sum(percents[5:4],na.rm=TRUE)
+      ,sum(percents[5],na.rm=TRUE)
+    )
+    cum.percents[which(cum.percents==0)] <- NA
+    cuts[5:8] <- quantile(data$wealth,cum.percents,na.rm=TRUE)
     cut.lm <- lm(tl.cuts~cuts)
     pvals <- c(pvals,summary(cut.lm)$coefficients[,4][[2]])
     filenames <- c(filenames,basename(dir))
@@ -100,10 +141,10 @@ setwd(wd)
 mics.cwi <- rbindlist(dataList,fill=TRUE)
 cwi <- metaData
 
-# save(mics.cwi,cwi,file="cwi_means.RData")
+# save(mics.cwi,cwi,file="cwi_replication.RData")
 pval.df <- data.frame(filenames,pvals)
 pval.df <- pval.df[order(pval.df$pvals),]
-write.csv(pval.df,"pvals_mean_mean.csv",row.names=FALSE,na="")
+write.csv(pval.df,"pvals_replication_mean.csv",row.names=FALSE,na="")
 
 library(Hmisc)
 library(data.table)
@@ -157,7 +198,7 @@ latest_surveys <- c(
   ,"kehr7hdt","khhr72dt", "kmhr61dt"
   #   , "kyhr61dt"
   , "lbhr6adt", "lshr61dt"
-#   ,"mbhr53dt"
+  #   ,"mbhr53dt"
   , "mdhr6hdt", "mlhr6hdt", "mvhr51dt", "mwhr71dt"
   ,"mzhr62dt", "nghr6adt", "nihr61dt", "nmhr61dt"
   # , "nphr60dt"
@@ -222,7 +263,3 @@ data <- join(cwi.collapse,p20.collapse,by="filename")
 
 setwd("D:/Documents/Data/DHSmeta")
 write.csv(data,"cwi_depth_means_and_238.csv",row.names=FALSE,na="")
-
-# pval.df <- data.frame(filenames,pvals)
-# pval.df <- pval.df[order(pval.df$pvals),]
-# write.csv(pval.df,"pvals_means.csv",row.names=FALSE,na="")

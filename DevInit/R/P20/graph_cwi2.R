@@ -5,7 +5,7 @@ library(WDI)
 library(rCharts)
 library(plyr)
 
-load("D:/Documents/Data/MICSmeta/cwi_means.RData")
+load("D:/Documents/Data/MICSmeta/cwi_final.RData")
 # wd <- "D:/Documents/Data/DHSmeta"
 # setwd(wd)
 # cwi <- read.csv("global_cwi.csv",na.strings="",as.is=TRUE)

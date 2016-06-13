@@ -9,7 +9,6 @@ varNames <- read.csv("mics_meta_vars_complete.csv",as.is=TRUE,na.strings="")
 classes <- read.csv("global_mics_classes.csv",as.is=TRUE,na.strings="NAN")
 
 tl.cuts <- read.csv("D:/Documents/Data/DHSauto/tlhr61dt/cuts.csv")$cuts
-###need to make a decision about phones###
 
 cwi <- function(hh,hl){
   hr <- data.frame(hh,as.is=TRUE,check.names=FALSE)
@@ -473,55 +472,34 @@ cwi <- function(hh,hl){
   #Calc wealth where half of households own tv
   if(!(tv.missing)){
     hr$tv <- recode.asset(hr[[tvVar[1]]],hr[[tvVar[2]]],hr[[tvVar[3]]])
-    tv.glm <- glm(tv~wealth,data=hr,family="binomial")
-    tv.pred.wealth <- (-1*tv.glm$coefficients[[1]])/tv.glm$coefficients[[2]]
-  }else{
-    tv.pred.wealth <- NA
   }
   
   #Calc wealth where half of households own fridge
   if(!(fridge.missing)){
     hr$fridge <- recode.asset(hr[[fridgeVar[1]]],hr[[fridgeVar[2]]],hr[[fridgeVar[3]]])
-    fridge.glm <- glm(fridge~wealth,data=hr,family="binomial")
-    fridge.pred.wealth <- (-1*fridge.glm$coefficients[[1]])/fridge.glm$coefficients[[2]]
-  }else{
-    fridge.pred.wealth <- NA
   }
   
   #Calc wealth where half of households own car
   if(!(car.missing)){
     hr$car <- recode.asset(hr[[carVar[1]]],hr[[carVar[2]]],hr[[carVar[3]]])
-    car.glm <- glm(car~wealth,data=hr,family="binomial")
-    car.pred.wealth <- (-1*car.glm$coefficients[[1]])/car.glm$coefficients[[2]]
-  }else{
-    car.pred.wealth <- NA
   }
   
   #Calc wealth where half of households own phone
   if(!(phone.missing)){
     hr$phone <- recode.asset(hr[[phoneVar[1]]],hr[[phoneVar[2]]],hr[[phoneVar[3]]])
-    phone.glm <- glm(phone~wealth,data=hr,family="binomial")
-    phone.pred.wealth <- (-1*phone.glm$coefficients[[1]])/phone.glm$coefficients[[2]]
-  }else{
-    phone.pred.wealth <- NA
   }
   
-  #Calc wealth where half of households have various UBNs
-  pred.wealth.4 <- mean(hr[which(hr$ubn>=4),]$wealth,na.rm=TRUE)
-  pred.wealth.3 <- mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
-  pred.wealth.2 <- mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
-  pred.wealth.1 <- mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
   
   #Generate cutpoint dfs
   cuts <- c(
-    car.pred.wealth
-    ,fridge.pred.wealth
-    ,phone.pred.wealth
-    ,tv.pred.wealth
-    ,pred.wealth.1
-    ,pred.wealth.2
-    ,pred.wealth.3
-    ,pred.wealth.4
+    mean(hr[which(hr$car==1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$fridge==1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$phone==1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$tv==1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$ubn>=1),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$ubn>=2),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$ubn>=3),]$wealth,na.rm=TRUE)
+    ,mean(hr[which(hr$ubn>=4),]$wealth,na.rm=TRUE)
   )
   
   keep = c("year","sample.weights","household","cluster","wealth","inade.materials","crowded","inade.sani","hed","ubn","tv","phone","car","fridge")

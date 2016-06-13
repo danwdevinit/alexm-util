@@ -605,6 +605,26 @@ viet.cuts <- c(
   ,viet.4.pred.wealth
 )
 
+viet.percents <- prop.table(table(viet.hr$ubn))
+viet.cum.percents <- c(
+  sum(viet.percents[4:1],na.rm=TRUE)
+  ,sum(viet.percents[4:2],na.rm=TRUE)
+  ,sum(viet.percents[4:3],na.rm=TRUE)
+  ,sum(viet.percents[4],na.rm=TRUE)
+)
+
+viet.cuts[5:8] <- quantile(viet.hr$wealth,viet.cum.percents)
+
+ben.percents <- prop.table(table(ben.hr$ubn))
+ben.cum.percents <- c(
+  sum(ben.percents[4:1],na.rm=TRUE)
+  ,sum(ben.percents[4:2],na.rm=TRUE)
+  ,sum(ben.percents[4:3],na.rm=TRUE)
+  ,sum(ben.percents[4],na.rm=TRUE)
+)
+
+ben.cuts[5:8] <- quantile(ben.hr$wealth,ben.cum.percents)
+
 cut.df <- data.frame(ben.cuts
                      ,viet.cuts
                      ,row.names=c(

@@ -7,8 +7,9 @@ library(plyr)
 setwd("D:/Documents/Data/DHSmeta")
 
 load("DHS_cwi.RData")
-fileName <- "depth_of_cwi_final.csv"
 load("D:/Documents/Data/MICSmeta/global_mics_cwi.RData")
+load("D:/Documents/Data/ChinaSurvey/china.cwi.RData")
+fileName <- "depth_of_cwi_final.csv"
 
 cwi$weights <- cwi$sample.weights/1000000
 
@@ -35,6 +36,9 @@ mics.cwi <- subset(mics.cwi,!is.na(iso2))
 mics.cwi$weights <- mics.cwi$sample.weights
 
 data <- rbind(cwi,mics.cwi)
+china.cwi <- subset(china.cwi,!is.na(sample.weights))
+china.cwi$weights <- china.cwi$sample.weights/1000000
+data <- rbind(data,china.cwi,fill=TRUE)
 data <- data.frame(data)
 
 data$year <- NULL
@@ -79,22 +83,22 @@ latest_surveys <- c(
   ,"ethr61dt", "gahr60dt", "ghhr70dt", "gmhr60dt", "gnhr61dt", "gyhr5idt"
   ,"hnhr62dt", "hthr61dt", "iahr52dt", "idhr63dt", "johr6cdt"
   ,"kehr7hdt","khhr72dt", "kmhr61dt"
-#   , "kyhr61dt"
+  #   , "kyhr61dt"
   , "lbhr6adt", "lshr61dt"
-#   ,"mbhr53dt"
-, "mdhr6hdt", "mlhr6hdt", "mvhr51dt", "mwhr71dt"
+  #   ,"mbhr53dt"
+  , "mdhr6hdt", "mlhr6hdt", "mvhr51dt", "mwhr71dt"
   ,"mzhr62dt", "nghr6adt", "nihr61dt", "nmhr61dt"
-# , "nphr60dt"
+  # , "nphr60dt"
   ,"pehr6idt","phhr61dt","pkhr61dt"
   ,"rwhr70dt","slhr61dt","snhr70dt", "sthr50dt"
-# , "szhr51dt"
+  # , "szhr51dt"
   ,"tghr61dt", "tjhr61dt", "tlhr61dt","tzhr6adt"
-# , "uahr51dt"
+  # , "uahr51dt"
   ,"ughr72dt"
-# , "vnhr52dt"
-, "yehr61dt", "zmhr61dt"
-# , "zwhr62dt"
-#MICS
+  # , "vnhr52dt"
+  , "yehr61dt", "zmhr61dt"
+  # , "zwhr62dt"
+  #MICS
   ,"Afghanistan_MICS4_Datasets","Algeria_MICS4_Datasets"
   ,"Barbados_MICS4_Datasets","Belarus_MICS4_Datasets"
   ,"Belize_MICS4_Datasets","Bhutan_MICS4_Datasets"
@@ -103,14 +107,14 @@ latest_surveys <- c(
   ,"Guinea-Bissau MICS 2006 SPSS Datasets","Iraq_MICS4_Datasets","Jamaica_MICS4_Datasets"
   ,"Kazakhstan_MICS4_Datasets","Kosovo under UNSC res. 1244_MICS5_Datasets"
   ,"Kyrgyzstan MICS5 Datasets","Lao People's Democratic Republic_LSIS_Datasets"
-#   ,"Lebanon (Palestinians)_MICS4_Datasets"
+  #   ,"Lebanon (Palestinians)_MICS4_Datasets"
   ,"Macedonia, The former Yugoslav Republic of_MICS4_Datasets","Mauritania_MICS4_Datasets"
   ,"Moldova_MICS4_Datasets","Mongolia_MICS5_Datasets","Montenegro_MICS5_Datasets"
   ,"Nepal_MICS5_Datasets"
-#   ,"Pakistan (Punjab)_MICS5_Datasets"
+  #   ,"Pakistan (Punjab)_MICS5_Datasets"
   ,"Serbia_MICS5_Datasets"
-#   ,"Somalia (Northeast Zone)_MICS4_Datasets"                                             
-#   ,"Somalia (Somaliland)_MICS4_Datasets"                                                 
+  #   ,"Somalia (Northeast Zone)_MICS4_Datasets"                                             
+  #   ,"Somalia (Somaliland)_MICS4_Datasets"                                                 
   ,"Somalia MICS 2006 SPSS Datasets" 
   ,"South Sudan_MICS4_Datasets"
   ,"Sudan_MICS5_Datasets"
@@ -120,25 +124,27 @@ latest_surveys <- c(
   ,"Turkmenistan_MICS3_Datasets","Ukraine_MICS4_Datasets","Uruguay_MICS4_Datasets"
   ,"Uzbekistan MICS 2006 SPSS Datasets","Vanuatu MICS 2007 SPSS Datasets","Viet Nam_MICS5_Datasets"
   ,"Zimbabwe_MICS5_Datasets"
+  #China
+  ,"China"
 )
 
 cwi <- subset(data,filename %in% latest_surveys)
 cwi <- cwi[order(cwi$cwi),]
 
-# quints <- weighted.percentile(cwi$cwi,cwi$weights,prob=seq(0,1,length=6))
-# 
-# for(i in 2:length(quints)){
-#   quint <- quints[i]
-#   quintName <- paste0("quint.",(i-1)*20)
-#   cwi[[quintName]] <- (cwi$cwi <= quint)
-# }
-# 
-# decs <- weighted.percentile(cwi$cwi,cwi$weights,prob=seq(0,1,length=11))
-# cwi$dec.50 <- (cwi$cwi <= decs[6])
+quints <- weighted.percentile(cwi$cwi,cwi$weights,prob=seq(0,1,length=6))
 
-quints <- c(-0.06008803)
-names(quints) <- c("20%")
-cwi$quint.20 <- (cwi$cwi <= -0.06008803)
+for(i in 2:length(quints)){
+  quint <- quints[i]
+  quintName <- paste0("quint.",(i-1)*20)
+  cwi[[quintName]] <- (cwi$cwi <= quint)
+}
+
+decs <- weighted.percentile(cwi$cwi,cwi$weights,prob=seq(0,1,length=11))
+cwi$dec.50 <- (cwi$cwi <= decs[6])
+
+# quints <- c(-0.06008803)
+# names(quints) <- c("20%")
+# cwi$quint.20 <- (cwi$cwi <= -0.06008803)
 
 cwi.table <- data.table(cwi)
 
