@@ -3,6 +3,7 @@ library(Hmisc)
 library(plyr)
 library(foreign)
 library(data.table)
+library(varhandle)
 
 wd <- "D:/Documents/Data/DHSauto/"
 setwd(wd)
@@ -87,11 +88,69 @@ for(i in 2:length(dirs)){
     names(kr)[which(names(kr)=="b7")] <- "age.at.death.months"
     names(kr)[which(names(kr)=="m3h")] <- "trained.birth.attendant"
     vaccVars <- c("h2","h3","h4","h5","h6","h7","h8","h9","h10")
+    
+    recode.vacc.vars <- function(x){
+      if(is.factor(x)){
+        str <- trimws(tolower(unfactor(x)))
+      }else{
+        str <- trimws(tolower(x))
+      }
+      
+      if(is.na(str)){
+        return(NA)
+      }else if(str=="dk" | str==8 | str==9){
+        return(NA)
+      }else if(str=="0" | str=="no"){
+        return(FALSE)
+      }else{
+        return(TRUE)
+      }
+    }
+    
+    code.any.vacc <- function(vacc.df){
+      any.vaccs <- c()
+      for(i in 1:nrow(vacc.df)){
+        row <- vacc.df[i,]
+        any.vacc <- FALSE
+        na.length <- 0
+        for(j in 1:8){
+          vacc.var <- recode.vacc.vars(row[[j]])
+          if(!is.na(vacc.var)){
+            any.vacc <- any.vacc | vacc.var
+          }else{
+            na.length <- na.length + 1
+          }
+        }
+        if(na.length==8){
+          if(is.factor(row[[9]])){
+            str <- tolower(trimws(unfactor(row[[9]])))
+          }else{
+            str <- tolower(trimws(row[[9]]))
+          }
+          if(is.na(str)){
+           any.vacc <- NA 
+          }else if(str=="don't know" | str==8 | str==9){
+            any.vacc <- NA
+          }else if(str=="no" | str==0){
+            any.vacc <- FALSE
+          }else if(str=="yes" | str==1){
+            any.vacc <- TRUE
+          }else{
+            any.vacc <- NA
+          }
+        }
+        any.vaccs <- c(any.vaccs,any.vacc)
+      }
+      return(any.vaccs)
+    }
+    
+    kr$any.vacc <- code.any.vacc(kr[vaccVars])
+    
     krKeep <- c(
       "child.alive"
       ,"age.at.death.months"
       ,"trained.birth.attendant"
-      ,vaccVars
+      ,"any.vacc"
     )
     krNames <- names(kr)
     namesDiff <- setdiff(krKeep,krNames)
@@ -143,21 +202,113 @@ for(i in 2:length(dirs)){
     ch <- data.frame(ch)
     wm <- data.frame(wm)
     vaccVars <- subset(this.varName,match=="vacc")$var
-    birthVars <- subset(this.varName,match=="attendant" &  skilled==1)$var
+    skilledBirthVars <- subset(this.varName,match=="attendant" &  skilled==1)$var
+    unskilledBirthVars <- subset(this.varName,match=="attendant" &  skilled==0)$var
     mortality <- c("ceb","deadkids","cdead")
-    wmKeep <- c(
-      birthVars
-      ,mortality
-    )
-    names(ch)[which(names(ch)=="v001")] <- "cluster"
-    names(ch)[which(names(ch)=="v002")] <- "household"
+    names(ch)[which(names(ch)=="hh1")] <- "cluster"
+    names(ch)[which(names(ch)=="hh2")] <- "household"
+    names(ch)[which(names(ch)=="uf6")] <- "mother.line"
     vaccVars <- subset(this.varName,match=="vacc")$var
     names(ch)[which(names(ch)==vaccVars[1])] <- "any.vacc"
     
     
-    names(wm)[which(names(wm)=="v001")] <- "cluster"
-    names(wm)[which(names(wm)=="v002")] <- "household"
-    dataList[[dataIndex]] <- data.frame(percentList)
+    names(wm)[which(names(wm)=="hh1")] <- "cluster"
+    names(wm)[which(names(wm)=="hh2")] <- "household"
+    names(wm)[which(names(wm)=="ln")] <- "mother.line"
+    
+    recode.birth.vars <- function(x,skilled){
+      if(is.factor(x)){
+        str <- trimws(tolower(unfactor(x)))
+      }else{
+        str <- trimws(tolower(x))
+      }
+      
+      if(is.na(str)){
+        return(NA)
+      }else if(str=="" | str==9){
+        return(NA)
+      }else if(str=="missing"){
+        return(FALSE)
+      }else if(!skilled){
+        return(FALSE)
+      }else{
+        return(TRUE)
+      }
+    }
+    
+    code.skilled.attendant <- function(attendant.df,skilled){
+      skilled.attendants <- c()
+      for(i in 1:nrow(attendant.df)){
+        row <- attendant.df[i,]
+        rowNames <- names(row)
+        skilled.attendant <- FALSE
+        na.length <- 0
+        for(j in 1:length(row)){
+          birth.var <- recode.birth.vars(row[[j]],rowNames[j] %in% skilled)
+          if(!is.na(birth.var)){
+            skilled.attendant <- skilled.attendant | birth.var
+          }else{
+            na.length <- na.length + 1
+          }
+        }
+        if(na.length==length(row)){
+          skilled.attendant <- NA
+        }
+        skilled.attendants <- c(skilled.attendants,skilled.attendant)
+      }
+      return(skilled.attendants)
+    }
+    wm$skilled.attendant <- code.skilled.attendant(wm[c(skilledBirthVars,unskilledBirthVars)],skilledBirthVars)
+    
+    recode.cdead <- function(cdead,deadkids){
+      if(typeof(cdead)=="NULL"){
+        return(deadkids)
+      }else{
+        return(cdead)
+      }
+    }
+    wm$cdead <- recode.cdead(wm$cdead,wm$deadkids)
+    wmKeep <- c(
+      "cluster"
+      ,"household"
+      ,"mother.line"
+      ,"skilled.attendant"
+      ,"ceb"
+      ,"cdead"
+    )
+    wmNames <- names(wm)
+    namesDiff <- setdiff(wmKeep,wmNames)
+    if(length(namesDiff)>0){
+      for(y in 1:length(namesDiff)){
+        wm[namesDiff[y]] <- NA
+        message(paste("Missing variable",namesDiff[y]))
+      } 
+    }
+    wm <- wm[wmKeep]
+
+    chKeep <- c(
+      "cluster"
+      ,"household"
+      ,"mother.line"
+      ,"any.vacc"
+    )
+    chNames <- names(ch)
+    namesDiff <- setdiff(chKeep,chNames)
+    if(length(namesDiff)>0){
+      for(y in 1:length(namesDiff)){
+        ch[namesDiff[y]] <- NA
+        message(paste("Missing variable",namesDiff[y]))
+      } 
+    }
+    ch <- ch[chKeep]
+    
+#     data <- join(
+#       ch
+#       ,wm
+#       ,by=c("cluster","household","mother.line")
+#       )
+    
+    dataList[[dataIndex]] <- data
     dataIndex <- dataIndex + 1
   }
 }

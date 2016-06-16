@@ -12,6 +12,8 @@ options(descr.plot = FALSE)
 wd <- "D:/Documents/Data/MICSmeta"
 setwd(wd)
 load("total_crosstabs_coded.RData")
+load("D:/Documents/Data/ChinaSurvey/crosstab.RData")
+data.total <- rbind(data.total,china.data.total,fill=TRUE)
 
 pop.confidence <- function(x,y,w,pop){
   ct <- crosstab(x,y,weight=w,prop.t=TRUE,drop.levels=FALSE)

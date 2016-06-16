@@ -78,6 +78,14 @@ ir$age[which(ir$age<0)] <- NA
 names(ir)[which(names(ir)=="tb2_a_p")] <- "sex"
 ir$sex[which(ir$sex=="NA")] <- NA
 
+#Registration
+names(ir)[which(names(ir)=="qa301_a12_p")] <- "birth.reg.raw"
+registered <- c("Agricultural","non-agricultural","Non-Chinese nationality")
+nonregistered <- c("NA","Unknown","No registration")
+ir$birth.reg <- NA
+ir$birth.reg[which(ir$birth.reg.raw %in% registered)] <- 1
+ir$birth.reg[which(ir$birth.reg.raw %in% nonregistered)] <- 0
+
 #Weight and height
 famros.birthdays <- famros[c("pid","fid12","tb1y_a_p","tb1m_a_p")]
 ch <- data.frame(child,as.is=TRUE,check.names=FALSE)
@@ -157,8 +165,11 @@ igrowup.restricted(FileLab="ch",FilePath=igu.dir,
                    , sw=weights)
 
 zscores <- read.csv(paste0(igu.dir,"ch_z_rc.csv"))
-describe(zscores$flen)
-plot(zscores$zlen[order(zscores$zlen)])
+zscores$standing.lying <- NA
+zscoreKeep <- c("cluster","household","pid","weight.kg","height.cm","age.months","standing.lying","zlen","zwei")
+zscores <- zscores[zscoreKeep]
+names(zscores)[which(names(zscores)=="zlen")] <- "child.height.age"
+names(zscores)[which(names(zscores)=="zwei")] <- "child.weight.age"
 
 #Rename cluster/hh var
 # names(hr)[which(names(hr)=="provcd")] <- "province"
@@ -195,8 +206,14 @@ povcalperc <- weighted.percentile(ir$wealth,ir$weights,prob=povcalcut)
 
 ir$p20 <- (ir$wealth <= povcalperc)
 
+ir <- join(
+  ir
+  ,zscores
+  ,by=c("cluster","household","pid")
+  )
+
 keep <- c("wealth","weights","urban","educ","age","sex","cluster","household","head.sex","head.age","p20"
-          ,"birth.cert","birth.reg","age.months","weight.kg","height.cm","standing.lying","child.height.age"
+          ,"birth.cert","birth.reg","age.months","weight.kg","height.cm","standing.lying","child.height.age","child.weight.age"
           ,"woman.bmi","man.bmi"
 )
 irNames <- names(ir)
@@ -208,3 +225,67 @@ if(length(namesDiff)>0){
   } 
 }
 ir <- ir[keep]
+
+codeAgeCat <- function(x){
+  startAge <- 0
+  ageDiff <- 4
+  endAge <- 4
+  if(is.na(x)){
+    return("missing")
+  }
+  while(startAge<95){
+    endAge <- startAge+ageDiff
+    if(x>=startAge & x<=endAge){
+      return(
+        paste0(startAge,"-",endAge)  
+      )
+    }
+    startAge <- endAge + 1
+  }
+  if(x>=95){
+    return("95+")
+  }
+  return("missing")
+}
+
+ir$ageCategory <- vapply(ir$age,codeAgeCat,character(1))
+ir$ageCategory <- factor(ir$ageCategory,
+   levels = c("0-4","5-9","10-14","15-19","20-24","25-29","30-34"
+              ,"35-39","40-44","45-49","50-54","55-59","60-64"
+              ,"65-69","70-74","75-79","80-84","85-89","90-94"
+              ,"95+","missing")                          
+)
+
+ir$head.ageCategory <- vapply(ir$head.age,codeAgeCat,character(1))
+ir$head.ageCategory <- factor(ir$head.ageCategory,
+    levels = c("0-4","5-9","10-14","15-19","20-24","25-29","30-34"
+               ,"35-39","40-44","45-49","50-54","55-59","60-64"
+               ,"65-69","70-74","75-79","80-84","85-89","90-94"
+               ,"95+","missing")                          
+)
+
+#Not really stunting, do we want to just call this "nutrition"?
+ir$stunting <- NA
+ir$stunting[which(ir$child.weight.age< (-4))] <- "Over 4 SD below median"
+ir$stunting[which(ir$child.weight.age>= (-4) & ir$child.weight.age< (-2))] <- "Between 2 and 4 SD below median"
+ir$stunting[which(ir$child.weight.age>= (-2) & ir$child.weight.age< (-1))] <- "Between 1 and 2 SD below median"
+ir$stunting[which(ir$child.weight.age>= (-1) & ir$child.weight.age<0)] <- "Less than one SD below median"
+ir$stunting[which(ir$child.weight.age>=0 & ir$child.weight.age<1)] <- "Less than one SD above median"
+ir$stunting[which(ir$child.weight.age>=1 & ir$child.weight.age<2)] <- "Between 1 and 2 SD above median"
+ir$stunting[which(ir$child.weight.age>=2 & ir$child.weight.age<4)] <- "Between 2 and 4 SD above median"
+ir$stunting[which(ir$child.weight.age>4)] <- "Over 4 SD above median"
+ir$stunting <- factor(ir$stunting
+                              ,levels=c(
+                                "Over 4 SD below median"
+                                ,"Between 2 and 4 SD below median"
+                                ,"Between 1 and 2 SD below median"
+                                ,"Less than one SD below median"
+                                ,"Less than one SD above median"
+                                ,"Between 1 and 2 SD above median"
+                                ,"Between 2 and 4 SD above median"
+                                ,"Over 4 SD above median"
+                              ))
+
+ir$filename <- "China"
+china.data.total <- ir
+save(china.data.total,file="crosstab.RData")
