@@ -37,7 +37,7 @@ weighted.percentile <- function(x,w,prob,na.rm=TRUE){
 # dir <- "D:/Documents/Data/DHSauto/rwhr61dt"
 
 ####Run function####
-set our working directory, change this if using on another machine
+# set our working directory, change this if using on another machine
 wd <- "D:/Documents/Data/DHSauto/"
 setwd(wd)
 

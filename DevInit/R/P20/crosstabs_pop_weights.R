@@ -63,6 +63,15 @@ countryMeta[which(countryMeta$iso3=="RWA"),]$pop <- 11341544
 countryMeta[which(countryMeta$iso3=="TMP"),]$pop <- 1048367
 countryMeta[which(countryMeta$iso2=="XK"),]$pop <- 1823149
 
+####Debug####
+# dat.tab <- data.table(data.total)
+# dat.collapse <- dat.tab[
+#   ,.(p20=weighted.mean(p20,weights,na.rm=TRUE))
+#   , by=.(filename)
+#   ]
+# countryMeta <- join(countryMeta,dat.collapse,by="filename")
+####End debug####
+
 crossTabs <- list()
 
 filenames <- countryMeta$filename
