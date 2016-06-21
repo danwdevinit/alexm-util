@@ -192,41 +192,41 @@ data.total$stunting <- factor(data.total$stunting
 
 save(data.total,file="total_crosstabs_coded.RData")
 
-crossTabs <- list()
-crossTabs[["urbanp20"]] <- crosstab(data.total$urban,data.total$p20,weight=data.total$weights)$tab
-crossTabs[["educp20"]] <- crosstab(data.total$educ,data.total$p20,weight=data.total$weights)$tab
-crossTabs[["agep20"]] <- crosstab(data.total$ageCategory,data.total$p20,weight=data.total$weights)$tab
-crossTabs[["sexp20"]] <- crosstab(data.total$sex,data.total$p20,weight=data.total$weights)$tab
-crossTabs[["head.agep20"]] <- crosstab(data.total$head.ageCategory,data.total$p20,weight=data.total$weights)$tab
-crossTabs[["head.sexp20"]] <- crosstab(data.total$head.sex,data.total$p20,weight=data.total$weights)$tab
-under5 <- subset(data.total,age<5)
-over5 <- subset(data.total,age>=5)
-under15 <- subset(data.total,age<15)
-over15 <- subset(data.total,age>=15)
-women <- subset(data.total,sex=="Female")
-men <- subset(data.total,sex=="Male")
-crossTabs[["under5.certp20"]] <- crosstab(under5$birth.cert,under5$p20,weight=under5$child.weights)$tab
-crossTabs[["under5.regp20"]] <- crosstab(under5$birth.reg,under5$p20,weight=under5$child.weights)$tab
-crossTabs[["over5.certp20"]] <- crosstab(over5$birth.cert,over5$p20,weight=over5$weights)$tab
-crossTabs[["under5.nutritionp20"]] <- crosstab(under5$stunting,under5$p20,weight=under5$child.weights)$tab
-crossTabs[["under15.urbanp20"]] <- crosstab(under15$urban,under15$p20,weight=under15$weights)$tab
-crossTabs[["under15.sexp20"]] <- crosstab(under15$sex,under15$p20,weight=under15$weights)$tab
-crossTabs[["over15.urbanp20"]] <- crosstab(under15$urban,under15$p20,weight=under15$weights)$tab
-crossTabs[["over15.sexp20"]] <- crosstab(under15$sex,under15$p20,weight=under15$weights)$tab
-crossTabs[["women.bmip20"]] <- crosstab(women$woman.bmi.class,women$p20,weight=women$weights)$tab
-crossTabs[["men.bmip20"]] <- crosstab(men$man.bmi.class,men$p20,weight=men$weights)$tab
-
-library(openxlsx)
-
-#Create workbook
-wb <- createWorkbook("crosstabs")
-
-crossNames <- names(crossTabs)
-for(i in 1:length(crossNames)){
-  crossName <- crossNames[i]
-  crossTab <- crossTabs[[i]]
-  addWorksheet(wb,crossName)
-  writeData(wb,sheet=crossName,crossTab,colNames=TRUE,rowNames=TRUE)
-}
-
-saveWorkbook(wb, "DHS_and_MICS_P20_crosstabs_weighted.xlsx", overwrite = TRUE)
+# crossTabs <- list()
+# crossTabs[["urbanp20"]] <- crosstab(data.total$urban,data.total$p20,weight=data.total$weights)$tab
+# crossTabs[["educp20"]] <- crosstab(data.total$educ,data.total$p20,weight=data.total$weights)$tab
+# crossTabs[["agep20"]] <- crosstab(data.total$ageCategory,data.total$p20,weight=data.total$weights)$tab
+# crossTabs[["sexp20"]] <- crosstab(data.total$sex,data.total$p20,weight=data.total$weights)$tab
+# crossTabs[["head.agep20"]] <- crosstab(data.total$head.ageCategory,data.total$p20,weight=data.total$weights)$tab
+# crossTabs[["head.sexp20"]] <- crosstab(data.total$head.sex,data.total$p20,weight=data.total$weights)$tab
+# under5 <- subset(data.total,age<5)
+# over5 <- subset(data.total,age>=5)
+# under15 <- subset(data.total,age<15)
+# over15 <- subset(data.total,age>=15)
+# women <- subset(data.total,sex=="Female")
+# men <- subset(data.total,sex=="Male")
+# crossTabs[["under5.certp20"]] <- crosstab(under5$birth.cert,under5$p20,weight=under5$child.weights)$tab
+# crossTabs[["under5.regp20"]] <- crosstab(under5$birth.reg,under5$p20,weight=under5$child.weights)$tab
+# crossTabs[["over5.certp20"]] <- crosstab(over5$birth.cert,over5$p20,weight=over5$weights)$tab
+# crossTabs[["under5.nutritionp20"]] <- crosstab(under5$stunting,under5$p20,weight=under5$child.weights)$tab
+# crossTabs[["under15.urbanp20"]] <- crosstab(under15$urban,under15$p20,weight=under15$weights)$tab
+# crossTabs[["under15.sexp20"]] <- crosstab(under15$sex,under15$p20,weight=under15$weights)$tab
+# crossTabs[["over15.urbanp20"]] <- crosstab(under15$urban,under15$p20,weight=under15$weights)$tab
+# crossTabs[["over15.sexp20"]] <- crosstab(under15$sex,under15$p20,weight=under15$weights)$tab
+# crossTabs[["women.bmip20"]] <- crosstab(women$woman.bmi.class,women$p20,weight=women$weights)$tab
+# crossTabs[["men.bmip20"]] <- crosstab(men$man.bmi.class,men$p20,weight=men$weights)$tab
+# 
+# library(openxlsx)
+# 
+# #Create workbook
+# wb <- createWorkbook("crosstabs")
+# 
+# crossNames <- names(crossTabs)
+# for(i in 1:length(crossNames)){
+#   crossName <- crossNames[i]
+#   crossTab <- crossTabs[[i]]
+#   addWorksheet(wb,crossName)
+#   writeData(wb,sheet=crossName,crossTab,colNames=TRUE,rowNames=TRUE)
+# }
+# 
+# saveWorkbook(wb, "DHS_and_MICS_P20_crosstabs_weighted.xlsx", overwrite = TRUE)

@@ -204,7 +204,7 @@ ir <- join(
 povcalcut <- subset(povcalcuts,filename=="China")$hc
 povcalperc <- weighted.percentile(ir$wealth,ir$weights,prob=povcalcut)
 
-ir$p20 <- (ir$wealth <= povcalperc)
+ir$p20 <- (ir$wealth < povcalperc)
 
 ir <- join(
   ir

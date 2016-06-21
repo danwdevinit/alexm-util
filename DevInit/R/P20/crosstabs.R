@@ -119,7 +119,7 @@ for(i in 2:length(dirs)){
     povcalcut <- subset(povcalcuts,filename==hrBase)$hc
     povcalperc <- weighted.percentile(pr$wealth,pr$weights,prob=povcalcut)
     
-    pr$p20 <- (pr$wealth <= povcalperc)
+    pr$p20 <- (pr$wealth < povcalperc)
     
     keep <- c("wealth","weights","urban.rural","educ","age","sex","cluster","household","head.sex","head.age","p20"
               ,"birth.cert","birth.reg","age.months","weight.kg","height.cm","standing.lying","child.height.age"
@@ -501,4 +501,4 @@ micsMetaData <- rbindlist(dataList)
 # save(micsMetaData,file="MICS_hl_crosstabs.RData")
 
 data.total <- rbind(metaData,micsMetaData)
-# save(data.total,file="total_crosstabs.RData")
+save(data.total,file="total_crosstabs.RData")

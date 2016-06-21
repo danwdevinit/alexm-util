@@ -51,7 +51,7 @@ wealth <- dat$wealth
 
 pr <- cbind(pr,wealth)
 
-names(pr)[which(names(pr)=="CD017_LINH")] <- "line"
+names(pr)[which(names(pr)=="P000_NQUE")] <- "line"
 names(pr)[which(names(pr)=="CD002_CONG")] <- "cluster"
 names(pr)[which(names(pr)=="DOMICILIO_ID")] <- "household"
 
@@ -88,7 +88,7 @@ pr <- join(
 povcalcut <- subset(povcalcuts,filename=="Brazil")$hc
 povcalperc <- weighted.percentile(pr$wealth,pr$weights,prob=povcalcut)
 
-pr$p20 <- (pr$wealth <= povcalperc)
+pr$p20 <- (pr$wealth < povcalperc)
 
 codeAgeCat <- function(x){
   startAge <- 0
@@ -128,7 +128,8 @@ pr$head.ageCategory <- factor(pr$head.ageCategory,
                                          ,"95+","missing")                          
 )
 
-names(ch)[which(names(ch)=="M241_LINH")] <- "line"
+names(ch)[which(names(ch)=="M241_LINH")] <- "ch.line"
+names(ch)[which(names(ch)=="M241Z_NQUE")] <- "line"
 names(ch)[which(names(ch)=="MULHER_ID")] <- "mother.id"
 ch$household <- substr(ch$mother.id,1,nchar(ch$mother.id)-2)
 names(ch)[which(names(ch)=="CM002_CONG")] <- "cluster"
@@ -147,13 +148,44 @@ chKeep <- c("line","cluster","household","weight.kg"
             ,"child.height.age","child.weight.age")
 ch <- ch[chKeep]
 
-#Neither of these are unique!!! What is the purpose of the line number?!?!
-pr$unique <- paste0(pr$household,pr$line)
-ch$unique <- paste0(ch$household,ch$line)
+pr <- cbind(pr,ch[match(pr$line,ch$line),])
 
-data <- cbind(pr,ch[match(pr$unique,ch$unique),])
+pr$stunting <- NA
+pr$stunting[which(pr$child.height.age< (-4))] <- "Over 4 SD below median"
+pr$stunting[which(pr$child.height.age>= (-4) & pr$child.height.age< (-2))] <- "Between 2 and 4 SD below median"
+pr$stunting[which(pr$child.height.age>= (-2) & pr$child.height.age< (-1))] <- "Between 1 and 2 SD below median"
+pr$stunting[which(pr$child.height.age>= (-1) & pr$child.height.age<0)] <- "Less than one SD below median"
+pr$stunting[which(pr$child.height.age>=0 & pr$child.height.age<1)] <- "Less than one SD above median"
+pr$stunting[which(pr$child.height.age>=1 & pr$child.height.age<2)] <- "Between 1 and 2 SD above median"
+pr$stunting[which(pr$child.height.age>=2 & pr$child.height.age<4)] <- "Between 2 and 4 SD above median"
+pr$stunting[which(pr$child.height.age>4)] <- "Over 4 SD above median"
 
-keep <- c("unique","wealth","weights","urban.rural","urban","educ","age","sex","cluster","household","head.sex","head.age","p20"
+pr$stunting <- factor(pr$stunting
+                              ,levels=c(
+                                "Over 4 SD below median"
+                                ,"Between 2 and 4 SD below median"
+                                ,"Between 1 and 2 SD below median"
+                                ,"Less than one SD below median"
+                                ,"Less than one SD above median"
+                                ,"Between 1 and 2 SD above median"
+                                ,"Between 2 and 4 SD above median"
+                                ,"Over 4 SD above median"
+                              ))
+
+recode.educ <- function(x){
+  if(is.na(x)){return(NA)}
+  else if(x=="Sem resposta" | x=="Não sabe"){return(NA)}
+  else if(x=="Nenhum" | x=="Creche (não seriado)" | x=="Pré-escola (não seriado)"){return("No education, preschool")}
+  else if(x=="CA / Alfab adultos (não seriado)" | x=="EJA (não seriado)" | x=="Ensino fundamental (seriado)" | x=="Crianças especiais"){return("Primary")}
+  else if(x=="Supletivo ensino fundamental" | x=="Ensino médio"){return("Secondary")}
+  else{return("Higher")}
+}
+pr$educ <- sapply(pr$educ,recode.educ)
+pr$educ <- factor(pr$educ
+                  ,levels = c("No education, preschool","Primary","Secondary","Higher")
+)
+
+keep <- c("wealth","weights","urban.rural","urban","educ","age","sex","cluster","household","head.sex","head.age","p20"
           ,"birth.cert","birth.reg","age.months","weight.kg","height.cm","standing.lying","child.height.age","child.weight.age"
           ,"woman.bmi","man.bmi","ageCategory","head.ageCategory","stunting"
 )
