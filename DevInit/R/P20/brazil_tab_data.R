@@ -151,26 +151,20 @@ ch <- ch[chKeep]
 pr <- cbind(pr,ch[match(pr$line,ch$line),])
 
 pr$stunting <- NA
-pr$stunting[which(pr$child.height.age< (-4))] <- "Over 4 SD below median"
-pr$stunting[which(pr$child.height.age>= (-4) & pr$child.height.age< (-2))] <- "Between 2 and 4 SD below median"
-pr$stunting[which(pr$child.height.age>= (-2) & pr$child.height.age< (-1))] <- "Between 1 and 2 SD below median"
-pr$stunting[which(pr$child.height.age>= (-1) & pr$child.height.age<0)] <- "Less than one SD below median"
-pr$stunting[which(pr$child.height.age>=0 & pr$child.height.age<1)] <- "Less than one SD above median"
-pr$stunting[which(pr$child.height.age>=1 & pr$child.height.age<2)] <- "Between 1 and 2 SD above median"
-pr$stunting[which(pr$child.height.age>=2 & pr$child.height.age<4)] <- "Between 2 and 4 SD above median"
-pr$stunting[which(pr$child.height.age>4)] <- "Over 4 SD above median"
+pr$stunting[which(pr$child.height.age<= (-6))] <- "Implausibly low"
+pr$stunting[which(pr$child.height.age > (-6) & pr$child.height.age<= (-3))] <- "Severely stunted"
+pr$stunting[which(pr$child.height.age > (-3) & pr$child.height.age<= (-2))] <- "Stunted, but not severely"
+pr$stunting[which(pr$child.height.age > (-2) & pr$child.height.age< (6))] <- "Not stunted"
+pr$stunting[which(pr$child.height.age>= (6))] <- "Implausibly high"
 
 pr$stunting <- factor(pr$stunting
-                              ,levels=c(
-                                "Over 4 SD below median"
-                                ,"Between 2 and 4 SD below median"
-                                ,"Between 1 and 2 SD below median"
-                                ,"Less than one SD below median"
-                                ,"Less than one SD above median"
-                                ,"Between 1 and 2 SD above median"
-                                ,"Between 2 and 4 SD above median"
-                                ,"Over 4 SD above median"
-                              ))
+                      ,levels=c(
+                        "Implausibly low"
+                        ,"Severely stunted"
+                        ,"Stunted, but not severely"
+                        ,"Not stunted"
+                        ,"Implausibly high"
+                      ))
 
 recode.educ <- function(x){
   if(is.na(x)){return(NA)}

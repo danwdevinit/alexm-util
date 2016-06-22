@@ -113,7 +113,7 @@ for(i in 2:length(dirs)){
     names(pr)[which(names(pr)=="hc2")] <- "weight.kg"
     names(pr)[which(names(pr)=="hc3")] <- "height.cm"
     names(pr)[which(names(pr)=="hc15")] <- "standing.lying"
-    names(pr)[which(names(pr)=="hc6")] <- "child.height.age"
+    names(pr)[which(names(pr)=="hc5")] <- "child.height.age"
     pr$child.weights <- pr$weights
     
     povcalcut <- subset(povcalcuts,filename==hrBase)$hc

@@ -213,7 +213,7 @@ ir <- join(
   )
 
 keep <- c("wealth","weights","urban","educ","age","sex","cluster","household","head.sex","head.age","p20"
-          ,"birth.cert","birth.reg","age.months","weight.kg","height.cm","standing.lying","child.height.age","child.weight.age"
+          ,"birth.cert","birth.reg","age.months","weight.kg","height.cm","standing.lying","child.height.age"
           ,"woman.bmi","man.bmi"
 )
 irNames <- names(ir)
@@ -266,26 +266,20 @@ ir$head.ageCategory <- factor(ir$head.ageCategory,
 
 #Not really stunting, do we want to just call this "nutrition"?
 ir$stunting <- NA
-ir$stunting[which(ir$child.weight.age< (-4))] <- "Over 4 SD below median"
-ir$stunting[which(ir$child.weight.age>= (-4) & ir$child.weight.age< (-2))] <- "Between 2 and 4 SD below median"
-ir$stunting[which(ir$child.weight.age>= (-2) & ir$child.weight.age< (-1))] <- "Between 1 and 2 SD below median"
-ir$stunting[which(ir$child.weight.age>= (-1) & ir$child.weight.age<0)] <- "Less than one SD below median"
-ir$stunting[which(ir$child.weight.age>=0 & ir$child.weight.age<1)] <- "Less than one SD above median"
-ir$stunting[which(ir$child.weight.age>=1 & ir$child.weight.age<2)] <- "Between 1 and 2 SD above median"
-ir$stunting[which(ir$child.weight.age>=2 & ir$child.weight.age<4)] <- "Between 2 and 4 SD above median"
-ir$stunting[which(ir$child.weight.age>4)] <- "Over 4 SD above median"
-ir$stunting <- factor(ir$stunting
-                              ,levels=c(
-                                "Over 4 SD below median"
-                                ,"Between 2 and 4 SD below median"
-                                ,"Between 1 and 2 SD below median"
-                                ,"Less than one SD below median"
-                                ,"Less than one SD above median"
-                                ,"Between 1 and 2 SD above median"
-                                ,"Between 2 and 4 SD above median"
-                                ,"Over 4 SD above median"
-                              ))
+ir$stunting[which(ir$child.height.age<= (-6))] <- "Implausibly low"
+ir$stunting[which(ir$child.height.age > (-6) & ir$child.height.age<= (-3))] <- "Severely stunted"
+ir$stunting[which(ir$child.height.age > (-3) & ir$child.height.age<= (-2))] <- "Stunted, but not severely"
+ir$stunting[which(ir$child.height.age > (-2) & ir$child.height.age< (6))] <- "Not stunted"
+ir$stunting[which(ir$child.height.age>= (6))] <- "Implausibly high"
 
+ir$stunting <- factor(ir$stunting
+                      ,levels=c(
+                        "Implausibly low"
+                        ,"Severely stunted"
+                        ,"Stunted, but not severely"
+                        ,"Not stunted"
+                        ,"Implausibly high"
+                      ))
 ir$filename <- "China"
 china.data.total <- ir
 save(china.data.total,file="crosstab.RData")

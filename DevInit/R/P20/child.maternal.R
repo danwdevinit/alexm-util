@@ -17,7 +17,7 @@ latest_surveys <- c(
   ,"hnhr62dt", "hthr61dt", "iahr52dt", "idhr63dt", "johr6cdt"
   ,"kehr70dt","khhr72dt", "kmhr61dt"
   #   , "kyhr61dt"
-  , "lbhr6adt", "lshr61dt"
+  , "lbhr6adt", "lshr71dt"
   #   ,"mbhr53dt"
   , "mdhr51dt", "mlhr6hdt", "mvhr51dt", "mwhr61dt"
   ,"mzhr62dt", "nghr6adt", "nihr61dt", "nmhr61dt"
@@ -90,6 +90,9 @@ for(i in 2:length(dirs)){
     vaccVars <- c("h2","h3","h4","h5","h6","h7","h8","h9","h10")
     
     recode.vacc.vars <- function(x){
+      if(is.na(x)){
+        return(NA)
+      }
       if(is.factor(x)){
         str <- trimws(tolower(unfactor(x)))
       }else{
@@ -144,6 +147,15 @@ for(i in 2:length(dirs)){
       return(any.vaccs)
     }
     
+    krNames <- names(kr)
+    namesDiff <- setdiff(vaccVars,krNames)
+    if(length(namesDiff)>0){
+      for(y in 1:length(namesDiff)){
+        kr[namesDiff[y]] <- NA
+        message(paste("Missing variable",namesDiff[y]))
+      } 
+    }
+    
     kr$any.vacc <- code.any.vacc(kr[vaccVars])
     
     krKeep <- c(
@@ -170,7 +182,7 @@ for(i in 2:length(dirs)){
 wd <- "D:/Documents/Data/DHSmeta"
 setwd(wd)
 metaData <- rbindlist(dataList,fill=TRUE)
-dhs.child.maternal <- metaData
+dhs.child.health <- metaData
 
 # set our working directory, change this if using on another machine
 wd <- "D:/Documents/Data/MICSauto/"
@@ -181,7 +193,8 @@ varNames <- read.csv("D:/Documents/Data/MICSmeta/mics_child_vars.csv",as.is=TRUE
 # List out all the directories in our wd, this is where our data is contained
 dirs <- list.dirs(wd,full.names=TRUE)
 
-dataList <- list()
+dataListwm <- list()
+dataListch <- list()
 dataIndex <- 1
 
 for(i in 2:length(dirs)){
@@ -302,19 +315,24 @@ for(i in 2:length(dirs)){
     }
     ch <- ch[chKeep]
     
-#     data <- join(
-#       ch
-#       ,wm
-#       ,by=c("cluster","household","mother.line")
-#       )
-    
-    dataList[[dataIndex]] <- data
+    ch <- join(
+      ch
+      ,wm
+      ,by=c("cluster","household","mother.line")
+      )
+    ch$filename <- basename(dir)
+    wm$filename <- basename(dir)
+    dataListwm[[dataIndex]] <- wm
+    dataListch[[dataIndex]] <- ch
     dataIndex <- dataIndex + 1
   }
 }
 
 wd <- "D:/Documents/Data/MICSmeta"
 setwd(wd)
-mics.meta <- rbindlist(dataList,fill=TRUE)
-mics.child.maternal <- mics.meta
-save(dhs.child.maternal,mics.child.maternal,file="child.maternal.RData")
+mics.metawm <- rbindlist(dataListwm,fill=TRUE)
+mics.metach <- rbindlist(dataListch,fill=TRUE)
+mics.maternal.health <- mics.metawm
+mics.child.health <- mics.metach
+child.health <- rbind(mics.child.health,dhs.child.health,fill=TRUE)
+save(child.health,mics.maternal.health,file="child.maternal.RData")

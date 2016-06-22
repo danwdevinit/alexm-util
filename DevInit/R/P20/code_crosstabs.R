@@ -166,26 +166,20 @@ child.height.age.missing <- c(
 data.total$child.height.age[which(data.total$child.height.age %in% child.height.age.missing)] <- NA
 data.total$child.height.age[which(data.total$child.height.age>1000)] <- data.total$child.height.age[which(data.total$child.height.age>1000)]/10000
 data.total$stunting <- NA
-data.total$stunting[which(data.total$child.height.age< (-4))] <- "Over 4 SD below median"
-data.total$stunting[which(data.total$child.height.age>= (-4) & data.total$child.height.age< (-2))] <- "Between 2 and 4 SD below median"
-data.total$stunting[which(data.total$child.height.age>= (-2) & data.total$child.height.age< (-1))] <- "Between 1 and 2 SD below median"
-data.total$stunting[which(data.total$child.height.age>= (-1) & data.total$child.height.age<0)] <- "Less than one SD below median"
-data.total$stunting[which(data.total$child.height.age>=0 & data.total$child.height.age<1)] <- "Less than one SD above median"
-data.total$stunting[which(data.total$child.height.age>=1 & data.total$child.height.age<2)] <- "Between 1 and 2 SD above median"
-data.total$stunting[which(data.total$child.height.age>=2 & data.total$child.height.age<4)] <- "Between 2 and 4 SD above median"
-data.total$stunting[which(data.total$child.height.age>4)] <- "Over 4 SD above median"
+data.total$stunting[which(data.total$child.height.age<= (-6))] <- "Implausibly low"
+data.total$stunting[which(data.total$child.height.age > (-6) & data.total$child.height.age<= (-3))] <- "Severely stunted"
+data.total$stunting[which(data.total$child.height.age > (-3) & data.total$child.height.age<= (-2))] <- "Stunted, but not severely"
+data.total$stunting[which(data.total$child.height.age > (-2) & data.total$child.height.age< (6))] <- "Not stunted"
+data.total$stunting[which(data.total$child.height.age>= (6))] <- "Implausibly high"
 
 data.total$stunting <- factor(data.total$stunting
-                                   ,levels=c(
-                                     "Over 4 SD below median"
-                                     ,"Between 2 and 4 SD below median"
-                                     ,"Between 1 and 2 SD below median"
-                                     ,"Less than one SD below median"
-                                     ,"Less than one SD above median"
-                                     ,"Between 1 and 2 SD above median"
-                                     ,"Between 2 and 4 SD above median"
-                                     ,"Over 4 SD above median"
-                                   ))
+                              ,levels=c(
+                                "Implausibly low"
+                                ,"Severely stunted"
+                                ,"Stunted, but not severely"
+                                ,"Not stunted"
+                                ,"Implausibly high"
+                              ))
 
 # data.total$p20[which(data.total$p20==TRUE)] <- "P20"
 # data.total$p20[which(data.total$p20==FALSE)] <- "P80"

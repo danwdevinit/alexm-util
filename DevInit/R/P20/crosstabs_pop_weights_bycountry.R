@@ -16,6 +16,8 @@ load("D:/Documents/Data/BrazilSurvey/spss/crosstab.RData")
 data.total <- rbind(data.total,china.data.total,fill=TRUE)
 data.total <- rbind(data.total,brazil.data.total,fill=TRUE)
 
+data.total$sex <- factor(data.total$sex,levels=c("Male","Female"))
+
 conform <- function(complete,incomplete){
   return(
     pmax(
@@ -64,6 +66,34 @@ countryMeta <- read.csv("headcounts.csv",as.is=TRUE)
 # countryMeta <- join(countryMeta,dat.collapse,by="filename")
 ####End debug####
 
+newNames <- c("p20.rural"
+              ,"p20.urban"
+              ,"p80.over15.noeduc"
+              ,"p80.over15.primary"
+              ,"p80.over15.secondary"
+              ,"p80.over15.higher"
+              ,"p20.over15.noeduc"
+              ,"p20.over15.primary"
+              ,"p20.over15.secondary"
+              ,"p20.over15.higher"
+              ,"p80.male"
+              ,"p80.female"
+              ,"p20.male"
+              ,"p20.female"
+              ,"p80.unregistered"
+              ,"p80.registered"
+              ,"p20.unregistered"
+              ,"p20.registered"
+              ,"p80.notstunted"
+              ,"p80.stunted"
+              ,"p20.notstunted"
+              ,"p20.stunted"
+)
+
+for(i in 1:length(newNames)){
+  countryMeta[[newNames[i]]] <- NA
+}
+
 filenames <- countryMeta$filename
 for(i in 1:length(filenames)){
   this.filename <- filenames[i]
@@ -79,8 +109,8 @@ for(i in 1:length(filenames)){
     this.pop <- subset(countryMeta,filename==this.filename)$pop.total
     this.pop.under5 <- subset(countryMeta,filename==this.filename)$female.under5 + subset(countryMeta,filename==this.filename)$male.under5
     this.pop.over5 <- this.pop - this.pop.under5
-    this.pop.under15 <- this.pop.under5 + subset(countryMeta,filename==this.filename)$female.5.14
-    + subset(countryMeta,filename==this.filename)$male.5.14
+    this.pop.under15 <- this.pop.under5 + subset(countryMeta,filename==this.filename)$female.5.14 +
+    subset(countryMeta,filename==this.filename)$male.5.14
     this.pop.over15 <- this.pop - this.pop.under15
     this.pop.female <- subset(countryMeta,filename==this.filename)$pop.female
     this.pop.male <- subset(countryMeta,filename==this.filename)$pop.male
@@ -93,16 +123,16 @@ for(i in 1:length(filenames)){
       countryMeta$p20.urban[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["1","TRUE"]},error=function(e){0})
     }
     #Educ-P20
-    if(length(dat$educ[which(!is.na(dat$educ))])!=0){
-      confidence.tab <- pop.confidence(dat$educ,dat$p20,dat$weights,this.pop)
-      countryMeta$p80.noeduc[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["No education, preschool","FALSE"]},error=function(e){0})
-      countryMeta$p80.primary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Primary","FALSE"]},error=function(e){0})
-      countryMeta$p80.secondary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Secondary","FALSE"]},error=function(e){0})
-      countryMeta$p80.higher[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Higher","FALSE"]},error=function(e){0})
-      countryMeta$p20.noeduc[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["No education, preschool","TRUE"]},error=function(e){0})
-      countryMeta$p20.primary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Primary","TRUE"]},error=function(e){0})
-      countryMeta$p20.secondary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Secondary","TRUE"]},error=function(e){0})
-      countryMeta$p20.higher[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Higher","TRUE"]},error=function(e){0})
+    if(length(over15$educ[which(!is.na(over15$educ))])!=0){
+      confidence.tab <- pop.confidence(over15$educ,over15$p20,over15$weights,this.pop.over15)
+      countryMeta$p80.over15.noeduc[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["No education, preschool","FALSE"]},error=function(e){0})
+      countryMeta$p80.over15.primary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Primary","FALSE"]},error=function(e){0})
+      countryMeta$p80.over15.secondary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Secondary","FALSE"]},error=function(e){0})
+      countryMeta$p80.over15.higher[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Higher","FALSE"]},error=function(e){0})
+      countryMeta$p20.over15.noeduc[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["No education, preschool","TRUE"]},error=function(e){0})
+      countryMeta$p20.over15.primary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Primary","TRUE"]},error=function(e){0})
+      countryMeta$p20.over15.secondary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Secondary","TRUE"]},error=function(e){0})
+      countryMeta$p20.over15.higher[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Higher","TRUE"]},error=function(e){0})
     }
     #Sex-P20
     if(length(dat$sex[which(!is.na(dat$sex))])!=0){
@@ -129,14 +159,9 @@ for(i in 1:length(filenames)){
       countryMeta$p20.registered[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["1","TRUE"]},error=function(e){0})  
     }
     #Under5 nutrition
-    if(this.filename!="China"){
-      under5$stunted <- under5$child.height.age <= -2
+      under5$stunted <- (under5$child.height.age <= -2) & (under5$child.height.age > -6)
       under5$stunted[which(is.na(under5$stunting))] <- NA
-    }else{
-      under5$stunted <- under5$child.weight.age <= -2
-      under5$stunted[which(is.na(under5$stunting))] <- NA
-    }
-    if(length(under5$stunting[which(!is.na(under5$stunting))])!=0){
+    if(length(under5$stunted[which(!is.na(under5$stunted))])!=0){
       confidence.tab <- pop.confidence(under5$stunted,under5$p20,under5$weights,this.pop.under5)
       countryMeta$p80.notstunted[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["FALSE","FALSE"]},error=function(e){0})
       countryMeta$p80.stunted[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["TRUE","FALSE"]},error=function(e){0})
