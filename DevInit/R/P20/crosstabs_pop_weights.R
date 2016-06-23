@@ -33,7 +33,12 @@ conform <- function(complete,incomplete){
           rownames(complete)
           ,rownames(incomplete)
         )
-      ,]
+      ,
+        match(
+          colnames(complete)
+          ,colnames(incomplete)
+          )
+      ]
       ,0
       ,na.rm=TRUE
       )

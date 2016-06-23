@@ -8,6 +8,10 @@ library(varhandle)
 wd <- "D:/Documents/Data/DHSauto/"
 setwd(wd)
 
+psum <- function(...,na.rm=TRUE) { 
+  rowSums(do.call(cbind,list(...)),na.rm=na.rm)
+} 
+
 #Not necessarily most recent, but most recent with child/mother questions
 latest_surveys <- c(
   "alhr50dt", "amhr61dt", "aohr61dt", "azhr52dt", "bdhr70dt", "bfhr62dt"
@@ -82,11 +86,70 @@ for(i in 2:length(dirs)){
     kr <- read.csv(paste0(krwd,iso2,"KR",phase,"FL.csv")
                    ,na.strings="",as.is=TRUE,check.names=FALSE)
     
+    irwd <- paste0("D:/Documents/Data/DHSauto/",tolower(iso2),"ir",phase,"dt/")
+    if(!file_test(op="-d", irwd)){message("IR WD invalid");}
+    
+    ir <- read.csv(paste0(irwd,iso2,"IR",phase,"FL.csv")
+                   ,na.strings="",as.is=TRUE,check.names=FALSE)
+    
+    names(ir)[which(names(ir)=="v001")] <- "cluster"
+    names(ir)[which(names(ir)=="v002")] <- "household"
+    names(ir)[which(names(ir)=="v201")] <- "ceb"
+    ir$cdead <- ir$v206 + ir$v207
+    ir$skilled.attendant <- psum(
+        (ir$m3a_1==1 | tolower(ir$m3a_1)=="yes")
+       ,(ir$m3b_1==1 | tolower(ir$m3b_1)=="yes")
+       ,(ir$m3c_1==1 | tolower(ir$m3c_1)=="yes")
+       ,(ir$m3d_1==1 | tolower(ir$m3d_1)=="yes")
+       ,(ir$m3e_1==1 | tolower(ir$m3e_1)=="yes")
+       ,(ir$m3f_1==1 | tolower(ir$m3f_1)=="yes")
+       ,na.rm=TRUE
+    )>=1
+    maternal.deaths <- function(df){
+      maternal.deathsV <- c()
+      for(i in 1:nrow(df)){
+        maternal.deaths <- 0
+        for(j in 1:20){
+          num <- sprintf("%02d", j)
+          pregVar <- paste0("mm9_",num)
+          if(typeof(df[[pregVar]])!="NULL"){
+            preg <- df[[pregVar]][i]
+            if(!is.na(preg)){
+              if(preg==2 |
+                   preg==3 |
+                   preg==5 |
+                   preg==6 |
+                   tolower(preg)=="died while pregnant" |
+                   tolower(preg)=="died during delivery" |
+                   tolower(preg)=="6 weeks after delivery" |
+                   tolower(preg)=="2 months after delivery"
+              ){
+                maternal.deaths <- maternal.deaths + 1
+              }
+            }
+          }else{
+            next;
+          }
+        }
+        maternal.deathsV <- c(maternal.deathsV,maternal.deaths)
+      }
+      return(maternal.deathsV)
+    }
+    ir$maternal.deaths <- maternal.deaths(ir)
+    
     names(kr)[which(names(kr)=="v001")] <- "cluster"
     names(kr)[which(names(kr)=="v002")] <- "household"
     names(kr)[which(names(kr)=="b5")] <- "child.alive"
     names(kr)[which(names(kr)=="b7")] <- "age.at.death.months"
-    names(kr)[which(names(kr)=="m3h")] <- "trained.birth.attendant"
+    kr$skilled.attendant <- psum(
+      (kr$m3a==1 | tolower(kr$m3a)=="yes")
+      ,(kr$m3b==1 | tolower(kr$m3b)=="yes")
+      ,(kr$m3c==1 | tolower(kr$m3c)=="yes")
+      ,(kr$m3d==1 | tolower(kr$m3d)=="yes")
+      ,(kr$m3e==1 | tolower(kr$m3e)=="yes")
+      ,(kr$m3f==1 | tolower(kr$m3f)=="yes")
+      ,na.rm=TRUE
+    )>=1
     vaccVars <- c("h2","h3","h4","h5","h6","h7","h8","h9","h10")
     
     recode.vacc.vars <- function(x){
@@ -158,10 +221,28 @@ for(i in 2:length(dirs)){
     
     kr$any.vacc <- code.any.vacc(kr[vaccVars])
     
+    irKeep <- c(
+      "cluster"
+      ,"household"
+      ,"ceb"
+      ,"cdead"
+      ,"skilled.attendant"
+      ,"maternal.deaths"
+      )
+    irNames <- names(ir)
+    namesDiff <- setdiff(irKeep,irNames)
+    if(length(namesDiff)>0){
+      for(y in 1:length(namesDiff)){
+        kr[namesDiff[y]] <- NA
+        message(paste("Missing variable",namesDiff[y]))
+      } 
+    }
+    ir <- ir[irKeep]
+    
     krKeep <- c(
-      "child.alive"
-      ,"age.at.death.months"
-      ,"trained.birth.attendant"
+      "cluster"
+      ,"household"
+      ,"skilled.attendant"
       ,"any.vacc"
     )
     krNames <- names(kr)
@@ -174,6 +255,7 @@ for(i in 2:length(dirs)){
     }
     kr <- kr[krKeep]
     kr$filename <- hrBase
+    ir$filename <- hrBase
     dataList[[dataIndex]] <- kr
     dataIndex <- dataIndex + 1
   }
