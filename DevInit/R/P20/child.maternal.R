@@ -5,6 +5,43 @@ library(foreign)
 library(data.table)
 library(varhandle)
 
+wd <- "D:/Documents/Data/MICSmeta/"
+setwd(wd)
+
+povcalcuts <- read.csv("headcounts.csv",as.is=TRUE)
+
+povcalcuts$filename[which(povcalcuts$filename=="bfhr70dt")] <- "bfhr62dt"
+povcalcuts$filename[which(povcalcuts$filename=="kehr7hdt")] <- "kehr70dt"
+povcalcuts$filename[which(povcalcuts$filename=="mdhr6hdt")] <- "mdhr51dt"
+povcalcuts$filename[which(povcalcuts$filename=="mwhr71dt")] <- "mwhr61dt"
+povcalcuts$filename[which(povcalcuts$filename=="tzhr6adt")] <- "tzhr63dt"
+povcalcuts$filename[which(povcalcuts$filename=="ughr72dt")] <- "ughr60dt"
+
+weighted.percentile <- function(x,w,prob,na.rm=TRUE){
+  df <- data.frame(x,w)
+  if(na.rm){
+    df <- df[which(complete.cases(df)),]
+  }
+  #Sort
+  df <- df[order(df$x),]
+  sumw <- sum(df$w)
+  df$cumsumw <- cumsum(df$w)
+  #For each percentile
+  cutList <- c()
+  cutNames <-c()
+  for(i in 1:length(prob)){
+    p <- prob[i]
+    pStr <- paste0(round(p*100,digits=2),"%")
+    sumwp <- sumw*p
+    df$above.prob <- df$cumsumw>=sumwp
+    thisCut <- df$x[which(df$above.prob==TRUE)[1]]
+    cutList <- c(cutList,thisCut)
+    cutNames <- c(cutNames,pStr)
+  }
+  names(cutList) <- cutNames
+  return(cutList)
+}
+
 wd <- "D:/Documents/Data/DHSauto/"
 setwd(wd)
 
@@ -66,7 +103,8 @@ latest_surveys <- c(
 # List out all the directories in our wd, this is where our data is contained
 dirs <- list.dirs(wd,full.names=TRUE)
 
-dataList <- list()
+dataListwm <- list()
+dataListch <- list()
 dataIndex <- 1
 
 # Loop through every dir
@@ -79,6 +117,21 @@ for(i in 2:length(dirs)){
     hrBase <- basename(hrwd)
     iso2 <- toupper(substr(hrBase,1,2))
     phase <- substr(hrBase,5,6)
+    
+    hr <- read.csv(paste0(hrwd,"/",iso2,"HR",phase,"FL.csv")
+                   ,na.strings="",as.is=TRUE,check.names=FALSE)
+    
+    names(hr)[which(names(hr)=="hv271")] <- "wealth"
+    hr$wealth <- hr$wealth/100000
+    names(hr)[which(names(hr)=="hv001")] <- "cluster"
+    names(hr)[which(names(hr)=="hv002")] <- "household"
+    names(hr)[which(names(hr)=="hv005")] <- "sample.weights"
+    hr$weights <- hr$sample.weights/1000000
+    povcalcut <- subset(povcalcuts,filename==hrBase)$hc
+    povcalperc <- weighted.percentile(hr$wealth,hr$weights,prob=povcalcut)
+    hr$p20 <- (hr$wealth < povcalperc)
+    hrKeep <- c("cluster","household","wealth","weights","p20")
+    hr <- hr[hrKeep]
     
     krwd <- paste0("D:/Documents/Data/DHSauto/",tolower(iso2),"kr",phase,"dt/")
     if(!file_test(op="-d", krwd)){message("KR WD invalid");next;}
@@ -95,16 +148,29 @@ for(i in 2:length(dirs)){
     names(ir)[which(names(ir)=="v001")] <- "cluster"
     names(ir)[which(names(ir)=="v002")] <- "household"
     names(ir)[which(names(ir)=="v201")] <- "ceb"
-    ir$cdead <- ir$v206 + ir$v207
-    ir$skilled.attendant <- psum(
+    if(typeof(ir$v206)=="NULL" & typeof(ir$v207)=="NULL"){
+      ir$cdead <- NA
+    }else{
+      ir$cdead <- psum(ir$v206,ir$v207,na.rm=TRUE) 
+    }
+    if(typeof(ir$m3a_1)=="NULL" & 
+         typeof(ir$m3b_1)=="NULL" & 
+         typeof(ir$m3c_1)=="NULL" & 
+         typeof(ir$m3d_1)=="NULL" & 
+         typeof(ir$m3e_1)=="NULL" & 
+         typeof(ir$m3f_1)=="NULL"){
+      ir$skilled.attendant <- NA
+    }else{
+      ir$skilled.attendant <- psum(
         (ir$m3a_1==1 | tolower(ir$m3a_1)=="yes")
-       ,(ir$m3b_1==1 | tolower(ir$m3b_1)=="yes")
-       ,(ir$m3c_1==1 | tolower(ir$m3c_1)=="yes")
-       ,(ir$m3d_1==1 | tolower(ir$m3d_1)=="yes")
-       ,(ir$m3e_1==1 | tolower(ir$m3e_1)=="yes")
-       ,(ir$m3f_1==1 | tolower(ir$m3f_1)=="yes")
-       ,na.rm=TRUE
-    )>=1
+        ,(ir$m3b_1==1 | tolower(ir$m3b_1)=="yes")
+        ,(ir$m3c_1==1 | tolower(ir$m3c_1)=="yes")
+        ,(ir$m3d_1==1 | tolower(ir$m3d_1)=="yes")
+        ,(ir$m3e_1==1 | tolower(ir$m3e_1)=="yes")
+        ,(ir$m3f_1==1 | tolower(ir$m3f_1)=="yes")
+        ,na.rm=TRUE
+      )>=1 
+    }
     maternal.deaths <- function(df){
       maternal.deathsV <- c()
       for(i in 1:nrow(df)){
@@ -141,15 +207,25 @@ for(i in 2:length(dirs)){
     names(kr)[which(names(kr)=="v002")] <- "household"
     names(kr)[which(names(kr)=="b5")] <- "child.alive"
     names(kr)[which(names(kr)=="b7")] <- "age.at.death.months"
-    kr$skilled.attendant <- psum(
-      (kr$m3a==1 | tolower(kr$m3a)=="yes")
-      ,(kr$m3b==1 | tolower(kr$m3b)=="yes")
-      ,(kr$m3c==1 | tolower(kr$m3c)=="yes")
-      ,(kr$m3d==1 | tolower(kr$m3d)=="yes")
-      ,(kr$m3e==1 | tolower(kr$m3e)=="yes")
-      ,(kr$m3f==1 | tolower(kr$m3f)=="yes")
-      ,na.rm=TRUE
-    )>=1
+    if(typeof(kr$m3a)=="NULL" & 
+         typeof(kr$m3b)=="NULL" & 
+         typeof(kr$m3c)=="NULL" & 
+         typeof(kr$m3d)=="NULL" & 
+         typeof(kr$m3e)=="NULL" & 
+         typeof(kr$m3f)=="NULL"){
+      kr$skilled.attendant <- NA
+    }else{
+      kr$skilled.attendant <- psum(
+        (kr$m3a==1 | tolower(kr$m3a)=="yes")
+        ,(kr$m3b==1 | tolower(kr$m3b)=="yes")
+        ,(kr$m3c==1 | tolower(kr$m3c)=="yes")
+        ,(kr$m3d==1 | tolower(kr$m3d)=="yes")
+        ,(kr$m3e==1 | tolower(kr$m3e)=="yes")
+        ,(kr$m3f==1 | tolower(kr$m3f)=="yes")
+        ,na.rm=TRUE
+      )>=1  
+    }
+    
     vaccVars <- c("h2","h3","h4","h5","h6","h7","h8","h9","h10")
     
     recode.vacc.vars <- function(x){
@@ -256,15 +332,22 @@ for(i in 2:length(dirs)){
     kr <- kr[krKeep]
     kr$filename <- hrBase
     ir$filename <- hrBase
-    dataList[[dataIndex]] <- kr
+    kr <- join(
+      kr
+      ,hr
+      ,by=c("cluster","household")
+      )
+    ir <- join(
+      ir
+      ,hr
+      ,by=c("cluster","household")
+    )
+    dataListch[[dataIndex]] <- kr
+    dataListwm[[dataIndex]] <- ir
     dataIndex <- dataIndex + 1
   }
 }
 
-wd <- "D:/Documents/Data/DHSmeta"
-setwd(wd)
-metaData <- rbindlist(dataList,fill=TRUE)
-dhs.child.health <- metaData
 
 # set our working directory, change this if using on another machine
 wd <- "D:/Documents/Data/MICSauto/"
@@ -275,27 +358,51 @@ varNames <- read.csv("D:/Documents/Data/MICSmeta/mics_child_vars.csv",as.is=TRUE
 # List out all the directories in our wd, this is where our data is contained
 dirs <- list.dirs(wd,full.names=TRUE)
 
-dataListwm <- list()
-dataListch <- list()
-dataIndex <- 1
-
 for(i in 2:length(dirs)){
   dir <- dirs[i]
   if(basename(dir) %in% latest_surveys){
     this.varName <- subset(varNames,filename==basename(dir))
     message(basename(dir))
+    if(exists("hh")){rm(hh)}
     if(exists("wm")){rm(wm)}
     if(exists("ch")){rm(ch)}
+    load(paste0(dir,"/","hh.RData"))
     load(paste0(dir,"/","wm.RData"))
     load(paste0(dir,"/","ch.RData"))
+    names(hh) <- tolower(names(hh))
     names(wm) <- tolower(names(wm))
     names(ch) <- tolower(names(ch))
     ch.labs <- data.frame(names(ch)[1:length(ch)-1],attributes(ch)$variable.labels)
     names(ch.labs) <- c("name","description")
     wm.labs <- data.frame(names(wm)[1:length(wm)-1],attributes(wm)$variable.labels)
     names(wm.labs) <- c("name","description")
+    hh <- data.frame(hh)
     ch <- data.frame(ch)
     wm <- data.frame(wm)
+    
+    #Rename wealth var
+    if(typeof(hh$wlthscor)=="NULL" | typeof(hh$wlthscor)=="logical" | length(hh$wlthscor[which(!is.na(hh$wlthscor))])==0){
+      if(typeof(hh$wscore)=="NULL" | typeof(hh$wscore)=="logical" | length(hh$wscore[which(!is.na(hh$wscore))])==0){
+        message("Wealth missing!");return(NA)
+      }else{
+        names(hh)[which(names(hh)=="wscore")] <- "wealth"
+      }
+    }else{
+      names(hh)[which(names(hh)=="wlthscor")] <- "wealth"
+    }
+    
+    #Rename sample.weights var
+    names(hh)[which(names(hh)=="hhweight")] <- "weights"
+    names(hh)[which(names(hh)=="hh1")] <- "cluster"
+    names(hh)[which(names(hh)=="hh2")] <- "household"
+    povcalcut <- subset(povcalcuts,filename==basename(dir))$hc
+    povcalperc <- weighted.percentile(hh$wealth,hh$weights,prob=povcalcut)
+    
+    hh$p20 <- (hh$wealth <= povcalperc)
+    
+    hhKeep <- c("cluster","household","wealth","weights","p20")
+    hh <- hh[hhKeep]
+    
     vaccVars <- subset(this.varName,match=="vacc")$var
     skilledBirthVars <- subset(this.varName,match=="attendant" &  skilled==1)$var
     unskilledBirthVars <- subset(this.varName,match=="attendant" &  skilled==0)$var
@@ -404,6 +511,18 @@ for(i in 2:length(dirs)){
       )
     ch$filename <- basename(dir)
     wm$filename <- basename(dir)
+    
+    ch <- join(
+      ch
+      ,hh
+      ,by=c("cluster","household")
+    )
+    wm <- join(
+      wm
+      ,hh
+      ,by=c("cluster","household")
+    )
+    
     dataListwm[[dataIndex]] <- wm
     dataListch[[dataIndex]] <- ch
     dataIndex <- dataIndex + 1
@@ -412,9 +531,7 @@ for(i in 2:length(dirs)){
 
 wd <- "D:/Documents/Data/MICSmeta"
 setwd(wd)
-mics.metawm <- rbindlist(dataListwm,fill=TRUE)
-mics.metach <- rbindlist(dataListch,fill=TRUE)
-mics.maternal.health <- mics.metawm
-mics.child.health <- mics.metach
-child.health <- rbind(mics.child.health,dhs.child.health,fill=TRUE)
-save(child.health,mics.maternal.health,file="child.maternal.RData")
+maternal.health <- rbindlist(dataListwm,fill=TRUE)
+child.health <- rbindlist(dataListch,fill=TRUE)
+
+save(child.health,maternal.health,file="child.maternal.RData")

@@ -151,11 +151,11 @@ ch <- ch[chKeep]
 pr <- cbind(pr,ch[match(pr$line,ch$line),])
 
 pr$stunting <- NA
-pr$stunting[which(pr$child.height.age<= (-6))] <- "Implausibly low"
+# pr$stunting[which(pr$child.height.age<= (-6))] <- "Implausibly low"
 pr$stunting[which(pr$child.height.age > (-6) & pr$child.height.age<= (-3))] <- "Severely stunted"
 pr$stunting[which(pr$child.height.age > (-3) & pr$child.height.age<= (-2))] <- "Stunted, but not severely"
 pr$stunting[which(pr$child.height.age > (-2) & pr$child.height.age< (6))] <- "Not stunted"
-pr$stunting[which(pr$child.height.age>= (6))] <- "Implausibly high"
+# pr$stunting[which(pr$child.height.age>= (6))] <- "Implausibly high"
 
 pr$stunting <- factor(pr$stunting
                       ,levels=c(

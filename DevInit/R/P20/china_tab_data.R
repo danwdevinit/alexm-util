@@ -266,11 +266,11 @@ ir$head.ageCategory <- factor(ir$head.ageCategory,
 
 #Not really stunting, do we want to just call this "nutrition"?
 ir$stunting <- NA
-ir$stunting[which(ir$child.height.age<= (-6))] <- "Implausibly low"
+# ir$stunting[which(ir$child.height.age<= (-6))] <- "Implausibly low"
 ir$stunting[which(ir$child.height.age > (-6) & ir$child.height.age<= (-3))] <- "Severely stunted"
 ir$stunting[which(ir$child.height.age > (-3) & ir$child.height.age<= (-2))] <- "Stunted, but not severely"
 ir$stunting[which(ir$child.height.age > (-2) & ir$child.height.age< (6))] <- "Not stunted"
-ir$stunting[which(ir$child.height.age>= (6))] <- "Implausibly high"
+# ir$stunting[which(ir$child.height.age>= (6))] <- "Implausibly high"
 
 ir$stunting <- factor(ir$stunting
                       ,levels=c(

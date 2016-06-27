@@ -168,7 +168,7 @@ dataIndex <- 1
 # List out all the directories in our wd, this is where our data is contained
 dirs <- list.dirs(wd,full.names=TRUE)
 
-# dir <- "D:/Documents/Data/MICSauto/Afghanistan_MICS4_Datasets"
+# dir <- "D:/Documents/Data/MICSauto/Somalia MICS 2006 SPSS Datasets"
 # dir <- "D:/Documents/Data/MICSauto/Algeria_MICS4_Datasets"
 
 for(i in 2:length(dirs)){

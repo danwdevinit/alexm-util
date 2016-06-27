@@ -89,24 +89,29 @@ data.total$head.sex[which(tolower(data.total$head.sex) %in% sex.female)] <- "Fem
 birth.cert.missing <- c(NA,"dk","don't know",8,9,"missing","nsp","manquant","no sabe")
 birth.cert.no <- c("registered",0,2,"neither certificate or registered","no","non","has only hospital card")
 birth.cert.yes <- setdiff(unique(tolower(data.total$birth.cert)),c(birth.cert.no,birth.cert.missing))
+
+birth.reg.missing <- c(NA,"dk","missing","nsp","manquant")
+birth.reg.no <- c("no","non")
+birth.reg.yes <- c("yes","oui","sí")
 #count registrations if birth.cert var reveals it to be so
 birth.cert.registered <- c(2,"registered","has only hospital card",birth.cert.yes)
-data.total$birth.reg[which(is.na(data.total$birth.reg) & tolower(data.total$birth.cert) %in% birth.cert.registered)] <- "Yes"
-data.total$birth.reg[which(is.na(data.total$birth.reg) & grepl("visto",data.total$birth.cert))] <- "Yes"
+birth.cert.not.registered <- c(0,"neither certificate or registered","no","non")
+data.total$birth.reg.coded <- unfactor(data.total$birth.reg)
+data.total$birth.reg.coded[which(is.na(data.total$birth.reg.coded) & tolower(data.total$birth.cert) %in% birth.cert.registered)] <- "Yes"
+data.total$birth.reg.coded[which(is.na(data.total$birth.reg.coded) & tolower(data.total$birth.cert) %in% birth.cert.not.registered)] <- "No"
+data.total$birth.reg.coded[which(is.na(data.total$birth.reg.coded) & grepl("visto",data.total$birth.cert))] <- "Yes"
+
+data.total$birth.reg.coded[which(tolower(data.total$birth.reg.coded) %in% birth.reg.missing)] <- NA
+data.total$birth.reg.coded[which(tolower(data.total$birth.reg.coded) %in% birth.reg.no)] <- 0
+data.total$birth.reg.coded[which(tolower(data.total$birth.reg.coded) %in% birth.reg.yes)] <- 1
+data.total$birth.reg.coded[which(substr(data.total$birth.reg.coded,1,1)=="S")] <- 1
+
+data.total$birth.reg <- data.total$birth.reg.coded
 
 data.total$birth.cert[which(tolower(data.total$birth.cert) %in% birth.cert.missing)] <- NA
 data.total$birth.cert[which(tolower(data.total$birth.cert) %in% birth.cert.no)] <- 0
 data.total$birth.cert[which(tolower(data.total$birth.cert) %in% birth.cert.yes)] <- 1
 data.total$birth.cert[which(grepl("visto",data.total$birth.cert))] <- 1
-
-birth.reg.missing <- c(NA,"dk","missing","nsp","manquant")
-birth.reg.no <- c("no","non")
-birth.reg.yes <- c("yes","oui","sí")
-data.total$birth.reg <- unfactor(data.total$birth.reg)
-data.total$birth.reg[which(tolower(data.total$birth.reg) %in% birth.reg.missing)] <- NA
-data.total$birth.reg[which(tolower(data.total$birth.reg) %in% birth.reg.no)] <- 0
-data.total$birth.reg[which(tolower(data.total$birth.reg) %in% birth.reg.yes)] <- 1
-data.total$birth.reg[which(substr(data.total$birth.reg,1,1)=="S")] <- 1
 
 data.total$woman.bmi[which(data.total$woman.bmi==99.98 | data.total$woman.bmi==99.99)] <- NA
 data.total$woman.bmi.class <- NA
@@ -166,11 +171,11 @@ child.height.age.missing <- c(
 data.total$child.height.age[which(data.total$child.height.age %in% child.height.age.missing)] <- NA
 data.total$child.height.age[which(data.total$child.height.age>1000)] <- data.total$child.height.age[which(data.total$child.height.age>1000)]/10000
 data.total$stunting <- NA
-data.total$stunting[which(data.total$child.height.age<= (-6))] <- "Implausibly low"
+# data.total$stunting[which(data.total$child.height.age<= (-6))] <- "Implausibly low"
 data.total$stunting[which(data.total$child.height.age > (-6) & data.total$child.height.age<= (-3))] <- "Severely stunted"
 data.total$stunting[which(data.total$child.height.age > (-3) & data.total$child.height.age<= (-2))] <- "Stunted, but not severely"
 data.total$stunting[which(data.total$child.height.age > (-2) & data.total$child.height.age< (6))] <- "Not stunted"
-data.total$stunting[which(data.total$child.height.age>= (6))] <- "Implausibly high"
+# data.total$stunting[which(data.total$child.height.age>= (6))] <- "Implausibly high"
 
 data.total$stunting <- factor(data.total$stunting
                               ,levels=c(
