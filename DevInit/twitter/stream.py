@@ -10,6 +10,8 @@ parser.add_option("-k", "--key", dest="key",
                 help="Twitter consumer key", metavar="STRING")
 parser.add_option("-c", "--consecret", dest="consecret",
                 help="Twitter consumer secret", metavar="STRING")
+parser.add_option("-f", "--follow", dest="follow",
+                help="Twitter subject to follow", metavar="STRING")
 (options, args) = parser.parse_args()
 
 #Import the necessary methods from tweepy library
@@ -45,4 +47,5 @@ if __name__ == '__main__':
 
     #This line filter Twitter Streams to capture data by the keywords: 'python', 'javascript', 'ruby'
     #stream.filter(track=['python', 'javascript', 'ruby'])
-    stream.filter(track=['@devinitorg'])
+    # stream.filter(track=['@devinitorg'])
+    stream.filter(track=[options.follow])    

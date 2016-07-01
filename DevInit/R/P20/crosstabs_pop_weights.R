@@ -89,6 +89,7 @@ for(i in 1:length(filenames)){
   over5 <- subset(dat,age>=5)
   under15 <- subset(dat,age<15)
   over15 <- subset(dat,age>=15)
+  over25 <- subset(dat,age>=25)
   women <- subset(dat,sex=="Female")
   men <- subset(dat,sex=="Male")
   if(nrow(dat)>0){
@@ -105,6 +106,9 @@ for(i in 1:length(filenames)){
     this.pop.female <- subset(countryMeta,filename==this.filename)$pop.female
     this.pop.over15.male <- this.pop.male - this.pop.under15.male
     this.pop.over15.female <- this.pop.female - this.pop.under15.female
+    this.pop.over25.male <- subset(countryMeta,filename==this.filename)$male.25.plus
+    this.pop.over25.female <- subset(countryMeta,filename==this.filename)$female.25.plus
+    this.pop.over25 <- this.pop.over25.male + this.pop.over25.female
     #Urban-P20
     if(length(dat$urban[which(!is.na(dat$urban))])!=0){
       confidence.tab <- pop.confidence(dat$urban,dat$p20,dat$weights,this.pop)
@@ -117,14 +121,14 @@ for(i in 1:length(filenames)){
       }  
     }
     #Educ-P20
-    if(length(over15$educ[which(!is.na(over15$educ))])!=0){
-      confidence.tab <- pop.confidence(over15$educ,over15$p20,over15$weights,this.pop.over15)
-      if(is.null(crossTabs[["over15.educp20"]])){
-        crossTabs[["over15.educp20"]] <- confidence.tab
+    if(length(over25$educ[which(!is.na(over25$educ))])!=0){
+      confidence.tab <- pop.confidence(over25$educ,over25$p20,over25$weights,this.pop.over25)
+      if(is.null(crossTabs[["over25.educp20"]])){
+        crossTabs[["over25.educp20"]] <- confidence.tab
       }else{
-        crossTabs[["over15.educp20"]]$low <- crossTabs[["over15.educp20"]]$low + conform(crossTabs[["over15.educp20"]]$low,confidence.tab$low)
-        crossTabs[["over15.educp20"]]$estimate <- crossTabs[["over15.educp20"]]$estimate + conform(crossTabs[["over15.educp20"]]$estimate,confidence.tab$estimate)
-        crossTabs[["over15.educp20"]]$high <- crossTabs[["over15.educp20"]]$high + conform(crossTabs[["over15.educp20"]]$high,confidence.tab$high)
+        crossTabs[["over25.educp20"]]$low <- crossTabs[["over25.educp20"]]$low + conform(crossTabs[["over25.educp20"]]$low,confidence.tab$low)
+        crossTabs[["over25.educp20"]]$estimate <- crossTabs[["over25.educp20"]]$estimate + conform(crossTabs[["over25.educp20"]]$estimate,confidence.tab$estimate)
+        crossTabs[["over25.educp20"]]$high <- crossTabs[["over25.educp20"]]$high + conform(crossTabs[["over25.educp20"]]$high,confidence.tab$high)
       }  
     }
     #Age-P20
@@ -283,26 +287,26 @@ for(i in 1:length(filenames)){
       }  
     }
     #Educ-P20
-    over15.male <- subset(over15,sex=="Male")
-    over15.female <- subset(over15,sex=="Female")
-    if(length(over15.male$educ[which(!is.na(over15.male$educ))])!=0){
-      confidence.tab <- pop.confidence(over15.male$educ,over15.male$p20,over15.male$weights,this.pop.over15.male)
-      if(is.null(crossTabs[["over15.male.educ.p20"]])){
-        crossTabs[["over15.male.educ.p20"]] <- confidence.tab
+    over25.male <- subset(over25,sex=="Male")
+    over25.female <- subset(over25,sex=="Female")
+    if(length(over25.male$educ[which(!is.na(over25.male$educ))])!=0){
+      confidence.tab <- pop.confidence(over25.male$educ,over25.male$p20,over25.male$weights,this.pop.over25.male)
+      if(is.null(crossTabs[["over25.male.educ.p20"]])){
+        crossTabs[["over25.male.educ.p20"]] <- confidence.tab
       }else{
-        crossTabs[["over15.male.educ.p20"]]$low <- crossTabs[["over15.male.educ.p20"]]$low + conform(crossTabs[["over15.male.educ.p20"]]$low,confidence.tab$low)
-        crossTabs[["over15.male.educ.p20"]]$estimate <- crossTabs[["over15.male.educ.p20"]]$estimate + conform(crossTabs[["over15.male.educ.p20"]]$estimate,confidence.tab$estimate)
-        crossTabs[["over15.male.educ.p20"]]$high <- crossTabs[["over15.male.educ.p20"]]$high + conform(crossTabs[["over15.male.educ.p20"]]$high,confidence.tab$high)
+        crossTabs[["over25.male.educ.p20"]]$low <- crossTabs[["over25.male.educ.p20"]]$low + conform(crossTabs[["over25.male.educ.p20"]]$low,confidence.tab$low)
+        crossTabs[["over25.male.educ.p20"]]$estimate <- crossTabs[["over25.male.educ.p20"]]$estimate + conform(crossTabs[["over25.male.educ.p20"]]$estimate,confidence.tab$estimate)
+        crossTabs[["over25.male.educ.p20"]]$high <- crossTabs[["over25.male.educ.p20"]]$high + conform(crossTabs[["over25.male.educ.p20"]]$high,confidence.tab$high)
       }  
     }
-    if(length(over15.female$educ[which(!is.na(over15.female$educ))])!=0){
-      confidence.tab <- pop.confidence(over15.female$educ,over15.female$p20,over15.female$weights,this.pop.over15.female)
-      if(is.null(crossTabs[["over15.female.educ.p20"]])){
-        crossTabs[["over15.female.educ.p20"]] <- confidence.tab
+    if(length(over25.female$educ[which(!is.na(over25.female$educ))])!=0){
+      confidence.tab <- pop.confidence(over25.female$educ,over25.female$p20,over25.female$weights,this.pop.over25.female)
+      if(is.null(crossTabs[["over25.female.educ.p20"]])){
+        crossTabs[["over25.female.educ.p20"]] <- confidence.tab
       }else{
-        crossTabs[["over15.female.educ.p20"]]$low <- crossTabs[["over15.female.educ.p20"]]$low + conform(crossTabs[["over15.female.educ.p20"]]$low,confidence.tab$low)
-        crossTabs[["over15.female.educ.p20"]]$estimate <- crossTabs[["over15.female.educ.p20"]]$estimate + conform(crossTabs[["over15.female.educ.p20"]]$estimate,confidence.tab$estimate)
-        crossTabs[["over15.female.educ.p20"]]$high <- crossTabs[["over15.female.educ.p20"]]$high + conform(crossTabs[["over15.female.educ.p20"]]$high,confidence.tab$high)
+        crossTabs[["over25.female.educ.p20"]]$low <- crossTabs[["over25.female.educ.p20"]]$low + conform(crossTabs[["over25.female.educ.p20"]]$low,confidence.tab$low)
+        crossTabs[["over25.female.educ.p20"]]$estimate <- crossTabs[["over25.female.educ.p20"]]$estimate + conform(crossTabs[["over25.female.educ.p20"]]$estimate,confidence.tab$estimate)
+        crossTabs[["over25.female.educ.p20"]]$high <- crossTabs[["over25.female.educ.p20"]]$high + conform(crossTabs[["over25.female.educ.p20"]]$high,confidence.tab$high)
       }  
     }
   }

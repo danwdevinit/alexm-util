@@ -68,14 +68,14 @@ countryMeta <- read.csv("headcounts.csv",as.is=TRUE)
 
 newNames <- c("p20.rural"
               ,"p20.urban"
-              ,"p80.over15.noeduc"
-              ,"p80.over15.primary"
-              ,"p80.over15.secondary"
-              ,"p80.over15.higher"
-              ,"p20.over15.noeduc"
-              ,"p20.over15.primary"
-              ,"p20.over15.secondary"
-              ,"p20.over15.higher"
+              ,"p80.over25.noeduc"
+              ,"p80.over25.primary"
+              ,"p80.over25.secondary"
+              ,"p80.over25.higher"
+              ,"p20.over25.noeduc"
+              ,"p20.over25.primary"
+              ,"p20.over25.secondary"
+              ,"p20.over25.higher"
               ,"p80.male"
               ,"p80.female"
               ,"p20.male"
@@ -103,6 +103,7 @@ for(i in 1:length(filenames)){
   over5 <- subset(dat,age>=5)
   under15 <- subset(dat,age<15)
   over15 <- subset(dat,age>=15)
+  over25 <- subset(dat,age>=25)
   women <- subset(dat,sex=="Female")
   men <- subset(dat,sex=="Male")
   if(nrow(dat)>0){
@@ -114,6 +115,9 @@ for(i in 1:length(filenames)){
     this.pop.over15 <- this.pop - this.pop.under15
     this.pop.female <- subset(countryMeta,filename==this.filename)$pop.female
     this.pop.male <- subset(countryMeta,filename==this.filename)$pop.male
+    this.pop.over25.male <- subset(countryMeta,filename==this.filename)$male.25.plus
+    this.pop.over25.female <- subset(countryMeta,filename==this.filename)$female.25.plus
+    this.pop.over25 <- this.pop.over25.male + this.pop.over25.female
     #Urban-P20
     if(length(dat$urban[which(!is.na(dat$urban))])!=0){
       confidence.tab <- pop.confidence(dat$urban,dat$p20,dat$weights,this.pop)
@@ -123,16 +127,16 @@ for(i in 1:length(filenames)){
       countryMeta$p20.urban[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["1","TRUE"]},error=function(e){0})
     }
     #Educ-P20
-    if(length(over15$educ[which(!is.na(over15$educ))])!=0){
-      confidence.tab <- pop.confidence(over15$educ,over15$p20,over15$weights,this.pop.over15)
-      countryMeta$p80.over15.noeduc[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["No education, preschool","FALSE"]},error=function(e){0})
-      countryMeta$p80.over15.primary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Primary","FALSE"]},error=function(e){0})
-      countryMeta$p80.over15.secondary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Secondary","FALSE"]},error=function(e){0})
-      countryMeta$p80.over15.higher[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Higher","FALSE"]},error=function(e){0})
-      countryMeta$p20.over15.noeduc[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["No education, preschool","TRUE"]},error=function(e){0})
-      countryMeta$p20.over15.primary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Primary","TRUE"]},error=function(e){0})
-      countryMeta$p20.over15.secondary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Secondary","TRUE"]},error=function(e){0})
-      countryMeta$p20.over15.higher[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Higher","TRUE"]},error=function(e){0})
+    if(length(over25$educ[which(!is.na(over25$educ))])!=0){
+      confidence.tab <- pop.confidence(over25$educ,over25$p20,over25$weights,this.pop.over25)
+      countryMeta$p80.over25.noeduc[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["No education, preschool","FALSE"]},error=function(e){0})
+      countryMeta$p80.over25.primary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Primary","FALSE"]},error=function(e){0})
+      countryMeta$p80.over25.secondary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Secondary","FALSE"]},error=function(e){0})
+      countryMeta$p80.over25.higher[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Higher","FALSE"]},error=function(e){0})
+      countryMeta$p20.over25.noeduc[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["No education, preschool","TRUE"]},error=function(e){0})
+      countryMeta$p20.over25.primary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Primary","TRUE"]},error=function(e){0})
+      countryMeta$p20.over25.secondary[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Secondary","TRUE"]},error=function(e){0})
+      countryMeta$p20.over25.higher[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Higher","TRUE"]},error=function(e){0})
     }
     #Sex-P20
     if(length(dat$sex[which(!is.na(dat$sex))])!=0){

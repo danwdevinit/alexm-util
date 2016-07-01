@@ -108,12 +108,13 @@ data.total$birth.reg.coded[which(substr(data.total$birth.reg.coded,1,1)=="S")] <
 
 data.total$birth.reg <- data.total$birth.reg.coded
 
+data.total$birth.cert <- unfactor(data.total$birth.cert)
 data.total$birth.cert[which(tolower(data.total$birth.cert) %in% birth.cert.missing)] <- NA
 data.total$birth.cert[which(tolower(data.total$birth.cert) %in% birth.cert.no)] <- 0
 data.total$birth.cert[which(tolower(data.total$birth.cert) %in% birth.cert.yes)] <- 1
 data.total$birth.cert[which(grepl("visto",data.total$birth.cert))] <- 1
 
-data.total$woman.bmi[which(data.total$woman.bmi==99.98 | data.total$woman.bmi==99.99)] <- NA
+data.total$woman.bmi[which(data.total$woman.bmi>80)] <- NA
 data.total$woman.bmi.class <- NA
 data.total$woman.bmi.class[which(data.total$woman.bmi<16)] <- "Severe thinness"
 data.total$woman.bmi.class[which(data.total$woman.bmi>=16 & data.total$woman.bmi<17)] <- "Moderate thinness"
@@ -136,7 +137,7 @@ data.total$woman.bmi.class <- factor(data.total$woman.bmi.class
                                        ,"Obese class III"
                                        ))
 
-data.total$man.bmi[which(data.total$man.bmi==99.98 | data.total$man.bmi==99.99)] <- NA
+data.total$man.bmi[which(data.total$man.bmi>80)] <- NA
 data.total$man.bmi.class <- NA
 data.total$man.bmi.class[which(data.total$man.bmi<16)] <- "Severe thinness"
 data.total$man.bmi.class[which(data.total$man.bmi>=16 & data.total$man.bmi<17)] <- "Moderate thinness"
@@ -159,17 +160,30 @@ data.total$man.bmi.class <- factor(data.total$man.bmi.class
                                        ,"Obese class III"
                                      ))
 
-child.height.age.missing <- c(
-  99.97
-  ,99.98
-  ,99.99
-  ,999.99
-  ,9999
-  ,99998
-  ,99999
-)
-data.total$child.height.age[which(data.total$child.height.age %in% child.height.age.missing)] <- NA
-data.total$child.height.age[which(data.total$child.height.age>1000)] <- data.total$child.height.age[which(data.total$child.height.age>1000)]/10000
+data.total$mother.bmi[which(data.total$mother.bmi>80)] <- NA
+data.total$mother.bmi.class <- NA
+data.total$mother.bmi.class[which(data.total$mother.bmi<16)] <- "Severe thinness"
+data.total$mother.bmi.class[which(data.total$mother.bmi>=16 & data.total$mother.bmi<17)] <- "Moderate thinness"
+data.total$mother.bmi.class[which(data.total$mother.bmi>=17 & data.total$mother.bmi<18.5)] <- "Mild thinness"
+data.total$mother.bmi.class[which(data.total$mother.bmi>=18.5 & data.total$mother.bmi<25)] <- "Normal range"
+data.total$mother.bmi.class[which(data.total$mother.bmi>=25 & data.total$mother.bmi<30)] <- "Pre-obese"
+data.total$mother.bmi.class[which(data.total$mother.bmi>=30 & data.total$mother.bmi<35)] <- "Obese class I"
+data.total$mother.bmi.class[which(data.total$mother.bmi>=35 & data.total$mother.bmi<40)] <- "Obese class II"
+data.total$mother.bmi.class[which(data.total$mother.bmi>=40)] <- "Obese class III"
+
+data.total$mother.bmi.class <- factor(data.total$mother.bmi.class
+                                      ,levels=c(
+                                        "Severe thinness"
+                                        ,"Moderate thinness"
+                                        ,"Mild thinness"
+                                        ,"Normal range"
+                                        ,"Pre-obese"
+                                        ,"Obese class I"
+                                        ,"Obese class II"
+                                        ,"Obese class III"
+                                      ))
+
+data.total$child.height.age[which(data.total$child.height.age>80)] <- NA
 data.total$stunting <- NA
 # data.total$stunting[which(data.total$child.height.age<= (-6))] <- "Implausibly low"
 data.total$stunting[which(data.total$child.height.age > (-6) & data.total$child.height.age<= (-3))] <- "Severely stunted"

@@ -1,3 +1,39 @@
+library(Hmisc)
+library(plyr)
+library(foreign)
+library(data.table)
+library(varhandle)
+
+wd <- "D:/Documents/Data/MICSmeta/"
+setwd(wd)
+
+povcalcuts <- read.csv("headcounts.csv",as.is=TRUE)
+
+weighted.percentile <- function(x,w,prob,na.rm=TRUE){
+  df <- data.frame(x,w)
+  if(na.rm){
+    df <- df[which(complete.cases(df)),]
+  }
+  #Sort
+  df <- df[order(df$x),]
+  sumw <- sum(df$w)
+  df$cumsumw <- cumsum(df$w)
+  #For each percentile
+  cutList <- c()
+  cutNames <-c()
+  for(i in 1:length(prob)){
+    p <- prob[i]
+    pStr <- paste0(round(p*100,digits=2),"%")
+    sumwp <- sumw*p
+    df$above.prob <- df$cumsumw>=sumwp
+    thisCut <- df$x[which(df$above.prob==TRUE)[1]]
+    cutList <- c(cutList,thisCut)
+    cutNames <- c(cutNames,pStr)
+  }
+  names(cutList) <- cutNames
+  return(cutList)
+}
+
 # Import some libraries
 library(plyr)
 library(Hmisc)
@@ -52,7 +88,7 @@ keep <- c(
   ,"v014"
   ,"v106"
   ,"v102"
-  ,"v190"
+  ,"v191"
   ,"d005"
   ,"d101a"
   ,"d101b"
@@ -418,37 +454,50 @@ metaNames <- c(
 for(i in 2:length(dirs)){
   dir <- dirs[i]
   # Pull some coded info out of the dir name
-  country <- tolower(substr(dir,1,2))
-  recode <- tolower(substr(dir,3,4))
-  phase <- as.integer(substr(dir,5,5))
-  # For this analysis, we're only interested in individual member recodes, or "ir"
-  if(recode=="ir"){
-    # Find the .dta and read it in
-    dtaPath <- list.files(paste0(wd,dir), pattern="*.dta",ignore.case=TRUE)[1]
-    pr <- read.dta(paste0(wd,dir,"/",dtaPath))
-    names <- names(pr)
+  country <- tolower(substr(basename(dir),1,2))
+  recode <- tolower(substr(basename(dir),3,4))
+  phase <- as.integer(substr(basename(dir),5,5))
+  # For this analysis, we're only interested in individual member recodes, or "hr"
+  if(basename(dir) %in% povcalcuts$filename){
+    message(basename(dir))
+    hrwd <- dir
+    if(!file_test(op="-d", hrwd)){next;}
+    
+    hrBase <- basename(hrwd)
+    iso2 <- toupper(substr(hrBase,1,2))
+    phase <- substr(hrBase,5,6)
+    
+    irwd <- paste0("D:/Documents/Data/DHSauto/",tolower(iso2),"ir",phase,"dt/")
+    if(!file_test(op="-d", irwd)){next;}
+    
+    pr <- read.csv(paste0(irwd,iso2,"IR",phase,"FL.csv")
+                   ,na.strings="",as.is=TRUE,check.names=FALSE)
+    prNames <- names(pr)
     # Sanity check for a common variable, plus checking phase from filename
-    if("v000" %in% names & "d005" %in% names & phase>=6){
-#       hasDV <- length(pr$d005[which(!is.na(pr$d005))])>0
-#       if(hasDV){
-#         pr <- subset(pr,!is.na(d005))
-        #Force conformity
-        if(length(setdiff(keep,names))>0){
-          for(y in 1:length(setdiff(keep,names))){
-            pr[setdiff(keep,names)[y]] <- NA
-          } 
-        }
-        # Message for a progress measure
-        message(pr$v000[1])
-        #
-        # Filter our set
-        pr <- pr[keep]
-        # Rename the resultant vars
-        names(pr) <- metaNames
-        data[[dataIndex]] <- pr
-        dataIndex <- dataIndex + 1
-        
-#       }
+    if("v000" %in% prNames & "d005" %in% prNames){
+      #Force conformity
+      if(length(setdiff(keep,prNames))>0){
+        for(y in 1:length(setdiff(keep,prNames))){
+          pr[setdiff(keep,prNames)[y]] <- NA
+        } 
+      }
+      # Message for a progress measure
+      message(hrBase)
+      #
+      # Filter our set
+      pr <- pr[keep]
+      # Rename the resultant vars
+      names(pr) <- metaNames
+      pr$weights <- pr$sample.weight/1000000
+      pr$wealth <- pr$wealth/100000
+      
+      povcalcut <- subset(povcalcuts,filename==hrBase)$hc
+      povcalperc <- weighted.percentile(pr$wealth,pr$weights,prob=povcalcut)
+      
+      pr$p20 <- (pr$wealth < povcalperc)
+      pr$filename <- hrBase
+      data[[dataIndex]] <- pr
+      dataIndex <- dataIndex + 1        
     }
   }
 }
@@ -472,12 +521,6 @@ pr$educ[which(pr$educ=="don't know")] <- NA
 pr$educ <- factor(pr$educ
                   ,levels = c("no education, preschool","primary","secondary","higher")
 )
-pr$wealth <- tolower(pr$wealth)
-pr$wealth <- factor(pr$wealth
-                    ,levels = c("poorest","poorer","middle","richer","richest")
-)
-
-
 
 pr$ageCategory <- vapply(pr$age,codeAgeCat,character(1))
 pr$ageCategory <- factor(pr$ageCategory,
@@ -487,22 +530,26 @@ pr$ageCategory <- factor(pr$ageCategory,
                                     ,"95+","missing")                          
 )
 # Silly sample-weight recode here. Guide said divide by 1 million
-pr$sample.weight <- pr$sample.weight/1000000
 pr$d005 <- pr$d005/1000000
 
-write.csv(pr,"dhs_dv_min.csv",na="",row.names=FALSE)
-
-# Write to XLSX
-setwd("D:/Documents/Data/")
-library(openxlsx)
-
-# Create workbook
-wb <- createWorkbook("dom vio")
-addWorksheet(wb,"dom vio")
-writeData(wb,sheet="dom vio",pr,colNames=TRUE,rowNames=FALSE)
-
-saveWorkbook(wb, "dom_vio.xlsx", overwrite = TRUE)
+#Recode some DV vars
+pr$violence <- pr$d106
+pr$violence[which(pr$violence==9)] <- NA
+pr$violence[which(pr$violence=="no")] <- 0
+pr$violence[which(pr$violence=="yes")] <- 1
+pr$violence[which(pr$violence=="yes (d105a-d)")] <- 1
+pr$severe.violence <- pr$d107
+pr$severe.violence[which(pr$severe.violence==9)] <- NA
+pr$severe.violence[which(pr$severe.violence=="no")] <- 0
+pr$severe.violence[which(pr$severe.violence=="yes")] <- 1
+pr$severe.violence[which(pr$severe.violence=="yes (d105e-g)")] <- 1
+pr$sexual.violence <- pr$d108
+pr$sexual.violence[which(pr$sexual.violence==9)] <- NA
+pr$sexual.violence[which(pr$sexual.violence=="no")] <- 0
+pr$sexual.violence[which(pr$sexual.violence=="yes")] <- 1
+pr$sexual.violence[which(pr$sexual.violence=="yes (d105h-i)")] <- 1
 
 #Subset for just DV?
+setwd("D:/Documents/Data/DHSmeta")
 pr <- subset(pr,!is.na(d005))
-write.csv(pr,"dhs_dv_sub.csv",na="",row.names=FALSE)
+save(pr,file="dv.RData")
