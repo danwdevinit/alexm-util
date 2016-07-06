@@ -30,6 +30,8 @@ def spin():
     sys.stdout.flush()
     spinIndex+=1
 
+def remdash(string):
+    return unicode(string.replace(u'\u2013',"-")).encode('utf-8')
 def trytext(el):
     textList = []
     text = el.text
@@ -51,8 +53,11 @@ def trytext(el):
     textList.append(grandchildText)
     finalList = filter(None,textList)
     result = " ".join(finalList)
-    return result
-
+    output = remdash(result)
+    if output=="":
+        return None
+    else:
+        return output
     
 def pdftoxml(pdfdata, options):
     """converts pdf file to xml file"""
@@ -117,15 +122,17 @@ def main():
     errs = []
     for i in range(0,rowLen):
         row = rows[i]
+        rowText = []
+        for j in range(0,len(row)):
+            rowText.append(row[j]['text'])
+        results.append(rowText)
     if len(errs)>0:
         sys.stdout.write("\n")
         sys.stdout.write(str(len(errs))+" odd rows omitted. Debug (-d true) for more info.")
     if options.debug:
         pdb.set_trace()
-    keys = results[0].keys()
     with open(options.output+inputname+".csv", 'wb') as output_file:
-        dict_writer = csv.DictWriter(output_file, keys)
-        dict_writer.writeheader()
+        dict_writer = csv.writer(output_file)
         dict_writer.writerows(results)
     sys.stdout.write("\n")
     print("Done.")
