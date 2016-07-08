@@ -8,6 +8,8 @@ import os
 from urllib.request import urlretrieve
 from codecs import encode
 import string
+from bs4 import BeautifulSoup
+import csv
 
 class Error(Exception):
     """Base class for exceptions in this module."""
@@ -40,7 +42,7 @@ an invalid filename.
     return filename
 
 parser = OptionParser()
-parser.add_option("-o", "--output", dest="output", default="D:/Documents/Personal/RL_Pensions",
+parser.add_option("-o", "--output", dest="output", default="D:\\Documents\\Personal\\RL_Pensions\\",
                         help="Output path. Default is personal folder",metavar="FOLDER")
 (options, args) = parser.parse_args()
 
@@ -67,7 +69,23 @@ def downloadPDFs(browser,links):
         links = browser.find_elements_by_css_selector('a.pdf-icon')
         links[i].click()
         
+def extractTable(browser,results):
+    bs = BeautifulSoup(browser.page_source,"html.parser")
+    table = bs.find(lambda tag: tag.name=='table') 
+    rows = table.findAll(lambda tag: tag.name=='tr')
+    rowResults = []
+    for row in rows:
+        cols = row.findAll(lambda tag: tag.name=='th' or tag.name=='td')
+        if len(cols)>0:
+            colResults = [col.string.strip() for col in cols[0:5]]
+            rowResults.append(colResults)
+    newResults = results + rowResults
+    return newResults
+    
+results = []
+        
 downloadPDFs(browser,links)
+results = extractTable(browser,results)
 
 nextHref = browser.find_element_by_link_text("Next").get_attribute('href')
 
@@ -75,6 +93,11 @@ while nextHref!=browser.current_url:
     browser.get(nextHref)
     links = browser.find_elements_by_css_selector('a.pdf-icon')
     downloadPDFs(browser,links)
+    results = extractTable(browser,results)
+    nextHref = browser.find_element_by_link_text("Next").get_attribute('href')
 
+with open(options.output+"table.csv", 'w') as output_file:
+        dict_writer = csv.writer(output_file)
+        dict_writer.writerows(results)
 print("Done.")
 
