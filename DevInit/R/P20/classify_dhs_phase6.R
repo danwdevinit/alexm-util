@@ -105,7 +105,8 @@ write.csv(metaData,"global_cwi_classes_5.csv",row.names=FALSE,na="")
 #   ,"rwhr5adt"
 # )
 # missing <- c("snhr50dt","snhr5hdt", "snhr61dt", "snhr6ddt", "snhr70dt","snhr6rdt")
-missing <- "lshr71dt"
+# missing <- "lshr71dt"
+missing <- "tdhr70dt"
 dataList <- list()
 dataIndex <- 1
 for(i in 1:length(missing)){
@@ -117,4 +118,4 @@ for(i in 1:length(missing)){
 wd <- "D:/Documents/Data/DHSmeta"
 setwd(wd)
 metaData <- rbindlist(dataList,fill=TRUE)
-write.csv(metaData,"global_cwi_classes_extra3.csv",row.names=FALSE,na="")
+write.csv(metaData,"global_cwi_classes_extra4.csv",row.names=FALSE,na="")
