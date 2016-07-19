@@ -433,15 +433,25 @@ dataIndex <- dataIndex + 1
 ####Aggregates
 
 all.data <- rbindlist(dataList)
-all.plot.alpha <- ggplot(all.data,aes(x=weighted.wealths)) + geom_density(aes(fill=1),alpha=0.3) + xlim(-3,3) + facet_wrap(~iso3,ncol=5) + theme_bw() + theme(legend.position="none") + labs(x="Adj. wealth",y="Density")
+blank <- data.frame(c(NA,NA),c("",""))
+names(blank) <- names(all.data)
+all.plot.alpha <- ggplot(rbind(all.data,blank),aes(x=weighted.wealths)) + geom_density(aes(fill=1),alpha=0.3) + xlim(-3,3) + facet_wrap(~iso3,ncol=5) + theme_bw() + theme(legend.position="none") + labs(x="Adj. wealth",y="Density")
 hcs <- countryMeta[c("iso3","hc")]
 all.data <- join(all.data,hcs,by="iso3")
 all.data <- all.data[order(-all.data$hc),]
+blank <- data.frame(c(NA,NA),c("",""),c(1,1))
+names(blank) <- names(all.data)
+all.data <- rbind(all.data,blank)
 all.data$iso3 <- factor(all.data$iso3,levels=unique(all.data$iso3))
 all.data.urbrur <- rbindlist(dataList.urbrur)
-all.urb.rur.alpha <- ggplot(all.data.urbrur,aes(x=wealth)) + geom_density(aes(group=urban,colour=urban,fill=urban),alpha=0.3) + xlim(-3,3) + facet_wrap(~iso3,ncol=5) + theme_bw() + theme(legend.title=element_blank()) + labs(x="Adj. wealth",y="Density")
+blank <- data.frame(c(NA,NA),c("",""),c("",""))
+names(blank) <- names(all.data.urbrur)
+all.urb.rur.alpha <- ggplot(rbind(all.data.urbrur,blank),aes(x=wealth)) + geom_density(aes(group=urban,colour=urban,fill=urban),alpha=0.3) + xlim(-3,3) + facet_wrap(~iso3,ncol=5) + theme_bw() + theme(legend.title=element_blank()) + labs(x="Adj. wealth",y="Density")
 all.data.urbrur <- join(all.data.urbrur,hcs,by="iso3")
 all.data.urbrur <- all.data.urbrur[order(-all.data.urbrur$hc),]
+blank <- data.frame(c(NA,NA),c("",""),c("",""),c(0,0))
+names(blank) <- names(all.data.urbrur)
+all.data.urbrur <- rbind(all.data.urbrur,blank)
 all.data.urbrur$iso3 <- factor(all.data.urbrur$iso3,levels=unique(all.data.urbrur$iso3))
 
 all.plot <- ggplot(all.data,aes(x=weighted.wealths)) + geom_density(aes(fill=1),alpha=0.3) + xlim(-3,3) + facet_wrap(~iso3,ncol=5) + theme_bw() + theme(legend.position="none") + labs(x="Adj. wealth",y="Density")
