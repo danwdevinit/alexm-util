@@ -6,6 +6,7 @@ import pdb
 from selenium.webdriver.remote.command import Command
 from optparse import OptionParser
 import os
+import glob
 
 class Error(Exception):
     """Base class for exceptions in this module."""
@@ -22,7 +23,7 @@ class InputError(Error):
         self.msg = msg
 
 parser = OptionParser()
-parser.add_option("-o", "--output", dest="output", default="D:\\Documents\\Data\\DHS gps data",
+parser.add_option("-o", "--output", dest="output", default="D:\\Documents\\Data\\DHS shapefiles",
                         help="Output path. Default is wd",metavar="FOLDER")
 (options, args) = parser.parse_args()
 
@@ -37,30 +38,63 @@ browser = webdriver.Firefox(firefox_profile=profile) # Create a session of Firef
 browser.maximize_window()
 browser.implicitly_wait(30) # Configure the WebDriver to wait up to 30 seconds for each page to load
 
-browser.get("http://spatialdata.dhsprogram.com/boundaries/#view=table")
+browser.get("http://spatialdata.dhsprogram.com/boundaries/#view=table&countryId=AF") # Load page
 
-links = browser.page_source.split("\n")
+countryCode = browser.current_url[-2:]
 
-logged_in = False
-for link in links:
-    if link != "" and logged_in == False:
-        browser.get(link)
-        queries = []
-        userInput = {}
-        userInput["input_id"] = "UserName"
-        userInput["input_str"] = options.user
-        queries.append(userInput)
-        passInput = {}
-        passInput["input_id"] = "Password"
-        passInput["input_str"] = options.password
-        queries.append(passInput)
-        input_text(browser, queries)
-        browser.find_element_by_xpath('//*[@name="submit"]').click() #Click the submit button
-        browser.find_element_by_xpath("//*[@name='proj_id']/option[{}]".format(options.proj+1)).click() #Click on the project option in the drop down
-        browser.find_element_by_xpath('//*[@type="submit"]').click() #Click the submit button
-        logged_in = True
-        browser.get(link)
-        sleep(1)
-    elif link!="":
-        browser.get(link)
-        sleep(1)
+links = browser.find_elements_by_css_selector('a.download-boundaries')
+names = browser.find_elements_by_xpath('//*[@data-bind="text: survey, css:{hide: !survey}"]')
+
+for i in range(0,len(links)):
+    link = links[i]
+    name = names[i]
+    link.click()
+    sleep(10)
+    newest = max(glob.iglob(options.output+'\\*.[Zz][Ii][Pp]'), key=os.path.getctime)
+    os.rename(newest,options.output+"\\"+countryCode+" "+name.text+".zip")
+
+downArrow = browser.find_element_by_css_selector("td.dijitDownArrowButton")
+downArrow.click()
+countries = browser.find_elements_by_xpath("//*[@aria-selected='false']")
+countries[0].click()
+
+countryCode = browser.current_url[-2:]
+
+links = browser.find_elements_by_css_selector('a.download-boundaries')
+names = browser.find_elements_by_xpath('//*[@data-bind="text: survey, css:{hide: !survey}"]')
+
+for i in range(0,len(links)):
+    link = links[i]
+    name = names[i]
+    link.click()
+    sleep(5)
+    newest = max(glob.iglob(options.output+'\\*.[Zz][Ii][Pp]'), key=os.path.getctime)
+    os.rename(newest,options.output+"\\"+countryCode+" "+name.text+".zip")
+
+for i in range(1,len(countries)):
+    downArrow = browser.find_element_by_css_selector("td.dijitDownArrowButton")
+    downArrow.click()
+    countries = browser.find_elements_by_xpath("//*[@aria-selected='false']")
+    if countries[i].text=="Russia":
+        continue
+    countries[i].click()
+    
+    countryCode = browser.current_url[-2:]
+    
+    links = browser.find_elements_by_css_selector('a.download-boundaries')
+    names = browser.find_elements_by_xpath('//*[@data-bind="text: survey, css:{hide: !survey}"]')
+    
+    for j in range(0,len(links)):
+        link = links[j]
+        name = names[j]
+        link.click()
+        sleep(10)
+        newest = max(glob.iglob(options.output+'\\*.[Zz][Ii][Pp]'), key=os.path.getctime)
+        try:
+            os.rename(newest,options.output+"\\"+countryCode+" "+name.text+".zip")
+        except FileExistsError:
+            try:
+                os.rename(newest,options.output+"\\"+countryCode+" "+name.text+"_2.zip")
+            except FileExistsError:
+                os.rename(newest,options.output+"\\"+countryCode+" "+name.text+"_3.zip")
+            
