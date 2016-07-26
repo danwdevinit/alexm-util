@@ -16,7 +16,7 @@ import pdb
 
 #Parse Options
 parser = OptionParser()
-parser.add_option("-i", "--input", dest="input", default = "D:/Documents/Final data government finance_AM290216.xlsx",
+parser.add_option("-i", "--input", dest="input", default = "D:/Documents/Data/Final data government finance_AM300316.xlsx",
                 help="Input file", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", default="./results.csv",
                 help="Output CSV file", metavar="FILE")
@@ -52,6 +52,7 @@ budgetDict["est"] = "actual"
 budgetDict["Estim"] = "actual"
 budgetDict["None"] = ""
 budgetDict["Prel"] = "actual"
+budgetDict["Prelim"] = "actual"
 budgetDict["Prel Est"] = "actual"
 budgetDict["Prel."] = "actual"
 budgetDict["Proj"] = "proj"
@@ -59,6 +60,7 @@ budgetDict["proj"] = "proj"
 budgetDict["Proj."] = "proj"
 budgetDict["Prov"] = "actual"
 budgetDict["Revised prog"] = "proj"
+budgetDict["Rev"] = "proj"
 budgetDict[""] = ""
 
 #Define hierarchy

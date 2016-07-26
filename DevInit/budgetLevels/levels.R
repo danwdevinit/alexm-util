@@ -1,6 +1,16 @@
 wd <- "C:/git/alexm-util/DevInit/budgetLevels"
 setwd(wd)
-df <- read.csv("./results.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
+df <- read.csv("./results.csv"
+               , header = TRUE
+               ,sep=","
+               ,na.strings=c("","-")
+               ,check.names=FALSE
+               ,stringsAsFactors=FALSE
+               ,colClasses = c("character","character","numeric",
+                               "character","character","character",
+                               "character","character","character",
+                               "character","character","numeric")
+               )
 names(df)[names(df) == "iso"] <- "id"
 mult <- read.csv("C:/git/digital-platform/reference/current-ncu-to-constant-2012-usd.csv", header = TRUE,sep=",",na.strings="",check.names=FALSE,stringsAsFactors=FALSE)
 names(mult)[names(mult)=="value"] <- "value.mult"

@@ -25,6 +25,7 @@ all.years <- ddply(all.years,.(DHSCC,DHSYEAR),function(x)
 names(all.years) <- c("DHSCC","DHSYEAR","filename")
 
 all.years$filename[which(all.years$filename=="ughr6adt")] <- "ughr60dt"
+all.years$filename[which(all.years$filename=="drhr6adt")] <- "drhr61dt"
 all.years$DHSYEAR[which(all.years$DHSCC=="TG" & all.years$DHSYEAR==2014)] <- 2013
 all.years$DHSYEAR[which(all.years$DHSCC=="KE" & all.years$DHSYEAR==2009)] <- 2008
 all.years$DHSYEAR[which(all.years$DHSCC=="SN" & all.years$DHSYEAR==2013)] <- 2012
@@ -198,7 +199,7 @@ for(i in 1:nrow(filenames)){
     povcalcut <- 0.0202
   }else if(is.na(povcalcut) & dhscc=="id"){
     povcalcut <- 0.1590
-  }else 
+  }
   povcalperc <- weighted.percentile(dhs$wealth,dhs$weights,prob=povcalcut)
   dhs$p20 <- (dhs$wealth < povcalperc)
   dhs.tab <- data.table(dhs)
@@ -213,4 +214,33 @@ write.csv(metaClusters,"D:/Documents/Data/DHS map/all_clusters.csv",na="",row.na
 metaClusters <- read.csv("D:/Documents/Data/DHS map/all_clusters.csv",na.strings="",as.is=TRUE)
 setnames(metaClusters,"cluster","DHSCLUST")
 dat <- join(dat,metaClusters,by=c("DHSCC","DHSCLUST"))
+dat$p20[which(is.na(dat$p20))] <- -1
 write.dbf(dat,"aggregate_clusters/clusters.dbf")
+
+###No cluster long-lats for india, but we do have region names
+dhs <- read.csv("D:/Documents/Data/DHSauto/iahr52dt/IAHR52FL.csv",as.is=TRUE)
+names(dhs)[which(names(dhs)=="hv271")] <- "wealth"
+dhs$wealth <- dhs$wealth/100000
+
+#Rename sample.weights var
+names(dhs)[which(names(dhs)=="hv005")] <- "sample.weights"
+dhs$weights <- dhs$sample.weights/1000000
+
+#Rename cluster/hh var
+names(dhs)[which(names(dhs)=="hv001")] <- "cluster"
+names(dhs)[which(names(dhs)=="hv002")] <- "household"
+names(dhs)[which(names(dhs)=="hv023")] <- "REGNAME"
+
+dhscc <- "ia"
+year <- 2006
+povcalcut <- 0.3395
+povcalperc <- weighted.percentile(dhs$wealth,dhs$weights,prob=povcalcut)
+dhs$p20 <- (dhs$wealth < povcalperc)
+dhs.tab <- data.table(dhs)
+reg.tab <- dhs.tab[,.(p20=weighted.mean(p20,weights)),by=.(REGNAME)]
+reg.tab <- data.frame(reg.tab)
+reg.tab <- reg.tab[c("REGNAME","p20")]
+ia <- read.dbf("D:/Documents/Data/DHS shapefiles/IA 2006 DHS/shps/sdr_subnational_boundaries.dbf")
+ia$p20 <- NULL
+ia <- join(ia,reg.tab,by="REGNAME")
+write.dbf(ia,"D:/Documents/Data/DHS shapefiles/IA 2006 DHS/shps/sdr_subnational_boundaries.dbf")
