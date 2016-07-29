@@ -8,6 +8,7 @@
 library(rgdal)
 library(leaflet)
 library(plyr)
+library(raster)
 
 windows <- TRUE
 if(windows){pathpre<-"C:"}else{pathpre<-"~"}
