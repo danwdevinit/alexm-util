@@ -39,5 +39,84 @@ proj4string(p20Poly) <- "+proj=longlat +datum=WGS84 +no_defs"
 p20PolyTrans <- spTransform(p20Poly,CRS("+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs"))
 p20PolyTrans$pop <- (gArea(p20PolyTrans,byid=TRUE)/10000)*p20PolyTrans$DN
 save(p20PolyTrans,file="../p20poly_backup.RData")
-p20.dots <- dotsInPolys(p20PolyTrans, p20PolyTrans$pop, f='random')
-writeOGR(p20.dots, ".", "../points/p20_points", driver="ESRI Shapefile")
+# load("../p20poly_backup.RData")
+library(plyr)
+
+tenthDots <- function(h,p20PolyTrans,last){
+  tenth <- round(nrow(p20PolyTrans)/10)
+  
+  dataList <- list()
+  dataIndex <- 1
+  
+  for(i in last:tenth){
+    j <- i * 10
+    if(j>=tenth*h){
+      break
+    }
+    k <- 1+(10*(i-1)):j
+    m <- k[which(k <= nrow(p20PolyTrans))]
+    n <- m[which(p20PolyTrans$pop[m]>0 & p20PolyTrans$pop[m]<250000)]
+    message(j,"/",nrow(p20PolyTrans))
+    if(length(n)>0){
+      p20.dot <- dotsInPolys(p20PolyTrans[n,], round(p20PolyTrans$pop[n]), f='random')
+      dataList[[dataIndex]] <- p20.dot 
+      dataIndex <- dataIndex + 1
+    }
+  }
+  
+  p20.dots <- do.call("rbind",dataList)
+  writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+  return(i)
+}
+
+# last <- tenthDots(1,p20PolyTrans,1)
+# last <- tenthDots(2,p20PolyTrans,last)
+# last <- tenthDots(3,p20PolyTrans,last)
+# last <- tenthDots(4,p20PolyTrans,last)
+# last <- 6095
+# last <- tenthDots(5,p20PolyTrans,last)
+# last <- tenthDots(6,p20PolyTrans,last)
+# last <- tenthDots(7,p20PolyTrans,last)
+# last <- tenthDots(8,p20PolyTrans,last)
+last <- 12190
+last <- tenthDots(9,p20PolyTrans,last)
+last <- 13714
+last <- tenthDots(10,p20PolyTrans,last)
+
+big.ones <- which(p20PolyTrans$pop>=250000)
+# for(i in 1:length(big.ones)){
+#   h <- i+10
+#   j <- big.ones[i]
+#   p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
+#   writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+# }
+
+i <- 1
+j <- big.ones[i]
+h <- i+10
+p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
+writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+
+i <- 2
+j <- big.ones[i]
+h <- i+10
+p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
+writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+
+i <- 3
+j <- big.ones[i]
+h <- i+10
+p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
+writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+
+i <- 4
+j <- big.ones[i]
+h <- i+10
+p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
+writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+
+i <- 5
+j <- big.ones[i]
+h <- i+10
+p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
+writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")

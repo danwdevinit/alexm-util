@@ -68,6 +68,8 @@ countryMeta <- read.csv("headcounts.csv",as.is=TRUE)
 
 newNames <- c("p20.rural"
               ,"p20.urban"
+              ,"p80.rural"
+              ,"p80.urban"
               ,"p80.over25.noeduc"
               ,"p80.over25.primary"
               ,"p80.over25.secondary"
@@ -76,10 +78,14 @@ newNames <- c("p20.rural"
               ,"p20.over25.primary"
               ,"p20.over25.secondary"
               ,"p20.over25.higher"
-              ,"p80.male"
-              ,"p80.female"
               ,"p20.male"
               ,"p20.female"
+              ,"p80.male"
+              ,"p80.female"
+              ,"p20.male.head"
+              ,"p20.female.head"
+              ,"p80.male.head"
+              ,"p80.female.head"
               ,"p80.unregistered"
               ,"p80.registered"
               ,"p20.unregistered"
@@ -88,6 +94,10 @@ newNames <- c("p20.rural"
               ,"p80.stunted"
               ,"p20.notstunted"
               ,"p20.stunted"
+              ,"surveyed.pop"
+              ,"surveyed.households"
+              ,"surveyed.men"
+              ,"surveyed.women"
 )
 
 for(i in 1:length(newNames)){
@@ -99,6 +109,8 @@ for(i in 1:length(filenames)){
   this.filename <- filenames[i]
   message(this.filename)
   dat <- subset(data.total,filename==this.filename)
+  surveyed.pop <- nrow(dat)
+  surveyed.households <- length(unique(dat$household))
   under5 <- subset(dat,age<5)
   over5 <- subset(dat,age>=5)
   under15 <- subset(dat,age<15)
@@ -106,6 +118,14 @@ for(i in 1:length(filenames)){
   over25 <- subset(dat,age>=25)
   women <- subset(dat,sex=="Female")
   men <- subset(dat,sex=="Male")
+  surveyed.pop <- nrow(dat)
+  countryMeta$surveyed.pop[which(countryMeta$filename==this.filename)] <- surveyed.pop
+  surveyed.households <- length(unique(dat$household))
+  countryMeta$surveyed.households[which(countryMeta$filename==this.filename)] <- surveyed.households
+  surveyed.men <- nrow(men)
+  countryMeta$surveyed.men[which(countryMeta$filename==this.filename)] <- surveyed.men
+  surveyed.women <- nrow(women)
+  countryMeta$surveyed.women[which(countryMeta$filename==this.filename)] <- surveyed.women
   if(nrow(dat)>0){
     this.pop <- subset(countryMeta,filename==this.filename)$pop.total
     this.pop.under5 <- subset(countryMeta,filename==this.filename)$female.under5 + subset(countryMeta,filename==this.filename)$male.under5
@@ -149,10 +169,10 @@ for(i in 1:length(filenames)){
     #Head-sex-P20
     if(length(dat$head.sex[which(!is.na(dat$head.sex))])!=0){
       confidence.tab <- pop.confidence(dat$head.sex,dat$p20,dat$weights,this.pop)
-      countryMeta$p80.male[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Male","FALSE"]},error=function(e){0})
-      countryMeta$p80.female[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Female","FALSE"]},error=function(e){0})
-      countryMeta$p20.male[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Male","TRUE"]},error=function(e){0})
-      countryMeta$p20.female[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Female","TRUE"]},error=function(e){0}) 
+      countryMeta$p80.male.head[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Male","FALSE"]},error=function(e){0})
+      countryMeta$p80.female.head[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Female","FALSE"]},error=function(e){0})
+      countryMeta$p20.male.head[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Male","TRUE"]},error=function(e){0})
+      countryMeta$p20.female.head[which(countryMeta$filename==this.filename)] <- tryCatch({confidence.tab$estimate["Female","TRUE"]},error=function(e){0}) 
     }
     #Under5 registration
     if(length(under5$birth.reg[which(!is.na(under5$birth.reg))])!=0){

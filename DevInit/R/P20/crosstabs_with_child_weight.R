@@ -34,7 +34,7 @@ weighted.percentile <- function(x,w,prob,na.rm=TRUE){
   return(cutList)
 }
 
-# dir <- "D:/Documents/Data/DHSauto/rwhr61dt"
+# dir <- "D:/Documents/Data/DHSauto/phhr61dt"
 
 ####Run function####
 # set our working directory, change this if using on another machine
