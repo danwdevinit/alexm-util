@@ -78,10 +78,10 @@ tenthDots <- function(h,p20PolyTrans,last){
 # last <- tenthDots(6,p20PolyTrans,last)
 # last <- tenthDots(7,p20PolyTrans,last)
 # last <- tenthDots(8,p20PolyTrans,last)
-last <- 12190
-last <- tenthDots(9,p20PolyTrans,last)
-last <- 13714
-last <- tenthDots(10,p20PolyTrans,last)
+# last <- 12190
+# last <- tenthDots(9,p20PolyTrans,last)
+# last <- 13714
+# last <- tenthDots(10,p20PolyTrans,last)
 
 big.ones <- which(p20PolyTrans$pop>=250000)
 # for(i in 1:length(big.ones)){
@@ -91,32 +91,56 @@ big.ones <- which(p20PolyTrans$pop>=250000)
 #   writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
 # }
 
-i <- 1
-j <- big.ones[i]
-h <- i+10
-p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
-writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+bb <- bbox(p20PolyTrans[big.ones,])
+cs <- c(3.28084,3.28084)*6000
+cc <- bb[,1] + (cs/2)
+cd <- ceiling(diff(t(bb))/cs)
+grd <- GridTopology(cellcentre.offset=cc,cellsize=cs,cells.dim=cd)
+sp_grd <- SpatialGridDataFrame(grd,data=data.frame(id=1:prod(cd)),proj4string=CRS(proj4string(p20PolyTrans)))
 
-i <- 2
-j <- big.ones[i]
-h <- i+10
-p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
-writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+grd_shp <- as(sp_grd,"SpatialPolygonsDataFrame")
 
-i <- 3
-j <- big.ones[i]
-h <- i+10
-p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
-writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+library("lattice")
+spplot(sp_grd, "id",
+       panel = function(...) {
+         panel.gridplot(..., border="black")
+         sp.polygons(p20PolyTrans[big.ones,])
+         panel.text(...)
+       })
 
-i <- 4
-j <- big.ones[i]
-h <- i+10
-p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
-writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+# simplify the polgons a tad (tweak 0.00001 to your liking)
+big.Simple <- gSimplify(p20PolyTrans[big.ones,], tol = 0.00001)
 
-i <- 5
-j <- big.ones[i]
-h <- i+10
-p20.dots <- dotsInPolys(p20PolyTrans[j,], round(p20PolyTrans$pop[j]), f='random')
-writeOGR(p20.dots, ".", paste0("../points/p20_points",h), driver="ESRI Shapefile")
+# this is a well known R / GEOS hack (usually combined with the above) to 
+# deal with "bad" polygons
+big.Simple <- gBuffer(big.Simple, byid=TRUE, width=0)
+
+# any bad polys?
+sum(gIsValid(big.Simple, byid=TRUE)==FALSE)
+
+big.Simple <- as(big.Simple,"SpatialPolygonsDataFrame")
+big.Simple$dummy <- NULL
+big.Simple$DN <- p20PolyTrans[big.ones,]$DN
+splitShapes <- intersect(big.Simple,grd_shp)
+splitShapes$pop <- (gArea(splitShapes,byid=TRUE)/10000)*splitShapes$DN
+
+fifth <- round(nrow(splitShapes)/25)
+
+dataList <- list()
+dataIndex <- 1
+
+for(i in 1:fifth){
+  j <- i * 25
+  k <- 1+(25*(i-1)):j
+  m <- k[which(k <= nrow(splitShapes))]
+  n <- m[which(splitShapes$pop[m]>0)]
+  message(j,"/",nrow(splitShapes))
+  if(length(n)>0){
+    p20.dot <- dotsInPolys(splitShapes[n,], round(splitShapes$pop[n]), f='random')
+    dataList[[dataIndex]] <- p20.dot 
+    dataIndex <- dataIndex + 1
+  }
+}
+
+p20.dots <- do.call("rbind",dataList)
+writeOGR(p20.dots, ".", paste0("../points/p20_points",11), driver="ESRI Shapefile")
