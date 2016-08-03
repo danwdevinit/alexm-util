@@ -35,54 +35,6 @@ gpclibPermit()
 
 p20 <- raster("../pov-tifs/p20.tif")
 
-r <- p20
-resolution <- 1
-bb <- bbox(r)
-cs <- c(0.000833333,0.000833333)*resolution
-cc <- bb[,1] + (cs/2)
-cd <- ceiling(diff(t(bb))/cs)
-grd <- GridTopology(cellcentre.offset=cc,cellsize=cs,cells.dim=cd)
-sp_grd <- SpatialGridDataFrame(grd,data=data.frame(id=1:prod(cd)),proj4string="+proj=longlat +datum=WGS84 +no_defs")
-rVals <- round(getValues(r))
-valMat <- round(getValues(r,format="matrix"))
-total.pop <- sum(rVals,na.rm=TRUE)
+source("C:/git/alexm-util/DevInit/R/P20/raster2dots.R")
 
-dots <- data.frame(
-  x=double(total.pop)
-  ,y=double(total.pop)
-  )
-
-dots$x <- NA
-dots$y <- NA
-
-set.seed(1234)
-grd_bb <- bbox(sp_grd)
-s1min <- grd_bb[1,1]
-s2min <- grd_bb[2,1]
-
-i <- 0
-for(s2 in 0:(cd[2]-1)){
-  message(s2,"/",cd[2])
-  for(s1 in 0:(cd[1]-1)){
-    one.grid.pop <- valMat[(cd[2]-s2),(s1+1)]
-    if(!is.na(one.grid.pop)){
-      if(one.grid.pop>0){
-        this.s1min <- s1min+(s1*(0.000833333*resolution))
-        this.s2min <- s2min+(s2*(0.000833333*resolution))
-        rands1 <- runif(one.grid.pop,0,1)
-        rands2 <- runif(one.grid.pop,0,1)
-        dots[(1 + i):(i + one.grid.pop),1] <- this.s1min+(rands1*(0.000833333*resolution))
-        dots[(1 + i):(i + one.grid.pop),2] <- this.s2min+(rands2*(0.000833333*resolution))
-        i <- i + one.grid.pop
-      }
-    }
-  }
-}
-
-dots <- dots[which(complete.cases(dots)),]
-save(dots,file="dots.RData")
-# load("dots.RData")
-coordinates(dots) <- ~x+y
-proj4string(dots) <- "+proj=longlat +datum=WGS84 +no_defs"
-dots <- SpatialPointsDataFrame(dots, data.frame(dummy = rep(0,length(dots))))
-writeOGR(dots, ".", "../better_dots/p20_points", driver="ESRI Shapefile")
+raster2dots(p20,"../dots/p20/points")
