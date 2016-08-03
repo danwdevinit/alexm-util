@@ -45,7 +45,7 @@ raster2dots <- function(r,out,resolution=1){
   break_count <- 0
   people <- 0
   
-  while(s2<=(cd[2]-1)){
+  while(s2<(cd[2]-1)){
     x <- c()
     y <- c()
     for(s2 in s2_last:(cd[2]-1)){
