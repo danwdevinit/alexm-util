@@ -31,6 +31,6 @@ combineShp <- function(infolder,outfile){
   close(pb)
 }
 
-wd <- "D:/Documents/Data/WorldPop/dots/"
-setwd(wd)
-combineShp("p20","p20_merge")
+# wd <- "D:/Documents/Data/WorldPop/dots/"
+# setwd(wd)
+# combineShp("p20","p20_merge")

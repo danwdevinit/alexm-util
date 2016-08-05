@@ -1,0 +1,35 @@
+{
+  "version": 8,
+    "name": "Mapbox Streets",
+    "sprite": "mapbox://sprites/mapbox/streets-v8",
+    "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+  "constants": {
+    "@background": "#808080",
+    "@p20_merge": "#000000"
+  },
+  "sources": {
+    "p20_merge": {
+      "type": "vector",
+      "tiles": [
+        "http://10.0.2.2:7777/v2/tiles/{z}/{x}/{y}.pbf"
+      ],
+      "minzoom": 0,
+      "maxzoom": 22
+    }
+  },
+  "layers": [{
+    "id": "background",
+    "type": "background",
+    "paint": {
+      "background-color": "@background"
+    }
+  }, {
+    "id": "p20_merges",
+    "type": "circle",
+    "source": "p20_merge",
+    "source-layer": "p20_merge",
+    "paint": {
+      "line-color": "@p20_merge"
+    }
+  }]
+}

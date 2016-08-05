@@ -34,7 +34,17 @@ gpclibPermit()
 # writeRaster(gp50,"../pov-tifs/gp50.tif")
 
 p20 <- raster("../pov-tifs/p20.tif")
+p50 <- raster("../pov-tifs/p50.tif")
+gp50 <- raster("../pov-tifs/gp50.tif")
 
 source("C:/git/alexm-util/DevInit/R/P20/raster2dots.R")
 
-raster2dots(p20,"../dots/p20/points")
+# raster2dots(p20,"../dots/p20/points")
+# raster2dots(p50,"../dots/p50/points")
+# raster2dots(gp50,"../dots/gp50/points")
+
+source("C:/git/alexm-util/DevInit/R/P20/combine_shp.R")
+
+# combineShp("../dots/p20","../dots/p20_merge")
+combineShp("../dots/p50","../dots/p50_merge")
+combineShp("../dots/gp50","../dots/gp50_merge")
