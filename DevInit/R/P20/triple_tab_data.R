@@ -226,9 +226,6 @@ classes <- read.csv("global_mics_classes.csv",as.is=TRUE,na.strings="NAN")
 wd <- "D:/Documents/Data/MICSauto/"
 setwd(wd)
 
-dataList <- list()
-dataIndex <- 1
-
 # List out all the directories in our wd, this is where our data is contained
 dirs <- list.dirs(wd,full.names=TRUE)
 
@@ -586,9 +583,8 @@ for(i in 2:length(dirs)){
 
 wd <- "D:/Documents/Data/MICSmeta"
 setwd(wd)
-micsMetaData <- rbindlist(dataList)
 
-data.total <- rbind(metaData,micsMetaData)
+data.total <- rbindlist(dataList)
 
 recode.urban <- function(x){
   if(is.na(x)){return(NA)}
@@ -944,7 +940,7 @@ data <- pr[keep]
 data$filename <- "Brazil"
 
 brazil.data.total <- data
-data.total <- rbind(brazil.data.total,data.total)
+data.total <- rbind(brazil.data.total,data.total,fill=TRUE)
 
 wd <- "D:/Documents/Data/ChinaSurvey/"
 setwd(wd)
@@ -1201,13 +1197,20 @@ ir$stunting <- factor(ir$stunting
                       ))
 ir$filename <- "China"
 china.data.total <- ir
-data.total <- rbind(china.data.total,data.total)
+data.total <- rbind(china.data.total,data.total,fill=TRUE)
 
 setwd("D:/Documents/Data/MICSmeta/")
 load("child.maternal.RData")
 setnames(child.health,"skilled.attendant","ch.skilled.attendant")
+child.health <- data.frame(child.health)
+maternal.health <- data.frame(maternal.health)
 child.health <- child.health[c("filename","cluster","household","ch.skilled.attendant","any.vacc")]
 maternal.health <- maternal.health[c("filename","cluster","household","ceb","cdead","skilled.attendant","maternal.deaths")]
 data.total <- join(data.total,child.health,by=c("filename","cluster","household"))
 data.total <- join(data.total,maternal.health,by=c("filename","cluster","household"))
 save(data.total,file="total_triple.RData")
+
+# bra <- subset(data.total,filename=="Brazil")
+# weighted.mean(bra$p20,bra$weights)
+# weighted.mean(bra$np20,bra$weights)
+# weighted.mean(bra$npl,bra$weights)
