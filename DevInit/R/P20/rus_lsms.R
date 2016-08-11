@@ -4,195 +4,7 @@ library(data.table)
 library(plyr)
 library(varhandle)
 
-wealth <- function(df,catvars,numvars,urbanvar=NA){
-  require(data.table)
-  
-  name.i <- function(i,df){
-    return(names(df)[i])
-  }
-  if(typeof(catvars)=="double" |typeof(catvars)=="integer"){
-    catvars <- sapply(catvars,name.i,df=hh)
-  }
-  if(typeof(numvars)=="double" |typeof(numvars)=="integer"){
-    numvars <- sapply(numvars,name.i,df=hh)
-  }
-  
-  generateDummies <- function(df,vars){
-    dummyList <- list()
-    listIndex <- 1
-    for(i in 1:length(vars)){
-      var = vars[i]
-      df[,var] <- factor(df[,var])
-      cmd = paste0("dum = model.matrix( ~ ",var," - 1, data=df)")
-      eval(parse(text=cmd))
-      dummyList[[listIndex]] = dum
-      listIndex <- listIndex + 1
-    }
-    return(dummyList)
-  }
-  
-  dummyList <- generateDummies(df,catvars)
-  
-  cbindlist <- function(list) {
-    n <- length(list)
-    res <- list[[1]]
-    for (i in 2:n){
-      item <- list[[i]]
-      res <- cbind(res, item[match(rownames(res),rownames(item)),]) 
-    }
-    return(res)
-  }
-  
-  dummies <- cbindlist(dummyList)
-  
-#   dummy.columns <- colnames(dummies)
-#   deleted <- 0
-#   
-#   for(i in 1:length(dummy.columns)){
-#     dummy.column <- dummy.columns[i]
-#     if(
-#       grepl("unknown",dummy.column,ignore.case=TRUE) |
-#         grepl("NA",dummy.column) |
-#         grepl("refuse",dummy.column,ignore.case=TRUE)
-#     ){
-#       index <- i-deleted
-#       dummies <- dummies[,-index]
-#       deleted <- deleted + 1
-#     }
-#   }
-  
-  df <- cbindlist(list(df,dummies))
-  
-  good.keep <- c()
-  wealth.vars <- c(numvars,colnames(dummies))
-  for(i in 1:length(wealth.vars)){
-    varname <- wealth.vars[i];
-    if((varname %in% names(df))){
-      df[[varname]][!complete.cases(df[[varname]])] <- 0
-      var.sd <- sd(df[[varname]],na.rm=TRUE)
-      if(var.sd!=0){
-        good.keep <- c(good.keep,varname) 
-      } 
-    }
-  }
-  
-  dat.asset.cap <- df[good.keep]
-  
-  #Common
-  
-  dat.pca <- prcomp(dat.asset.cap)
-  
-  pca1 <- dat.pca$rotation[,1]
-  
-  pca.vars <- names(pca1)
-  
-  c.wealth <- c()
-  for(i in 1:length(pca.vars)){
-    pca.var <- pca.vars[i]
-    message(paste(i,pca.var,sep=". "))
-    component <- pca1[[pca.var]]
-    column <- df[[pca.var]]
-    var.mean <- mean(column,na.rm=TRUE)
-    if(pca.var %in% numvars){var.mean <- 0}
-    var.sd <- sd(column,na.rm=TRUE)
-    for(j in 1:length(column)){
-      val <- column[j]
-      if(is.na(val)){val<-var.mean}
-      wealth.contribution <- ((val-var.mean)/var.sd)*component
-      if(is.null(c.wealth[j])){
-        c.wealth[j] = wealth.contribution
-      }else{
-        c.wealth[j] = sum(c.wealth[j], wealth.contribution,na.rm=TRUE)
-      }
-    }
-  }
-  
-  df <- cbind(df,c.wealth)
-  
-  if(!is.na(urbanvar)){
-    #urban
-    urban <- df[which(df[,urbanvar]==1),]
-    
-    dat.pca <- prcomp(dat.asset.cap[which(df[,urbanvar]==1),])
-    
-    pca1 <- dat.pca$rotation[,1]
-    
-    pca.vars <- names(pca1)
-    
-    u.wealth <- c()
-    for(i in 1:length(pca.vars)){
-      pca.var <- pca.vars[i]
-      message(paste(i,pca.var,sep=". "))
-      component <- pca1[[pca.var]]
-      column <- urban[[pca.var]]
-      var.mean <- mean(column,na.rm=TRUE)
-      if(pca.var %in% numvars){var.mean <- 0}
-      var.sd <- sd(column,na.rm=TRUE)
-      for(j in 1:length(column)){
-        val <- column[j]
-        if(is.na(val)){val<-var.mean}
-        wealth.contribution <- ((val-var.mean)/var.sd)*component
-        if(is.null(u.wealth[j])){
-          u.wealth[j] = wealth.contribution
-        }else{
-          u.wealth[j] = sum(u.wealth[j], wealth.contribution,na.rm=TRUE)
-        }
-      }
-    }
-    
-    urban <- cbind(urban,u.wealth)
-    
-    urban.lm <- lm(c.wealth~u.wealth,data=urban)
-    u.alpha <- urban.lm$coefficients[[1]]
-    u.beta <- urban.lm$coefficients[[2]]
-    
-    #Rural
-    rural <- df[which(df[,urbanvar]==0),]
-    
-    dat.pca <- prcomp(dat.asset.cap[which(df[,urbanvar]==0),])
-    
-    pca1 <- dat.pca$rotation[,1]
-    
-    pca.vars <- names(pca1)
-    
-    r.wealth <- c()
-    for(i in 1:length(pca.vars)){
-      pca.var <- pca.vars[i]
-      message(paste(i,pca.var,sep=". "))
-      component <- pca1[[pca.var]]
-      column <- rural[[pca.var]]
-      var.mean <- mean(column,na.rm=TRUE)
-      if(pca.var %in% numvars){var.mean <- 0}
-      var.sd <- sd(column,na.rm=TRUE)
-      for(j in 1:length(column)){
-        val <- column[j]
-        if(is.na(val)){val<-var.mean}
-        wealth.contribution <- ((val-var.mean)/var.sd)*component
-        if(is.null(r.wealth[j])){
-          r.wealth[j] = wealth.contribution
-        }else{
-          r.wealth[j] = sum(r.wealth[j], wealth.contribution,na.rm=TRUE)
-        }
-      }
-    }
-    
-    rural <- cbind(rural,r.wealth)
-    
-    rural.lm <- lm(c.wealth~r.wealth,data=rural)
-    r.alpha <- rural.lm$coefficients[[1]]
-    r.beta <- rural.lm$coefficients[[2]]
-    
-    #Composite
-    rural$u.wealth <- NA
-    urban$r.wealth <- NA
-    urban$wealth <- u.alpha+(u.beta*u.wealth)
-    rural$wealth <- r.alpha+(r.beta*r.wealth)
-    df <- rbind(urban,rural) 
-  }else{
-    df$wealth <- df$c.wealth
-  }
-  return(df)
-}
+source("C:/git/alexm-util/DevInit/R/p20/wealth_pca.R")
 
 wd <- "D:/Documents/Data/LSMS/"
 setwd(wd)
@@ -242,7 +54,10 @@ hh <- data.frame(hh)
 urbanvar <- "urban.cat"
 
 wealth.dat <- wealth(hh,catvars,numvars,"urban.cat")
+wealth.dat.no.home <- wealth(hh,catvars,NA,"urban.cat")
 
+hist(wealth.dat$wealth)
+hist(wealth.dat.no.home$wealth)
 # hist(wealth.dat$wealth)
 # hist(wealth.dat$totexprw)
 # hist(wealth.dat$tincm_rw)
@@ -309,3 +124,14 @@ draw.triple.venn(
   ,lty=rep("blank",3)
   ,fill=c("red","green","blue")
   )
+
+#Regression?
+dummies <- c(1176:1262)
+reg.dat <- cbind(wealth.dat$pcexpppp,wealth.dat$pcincppp,wealth.dat[dummies],wealth.dat[numvars])
+names(reg.dat)[1:2] <- c("pcexpppp","pcincppp")
+fit <- lm(reg.dat$pcexpppp~.,data=reg.dat)
+summary(fit)
+fit <- lm(reg.dat$pcexpppp~hwhord1+hwhord2+hwobicyc1+hwhfsp+hwhlsp+hwhrooms,data=reg.dat)
+summary(fit)
+fit <- lm(reg.dat$pcincppp~.,data=reg.dat)
+summary(fit)
