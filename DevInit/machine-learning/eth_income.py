@@ -13,11 +13,11 @@ def shallow(training_data,validation_data,test_data,input_size,output_size,itera
     nets = []
     for j in xrange(iterations):
         net = Network([
-            FullyConnectedLayer(n_in=input_size, n_out=100),
-            SoftmaxLayer(n_in=100, n_out=output_size)], mini_batch_size)
+            FullyConnectedLayer(n_in=input_size, n_out=10),
+            SoftmaxLayer(n_in=10, n_out=output_size)], mini_batch_size)
         net.SGD(
-            training_data, epochs, mini_batch_size, 0.05, 
-            validation_data, test_data,0.05)
+            training_data, epochs, mini_batch_size, .1, 
+            validation_data, test_data,0.5)
         nets.append(net)
     return nets
 
@@ -57,6 +57,12 @@ def ensemble(nets,matSize):
     print "Accuracy is {:.2%}".format((1-len(error_locations)/float(matSize)))
     return error_locations, erroneous_predictions
 
+def float_na(x):
+    if x == "":
+        return 0
+    else:
+        return float(x)
+
 if __name__ == "__main__":
     import sys
     sys.path.append("/git/neural-networks-and-deep-learning/src/")
@@ -75,12 +81,11 @@ if __name__ == "__main__":
     from operator import itemgetter
     import operator
     import itertools
+    from scipy.sparse import csr_matrix
     
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="input", default = "./google_results_01.csv",
+    parser.add_option("-i", "--input", dest="input", default = "/data/LSMSauto/ETH_2011_ERSS_v02_M_STATA/eth_dat.csv",
                     help="Input file", metavar="FILE")
-    parser.add_option("-j", "--input2", dest="input2", default = "./org_training_set.csv",
-                    help="Input file 2", metavar="FILE")
     (options, args) = parser.parse_args()
     with open(options.input,'rb') as csvfile:
         reader = csv.reader(csvfile,delimiter=",",quotechar="\"")
@@ -90,51 +95,14 @@ if __name__ == "__main__":
             if not header:
                 header = row
             else:
-                if row[2]!="":
-                    obj = {}
-                    obj["org"]=row[0]
-                    obj["source"]=row[1]
-                    obj["class"]=row[2]
-                    obj["text"]=row[3]
-                    raw_data.append(obj)
+                raw_data.append([float_na(el) for el in row])
                     
-    #Group by org and source
-    getvals = operator.itemgetter('org','source')
-    raw_data.sort(key=getvals)
-    groups = []
-    for k, g in itertools.groupby(raw_data,getvals):
-        row = list(g)
-        #obj = {}
-        #obj['org'] = row[0]["org"]
-        #obj['source'] = row[0]["source"]
-        #obj['class'] = row[0]["class"]
-        #obj['text'] = ". ".join([el["text"] for el in row])
-        tup = (". ".join([el["text"] for el in row]),row[0]["class"])
-        groups.append(tup)
-    if options.input2:
-        with open(options.input2,'rb') as csvfile:
-            reader = csv.reader(csvfile,delimiter=",",quotechar="\"")
-            header = False
-            raw_data = []
-            for row in reader:
-                if not header:
-                    header = row
-                else:
-                    if row[5]!="":
-                        tup = (row[3],row[5])
-                        groups.append(tup)
-    #Binary choice
-    #groups = [(tup[0],tup[1]) if tup[1]=="International NGO" else (tup[0],"Non-international NGO") for tup in groups]
-    #Three categories
-    keep = ["International NGO","National NGO","Local NGOs"]
-    groups = [(tup[0],tup[1]) if tup[1] in keep else (tup[0],"International NGO") for tup in groups if tup[1]!="Undefined"]
-    shuffle(groups)
-    docs = [tup[0] for tup in groups]
-    categories = [tup[1] for tup in groups]
+    shuffle(raw_data)
+    docs = [el[1:] for el in raw_data]
+    categories = [el[0] for el in raw_data]
     uniqueCat = list(set(categories))
     numCat = [uniqueCat.index(cat) for cat in categories]
-    vectorizer = TfidfVectorizer(min_df=1,stop_words="english",strip_accents="unicode",ngram_range=(1,1))
-    Xmat = vectorizer.fit_transform(docs)
+    Xmat = csr_matrix(docs)
     X = Xmat.toarray()
     XLen = X.shape[0]
     trainIndex = int(.7*XLen)
@@ -142,6 +110,7 @@ if __name__ == "__main__":
     training_data = shared((X[:trainIndex],np.array(numCat)[:trainIndex]))
     validation_data = shared((X[trainIndex:valIndex],np.array(numCat)[trainIndex:valIndex]))
     test_data = shared((X[valIndex:],np.array(numCat)[valIndex:]))
+    pdb.set_trace()
     print("Features: {0}; Categories: {3}; Training set: {1}; Testing set: {2};".format(X.shape[1],trainIndex,XLen-valIndex,len(uniqueCat)))
     print("")
     nets = shallow(training_data,validation_data,test_data,X.shape[1],len(uniqueCat),1)
@@ -158,7 +127,7 @@ if __name__ == "__main__":
     print("")
     print("Classification"+" "*9+" "*4+"Actual"+" "*4+"Correct"+" "*4+"Percent")
     for i in range(len(uniqueCat)):
-        name = uniqueCat[i]
+        name = str(uniqueCat[i])
         nameLen = len(name)
         actual = str(numCat[valIndex:].count(i))
         actualLen = len(actual)
