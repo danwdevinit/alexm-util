@@ -60,7 +60,7 @@ df <- read.csv("Snap Poll Data.csv")
 #Drop column surveyTitle
 df <- df[,!(names(df) %in% "surveyTitle")]
 
-#Drop if not m
+#Drop if m
 df1 <- df[!(df$respondentGender %in% "m"),]
 
 #Keep if m
